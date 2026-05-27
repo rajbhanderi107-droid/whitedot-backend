@@ -79,15 +79,63 @@ User, Company, Inquiry, QuoteRequest, SampleRequest, CalculatorSubmission, Admin
 
 ## Deployment
 
-**Backend:** Railway or Render
-**Database:** Supabase PostgreSQL or Neon
+### Recommended Stack
+- **Backend hosting:** [Railway](https://railway.app) (auto-detects Node, free tier available)
+- **Database:** [Neon](https://neon.tech) or [Supabase](https://supabase.com) — both provide free PostgreSQL
 
-Production checklist:
-1. Set `NODE_ENV=production`
-2. Use strong `JWT_SECRET`
-3. Set `FRONTEND_URL` to production domain
-4. Run `npm run prisma:migrate:deploy`
-5. Run `npm run seed`
+### Railway Deployment (Step-by-Step)
+
+1. **Create a Neon/Supabase PostgreSQL database** and copy the connection string.
+
+2. **Push this repo to GitHub** (already done on `feature/real-world-whitedot-backend`).
+
+3. **Create a new Railway project**, connect to the GitHub repo.
+
+4. **Set environment variables** in Railway dashboard:
+   ```
+   DATABASE_URL=postgresql://...   # from Neon/Supabase
+   JWT_SECRET=<64-char-random-string>
+   NODE_ENV=production
+   PORT=4000
+   FRONTEND_URL=https://rajbhanderi107-droid.github.io
+   ADMIN_SEED_EMAIL=raj@whitedot.in
+   ADMIN_SEED_PASSWORD=<strong-password>
+   ```
+
+5. **Set the start command** in Railway:
+   ```
+   npm run build && npm run prisma:migrate:deploy && npm run seed && npm run start
+   ```
+   > The seed script is idempotent — safe to run on every deploy (skips if admin already exists).
+
+6. **Get your Railway URL** (e.g. `https://whitedot-backend-production.up.railway.app`) and set it as `VITE_API_URL` in the frontend `.env.production`.
+
+### Frontend Environment
+
+Create `whitedot-limex.in/.env.production`:
+```
+VITE_API_URL=https://whitedot-backend-production.up.railway.app
+```
+
+Then rebuild and deploy to GitHub Pages.
+
+### Generating a Strong JWT Secret
+
+```bash
+# Node.js one-liner
+node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
+```
+
+### Production Checklist
+
+- [ ] `NODE_ENV=production` is set
+- [ ] `JWT_SECRET` is at least 64 characters, randomly generated
+- [ ] `FRONTEND_URL` matches the exact GitHub Pages domain (no trailing slash)
+- [ ] `DATABASE_URL` uses SSL (Neon/Supabase provide this by default)
+- [ ] `ADMIN_SEED_PASSWORD` is strong (12+ chars, mixed case + symbols)
+- [ ] Database migrations ran without errors
+- [ ] `GET /api/health` returns `{ "status": "ok" }` after deploy
+- [ ] Login works at `https://your-frontend/#/admin/login`
 
 ## Scripts
 
