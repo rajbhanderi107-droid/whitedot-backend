@@ -26,6 +26,15 @@ app.use(express.json({ limit: "2mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+// ─── Root landing — friendly status for browsers hitting / ──
+app.get("/", (_req, res) => {
+  res.json({
+    service: "White Dot LLP — LIMEX CRM API",
+    status: "ok",
+    docs: "/api/health for health check",
+  });
+});
+
 // ─── Health check ───────────────────────────────
 app.get("/api/health", (_req, res) => {
   res.json({ status: "ok", timestamp: new Date().toISOString() });
