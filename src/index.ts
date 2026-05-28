@@ -10,6 +10,17 @@ const server = app.listen(env.PORT, () => {
 │  CORS:  ${env.FRONTEND_URL.padEnd(30).slice(0, 30)}  │
 ╰─────────────────────────────────────────╯
   `);
+
+  // ─── Keep-alive self-ping (Render free tier sleeps after 15 min) ──
+  // Ping own health endpoint every 14 min to prevent cold starts.
+  if (env.isProduction) {
+    const KEEP_ALIVE_MS = 14 * 60 * 1000; // 14 minutes
+    const selfUrl = process.env.RENDER_EXTERNAL_URL || `http://localhost:${env.PORT}`;
+    setInterval(() => {
+      fetch(`${selfUrl}/api/health`).catch(() => {});
+    }, KEEP_ALIVE_MS);
+    console.log(`  Keep-alive ping every 14m → ${selfUrl}/api/health`);
+  }
 });
 
 // Graceful shutdown
