@@ -4,10 +4,17 @@ import { prisma } from "../config/prisma.js";
 import { verifyToken } from "../utils/tokens.js";
 import { AppError } from "./error.middleware.js";
 
-/** Verify JWT from cookie and attach currentUser to request */
+/** Verify JWT from Authorization header or cookie and attach currentUser to request.
+ *  Header takes precedence — cross-origin frontends (GitHub Pages ↔ Render) can't
+ *  use cookies because browsers block third-party cookies. */
 export async function requireAuth(req: Request, _res: Response, next: NextFunction) {
   try {
-    const token = req.cookies?.token;
+    // Try Authorization: Bearer <token> first, fall back to cookie
+    let token = req.cookies?.token;
+    const authHeader = req.headers.authorization;
+    if (authHeader?.startsWith("Bearer ")) {
+      token = authHeader.slice(7);
+    }
     if (!token) throw new AppError(401, "UNAUTHORIZED", "Authentication required");
 
     const payload = verifyToken(token);

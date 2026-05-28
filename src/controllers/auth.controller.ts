@@ -28,11 +28,15 @@ export async function login(req: Request, res: Response) {
     userAgent: req.headers["user-agent"],
   });
 
+  // Return token in body so cross-origin frontends (GitHub Pages ↔ Render)
+  // can store it in localStorage and send via Authorization header —
+  // cross-domain cookies are blocked by modern browsers.
   return sendSuccess(res, {
     id: user.id,
     name: user.name,
     email: user.email,
     role: user.role,
+    token,
   }, "Login successful");
 }
 
