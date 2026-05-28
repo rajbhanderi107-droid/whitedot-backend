@@ -37,7 +37,7 @@ app.use("/api/public", publicRoutes);
 app.use("/api", adminRoutes);
 
 // ─── 404 for unknown API routes ─────────────────
-app.use("/api/*", (_req, res) => {
+app.use("/api/*path", (_req, res) => {
   res.status(404).json({
     success: false,
     error: { code: "NOT_FOUND", message: "API endpoint not found" },
