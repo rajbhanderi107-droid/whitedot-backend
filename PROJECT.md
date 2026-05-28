@@ -8,6 +8,10 @@ WhiteDot India LIMEX / CR LIMEX website for regional distribution and customer e
 
 https://rajbhanderi107-droid.github.io/whitedot-limex.in/
 
+## Admin Website
+
+Target custom domain: `https://admin.whitedot-limex.in`
+
 ## GitHub Repository
 
 https://github.com/rajbhanderi107-droid/whitedot-limex.in
@@ -56,6 +60,7 @@ npm run backend:build
 ## Important Notes
 
 - The public GitHub Pages link is the shareable customer link.
+- The admin dashboard should use `admin.whitedot-limex.in`; `whitedot-limex.admin.in` is a different domain.
 - Do not share `127.0.0.1`; that is only the local preview URL.
 - The website avoids unsupported endorsement wording for companies unless official permission or documents are supplied.
 - Future launch updates should include final company address, approved logos, product catalogue PDFs, and a custom domain.
