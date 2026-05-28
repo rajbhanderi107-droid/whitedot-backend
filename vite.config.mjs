@@ -10,6 +10,6 @@ export default defineConfig({
   // No manualChunks: Vite's default splitting keeps the three.js / R3F /
   // postprocessing stack in lazy chunks off the entry (loaded only when a
   // lazy()'d canvas mounts). A custom manualChunks split caused the entry to
-  // eager-import the 3D stack via a shared helper landing in a vendor chunk —
+  // eager-import the 3D stack via a shared helper landing in a vendor chunk -
   // correctness (lazy 3D) wins over the marginal parse-size optimisation.
 });

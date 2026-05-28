@@ -19,6 +19,9 @@ https://github.com/rajbhanderi107-droid/whitedot-limex.in
 - TypeScript
 - Three.js
 - Plain CSS
+- Express
+- Prisma
+- PostgreSQL
 - GitHub Pages deployment through the `gh-pages` branch
 
 ## Local Commands
@@ -27,11 +30,17 @@ https://github.com/rajbhanderi107-droid/whitedot-limex.in
 npm install
 npm run dev
 npm run build
+npm --prefix server install
+npm run backend:dev
+npm run backend:build
 ```
 
 ## Main Files
 
 - `src/App.tsx` - website content and sections
+- `src/admin` - admin dashboard frontend
+- `server/src` - merged WhiteDot backend API
+- `server/prisma/schema.prisma` - backend database schema
 - `src/HeroScene.tsx` - floating LIMEX stone and particle animation
 - `src/styles.css` - full visual theme, responsive layout, and animations
 - `public/assets/limex-rock.webp` - optimized floating stone texture
