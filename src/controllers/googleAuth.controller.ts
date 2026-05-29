@@ -96,7 +96,7 @@ export async function googleLogin(req: Request, res: Response) {
   // Get user profile from Google
   const googleUser = await getGoogleUserInfo(tokens.access_token);
 
-  if (!googleUser.email_verified) {
+  if (googleUser.email_verified === false) {
     throw new AppError(401, "EMAIL_NOT_VERIFIED", "Google email is not verified");
   }
 
