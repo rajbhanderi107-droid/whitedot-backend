@@ -38,6 +38,8 @@ const ALLOWED_ORIGINS = [
   "https://whitedot-limex.in",
   "https://www.whitedot-limex.in",
   "https://admin.whitedot-limex.in",
+  "https://whitedotindia.in",
+  "https://www.whitedotindia.in",
 ];
 if (!env.isProduction) {
   ALLOWED_ORIGINS.push("http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173");
