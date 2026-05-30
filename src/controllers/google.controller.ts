@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { prisma } from "../config/prisma.js";
 import { sendSuccess } from "../utils/apiResponse.js";
+import { fetchGA4, fetchSearchConsole, googleCredsAvailable } from "../services/google.service.js";
 
 /* ───────────────────────────────────────────────────────────────────────────
    All-in-one Google overview — DYNAMIC FLOW.
@@ -74,55 +75,106 @@ async function buildLoginsSource(): Promise<GoogleSource> {
   };
 }
 
-function buildApiSource(
+/** A source still needing setup (no creds, or live fetch failed). */
+function disconnectedSource(
   key: string,
   title: string,
-  envKeys: string[],
   consoleUrl: string,
   setupHint: string,
 ): GoogleSource {
-  const ready = envKeys.every(has);
-  return {
-    key,
-    title,
-    connected: false, // flip to `ready` once the live API call is implemented
-    setupHint: ready
-      ? "Credentials detected. Live API fetch not implemented yet — add the Google client call in google.controller.ts."
-      : setupHint,
-    consoleUrl,
-    metrics: [],
-  };
+  return { key, title, connected: false, setupHint, consoleUrl, metrics: [] };
+}
+
+// ─── GA4 ──────────────────────────────────────────────────────────────────────
+async function buildAnalyticsSource(): Promise<GoogleSource> {
+  const propertyId = process.env.GA4_PROPERTY_ID;
+  const consoleUrl = "https://analytics.google.com/";
+  if (!googleCredsAvailable() || !has("GA4_PROPERTY_ID")) {
+    return disconnectedSource(
+      "analytics",
+      "Analytics (GA4)",
+      consoleUrl,
+      "Set GA4_PROPERTY_ID + GOOGLE_SERVICE_ACCOUNT_JSON (paste the service-account key), then grant that service-account email Viewer access on the GA4 property.",
+    );
+  }
+  try {
+    const r = await fetchGA4(propertyId!);
+    return {
+      key: "analytics",
+      title: "Analytics (GA4)",
+      connected: true,
+      consoleUrl,
+      metrics: r.metrics,
+      rowColumns: [
+        { key: "page", label: "Top pages" },
+        { key: "views", label: "Views" },
+      ],
+      rows: r.rows,
+    };
+  } catch (e) {
+    return disconnectedSource(
+      "analytics",
+      "Analytics (GA4)",
+      consoleUrl,
+      `GA4 fetch failed: ${e instanceof Error ? e.message : "unknown error"}. Check the property ID and that the service account has Viewer access.`,
+    );
+  }
+}
+
+// ─── Search Console ───────────────────────────────────────────────────────────
+async function buildSearchConsoleSource(): Promise<GoogleSource> {
+  const siteUrl = process.env.GSC_SITE_URL;
+  const consoleUrl = "https://search.google.com/search-console";
+  if (!googleCredsAvailable() || !has("GSC_SITE_URL")) {
+    return disconnectedSource(
+      "search-console",
+      "Search Console",
+      consoleUrl,
+      "Set GSC_SITE_URL (e.g. https://whitedot-limex.in/ or sc-domain:whitedot-limex.in) + GOOGLE_SERVICE_ACCOUNT_JSON, then add that service-account email as a user in Search Console.",
+    );
+  }
+  try {
+    const r = await fetchSearchConsole(siteUrl!);
+    return {
+      key: "search-console",
+      title: "Search Console",
+      connected: true,
+      consoleUrl,
+      metrics: r.metrics,
+      rowColumns: [
+        { key: "query", label: "Top queries" },
+        { key: "clicks", label: "Clicks" },
+        { key: "impressions", label: "Impr." },
+      ],
+      rows: r.rows,
+    };
+  } catch (e) {
+    return disconnectedSource(
+      "search-console",
+      "Search Console",
+      consoleUrl,
+      `Search Console fetch failed: ${e instanceof Error ? e.message : "unknown error"}. Check GSC_SITE_URL format and service-account access.`,
+    );
+  }
 }
 
 export async function getGoogleOverview(_req: Request, res: Response) {
-  const sources: GoogleSource[] = [
-    await buildLoginsSource(),
-    buildApiSource(
-      "analytics",
-      "Analytics (GA4)",
-      ["GA4_PROPERTY_ID", "GOOGLE_APPLICATION_CREDENTIALS"],
-      "https://analytics.google.com/",
-      "Set GA4_PROPERTY_ID + a service-account key (GOOGLE_APPLICATION_CREDENTIALS) and add @google-analytics/data to fetch traffic, users and pageviews.",
-    ),
-    buildApiSource(
-      "search-console",
-      "Search Console",
-      ["GSC_SITE_URL", "GOOGLE_APPLICATION_CREDENTIALS"],
-      "https://search.google.com/search-console",
-      "Set GSC_SITE_URL + a service-account key and add the Search Console API to fetch queries, impressions, clicks and rankings.",
-    ),
-    buildApiSource(
-      "ads",
-      "Google Ads",
-      ["GOOGLE_ADS_CUSTOMER_ID", "GOOGLE_ADS_DEVELOPER_TOKEN", "GOOGLE_ADS_REFRESH_TOKEN"],
-      "https://ads.google.com/",
-      "Set GOOGLE_ADS_CUSTOMER_ID, GOOGLE_ADS_DEVELOPER_TOKEN + an OAuth refresh token and add google-ads-api to fetch campaign spend and performance.",
-    ),
-  ];
+  const [logins, analytics, searchConsole] = await Promise.all([
+    buildLoginsSource(),
+    buildAnalyticsSource(),
+    buildSearchConsoleSource(),
+  ]);
+
+  const ads = disconnectedSource(
+    "ads",
+    "Google Ads",
+    "https://ads.google.com/",
+    "Google Ads needs a Google-approved developer token (multi-day approval) plus an OAuth refresh token. Once you have them, set GOOGLE_ADS_CUSTOMER_ID, GOOGLE_ADS_DEVELOPER_TOKEN, GOOGLE_ADS_REFRESH_TOKEN and the campaign fetch can be wired in.",
+  );
 
   return sendSuccess(res, {
     range: "Last 28 days",
     generatedAt: new Date().toISOString(),
-    sources,
+    sources: [logins, analytics, searchConsole, ads],
   });
 }
