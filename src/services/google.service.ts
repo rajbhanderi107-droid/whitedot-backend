@@ -249,3 +249,4 @@ export async function fetchSearchConsole(siteUrl: string): Promise<GscResult> {
     })),
   };
 }
+
