@@ -1,5 +1,6 @@
 import { BetaAnalyticsDataClient } from "@google-analytics/data";
 import { google } from "googleapis";
+import { GoogleAdsApi } from "google-ads-api";
 
 /* ───────────────────────────────────────────────────────────────────────────
    Google data fetchers — GA4 + Search Console.
@@ -45,6 +46,94 @@ export function googleCredsAvailable(): boolean {
 
 function fmt(n: number): string {
   return n >= 1000 ? n.toLocaleString("en-US") : String(n);
+}
+
+// ─── Google Ads ───────────────────────────────────────────────────────────────
+export interface AdsResult {
+  metrics: Array<{ label: string; value: string | number; hint?: string }>;
+  rows: Array<Record<string, string | number>>;
+}
+
+const ADS_ENV = [
+  "GOOGLE_ADS_DEVELOPER_TOKEN",
+  "GOOGLE_ADS_CLIENT_ID",
+  "GOOGLE_ADS_CLIENT_SECRET",
+  "GOOGLE_ADS_REFRESH_TOKEN",
+  "GOOGLE_ADS_CUSTOMER_ID",
+] as const;
+
+export function adsCredsAvailable(): boolean {
+  return ADS_ENV.every((k) => Boolean(process.env[k] && process.env[k]!.trim()));
+}
+
+/** Currency-format micros (Google Ads reports money in micros = value * 1e6). */
+function micros(v: number): string {
+  return (v / 1_000_000).toLocaleString("en-US", { maximumFractionDigits: 0 });
+}
+
+export async function fetchGoogleAds(): Promise<AdsResult> {
+  const customerId = process.env.GOOGLE_ADS_CUSTOMER_ID!.replace(/-/g, "");
+  const loginCustomerId = (process.env.GOOGLE_ADS_LOGIN_CUSTOMER_ID || "").replace(/-/g, "") || undefined;
+
+  const client = new GoogleAdsApi({
+    client_id: process.env.GOOGLE_ADS_CLIENT_ID!,
+    client_secret: process.env.GOOGLE_ADS_CLIENT_SECRET!,
+    developer_token: process.env.GOOGLE_ADS_DEVELOPER_TOKEN!,
+  });
+
+  const customer = client.Customer({
+    customer_id: customerId,
+    login_customer_id: loginCustomerId,
+    refresh_token: process.env.GOOGLE_ADS_REFRESH_TOKEN!,
+  });
+
+  // Account totals over the last 28 days
+  const totalsRows = await customer.query(`
+    SELECT
+      metrics.impressions,
+      metrics.clicks,
+      metrics.cost_micros,
+      metrics.conversions
+    FROM customer
+    WHERE segments.date DURING LAST_28_DAYS
+  `);
+
+  let impressions = 0, clicks = 0, costMicros = 0, conversions = 0;
+  for (const r of totalsRows) {
+    impressions += Number(r.metrics?.impressions ?? 0);
+    clicks += Number(r.metrics?.clicks ?? 0);
+    costMicros += Number(r.metrics?.cost_micros ?? 0);
+    conversions += Number(r.metrics?.conversions ?? 0);
+  }
+  const ctr = impressions > 0 ? (clicks / impressions) * 100 : 0;
+
+  // Top campaigns by cost
+  const campaignRows = await customer.query(`
+    SELECT
+      campaign.name,
+      metrics.cost_micros,
+      metrics.clicks,
+      metrics.conversions
+    FROM campaign
+    WHERE segments.date DURING LAST_28_DAYS
+    ORDER BY metrics.cost_micros DESC
+    LIMIT 6
+  `);
+
+  return {
+    metrics: [
+      { label: "Cost (28d)", value: `₹${micros(costMicros)}` },
+      { label: "Impressions", value: fmt(impressions) },
+      { label: "Clicks", value: fmt(clicks) },
+      { label: "CTR", value: `${ctr.toFixed(1)}%` },
+      { label: "Conversions", value: fmt(Math.round(conversions)) },
+    ],
+    rows: campaignRows.map((r) => ({
+      campaign: r.campaign?.name ?? "—",
+      cost: `₹${micros(Number(r.metrics?.cost_micros ?? 0))}`,
+      clicks: fmt(Number(r.metrics?.clicks ?? 0)),
+    })),
+  };
 }
 
 // ─── GA4 ──────────────────────────────────────────────────────────────────────

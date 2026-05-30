@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import { prisma } from "../config/prisma.js";
 import { sendSuccess } from "../utils/apiResponse.js";
-import { fetchGA4, fetchSearchConsole, googleCredsAvailable } from "../services/google.service.js";
+import { fetchGA4, fetchSearchConsole, fetchGoogleAds, googleCredsAvailable, adsCredsAvailable } from "../services/google.service.js";
 
 /* ───────────────────────────────────────────────────────────────────────────
    All-in-one Google overview — DYNAMIC FLOW.
@@ -158,19 +158,49 @@ async function buildSearchConsoleSource(): Promise<GoogleSource> {
   }
 }
 
+// ─── Google Ads ───────────────────────────────────────────────────────────────
+async function buildAdsSource(): Promise<GoogleSource> {
+  const consoleUrl = "https://ads.google.com/";
+  if (!adsCredsAvailable()) {
+    return disconnectedSource(
+      "ads",
+      "Google Ads",
+      consoleUrl,
+      "Set GOOGLE_ADS_DEVELOPER_TOKEN (Google-approved), GOOGLE_ADS_CLIENT_ID, GOOGLE_ADS_CLIENT_SECRET, GOOGLE_ADS_REFRESH_TOKEN, GOOGLE_ADS_CUSTOMER_ID (+ GOOGLE_ADS_LOGIN_CUSTOMER_ID if under an MCC). The card then shows live spend, clicks and campaigns.",
+    );
+  }
+  try {
+    const r = await fetchGoogleAds();
+    return {
+      key: "ads",
+      title: "Google Ads",
+      connected: true,
+      consoleUrl,
+      metrics: r.metrics,
+      rowColumns: [
+        { key: "campaign", label: "Campaign" },
+        { key: "cost", label: "Cost" },
+        { key: "clicks", label: "Clicks" },
+      ],
+      rows: r.rows,
+    };
+  } catch (e) {
+    return disconnectedSource(
+      "ads",
+      "Google Ads",
+      consoleUrl,
+      `Google Ads fetch failed: ${e instanceof Error ? e.message : "unknown error"}. Check the developer token, customer ID and refresh token.`,
+    );
+  }
+}
+
 export async function getGoogleOverview(_req: Request, res: Response) {
-  const [logins, analytics, searchConsole] = await Promise.all([
+  const [logins, analytics, searchConsole, ads] = await Promise.all([
     buildLoginsSource(),
     buildAnalyticsSource(),
     buildSearchConsoleSource(),
+    buildAdsSource(),
   ]);
-
-  const ads = disconnectedSource(
-    "ads",
-    "Google Ads",
-    "https://ads.google.com/",
-    "Google Ads needs a Google-approved developer token (multi-day approval) plus an OAuth refresh token. Once you have them, set GOOGLE_ADS_CUSTOMER_ID, GOOGLE_ADS_DEVELOPER_TOKEN, GOOGLE_ADS_REFRESH_TOKEN and the campaign fetch can be wired in.",
-  );
 
   return sendSuccess(res, {
     range: "Last 28 days",
