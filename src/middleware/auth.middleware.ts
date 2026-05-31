@@ -21,8 +21,15 @@ export async function requireAuth(req: Request, _res: Response, next: NextFuncti
 
     const payload = verifyToken(token);
 
+    // Layer 3: reject legacy pre-dome tokens (no jti = issued before the
+    // security dome; these are long-lived 7d tokens that can't be revoked).
+    // Forces a single clean re-login, killing every stale token.
+    if (!payload.jti) {
+      throw new AppError(401, "TOKEN_LEGACY", "Session expired. Please sign in again.");
+    }
+
     // Layer 3: reject revoked tokens (logout, suspected compromise)
-    if (payload.jti && await isTokenRevoked(payload.jti)) {
+    if (await isTokenRevoked(payload.jti)) {
       logSecurityEvent("TOKEN_REPLAY_BLOCKED", req, { userId: payload.userId }).catch(() => {});
       throw new AppError(401, "TOKEN_REVOKED", "Session has been invalidated. Please sign in again.");
     }
