@@ -3,13 +3,15 @@ import type { Role } from "@prisma/client";
 import { prisma } from "../config/prisma.js";
 import { verifyToken } from "../utils/tokens.js";
 import { AppError } from "./error.middleware.js";
+import { isTokenRevoked } from "../services/tokenBlacklist.service.js";
+import { logSecurityEvent } from "../services/watchtower.service.js";
 
 /** Verify JWT from Authorization header or cookie and attach currentUser to request.
  *  Header takes precedence — cross-origin frontends (GitHub Pages ↔ Render) can't
- *  use cookies because browsers block third-party cookies. */
+ *  use cookies because browsers block third-party cookies.
+ *  Security dome Layer 3: also checks jti blacklist to block replayed/stolen tokens. */
 export async function requireAuth(req: Request, _res: Response, next: NextFunction) {
   try {
-    // Try Authorization: Bearer <token> first, fall back to cookie
     let token = req.cookies?.token;
     const authHeader = req.headers.authorization;
     if (authHeader?.startsWith("Bearer ")) {
@@ -18,6 +20,13 @@ export async function requireAuth(req: Request, _res: Response, next: NextFuncti
     if (!token) throw new AppError(401, "UNAUTHORIZED", "Authentication required");
 
     const payload = verifyToken(token);
+
+    // Layer 3: reject revoked tokens (logout, suspected compromise)
+    if (payload.jti && await isTokenRevoked(payload.jti)) {
+      logSecurityEvent("TOKEN_REPLAY_BLOCKED", req, { userId: payload.userId }).catch(() => {});
+      throw new AppError(401, "TOKEN_REVOKED", "Session has been invalidated. Please sign in again.");
+    }
+
     const user = await prisma.user.findUnique({
       where: { id: payload.userId },
       select: { id: true, email: true, name: true, role: true, isActive: true },

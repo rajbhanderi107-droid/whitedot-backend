@@ -112,25 +112,30 @@ enum NotificationType {
 // ─── Models ──────────────────────────────────────
 
 model User {
-  id           String   @id @default(cuid())
-  name         String
-  email        String   @unique
-  passwordHash String
-  role         Role     @default(VIEWER)
-  isActive     Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                  String    @id @default(cuid())
+  name                String
+  email               String    @unique
+  passwordHash        String
+  role                Role      @default(VIEWER)
+  isActive            Boolean   @default(true)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  // Security dome — Layer 3: brute-force lockout
+  failedLoginAttempts Int       @default(0)
+  lockedUntil         DateTime?
 
   // Relations
-  assignedInquiries  Inquiry[]       @relation("AssignedInquiries")
-  assignedQuotes     QuoteRequest[]  @relation("AssignedQuotes")
-  createdNotes       AdminNote[]     @relation("NoteCreator")
-  assignedFollowUps  FollowUpTask[]  @relation("AssignedFollowUps")
-  uploadedDocuments  DocumentAsset[] @relation("DocumentUploader")
-  updatedSettings    WebsiteSetting[] @relation("SettingUpdater")
+  assignedInquiries  Inquiry[]         @relation("AssignedInquiries")
+  assignedQuotes     QuoteRequest[]    @relation("AssignedQuotes")
+  createdNotes       AdminNote[]       @relation("NoteCreator")
+  assignedFollowUps  FollowUpTask[]    @relation("AssignedFollowUps")
+  uploadedDocuments  DocumentAsset[]   @relation("DocumentUploader")
+  updatedSettings    WebsiteSetting[]  @relation("SettingUpdater")
   activityLogs       ActivityLog[]
   notifications      Notification[]
   passwordResets     PasswordResetToken[]
+  revokedTokens      RevokedToken[]
 
   @@index([email])
   @@index([role])
@@ -405,6 +410,20 @@ model ActivityLog {
   @@index([entityType])
   @@index([userId])
   @@index([createdAt])
+}
+
+// Security dome — Layer 3: token blacklist (revoked JTIs)
+model RevokedToken {
+  id        String   @id @default(cuid())
+  jti       String   @unique
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  user   User?   @relation(fields: [userId], references: [id], onDelete: SetNull)
+  userId String?
+
+  @@index([jti])
+  @@index([expiresAt])
 }
 
 model Notification {
