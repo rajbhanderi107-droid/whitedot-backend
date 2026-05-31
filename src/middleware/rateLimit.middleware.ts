@@ -15,10 +15,10 @@ export const publicLimiter = rateLimit({
   },
 });
 
-/** Auth endpoints — Security dome Layer 1: 5 attempts per 15min (down from 10) */
+/** Auth endpoints — Security dome Layer 1: 20 attempts per 15min */
 export const authLimiter = rateLimit({
   windowMs: 15 * 60 * 1000,
-  max: 5,
+  max: 20,
   standardHeaders: true,
   legacyHeaders: false,
   message: {

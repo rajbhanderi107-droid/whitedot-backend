@@ -113,8 +113,8 @@ app.get("/api/health", async (_req, res) => {
   }
 });
 
-// Layer 1+3: Auth routes — tightest rate limiter, body limit 10kb
-app.use("/api/auth", authLimiter, express.json({ limit: "10kb" }), authRoutes);
+// Layer 1+3: Auth routes — body limit 10kb
+app.use("/api/auth", express.json({ limit: "10kb" }), authRoutes);
 
 // Layer 1: Public form routes — 30/15min, body limit 50kb
 app.use("/api/public", publicLimiter, express.json({ limit: "50kb" }), publicRoutes);
