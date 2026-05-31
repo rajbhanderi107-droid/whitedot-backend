@@ -11,6 +11,10 @@ function getTransporter(): nodemailer.Transporter | null {
       port: env.SMTP_PORT,
       secure: env.SMTP_SECURE, // true for 465, false for 587/STARTTLS
       auth: { user: env.SMTP_USER, pass: env.SMTP_PASS },
+      tls: {
+        // Do not fail on invalid certs (prevents TLS errors on certain hosts)
+        rejectUnauthorized: false,
+      },
     });
   }
   return transporter;
