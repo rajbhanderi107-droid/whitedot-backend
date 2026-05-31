@@ -20,11 +20,24 @@ export const env = {
   GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID || "",
   GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET || "",
 
+  // SMTP (optional). If unset, password-reset emails are logged to the console
+  // instead of being sent — so the flow still works in dev/preview.
+  SMTP_HOST: process.env.SMTP_HOST,
+  SMTP_PORT: parseInt(process.env.SMTP_PORT || "587", 10),
+  SMTP_SECURE: process.env.SMTP_SECURE === "true",
+  SMTP_USER: process.env.SMTP_USER,
+  SMTP_PASS: process.env.SMTP_PASS,
+  SMTP_FROM: process.env.SMTP_FROM || process.env.SMTP_USER || "no-reply@whitedot-limex.in",
+
   get isProduction() {
     return this.NODE_ENV === "production";
   },
 
   get googleOAuthEnabled() {
     return Boolean(this.GOOGLE_CLIENT_ID && this.GOOGLE_CLIENT_SECRET);
+  },
+
+  get smtpConfigured() {
+    return Boolean(this.SMTP_HOST && this.SMTP_USER && this.SMTP_PASS);
   },
 } as const;
