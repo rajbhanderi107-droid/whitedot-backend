@@ -7,6 +7,7 @@ import {
   publicQuoteRequestSchema,
   publicSampleRequestSchema,
   calculatorSubmissionSchema,
+  publicChatSchema,
 } from "../validators/public.validator.js";
 import * as pub from "../controllers/public.controller.js";
 
@@ -18,5 +19,6 @@ router.post("/inquiry", validate(publicInquirySchema), asyncHandler(pub.submitIn
 router.post("/quote-request", validate(publicQuoteRequestSchema), asyncHandler(pub.submitQuoteRequest));
 router.post("/sample-request", validate(publicSampleRequestSchema), asyncHandler(pub.submitSampleRequest));
 router.post("/calculator-submission", validate(calculatorSubmissionSchema), asyncHandler(pub.submitCalculatorSubmission));
+router.post("/chat", validate(publicChatSchema), asyncHandler(pub.submitChat));
 
 export default router;

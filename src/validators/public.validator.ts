@@ -58,3 +58,12 @@ export const calculatorSubmissionSchema = z.object({
   estimatedCo2Impact: z.number().optional(),
   assumptionsUsed: z.record(z.unknown()).optional(),
 }).strip();
+
+export const publicChatSchema = z.object({
+  messages: z.array(
+    z.object({
+      role: z.enum(["user", "assistant"]),
+      content: z.string().max(2000),
+    })
+  ).max(20),
+}).strip();

@@ -84,3 +84,23 @@ export async function submitCalculatorSubmission(req: Request, res: Response) {
 
   return sendSuccess(res, { id: submission.id }, "Calculator results saved.", 201);
 }
+
+export async function submitChat(req: Request, res: Response) {
+  const { messages } = req.body;
+  const lastUserMessage = messages[messages.length - 1]?.content.toLowerCase() || "";
+
+  // Very simple fallback bot logic
+  let reply = "Thanks for your interest in LIMEX. Our AI assistant is currently being upgraded. Please use the contact forms or request a sample to get in touch with our team directly!";
+  
+  if (lastUserMessage.includes("what is limex") || lastUserMessage.includes("what is it")) {
+    reply = "LIMEX is an innovative material made primarily from limestone (calcium carbonate) and a small amount of polymeric resin. It serves as a sustainable alternative to traditional plastics and paper, significantly reducing CO2 emissions and water usage.";
+  } else if (lastUserMessage.includes("replace") || lastUserMessage.includes("packaging")) {
+    reply = "Yes! LIMEX can replace various plastic applications including packaging, bags, containers, and sheets. It can be processed using existing plastic molding machinery (injection molding, extrusion, thermoforming).";
+  } else if (lastUserMessage.includes("trial") || lastUserMessage.includes("start")) {
+    reply = "To start a trial, please use the 'Request a Sample' form on our website or contact us directly. We will guide you through the process, recommend the right grade of LIMEX, and assist with trial runs on your existing machinery.";
+  } else if (lastUserMessage.includes("price") || lastUserMessage.includes("cost")) {
+    reply = "LIMEX pricing depends on the specific grade and volume required. Because limestone is abundant and inexpensive, LIMEX is often cost-competitive with traditional plastics, especially when factoring in sustainability goals. Please request a quote for exact pricing.";
+  }
+
+  return res.json({ success: true, data: { reply } });
+}
