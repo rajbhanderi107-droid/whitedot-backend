@@ -1,6 +1,7 @@
 import type { Request, Response } from "express";
 import { prisma } from "../config/prisma.js";
 import { sendPaginated, sendSuccess } from "../utils/apiResponse.js";
+import { paramId } from "../utils/params.js";
 import { paginationSchema } from "../validators/admin.validator.js";
 
 export async function listActivityLogs(req: Request, res: Response) {
@@ -28,4 +29,12 @@ export async function deleteAllActivityLogs(_req: Request, res: Response) {
     { deletedCount: result.count },
     "Activity log deleted",
   );
+}
+
+export async function deleteActivityLog(req: Request, res: Response) {
+  const id = paramId(req);
+
+  await prisma.activityLog.delete({ where: { id } });
+
+  return sendSuccess(res, null, "Activity entry deleted");
 }
