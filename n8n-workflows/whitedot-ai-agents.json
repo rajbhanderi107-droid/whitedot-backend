@@ -1,0 +1,197 @@
+{
+  "name": "WhiteDot AI Agents (Portal)",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "agent-run",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-agent-run",
+      "name": "Webhook: Agent Run",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 200]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-tool",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-ai-tool",
+      "name": "Webhook: AI Tool",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 500]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ai-draft",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "webhook-ai-draft",
+      "name": "Webhook: AI Draft",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [200, 800]
+    },
+    {
+      "parameters": {
+        "model": "={{ $json.body.model || 'gpt-4o-mini' }}",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "={{ $json.body.system }}"
+            },
+            {
+              "role": "user",
+              "content": "={{ $json.body.prompt }}"
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": "={{ $json.body.maxTokens || 1024 }}",
+          "temperature": 0.7
+        }
+      },
+      "id": "openai-agent",
+      "name": "OpenAI: Agent",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [500, 200],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_WITH_YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "={{ $json.body.model || 'gpt-4o-mini' }}",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "={{ $json.body.system }}"
+            },
+            {
+              "role": "user",
+              "content": "={{ $json.body.prompt }}"
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 2048,
+          "temperature": 0.7
+        }
+      },
+      "id": "openai-tool",
+      "name": "OpenAI: Tool",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [500, 500],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_WITH_YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "gpt-4o",
+        "messages": {
+          "values": [
+            {
+              "role": "system",
+              "content": "={{ $json.body.system || 'You are a premium B2B sales writer for White Dot LLP / LIMEX sustainable material.' }}"
+            },
+            {
+              "role": "user",
+              "content": "={{ $json.body.prompt }}"
+            }
+          ]
+        },
+        "options": {
+          "maxTokens": 1024,
+          "temperature": 0.8
+        }
+      },
+      "id": "openai-draft",
+      "name": "OpenAI: Draft",
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 1.8,
+      "position": [500, 800],
+      "credentials": {
+        "openAiApi": {
+          "id": "REPLACE_WITH_YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ output: $json.message.content, model: $json.model || 'gpt-4o-mini', inputTokens: $json.usage?.prompt_tokens || 0, outputTokens: $json.usage?.completion_tokens || 0 }) }}"
+      },
+      "id": "respond-agent",
+      "name": "Respond: Agent",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [800, 200]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ output: $json.message.content, model: $json.model || 'gpt-4o-mini', inputTokens: $json.usage?.prompt_tokens || 0, outputTokens: $json.usage?.completion_tokens || 0 }) }}"
+      },
+      "id": "respond-tool",
+      "name": "Respond: Tool",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [800, 500]
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={{ JSON.stringify({ output: $json.message.content, model: 'gpt-4o' }) }}"
+      },
+      "id": "respond-draft",
+      "name": "Respond: Draft",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [800, 800]
+    }
+  ],
+  "connections": {
+    "Webhook: Agent Run": {
+      "main": [[{ "node": "OpenAI: Agent", "type": "main", "index": 0 }]]
+    },
+    "Webhook: AI Tool": {
+      "main": [[{ "node": "OpenAI: Tool", "type": "main", "index": 0 }]]
+    },
+    "Webhook: AI Draft": {
+      "main": [[{ "node": "OpenAI: Draft", "type": "main", "index": 0 }]]
+    },
+    "OpenAI: Agent": {
+      "main": [[{ "node": "Respond: Agent", "type": "main", "index": 0 }]]
+    },
+    "OpenAI: Tool": {
+      "main": [[{ "node": "Respond: Tool", "type": "main", "index": 0 }]]
+    },
+    "OpenAI: Draft": {
+      "main": [[{ "node": "Respond: Draft", "type": "main", "index": 0 }]]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "tags": [{ "name": "whitedot" }, { "name": "portal" }, { "name": "ai" }]
+}
