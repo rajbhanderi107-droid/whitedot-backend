@@ -67,108 +67,277 @@ router.patch("/ai-agents/:id", asyncHandler(async (req, res) => {
   res.json({ success: true, data: row });
 }));
 
+// ─── Agent System Prompts (specialization per agent) ─────────────────
+
+const AGENT_SYSTEMS: Record<string, { system: string; model: string; maxTokens: number }> = {
+  "lead-qualifier": {
+    system: `You are an expert B2B lead qualification agent for White Dot LLP, authorized marketers of LIMEX material in western India (Gujarat, Rajasthan, Goa, Daman, Diu). LIMEX is a Japanese limestone-based sustainable alternative to plastic and paper — 50-80% less plastic, lower CO2. Score leads 1-100, identify buying signals, recommend next action. Be data-driven and concise.`,
+    model: "gpt-4o",
+    maxTokens: 2048,
+  },
+  "content-writer": {
+    system: `You are a premium content writer for White Dot LLP / LIMEX sustainable materials. Write in a dark, premium, Apple-level clarity tone. Target audience: FMCG, packaging, manufacturing decision-makers in India. Always emphasize: sustainability, cost savings, Japanese innovation, recyclability. No fluff, no jargon.`,
+    model: "gpt-4o",
+    maxTokens: 4096,
+  },
+  "data-analyst": {
+    system: `You are a business intelligence analyst for White Dot LLP CRM. Analyze lead data, conversion funnels, industry trends. Return structured insights with numbers, percentages, and actionable recommendations. Format as bullet points.`,
+    model: "gpt-4o",
+    maxTokens: 2048,
+  },
+  "sales-coach": {
+    system: `You are an expert sales coach for B2B sustainable materials. Help sales reps craft responses, handle objections about LIMEX vs traditional plastics, prepare for meetings. Key differentiators: 50-80% less plastic, limestone-based, Japanese tech (TBM Co.), recyclable, cost-competitive at scale. Be direct, give scripts they can use verbatim.`,
+    model: "gpt-4o",
+    maxTokens: 2048,
+  },
+  "seo-optimizer": {
+    system: `You are an SEO specialist for whitedotindia.in. Analyze content, suggest meta tags, keywords, internal linking, schema markup. Focus on: LIMEX material, sustainable packaging India, plastic alternatives, limestone material. Return actionable recommendations with exact copy to use.`,
+    model: "gpt-4o-mini",
+    maxTokens: 2048,
+  },
+  "operations-planner": {
+    system: `You are an operations planning agent for a materials distribution company. Help plan logistics, follow-ups, sample dispatches, meeting schedules, and client onboarding workflows. Be specific with timelines and action items.`,
+    model: "gpt-4o-mini",
+    maxTokens: 1024,
+  },
+};
+
+const DEFAULT_AGENT = { system: "You are a helpful business assistant for White Dot LLP, a LIMEX sustainable material company in India.", model: "gpt-4o-mini", maxTokens: 1024 };
+
+// ─── n8n helper ──────────────────────────────────────────────────────
+
+type N8nResponse = { output?: string; model?: string; inputTokens?: number; outputTokens?: number; steps?: string[] };
+
+async function callN8n(path: string, payload: Record<string, unknown>): Promise<N8nResponse> {
+  const resp = await fetch(`${env.N8N_WEBHOOK_URL}${path}`, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+  if (!resp.ok) throw new Error(`n8n ${path} failed: ${resp.status}`);
+  return resp.json() as Promise<N8nResponse>;
+}
+
+// ─── Agent Run (enriched) ────────────────────────────────────────────
+
 router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "ANTHROPIC_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
     return;
   }
   const { id } = req.params as Record<string, string>;
-  const { input, context } = req.body as { input: string; context?: string };
+  const { input, context, history } = req.body as { input: string; context?: string; history?: { role: string; content: string }[] };
   if (!input?.trim()) {
     res.status(400).json({ success: false, error: { code: "MISSING_INPUT", message: "input is required" } });
     return;
   }
 
-  const prompt = context ? `Context:\n${context}\n\nTask:\n${input}` : input;
-  const resp = await fetch(`${env.N8N_WEBHOOK_URL}/agent-run`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ agentId: id, prompt }),
-  });
-  if (!resp.ok) {
-    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "n8n agent call failed" } });
-    return;
-  }
-  const llm = await resp.json() as { output?: string; model?: string; inputTokens?: number; outputTokens?: number };
-  const output = llm.output ?? "";
-  const inputTokens = llm.inputTokens ?? 0;
-  const outputTokens = llm.outputTokens ?? 0;
-  const costUsd = 0;
+  const agentConfig = AGENT_SYSTEMS[id] ?? DEFAULT_AGENT;
 
-  const run = await prisma.agentRun.create({
-    data: { agentId: id, input, output, model: llm.model ?? "gpt-4o-mini", inputTokens, outputTokens, costUsd },
+  // Enrich: pull last 5 runs for this agent as conversation memory
+  const recentRuns = await prisma.agentRun.findMany({
+    where: { agentId: id },
+    orderBy: { createdAt: "desc" },
+    take: 5,
+    select: { input: true, output: true },
   });
-  res.json({ success: true, data: { runId: run.id, agentId: id, output, model: run.model, inputTokens, outputTokens, costUsd, createdAt: run.createdAt } });
+  const memoryContext = recentRuns.length
+    ? `\n\nPrevious conversation (most recent first):\n${recentRuns.map((r, i) => `[${i + 1}] User: ${r.input.slice(0, 200)}\nAssistant: ${r.output.slice(0, 300)}`).join("\n")}`
+    : "";
+
+  // Enrich: pull live CRM stats for data-analyst agent
+  let crmContext = "";
+  if (id === "data-analyst") {
+    const [inquiryCount, quoteCount, sampleCount] = await Promise.all([
+      prisma.inquiry.count(),
+      prisma.quoteRequest.count(),
+      prisma.sampleRequest.count(),
+    ]);
+    crmContext = `\n\nLive CRM: ${inquiryCount} inquiries, ${quoteCount} quotes, ${sampleCount} sample requests.`;
+  }
+
+  const fullPrompt = context ? `Context:\n${context}${memoryContext}${crmContext}\n\nTask:\n${input}` : `${input}${memoryContext}${crmContext}`;
+
+  try {
+    const llm = await callN8n("/agent-run", {
+      agentId: id,
+      system: agentConfig.system,
+      model: agentConfig.model,
+      maxTokens: agentConfig.maxTokens,
+      prompt: fullPrompt,
+      history: history ?? [],
+    });
+
+    const output = llm.output ?? "";
+    const run = await prisma.agentRun.create({
+      data: { agentId: id, input, output, model: llm.model ?? agentConfig.model, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, costUsd: 0 },
+    });
+    res.json({ success: true, data: { runId: run.id, agentId: id, output, model: run.model, steps: llm.steps, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, createdAt: run.createdAt } });
+  } catch {
+    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "n8n agent call failed" } });
+  }
 }));
 
-// ─── AI Tools ─────────────────────────────────────────────────────────
+// ─── Agent Batch Run ─────────────────────────────────────────────────
+
+router.post("/ai-agents/batch", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
+  if (!env.llmConfigured) {
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
+    return;
+  }
+  const { tasks } = req.body as { tasks: { agentId: string; input: string; context?: string }[] };
+  if (!tasks?.length || tasks.length > 10) {
+    res.status(400).json({ success: false, error: { code: "INVALID_BATCH", message: "1-10 tasks required" } });
+    return;
+  }
+
+  const results = await Promise.allSettled(
+    tasks.map(async (task) => {
+      const agentConfig = AGENT_SYSTEMS[task.agentId] ?? DEFAULT_AGENT;
+      const llm = await callN8n("/agent-run", {
+        agentId: task.agentId,
+        system: agentConfig.system,
+        model: agentConfig.model,
+        maxTokens: agentConfig.maxTokens,
+        prompt: task.context ? `Context:\n${task.context}\n\nTask:\n${task.input}` : task.input,
+        history: [],
+      });
+      const run = await prisma.agentRun.create({
+        data: { agentId: task.agentId, input: task.input, output: llm.output ?? "", model: llm.model ?? agentConfig.model, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, costUsd: 0 },
+      });
+      return { runId: run.id, agentId: task.agentId, output: llm.output ?? "", model: run.model };
+    })
+  );
+
+  const data = results.map((r, i) => r.status === "fulfilled" ? r.value : { agentId: tasks[i].agentId, error: "failed" });
+  res.json({ success: true, data });
+}));
+
+// ─── AI Tools (enriched) ─────────────────────────────────────────────
+
+const TOOL_CONFIGS: Record<string, { system: string; model: string }> = {
+  "lead-scorer": { system: "Score this B2B lead 1-100 for LIMEX material potential. Consider: industry fit, company size, sustainability commitment, geographic match (western India preferred). Return JSON: { score, reasons[], nextAction }.", model: "gpt-4o" },
+  "email-writer": { system: "Write a professional B2B email for LIMEX sustainable material. Premium tone, concise, focused on value. Include subject line.", model: "gpt-4o" },
+  "competitor-analyzer": { system: "Analyze competitive positioning for LIMEX vs traditional plastics/paper. Focus on: cost, sustainability, durability, regulatory advantage.", model: "gpt-4o" },
+  "meeting-prep": { system: "Prepare a meeting brief for a LIMEX material sales call. Include: talking points, objection handlers, relevant case studies to reference, questions to ask.", model: "gpt-4o" },
+  "report-generator": { system: "Generate a structured business report. Use headers, bullet points, data tables where relevant. Be analytical and actionable.", model: "gpt-4o" },
+  "whatsapp-drafter": { system: "Write a WhatsApp business message. Under 300 chars, warm but professional, include a clear CTA.", model: "gpt-4o-mini" },
+  "proposal-writer": { system: "Write a professional proposal section for LIMEX material supply. Highlight: sustainability metrics, cost comparison, delivery capability, quality assurance.", model: "gpt-4o" },
+  "social-media": { system: "Write social media content for White Dot LLP / LIMEX. Platform-native format, sustainability angle, engaging hooks. Include hashtag suggestions.", model: "gpt-4o-mini" },
+};
 
 router.post("/ai/tool", asyncHandler(async (req, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "ANTHROPIC_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
     return;
   }
   const { tool, inputs } = req.body as { tool: string; inputs: Record<string, string> };
-  const prompt = `You are a business AI tool. Tool: "${tool}"\nInputs: ${JSON.stringify(inputs)}\n\nProvide a concise, professional response.`;
-  const resp = await fetch(`${env.N8N_WEBHOOK_URL}/ai-tool`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ tool, prompt }),
-  });
-  if (!resp.ok) {
+  const toolConfig = TOOL_CONFIGS[tool];
+  const system = toolConfig?.system ?? `You are a business AI tool. Tool: "${tool}". Provide a concise, professional response.`;
+  const model = toolConfig?.model ?? "gpt-4o-mini";
+  const prompt = Object.entries(inputs).map(([k, v]) => `${k}: ${v}`).join("\n");
+
+  try {
+    const llm = await callN8n("/ai-tool", { tool, system, model, prompt });
+    const output = llm.output ?? "";
+    const runId = `tool-${Date.now()}`;
+    res.json({ success: true, data: { runId, tool, output, model: llm.model ?? model, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, createdAt: new Date().toISOString() } });
+  } catch {
     res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "AI tool call failed" } });
-    return;
   }
-  const llm = await resp.json() as { output?: string; model?: string; inputTokens?: number; outputTokens?: number };
-  const output = llm.output ?? "";
-  const inputTokens = llm.inputTokens ?? 0;
-  const outputTokens = llm.outputTokens ?? 0;
-  const costUsd = 0;
-  const runId = `tool-${Date.now()}`;
-  res.json({ success: true, data: { runId, tool, output, model: llm.model, inputTokens, outputTokens, costUsd, createdAt: new Date().toISOString() } });
 }));
 
-// ─── AI Draft ─────────────────────────────────────────────────────────
+// ─── AI Draft (enriched with lead history) ───────────────────────────
 
 router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
   const { kind, lead } = req.body as {
-    kind: "followup_email" | "followup_whatsapp" | "proposal_intro" | "reactivation";
-    lead: { name: string; company?: string; status?: string; industry?: string; product?: string; notes?: string };
+    kind: "followup_email" | "followup_whatsapp" | "proposal_intro" | "reactivation" | "cold_outreach" | "thank_you" | "objection_handler";
+    lead: { name: string; company?: string; status?: string; industry?: string; product?: string; notes?: string; email?: string };
   };
   if (!env.llmConfigured) {
     res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
     return;
   }
+
+  // Enrich: pull inquiry history for this lead if email given
+  let leadHistory = "";
+  if (lead.email) {
+    const inquiries = await prisma.inquiry.findMany({
+      where: { email: lead.email },
+      orderBy: { createdAt: "desc" },
+      take: 3,
+      select: { status: true, message: true, createdAt: true, industry: true },
+    });
+    if (inquiries.length) {
+      leadHistory = `\n\nLead history (${inquiries.length} interactions):\n${inquiries.map(i => `- ${i.createdAt.toISOString().slice(0, 10)}: status=${i.status}, industry=${i.industry ?? "N/A"}, msg="${(i.message ?? "").slice(0, 100)}"`).join("\n")}`;
+    }
+  }
+
   const prompts: Record<string, string> = {
-    followup_email: `Write a professional follow-up email for lead: ${lead.name} from ${lead.company ?? "unknown company"}, industry: ${lead.industry ?? "N/A"}, status: ${lead.status ?? "N/A"}. Product: LIMEX sustainable material. Keep it warm, brief, 3 paragraphs.`,
-    followup_whatsapp: `Write a WhatsApp follow-up message (under 200 chars) for ${lead.name} from ${lead.company ?? ""}. LIMEX material enquiry. Friendly, professional.`,
-    proposal_intro: `Write a proposal introduction paragraph for ${lead.name}, ${lead.company ?? ""}, ${lead.industry ?? ""} interested in LIMEX material. Highlight sustainability + cost savings.`,
-    reactivation: `Write a reactivation outreach for ${lead.name} from ${lead.company ?? ""} who went cold. LIMEX material. Reference their previous interest in ${lead.product ?? "LIMEX"}. Max 3 sentences.`,
+    followup_email: `Write a professional follow-up email for lead: ${lead.name} from ${lead.company ?? "unknown company"}, industry: ${lead.industry ?? "N/A"}, status: ${lead.status ?? "N/A"}. Product: LIMEX sustainable material. Keep it warm, brief, 3 paragraphs. Include subject line.${leadHistory}`,
+    followup_whatsapp: `Write a WhatsApp follow-up message (under 200 chars) for ${lead.name} from ${lead.company ?? ""}. LIMEX material enquiry. Friendly, professional.${leadHistory}`,
+    proposal_intro: `Write a proposal introduction paragraph for ${lead.name}, ${lead.company ?? ""}, ${lead.industry ?? ""} interested in LIMEX material. Highlight sustainability + cost savings.${leadHistory}`,
+    reactivation: `Write a reactivation outreach for ${lead.name} from ${lead.company ?? ""} who went cold. LIMEX material. Reference their previous interest in ${lead.product ?? "LIMEX"}. Max 3 sentences.${leadHistory}`,
+    cold_outreach: `Write a cold outreach email for ${lead.name} at ${lead.company ?? ""} in ${lead.industry ?? "manufacturing"}. Introduce LIMEX as a sustainable alternative to plastic/paper. Concise, value-first, include subject line. End with a soft CTA (meeting/sample).`,
+    thank_you: `Write a thank-you follow-up for ${lead.name} from ${lead.company ?? ""} after a meeting/call about LIMEX material. Reference their interest in ${lead.product ?? "LIMEX products"}. Brief, professional, include next steps.${leadHistory}`,
+    objection_handler: `The lead ${lead.name} from ${lead.company ?? ""} raised concerns. Their notes: "${lead.notes ?? "price concerns"}". Write a response addressing their objections about LIMEX material. Use data: 50-80% less plastic, competitive pricing at scale, Japanese quality (TBM Co.), fully recyclable. Be empathetic but confident.${leadHistory}`,
   };
+
   const prompt = prompts[kind] ?? prompts.followup_email;
-  const resp = await fetch(`${env.N8N_WEBHOOK_URL}/ai-draft`, {
-    method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify({ kind, prompt }),
-  });
-  if (!resp.ok) {
+
+  try {
+    const llm = await callN8n("/ai-draft", { kind, prompt, model: "gpt-4o", system: "You are a premium B2B sales writer for White Dot LLP / LIMEX sustainable material. Write in a professional, warm tone that reflects Japanese precision and Indian warmth." });
+    const preview = llm.output ?? "";
+
+    const risk = kind === "cold_outreach" ? "MEDIUM" as const : "LOW" as const;
+    const approval = await prisma.approval.create({
+      data: {
+        title: `AI Draft: ${kind} for ${lead.name}`,
+        kind,
+        risk,
+        preview,
+        ...(req.user?.id && { createdById: req.user.id }),
+      },
+      include: { createdBy: { select: { name: true } }, decidedBy: { select: { name: true } } },
+    });
+    res.json({ success: true, data: approval });
+  } catch {
     res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "Draft generation failed" } });
+  }
+}));
+
+// ─── AI Chain (multi-step reasoning) ─────────────────────────────────
+
+router.post("/ai/chain", asyncHandler(async (req, res) => {
+  if (!env.llmConfigured) {
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
     return;
   }
-  const llm = await resp.json() as { output?: string };
-  const preview = llm.output ?? "";
+  const { steps } = req.body as { steps: { agent: string; input: string }[] };
+  if (!steps?.length || steps.length > 5) {
+    res.status(400).json({ success: false, error: { code: "INVALID_CHAIN", message: "1-5 steps required" } });
+    return;
+  }
 
-  const approval = await prisma.approval.create({
-    data: {
-      title: `AI Draft: ${kind} for ${lead.name}`,
-      kind,
-      risk: "LOW",
-      preview,
-      ...(req.user?.id && { createdById: req.user.id }),
-    },
-    include: { createdBy: { select: { name: true } }, decidedBy: { select: { name: true } } },
-  });
-  res.json({ success: true, data: approval });
+  const results: { agent: string; output: string }[] = [];
+  let prevOutput = "";
+
+  for (const step of steps) {
+    const agentConfig = AGENT_SYSTEMS[step.agent] ?? DEFAULT_AGENT;
+    const enrichedInput = prevOutput ? `Previous step output:\n${prevOutput}\n\nNew task:\n${step.input}` : step.input;
+    const llm = await callN8n("/agent-run", {
+      agentId: step.agent,
+      system: agentConfig.system,
+      model: agentConfig.model,
+      maxTokens: agentConfig.maxTokens,
+      prompt: enrichedInput,
+      history: [],
+    });
+    prevOutput = llm.output ?? "";
+    results.push({ agent: step.agent, output: prevOutput });
+  }
+
+  res.json({ success: true, data: { results, finalOutput: prevOutput } });
 }));
 
 // ─── AI Stats ─────────────────────────────────────────────────────────
