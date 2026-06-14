@@ -80,37 +80,23 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
   }
 
   const prompt = context ? `Context:\n${context}\n\nTask:\n${input}` : input;
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
+  const resp = await fetch(`${env.N8N_WEBHOOK_URL}/agent-run`, {
     method: "POST",
-    headers: {
-      "x-api-key": env.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({
-      model: "claude-haiku-4-5-20251001",
-      max_tokens: 1024,
-      messages: [{ role: "user", content: prompt }],
-    }),
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ agentId: id, prompt }),
   });
   if (!resp.ok) {
-    const err = await resp.json().catch(() => ({}));
-    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: (err as { error?: { message?: string } }).error?.message ?? "LLM call failed" } });
+    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "n8n agent call failed" } });
     return;
   }
-  const llm = await resp.json() as {
-    id: string;
-    content: { text: string }[];
-    usage: { input_tokens: number; output_tokens: number };
-    model: string;
-  };
-  const output = llm.content[0]?.text ?? "";
-  const inputTokens = llm.usage?.input_tokens ?? 0;
-  const outputTokens = llm.usage?.output_tokens ?? 0;
-  const costUsd = (inputTokens * 0.00000025) + (outputTokens * 0.00000125);
+  const llm = await resp.json() as { output?: string; model?: string; inputTokens?: number; outputTokens?: number };
+  const output = llm.output ?? "";
+  const inputTokens = llm.inputTokens ?? 0;
+  const outputTokens = llm.outputTokens ?? 0;
+  const costUsd = 0;
 
   const run = await prisma.agentRun.create({
-    data: { agentId: id, input, output, model: llm.model, inputTokens, outputTokens, costUsd },
+    data: { agentId: id, input, output, model: llm.model ?? "gpt-4o-mini", inputTokens, outputTokens, costUsd },
   });
   res.json({ success: true, data: { runId: run.id, agentId: id, output, model: run.model, inputTokens, outputTokens, costUsd, createdAt: run.createdAt } });
 }));
@@ -124,29 +110,20 @@ router.post("/ai/tool", asyncHandler(async (req, res) => {
   }
   const { tool, inputs } = req.body as { tool: string; inputs: Record<string, string> };
   const prompt = `You are a business AI tool. Tool: "${tool}"\nInputs: ${JSON.stringify(inputs)}\n\nProvide a concise, professional response.`;
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
+  const resp = await fetch(`${env.N8N_WEBHOOK_URL}/ai-tool`, {
     method: "POST",
-    headers: {
-      "x-api-key": env.ANTHROPIC_API_KEY,
-      "anthropic-version": "2023-06-01",
-      "content-type": "application/json",
-    },
-    body: JSON.stringify({ model: "claude-haiku-4-5-20251001", max_tokens: 2048, messages: [{ role: "user", content: prompt }] }),
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ tool, prompt }),
   });
   if (!resp.ok) {
     res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "AI tool call failed" } });
     return;
   }
-  const llm = await resp.json() as {
-    id: string;
-    content: { text: string }[];
-    usage: { input_tokens: number; output_tokens: number };
-    model: string;
-  };
-  const output = llm.content[0]?.text ?? "";
-  const inputTokens = llm.usage?.input_tokens ?? 0;
-  const outputTokens = llm.usage?.output_tokens ?? 0;
-  const costUsd = (inputTokens * 0.00000025) + (outputTokens * 0.00000125);
+  const llm = await resp.json() as { output?: string; model?: string; inputTokens?: number; outputTokens?: number };
+  const output = llm.output ?? "";
+  const inputTokens = llm.inputTokens ?? 0;
+  const outputTokens = llm.outputTokens ?? 0;
+  const costUsd = 0;
   const runId = `tool-${Date.now()}`;
   res.json({ success: true, data: { runId, tool, output, model: llm.model, inputTokens, outputTokens, costUsd, createdAt: new Date().toISOString() } });
 }));
@@ -159,7 +136,7 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
     lead: { name: string; company?: string; status?: string; industry?: string; product?: string; notes?: string };
   };
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "ANTHROPIC_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
     return;
   }
   const prompts: Record<string, string> = {
@@ -169,17 +146,17 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
     reactivation: `Write a reactivation outreach for ${lead.name} from ${lead.company ?? ""} who went cold. LIMEX material. Reference their previous interest in ${lead.product ?? "LIMEX"}. Max 3 sentences.`,
   };
   const prompt = prompts[kind] ?? prompts.followup_email;
-  const resp = await fetch("https://api.anthropic.com/v1/messages", {
+  const resp = await fetch(`${env.N8N_WEBHOOK_URL}/ai-draft`, {
     method: "POST",
-    headers: { "x-api-key": env.ANTHROPIC_API_KEY, "anthropic-version": "2023-06-01", "content-type": "application/json" },
-    body: JSON.stringify({ model: "claude-haiku-4-5-20251001", max_tokens: 512, messages: [{ role: "user", content: prompt }] }),
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ kind, prompt }),
   });
   if (!resp.ok) {
     res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "Draft generation failed" } });
     return;
   }
-  const llm = await resp.json() as { content: { text: string }[] };
-  const preview = llm.content[0]?.text ?? "";
+  const llm = await resp.json() as { output?: string };
+  const preview = llm.output ?? "";
 
   const approval = await prisma.approval.create({
     data: {

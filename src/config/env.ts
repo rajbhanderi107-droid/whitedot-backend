@@ -37,7 +37,7 @@ export const env = {
     return Boolean(this.GOOGLE_CLIENT_ID && this.GOOGLE_CLIENT_SECRET);
   },
 
-  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || "",
+  N8N_WEBHOOK_URL: process.env.N8N_WEBHOOK_URL || "",
   GITHUB_TOKEN: process.env.GITHUB_TOKEN || "",
   GITHUB_REPO: process.env.GITHUB_REPO || "rajbhanderi107-droid/whitedot-limex.in",
 
@@ -46,6 +46,6 @@ export const env = {
   },
 
   get llmConfigured() {
-    return Boolean(this.ANTHROPIC_API_KEY);
+    return Boolean(this.N8N_WEBHOOK_URL);
   },
 } as const;
