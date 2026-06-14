@@ -37,7 +37,15 @@ export const env = {
     return Boolean(this.GOOGLE_CLIENT_ID && this.GOOGLE_CLIENT_SECRET);
   },
 
+  ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY || "",
+  GITHUB_TOKEN: process.env.GITHUB_TOKEN || "",
+  GITHUB_REPO: process.env.GITHUB_REPO || "rajbhanderi107-droid/whitedot-limex.in",
+
   get smtpConfigured() {
     return Boolean(this.SMTP_HOST && this.SMTP_USER && this.SMTP_PASS);
+  },
+
+  get llmConfigured() {
+    return Boolean(this.ANTHROPIC_API_KEY);
   },
 } as const;

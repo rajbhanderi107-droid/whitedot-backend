@@ -136,6 +136,9 @@ model User {
   notifications      Notification[]
   passwordResets     PasswordResetToken[]
   revokedTokens      RevokedToken[]
+  approvalsCreated   Approval[]        @relation("ApprovalCreator")
+  approvalsDecided   Approval[]        @relation("ApprovalDecider")
+  workflowsCreated   Workflow[]        @relation("WorkflowCreator")
 
   @@index([email])
   @@index([role])
@@ -440,5 +443,162 @@ model Notification {
 
   @@index([userId])
   @@index([isRead])
+  @@index([createdAt])
+}
+
+// ─── Portal enums ─────────────────────────────────
+
+enum AutomationMode {
+  OFF
+  DRAFT
+  APPROVAL
+  AUTO
+  LOCKDOWN
+}
+
+enum ApprovalStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
+enum ApprovalRisk {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
+enum IncidentSeverity {
+  SEV0
+  SEV1
+  SEV2
+  SEV3
+  SEV4
+}
+
+enum IncidentStage {
+  DETECTED
+  TRIAGE
+  CONTAINED
+  INVESTIGATING
+  FIXING
+  RECOVERING
+  RESOLVED
+}
+
+enum SecurityEventKind {
+  AUTH_FAILURE
+  RATE_LIMITED
+  VALIDATION_REJECTED
+  LOCKDOWN_BLOCK
+}
+
+// ─── Portal models ────────────────────────────────
+
+model PortalState {
+  id             String         @id @default("singleton")
+  automationMode AutomationMode @default(OFF)
+  emergencyStop  Boolean        @default(false)
+  updatedAt      DateTime       @updatedAt
+}
+
+model PortalAutomation {
+  id        String         @id
+  enabled   Boolean        @default(false)
+  mode      AutomationMode @default(OFF)
+  updatedAt DateTime       @updatedAt
+}
+
+model PortalAiAgent {
+  id        String         @id
+  enabled   Boolean        @default(false)
+  mode      AutomationMode @default(OFF)
+  updatedAt DateTime       @updatedAt
+}
+
+model PortalIntegration {
+  id          String   @id
+  connected   Boolean  @default(false)
+  environment String   @default("sandbox")
+  updatedAt   DateTime @updatedAt
+}
+
+model Approval {
+  id           String         @id @default(cuid())
+  title        String
+  kind         String
+  automationId String?
+  risk         ApprovalRisk   @default(LOW)
+  preview      String
+  status       ApprovalStatus @default(PENDING)
+  createdAt    DateTime       @default(now())
+  decidedAt    DateTime?
+
+  createdBy   User?   @relation("ApprovalCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  createdById String?
+  decidedBy   User?   @relation("ApprovalDecider", fields: [decidedById], references: [id], onDelete: SetNull)
+  decidedById String?
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Workflow {
+  id        String   @id @default(cuid())
+  name      String
+  trigger   String
+  condition String
+  action    String
+  enabled   Boolean  @default(true)
+  createdAt DateTime @default(now())
+
+  createdBy   User?   @relation("WorkflowCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  createdById String?
+
+  @@index([createdAt])
+}
+
+model Incident {
+  id         String           @id @default(cuid())
+  title      String
+  severity   IncidentSeverity @default(SEV3)
+  playbook   String
+  stage      IncidentStage    @default(DETECTED)
+  createdAt  DateTime         @default(now())
+  resolvedAt DateTime?
+
+  @@index([severity])
+  @@index([stage])
+  @@index([createdAt])
+}
+
+model SecurityEvent {
+  id        String            @id @default(cuid())
+  kind      SecurityEventKind
+  severity  ApprovalRisk      @default(LOW)
+  path      String
+  method    String
+  ip        String?
+  detail    String?
+  createdAt DateTime          @default(now())
+
+  @@index([kind])
+  @@index([severity])
+  @@index([createdAt])
+}
+
+model AgentRun {
+  id           String   @id @default(cuid())
+  agentId      String
+  input        String
+  output       String
+  model        String
+  inputTokens  Int      @default(0)
+  outputTokens Int      @default(0)
+  costUsd      Float    @default(0)
+  createdAt    DateTime @default(now())
+
+  @@index([agentId])
   @@index([createdAt])
 }
