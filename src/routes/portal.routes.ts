@@ -104,29 +104,50 @@ const AGENT_SYSTEMS: Record<string, { system: string; model: string; maxTokens: 
 
 const DEFAULT_AGENT = { system: "You are a helpful business assistant for White Dot LLP, a LIMEX sustainable material company in India.", model: "gpt-4o-mini", maxTokens: 1024 };
 
-// ─── n8n helper ──────────────────────────────────────────────────────
+// ─── OpenAI helper ───────────────────────────────────────────────────
 
-type N8nResponse = { output?: string; model?: string; inputTokens?: number; outputTokens?: number; steps?: string[] };
+type LlmResult = { output: string; model: string; inputTokens: number; outputTokens: number };
 
-async function callN8n(path: string, payload: Record<string, unknown>): Promise<N8nResponse> {
-  const resp = await fetch(`${env.N8N_WEBHOOK_URL}${path}`, {
+async function callOpenAI(opts: { system: string; prompt: string; model: string; maxTokens: number; temperature?: number }): Promise<LlmResult> {
+  const resp = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
-    headers: { "content-type": "application/json" },
-    body: JSON.stringify(payload),
+    headers: { authorization: `Bearer ${env.OPENAI_API_KEY}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      model: opts.model,
+      max_tokens: opts.maxTokens,
+      temperature: opts.temperature ?? 0.7,
+      messages: [
+        { role: "system", content: opts.system },
+        { role: "user", content: opts.prompt },
+      ],
+    }),
   });
-  if (!resp.ok) throw new Error(`n8n ${path} failed: ${resp.status}`);
-  return resp.json() as Promise<N8nResponse>;
+  if (!resp.ok) {
+    const e = await resp.text().catch(() => "");
+    throw new Error(`OpenAI ${resp.status}: ${e.slice(0, 200)}`);
+  }
+  const j = (await resp.json()) as {
+    choices: { message: { content: string } }[];
+    model: string;
+    usage?: { prompt_tokens: number; completion_tokens: number };
+  };
+  return {
+    output: j.choices[0]?.message?.content ?? "",
+    model: j.model,
+    inputTokens: j.usage?.prompt_tokens ?? 0,
+    outputTokens: j.usage?.completion_tokens ?? 0,
+  };
 }
 
 // ─── Agent Run (enriched) ────────────────────────────────────────────
 
 router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
     return;
   }
   const { id } = req.params as Record<string, string>;
-  const { input, context, history } = req.body as { input: string; context?: string; history?: { role: string; content: string }[] };
+  const { input, context } = req.body as { input: string; context?: string };
   if (!input?.trim()) {
     res.status(400).json({ success: false, error: { code: "MISSING_INPUT", message: "input is required" } });
     return;
@@ -159,22 +180,20 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
   const fullPrompt = context ? `Context:\n${context}${memoryContext}${crmContext}\n\nTask:\n${input}` : `${input}${memoryContext}${crmContext}`;
 
   try {
-    const llm = await callN8n("/agent-run", {
-      agentId: id,
+    const llm = await callOpenAI({
       system: agentConfig.system,
       model: agentConfig.model,
       maxTokens: agentConfig.maxTokens,
       prompt: fullPrompt,
-      history: history ?? [],
     });
 
-    const output = llm.output ?? "";
+    const output = llm.output;
     const run = await prisma.agentRun.create({
-      data: { agentId: id, input, output, model: llm.model ?? agentConfig.model, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, costUsd: 0 },
+      data: { agentId: id, input, output, model: llm.model || agentConfig.model, inputTokens: llm.inputTokens, outputTokens: llm.outputTokens, costUsd: 0 },
     });
-    res.json({ success: true, data: { runId: run.id, agentId: id, output, model: run.model, steps: llm.steps, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, createdAt: run.createdAt } });
+    res.json({ success: true, data: { runId: run.id, agentId: id, output, model: run.model, inputTokens: llm.inputTokens, outputTokens: llm.outputTokens, createdAt: run.createdAt } });
   } catch {
-    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "n8n agent call failed" } });
+    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "OpenAI call failed" } });
   }
 }));
 
@@ -182,7 +201,7 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
 
 router.post("/ai-agents/batch", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
     return;
   }
   const { tasks } = req.body as { tasks: { agentId: string; input: string; context?: string }[] };
@@ -194,18 +213,16 @@ router.post("/ai-agents/batch", asyncHandler(async (req: Request & { user?: { id
   const results = await Promise.allSettled(
     tasks.map(async (task) => {
       const agentConfig = AGENT_SYSTEMS[task.agentId] ?? DEFAULT_AGENT;
-      const llm = await callN8n("/agent-run", {
-        agentId: task.agentId,
+      const llm = await callOpenAI({
         system: agentConfig.system,
         model: agentConfig.model,
         maxTokens: agentConfig.maxTokens,
         prompt: task.context ? `Context:\n${task.context}\n\nTask:\n${task.input}` : task.input,
-        history: [],
       });
       const run = await prisma.agentRun.create({
-        data: { agentId: task.agentId, input: task.input, output: llm.output ?? "", model: llm.model ?? agentConfig.model, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, costUsd: 0 },
+        data: { agentId: task.agentId, input: task.input, output: llm.output, model: llm.model || agentConfig.model, inputTokens: llm.inputTokens, outputTokens: llm.outputTokens, costUsd: 0 },
       });
-      return { runId: run.id, agentId: task.agentId, output: llm.output ?? "", model: run.model };
+      return { runId: run.id, agentId: task.agentId, output: llm.output, model: run.model };
     })
   );
 
@@ -228,7 +245,7 @@ const TOOL_CONFIGS: Record<string, { system: string; model: string }> = {
 
 router.post("/ai/tool", asyncHandler(async (req, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
     return;
   }
   const { tool, inputs } = req.body as { tool: string; inputs: Record<string, string> };
@@ -238,10 +255,9 @@ router.post("/ai/tool", asyncHandler(async (req, res) => {
   const prompt = Object.entries(inputs).map(([k, v]) => `${k}: ${v}`).join("\n");
 
   try {
-    const llm = await callN8n("/ai-tool", { tool, system, model, prompt });
-    const output = llm.output ?? "";
+    const llm = await callOpenAI({ system, model, maxTokens: 2048, prompt });
     const runId = `tool-${Date.now()}`;
-    res.json({ success: true, data: { runId, tool, output, model: llm.model ?? model, inputTokens: llm.inputTokens ?? 0, outputTokens: llm.outputTokens ?? 0, createdAt: new Date().toISOString() } });
+    res.json({ success: true, data: { runId, tool, output: llm.output, model: llm.model || model, inputTokens: llm.inputTokens, outputTokens: llm.outputTokens, createdAt: new Date().toISOString() } });
   } catch {
     res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "AI tool call failed" } });
   }
@@ -255,7 +271,7 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
     lead: { name: string; company?: string; status?: string; industry?: string; product?: string; notes?: string; email?: string };
   };
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
     return;
   }
 
@@ -286,8 +302,8 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
   const prompt = prompts[kind] ?? prompts.followup_email;
 
   try {
-    const llm = await callN8n("/ai-draft", { kind, prompt, model: "gpt-4o", system: "You are a premium B2B sales writer for White Dot LLP / LIMEX sustainable material. Write in a professional, warm tone that reflects Japanese precision and Indian warmth." });
-    const preview = llm.output ?? "";
+    const llm = await callOpenAI({ prompt, model: "gpt-4o", maxTokens: 1024, temperature: 0.8, system: "You are a premium B2B sales writer for White Dot LLP / LIMEX sustainable material. Write in a professional, warm tone that reflects Japanese precision and Indian warmth." });
+    const preview = llm.output;
 
     const risk = kind === "cold_outreach" ? "MEDIUM" as const : "LOW" as const;
     const approval = await prisma.approval.create({
@@ -310,7 +326,7 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
 
 router.post("/ai/chain", asyncHandler(async (req, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "N8N_WEBHOOK_URL not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
     return;
   }
   const { steps } = req.body as { steps: { agent: string; input: string }[] };
@@ -325,15 +341,13 @@ router.post("/ai/chain", asyncHandler(async (req, res) => {
   for (const step of steps) {
     const agentConfig = AGENT_SYSTEMS[step.agent] ?? DEFAULT_AGENT;
     const enrichedInput = prevOutput ? `Previous step output:\n${prevOutput}\n\nNew task:\n${step.input}` : step.input;
-    const llm = await callN8n("/agent-run", {
-      agentId: step.agent,
+    const llm = await callOpenAI({
       system: agentConfig.system,
       model: agentConfig.model,
       maxTokens: agentConfig.maxTokens,
       prompt: enrichedInput,
-      history: [],
     });
-    prevOutput = llm.output ?? "";
+    prevOutput = llm.output;
     results.push({ agent: step.agent, output: prevOutput });
   }
 
