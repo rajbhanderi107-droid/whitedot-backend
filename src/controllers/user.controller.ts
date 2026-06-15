@@ -22,7 +22,10 @@ export async function listUsers(req: Request, res: Response) {
   const [data, total] = await Promise.all([
     prisma.user.findMany({
       where,
-      select: { id: true, name: true, email: true, role: true, isActive: true, createdAt: true, updatedAt: true },
+      select: {
+        id: true, name: true, email: true, role: true, isActive: true, createdAt: true, updatedAt: true,
+        jobTitle: true, department: true, phone: true,
+      },
       orderBy: { createdAt: "desc" },
       skip,
       take: limit,
@@ -40,8 +43,19 @@ export async function createUser(req: Request, res: Response) {
   const passwordHash = await hashPassword(req.body.password);
 
   const user = await prisma.user.create({
-    data: { name: req.body.name, email: req.body.email, passwordHash, role: req.body.role },
-    select: { id: true, name: true, email: true, role: true, isActive: true, createdAt: true },
+    data: {
+      name: req.body.name,
+      email: req.body.email,
+      passwordHash,
+      role: req.body.role,
+      jobTitle: req.body.jobTitle ?? null,
+      department: req.body.department ?? null,
+      phone: req.body.phone ?? null,
+    },
+    select: {
+      id: true, name: true, email: true, role: true, isActive: true, createdAt: true,
+      jobTitle: true, department: true, phone: true,
+    },
   });
 
   await logActivity({
@@ -65,7 +79,10 @@ export async function updateUser(req: Request, res: Response) {
   const user = await prisma.user.update({
     where: { id },
     data,
-    select: { id: true, name: true, email: true, role: true, isActive: true, updatedAt: true },
+    select: {
+      id: true, name: true, email: true, role: true, isActive: true, updatedAt: true,
+      jobTitle: true, department: true, phone: true,
+    },
   });
 
   await logActivity({

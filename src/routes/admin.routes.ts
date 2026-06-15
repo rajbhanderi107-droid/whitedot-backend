@@ -12,6 +12,7 @@ import * as followUps from "../controllers/followUp.controller.js";
 import * as documents from "../controllers/document.controller.js";
 import * as settings from "../controllers/settings.controller.js";
 import * as users from "../controllers/user.controller.js";
+import * as attendance from "../controllers/attendance.controller.js";
 import * as notifications from "../controllers/notification.controller.js";
 import * as activityLog from "../controllers/activityLog.controller.js";
 import * as google from "../controllers/google.controller.js";
@@ -28,6 +29,8 @@ import {
   updateWebsiteSettingSchema,
   createUserSchema,
   updateUserSchema,
+  punchSchema,
+  pingSchema,
 } from "../validators/admin.validator.js";
 
 const router = Router();
@@ -93,6 +96,18 @@ router.get("/users", requireRole("SUPER_ADMIN"), asyncHandler(users.listUsers));
 router.post("/users", requireRole("SUPER_ADMIN"), validate(createUserSchema), asyncHandler(users.createUser));
 router.patch("/users/:id", requireRole("SUPER_ADMIN"), validate(updateUserSchema), asyncHandler(users.updateUser));
 router.delete("/users/:id", requireRole("SUPER_ADMIN"), asyncHandler(users.deleteUser));
+
+// ─── Attendance & Location (digital office) ──────
+// Self actions — any authenticated user (employees included) can punch & ping.
+router.get("/attendance/me", asyncHandler(attendance.myAttendance));
+router.post("/attendance/punch-in", validate(punchSchema), asyncHandler(attendance.punchIn));
+router.post("/attendance/punch-out", validate(punchSchema), asyncHandler(attendance.punchOut));
+router.post("/attendance/ping", validate(pingSchema), asyncHandler(attendance.ping));
+// Attendance board — ADMIN+ (no precise location here).
+router.get("/attendance/today", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(attendance.attendanceToday));
+// Location board — SUPER_ADMIN only.
+router.get("/attendance/locations", requireRole("SUPER_ADMIN"), asyncHandler(attendance.liveLocations));
+router.get("/attendance/locations/:userId", requireRole("SUPER_ADMIN"), asyncHandler(attendance.employeeTrail));
 
 // ─── Notifications ───────────────────────────────
 router.get("/notifications", asyncHandler(notifications.listNotifications));

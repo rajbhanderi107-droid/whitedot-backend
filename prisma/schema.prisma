@@ -16,6 +16,15 @@ enum Role {
   SALES
   OPERATIONS
   VIEWER
+  EMPLOYEE
+}
+
+enum AttendanceStatus {
+  PRESENT
+  LATE
+  ABSENT
+  ON_LEAVE
+  WFH
 }
 
 enum CompanyStatus {
@@ -121,6 +130,11 @@ model User {
   createdAt           DateTime  @default(now())
   updatedAt           DateTime  @updatedAt
 
+  // Employee profile (digital office)
+  jobTitle            String?
+  department          String?
+  phone               String?
+
   // Security dome — Layer 3: brute-force lockout
   failedLoginAttempts Int       @default(0)
   lockedUntil         DateTime?
@@ -139,6 +153,8 @@ model User {
   approvalsCreated   Approval[]        @relation("ApprovalCreator")
   approvalsDecided   Approval[]        @relation("ApprovalDecider")
   workflowsCreated   Workflow[]        @relation("WorkflowCreator")
+  attendanceDays     AttendanceDay[]
+  locationPings      LocationPing[]
 
   @@index([email])
   @@index([role])
@@ -600,5 +616,52 @@ model AgentRun {
   createdAt    DateTime @default(now())
 
   @@index([agentId])
+  @@index([createdAt])
+}
+
+// ─── Digital Office: Attendance & Location ────────
+// One row per employee per office-local day. Office time starts at the
+// first punch-in; attendance is FINALIZED (marked complete) only when the
+// employee clicks Punch Out. Location is captured at punch in/out and via
+// live pings while punched in — visible to SUPER_ADMIN only.
+
+model AttendanceDay {
+  id            String           @id @default(cuid())
+  userId        String
+  user          User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  date          String           // YYYY-MM-DD in office timezone (Asia/Kolkata)
+  firstPunchIn  DateTime
+  lastPunchOut  DateTime?
+  status        AttendanceStatus @default(PRESENT)
+  finalized     Boolean          @default(false) // attendance counts only after punch-out
+  workedMinutes Int              @default(0)
+  inLat         Float?
+  inLng         Float?
+  inAccuracy    Float?
+  outLat        Float?
+  outLng        Float?
+  outAccuracy   Float?
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+
+  @@unique([userId, date])
+  @@index([date])
+  @@index([userId])
+  @@index([finalized])
+}
+
+model LocationPing {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  lat       Float
+  lng       Float
+  accuracy  Float?
+  kind      String   @default("live") // punch_in | live | punch_out
+  date      String   // YYYY-MM-DD for fast per-day filtering
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+  @@index([userId, date])
   @@index([createdAt])
 }

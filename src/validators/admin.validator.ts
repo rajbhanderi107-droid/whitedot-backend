@@ -123,20 +123,40 @@ export const updateWebsiteSettingSchema = z.object({
 }).strip();
 
 // ─── User Management ─────────────────────────────
+const userRoleEnum = z.enum(["SUPER_ADMIN", "ADMIN", "SALES", "OPERATIONS", "VIEWER", "EMPLOYEE"]);
+
 export const createUserSchema = z.object({
   name: z.string().min(1, "Name is required").max(200),
   email: z.string().email("Valid email is required"),
   password: z.string().min(8, "Password must be at least 8 characters"),
-  role: z.enum(["SUPER_ADMIN", "ADMIN", "SALES", "OPERATIONS", "VIEWER"]),
+  role: userRoleEnum,
+  jobTitle: z.string().max(120).optional(),
+  department: z.string().max(120).optional(),
+  phone: z.string().max(40).optional(),
 }).strip();
 
 export const updateUserSchema = z.object({
   name: z.string().max(200).optional(),
   email: z.string().email().optional(),
-  role: z.enum(["SUPER_ADMIN", "ADMIN", "SALES", "OPERATIONS", "VIEWER"]).optional(),
+  role: userRoleEnum.optional(),
   isActive: z.boolean().optional(),
   password: z.string().min(8).optional(),
+  jobTitle: z.string().max(120).optional().nullable(),
+  department: z.string().max(120).optional().nullable(),
+  phone: z.string().max(40).optional().nullable(),
 }).strip();
+
+// ─── Attendance / Location (digital office) ──────
+const coord = z.object({
+  lat: z.number().min(-90).max(90),
+  lng: z.number().min(-180).max(180),
+  accuracy: z.number().nonnegative().optional().nullable(),
+});
+
+// Punch in/out may be sent without a fix if the browser denies geolocation.
+export const punchSchema = coord.partial({ lat: true, lng: true }).strip();
+// A live ping must carry a real fix.
+export const pingSchema = coord.strip();
 
 // ─── Pagination / Query ──────────────────────────
 export const paginationSchema = z.object({
