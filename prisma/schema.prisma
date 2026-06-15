@@ -27,6 +27,41 @@ enum AttendanceStatus {
   WFH
 }
 
+enum EmploymentType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERN
+  FREELANCE
+}
+
+enum EmployeeStatus {
+  ACTIVE
+  ON_LEAVE
+  PROBATION
+  RESIGNED
+  TERMINATED
+}
+
+enum EmployeeTaskStage {
+  TODO
+  IN_PROGRESS
+  REVIEW
+  DONE
+}
+
+enum LeaveType {
+  ANNUAL
+  SICK
+  CASUAL
+}
+
+enum LeaveRequestStatus {
+  PENDING
+  APPROVED
+  REJECTED
+}
+
 enum CompanyStatus {
   LEAD
   ACTIVE_CLIENT
@@ -155,6 +190,9 @@ model User {
   workflowsCreated   Workflow[]        @relation("WorkflowCreator")
   attendanceDays     AttendanceDay[]
   locationPings      LocationPing[]
+  employeeProfile    EmployeeProfile?
+  workTasks          WorkTask[]
+  leaveRequests      LeaveRequest[]
 
   @@index([email])
   @@index([role])
@@ -664,4 +702,66 @@ model LocationPing {
   @@index([userId])
   @@index([userId, date])
   @@index([createdAt])
+}
+
+// ─── Workforce: HR profile, tasks, leave ──────────
+// An employee IS a User with role EMPLOYEE. EmployeeProfile holds the HR
+// extras; WorkTask + LeaveRequest are the live workspace data.
+
+model EmployeeProfile {
+  id         String         @id @default(cuid())
+  userId     String         @unique
+  user       User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  location   String?
+  type       EmploymentType @default(FULL_TIME)
+  status     EmployeeStatus @default(ACTIVE)
+  joinedAt   DateTime       @default(now())
+  manager    String?
+  salary     Int            @default(0)
+  kpi        Int            @default(75)
+  tools      String[]       @default([])
+  workspace  String?
+  notes      String?
+  avatarHue  Int            @default(150)
+  annual     Int            @default(18)
+  sick       Int            @default(12)
+  casual     Int            @default(12)
+  usedAnnual Int            @default(0)
+  usedSick   Int            @default(0)
+  usedCasual Int            @default(0)
+  createdAt  DateTime       @default(now())
+  updatedAt  DateTime       @updatedAt
+}
+
+model WorkTask {
+  id        String            @id @default(cuid())
+  userId    String
+  user      User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  project   String?
+  stage     EmployeeTaskStage @default(TODO)
+  priority  Priority          @default(MEDIUM)
+  due       DateTime?
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  @@index([userId])
+  @@index([stage])
+}
+
+model LeaveRequest {
+  id        String             @id @default(cuid())
+  userId    String
+  user      User               @relation(fields: [userId], references: [id], onDelete: Cascade)
+  type      LeaveType
+  fromDate  DateTime
+  toDate    DateTime
+  days      Int
+  reason    String?
+  status    LeaveRequestStatus @default(PENDING)
+  decidedAt DateTime?
+  createdAt DateTime           @default(now())
+
+  @@index([userId])
+  @@index([status])
 }

@@ -13,6 +13,7 @@ import * as documents from "../controllers/document.controller.js";
 import * as settings from "../controllers/settings.controller.js";
 import * as users from "../controllers/user.controller.js";
 import * as attendance from "../controllers/attendance.controller.js";
+import * as employees from "../controllers/employee.controller.js";
 import * as notifications from "../controllers/notification.controller.js";
 import * as activityLog from "../controllers/activityLog.controller.js";
 import * as google from "../controllers/google.controller.js";
@@ -31,6 +32,12 @@ import {
   updateUserSchema,
   punchSchema,
   pingSchema,
+  createEmployeeSchema,
+  updateEmployeeSchema,
+  createTaskSchema,
+  updateTaskSchema,
+  leaveRequestSchema,
+  decideLeaveSchema,
 } from "../validators/admin.validator.js";
 
 const router = Router();
@@ -108,6 +115,25 @@ router.get("/attendance/today", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandle
 // Location board — SUPER_ADMIN only.
 router.get("/attendance/locations", requireRole("SUPER_ADMIN"), asyncHandler(attendance.liveLocations));
 router.get("/attendance/locations/:userId", requireRole("SUPER_ADMIN"), asyncHandler(attendance.employeeTrail));
+
+// ─── Workforce: employees, tasks, leave ──────────
+// Self workspace (any authenticated user — employees included).
+router.get("/me/workspace", asyncHandler(employees.myWorkspace));
+router.post("/me/leave", validate(leaveRequestSchema), asyncHandler(employees.requestLeave));
+
+// Directory (ADMIN+ read).
+router.get("/employees", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(employees.listEmployees));
+router.get("/employees/:id", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(employees.getEmployee));
+router.post("/employees", requireRole("SUPER_ADMIN"), validate(createEmployeeSchema), asyncHandler(employees.createEmployee));
+router.patch("/employees/:id", requireRole("SUPER_ADMIN"), validate(updateEmployeeSchema), asyncHandler(employees.updateEmployee));
+router.post("/employees/:id/tasks", requireRole("SUPER_ADMIN", "ADMIN"), validate(createTaskSchema), asyncHandler(employees.addTask));
+
+// Tasks — owner can move stage; admin can edit/delete (checked in controller).
+router.patch("/tasks/:id", validate(updateTaskSchema), asyncHandler(employees.updateTask));
+router.delete("/tasks/:id", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(employees.deleteTask));
+
+// Leave decisions (ADMIN+).
+router.patch("/leave/:id", requireRole("SUPER_ADMIN", "ADMIN"), validate(decideLeaveSchema), asyncHandler(employees.decideLeave));
 
 // ─── Notifications ───────────────────────────────
 router.get("/notifications", asyncHandler(notifications.listNotifications));

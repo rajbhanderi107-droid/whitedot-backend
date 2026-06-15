@@ -158,6 +158,76 @@ export const punchSchema = coord.partial({ lat: true, lng: true }).strip();
 // A live ping must carry a real fix.
 export const pingSchema = coord.strip();
 
+// ─── Workforce: employees, tasks, leave ──────────
+const employmentType = z.enum(["FULL_TIME", "PART_TIME", "CONTRACT", "INTERN", "FREELANCE"]);
+const employeeStatus = z.enum(["ACTIVE", "ON_LEAVE", "PROBATION", "RESIGNED", "TERMINATED"]);
+const taskStage = z.enum(["TODO", "IN_PROGRESS", "REVIEW", "DONE"]);
+const taskPriority = z.enum(["LOW", "MEDIUM", "HIGH", "URGENT"]);
+const leaveType = z.enum(["ANNUAL", "SICK", "CASUAL"]);
+
+const profileFields = {
+  location: z.string().max(160).optional().nullable(),
+  type: employmentType.optional(),
+  status: employeeStatus.optional(),
+  joinedAt: z.string().optional(),
+  manager: z.string().max(160).optional().nullable(),
+  salary: z.number().int().min(0).max(100_000_000).optional(),
+  kpi: z.number().int().min(0).max(100).optional(),
+  tools: z.array(z.string().max(60)).max(80).optional(),
+  workspace: z.string().max(160).optional().nullable(),
+  notes: z.string().max(4000).optional().nullable(),
+  avatarHue: z.number().int().min(0).max(360).optional(),
+  annual: z.number().int().min(0).max(365).optional(),
+  sick: z.number().int().min(0).max(365).optional(),
+  casual: z.number().int().min(0).max(365).optional(),
+};
+
+export const createEmployeeSchema = z.object({
+  name: z.string().min(1, "Name is required").max(200),
+  email: z.string().email("Valid email is required"),
+  password: z.string().min(8, "Password must be at least 8 characters"),
+  jobTitle: z.string().max(120).optional(),
+  department: z.string().max(120).optional(),
+  phone: z.string().max(40).optional(),
+  ...profileFields,
+}).strip();
+
+export const updateEmployeeSchema = z.object({
+  name: z.string().max(200).optional(),
+  jobTitle: z.string().max(120).optional().nullable(),
+  department: z.string().max(120).optional().nullable(),
+  phone: z.string().max(40).optional().nullable(),
+  isActive: z.boolean().optional(),
+  ...profileFields,
+}).strip();
+
+export const createTaskSchema = z.object({
+  title: z.string().min(1, "Title is required").max(300),
+  project: z.string().max(160).optional().nullable(),
+  priority: taskPriority.optional(),
+  stage: taskStage.optional(),
+  due: z.string().optional().nullable(),
+}).strip();
+
+export const updateTaskSchema = z.object({
+  title: z.string().max(300).optional(),
+  project: z.string().max(160).optional().nullable(),
+  priority: taskPriority.optional(),
+  stage: taskStage.optional(),
+  due: z.string().optional().nullable(),
+}).strip();
+
+export const leaveRequestSchema = z.object({
+  type: leaveType,
+  fromDate: z.string(),
+  toDate: z.string(),
+  reason: z.string().max(1000).optional(),
+}).strip();
+
+export const decideLeaveSchema = z.object({
+  status: z.enum(["APPROVED", "REJECTED"]),
+}).strip();
+
 // ─── Pagination / Query ──────────────────────────
 export const paginationSchema = z.object({
   page: z.coerce.number().int().min(1).default(1),
