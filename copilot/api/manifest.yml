@@ -1,0 +1,52 @@
+# WhiteDot backend — AWS Copilot "Load Balanced Web Service"
+# Deploys: ECR image -> ECS Fargate -> ALB (HTTPS). Region set via `copilot env`.
+name: api
+type: Load Balanced Web Service
+
+# Public ALB. Backend served at api.whitedotindia.in (alias set after ACM cert).
+http:
+  path: '/'
+  healthcheck:
+    path: '/api/health'
+    healthy_threshold: 2
+    unhealthy_threshold: 3
+    interval: 15s
+    timeout: 10s
+    grace_period: 60s     # allow `prisma migrate deploy` on cold start
+  # alias: api.whitedotindia.in   # uncomment once ACM cert validated
+
+image:
+  build: Dockerfile
+  port: 4000
+
+cpu: 256        # 0.25 vCPU
+memory: 512     # 0.5 GB
+count: 1        # bump or add autoscaling block later
+exec: true      # `copilot svc exec` for shell access
+
+network:
+  vpc:
+    placement: public   # no NAT cost; task gets public IP, SG still locks it down
+
+variables:
+  NODE_ENV: production
+  PORT: 4000
+  FRONTEND_URL: https://whitedotindia.in
+
+# Pulled from SSM Parameter Store (SecureString) / Secrets Manager.
+# Create these per-env before first deploy (see deploy/secrets.sh).
+secrets:
+  DATABASE_URL: /whitedot/prod/DATABASE_URL
+  JWT_SECRET: /whitedot/prod/JWT_SECRET
+  GOOGLE_CLIENT_ID: /whitedot/prod/GOOGLE_CLIENT_ID
+  GOOGLE_CLIENT_SECRET: /whitedot/prod/GOOGLE_CLIENT_SECRET
+  ADMIN_SEED_EMAIL: /whitedot/prod/ADMIN_SEED_EMAIL
+  ADMIN_SEED_PASSWORD: /whitedot/prod/ADMIN_SEED_PASSWORD
+
+environments:
+  prod:
+    count: 1
+    deployment:
+      rollback_alarms:
+        cpu_utilization: 80
+        memory_utilization: 80

@@ -1,0 +1,13 @@
+node_modules
+dist
+.git
+.github
+.env
+.env.*
+*.log
+tsconfig.tsbuildinfo
+README.md
+railway.toml
+Procfile
+google-dashboard
+n8n-workflows

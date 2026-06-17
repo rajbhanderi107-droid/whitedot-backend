@@ -1,0 +1,44 @@
+name: Deploy backend (ECS Fargate via Copilot)
+
+on:
+  # Manual-only until AWS is bootstrapped (OIDC role AWS_DEPLOY_ROLE_ARN +
+  # Copilot app/env exist). To enable auto-deploy, uncomment the push block.
+  # NOTE: this repo's default branch is `master`, not `main`.
+  # push:
+  #   branches: [master]
+  #   paths:
+  #     - 'src/**'
+  #     - 'prisma/**'
+  #     - 'Dockerfile'
+  #     - 'copilot/**'
+  #     - 'package.json'
+  #     - 'package-lock.json'
+  workflow_dispatch:
+
+permissions:
+  id-token: write   # OIDC -> AWS, no long-lived keys
+  contents: read
+
+env:
+  AWS_REGION: ap-south-1
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configure AWS credentials (OIDC)
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Install AWS Copilot
+        run: |
+          curl -Lo copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux
+          chmod +x copilot && sudo mv copilot /usr/local/bin/copilot
+          copilot --version
+
+      - name: Deploy
+        run: copilot deploy --name api --env prod
