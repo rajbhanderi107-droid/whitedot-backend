@@ -180,6 +180,24 @@ const profileFields = {
   annual: z.number().int().min(0).max(365).optional(),
   sick: z.number().int().min(0).max(365).optional(),
   casual: z.number().int().min(0).max(365).optional(),
+  // Extended HR profile
+  employeeCode: z.string().max(60).optional().nullable(),
+  departmentId: z.string().max(60).optional().nullable(),
+  dateOfBirth: z.string().optional().nullable(),
+  gender: z.string().max(40).optional().nullable(),
+  address: z.string().max(1000).optional().nullable(),
+  emergencyName: z.string().max(160).optional().nullable(),
+  emergencyPhone: z.string().max(40).optional().nullable(),
+  bloodGroup: z.string().max(10).optional().nullable(),
+  bankName: z.string().max(160).optional().nullable(),
+  bankAccount: z.string().max(60).optional().nullable(),
+  ifsc: z.string().max(20).optional().nullable(),
+  taxId: z.string().max(40).optional().nullable(),
+  probationEndsAt: z.string().optional().nullable(),
+  contractEndsAt: z.string().optional().nullable(),
+  weeklyHours: z.number().int().min(0).max(168).optional().nullable(),
+  currency: z.string().max(8).optional().nullable(),
+  payFrequency: z.string().max(20).optional().nullable(),
 };
 
 export const createEmployeeSchema = z.object({
@@ -226,6 +244,64 @@ export const leaveRequestSchema = z.object({
 
 export const decideLeaveSchema = z.object({
   status: z.enum(["APPROVED", "REJECTED"]),
+}).strip();
+
+// ─── Workforce OS: departments, reviews, goals, onboarding, payroll, comms ──
+export const createDepartmentSchema = z.object({
+  name: z.string().min(1, "Name is required").max(120),
+  code: z.string().max(20).optional().nullable(),
+  description: z.string().max(1000).optional().nullable(),
+  headId: z.string().max(60).optional().nullable(),
+}).strip();
+
+export const updateDepartmentSchema = createDepartmentSchema.partial();
+
+export const createReviewSchema = z.object({
+  period: z.string().min(1).max(40),
+  rating: z.number().int().min(1).max(5),
+  strengths: z.string().max(4000).optional().nullable(),
+  improvements: z.string().max(4000).optional().nullable(),
+}).strip();
+
+export const createGoalSchema = z.object({
+  title: z.string().min(1).max(300),
+  description: z.string().max(4000).optional().nullable(),
+  dueDate: z.string().optional().nullable(),
+}).strip();
+
+export const updateGoalSchema = z.object({
+  title: z.string().max(300).optional(),
+  description: z.string().max(4000).optional().nullable(),
+  progress: z.number().int().min(0).max(100).optional(),
+  status: z.enum(["ACTIVE", "COMPLETED", "ARCHIVED"]).optional(),
+  dueDate: z.string().optional().nullable(),
+}).strip();
+
+export const myGoalSchema = z.object({
+  progress: z.number().int().min(0).max(100),
+}).strip();
+
+export const createOnboardingSchema = z.object({
+  label: z.string().min(1).max(300),
+  order: z.number().int().min(0).max(1000).optional(),
+}).strip();
+
+export const updateOnboardingSchema = z.object({
+  done: z.boolean(),
+}).strip();
+
+export const createPayslipSchema = z.object({
+  month: z.string().regex(/^\d{4}-\d{2}$/, "Month must be YYYY-MM"),
+  gross: z.number().int().min(0).max(1_000_000_000),
+  deductions: z.number().int().min(0).max(1_000_000_000).optional(),
+  notes: z.string().max(2000).optional().nullable(),
+}).strip();
+
+export const createAnnouncementSchema = z.object({
+  title: z.string().min(1).max(200),
+  body: z.string().min(1).max(8000),
+  audience: z.enum(["ALL", "DEPARTMENT"]).optional(),
+  departmentId: z.string().max(60).optional().nullable(),
 }).strip();
 
 // ─── Pagination / Query ──────────────────────────

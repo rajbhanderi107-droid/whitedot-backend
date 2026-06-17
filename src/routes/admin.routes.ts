@@ -14,6 +14,7 @@ import * as settings from "../controllers/settings.controller.js";
 import * as users from "../controllers/user.controller.js";
 import * as attendance from "../controllers/attendance.controller.js";
 import * as employees from "../controllers/employee.controller.js";
+import * as workforce from "../controllers/workforce.controller.js";
 import * as notifications from "../controllers/notification.controller.js";
 import * as activityLog from "../controllers/activityLog.controller.js";
 import * as google from "../controllers/google.controller.js";
@@ -38,6 +39,16 @@ import {
   updateTaskSchema,
   leaveRequestSchema,
   decideLeaveSchema,
+  createDepartmentSchema,
+  updateDepartmentSchema,
+  createReviewSchema,
+  createGoalSchema,
+  updateGoalSchema,
+  myGoalSchema,
+  createOnboardingSchema,
+  updateOnboardingSchema,
+  createPayslipSchema,
+  createAnnouncementSchema,
 } from "../validators/admin.validator.js";
 
 const router = Router();
@@ -120,6 +131,10 @@ router.get("/attendance/locations/:userId", requireRole("SUPER_ADMIN"), asyncHan
 // Self workspace (any authenticated user — employees included).
 router.get("/me/workspace", asyncHandler(employees.myWorkspace));
 router.post("/me/leave", validate(leaveRequestSchema), asyncHandler(employees.requestLeave));
+router.get("/me/payslips", asyncHandler(employees.myPayslips));
+router.patch("/me/onboarding/:id", validate(updateOnboardingSchema), asyncHandler(employees.updateMyOnboarding));
+router.patch("/me/goals/:id", validate(myGoalSchema), asyncHandler(employees.updateMyGoal));
+router.get("/announcements", asyncHandler(workforce.listAnnouncements));
 
 // Directory (ADMIN+ read).
 router.get("/employees", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(employees.listEmployees));
@@ -134,6 +149,22 @@ router.delete("/tasks/:id", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(em
 
 // Leave decisions (ADMIN+).
 router.patch("/leave/:id", requireRole("SUPER_ADMIN", "ADMIN"), validate(decideLeaveSchema), asyncHandler(employees.decideLeave));
+
+// ─── Workforce OS: overview, departments, performance, goals, onboarding, payroll, comms ──
+router.get("/workforce/overview", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(workforce.getOverview));
+router.get("/departments", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(workforce.listDepartments));
+router.post("/departments", requireRole("SUPER_ADMIN"), validate(createDepartmentSchema), asyncHandler(workforce.createDepartment));
+router.patch("/departments/:id", requireRole("SUPER_ADMIN"), validate(updateDepartmentSchema), asyncHandler(workforce.updateDepartment));
+router.delete("/departments/:id", requireRole("SUPER_ADMIN"), asyncHandler(workforce.deleteDepartment));
+router.post("/employees/:id/reviews", requireRole("SUPER_ADMIN", "ADMIN"), validate(createReviewSchema), asyncHandler(workforce.addReview));
+router.post("/employees/:id/goals", requireRole("SUPER_ADMIN", "ADMIN"), validate(createGoalSchema), asyncHandler(workforce.addGoal));
+router.patch("/goals/:id", requireRole("SUPER_ADMIN", "ADMIN"), validate(updateGoalSchema), asyncHandler(workforce.updateGoal));
+router.delete("/goals/:id", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(workforce.deleteGoal));
+router.post("/employees/:id/onboarding", requireRole("SUPER_ADMIN", "ADMIN"), validate(createOnboardingSchema), asyncHandler(workforce.addOnboarding));
+router.patch("/onboarding/:id", requireRole("SUPER_ADMIN", "ADMIN"), validate(updateOnboardingSchema), asyncHandler(workforce.updateOnboarding));
+router.post("/employees/:id/payslips", requireRole("SUPER_ADMIN", "ADMIN"), validate(createPayslipSchema), asyncHandler(workforce.addPayslip));
+router.post("/announcements", requireRole("SUPER_ADMIN", "ADMIN"), validate(createAnnouncementSchema), asyncHandler(workforce.createAnnouncement));
+router.delete("/announcements/:id", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(workforce.deleteAnnouncement));
 
 // ─── Notifications ───────────────────────────────
 router.get("/notifications", asyncHandler(notifications.listNotifications));
