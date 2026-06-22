@@ -42,6 +42,22 @@ jobs:
           docker push $IMAGE:$GITHUB_SHA
           docker push $IMAGE:latest
 
+      - name: Create env vars file
+        run: |
+          cat > /tmp/cloudrun-env.yaml << 'ENVEOF'
+          NODE_ENV: "production"
+          FRONTEND_URL: "${{ secrets.FRONTEND_URL }}"
+          FRONTEND_ORIGINS: "${{ secrets.FRONTEND_ORIGINS }}"
+          DATABASE_URL: "${{ secrets.DATABASE_URL }}"
+          DIRECT_URL: "${{ secrets.DIRECT_URL }}"
+          JWT_SECRET: "${{ secrets.JWT_SECRET }}"
+          ADMIN_SEED_EMAIL: "${{ secrets.ADMIN_SEED_EMAIL }}"
+          ADMIN_SEED_PASSWORD: "${{ secrets.ADMIN_SEED_PASSWORD }}"
+          GOOGLE_CLIENT_ID: "${{ secrets.GOOGLE_CLIENT_ID }}"
+          GOOGLE_CLIENT_SECRET: "${{ secrets.GOOGLE_CLIENT_SECRET }}"
+          GOOGLE_AI_KEY: "${{ secrets.GOOGLE_AI_KEY }}"
+          ENVEOF
+
       - name: Deploy to Cloud Run
         run: |
           gcloud run deploy $SERVICE \
@@ -54,7 +70,7 @@ jobs:
             --memory 512Mi \
             --cpu 1 \
             --port 4000 \
-            --set-env-vars="^|^NODE_ENV=production|FRONTEND_URL=${{ secrets.FRONTEND_URL }}|FRONTEND_ORIGINS=${{ secrets.FRONTEND_ORIGINS }}|DATABASE_URL=${{ secrets.DATABASE_URL }}|DIRECT_URL=${{ secrets.DIRECT_URL }}|JWT_SECRET=${{ secrets.JWT_SECRET }}|ADMIN_SEED_EMAIL=${{ secrets.ADMIN_SEED_EMAIL }}|ADMIN_SEED_PASSWORD=${{ secrets.ADMIN_SEED_PASSWORD }}|GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }}|GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }}|GOOGLE_AI_KEY=${{ secrets.GOOGLE_AI_KEY }}"
+            --env-vars-file /tmp/cloudrun-env.yaml
 
       - name: Show service URL
         run: |
