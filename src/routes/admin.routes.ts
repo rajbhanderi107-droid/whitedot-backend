@@ -59,8 +59,10 @@ router.use(requireAuth);
 // ─── Dashboard ───────────────────────────────────
 router.get("/dashboard", asyncHandler(dashboard.getDashboard));
 
-// ─── Google (all-in-one overview) ────────────────
+// ─── Google (all-in-one overview + sync) ─────────
 router.get("/google/overview", asyncHandler(google.getGoogleOverview));
+router.get("/google/sync-status", asyncHandler(google.getGoogleSyncStatus));
+router.post("/google/sync", asyncHandler(google.triggerGoogleSync));
 
 // ─── Inquiries ───────────────────────────────────
 router.get("/inquiries", asyncHandler(inquiries.listInquiries));

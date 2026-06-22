@@ -7,22 +7,16 @@ import { logActivity } from "../services/activity.service.js";
 import { AppError } from "../middleware/error.middleware.js";
 
 /**
- * Google OAuth callback handler.
+ * Google OAuth handler — Token Client flow.
  *
  * Flow:
- *   1. Frontend opens Google consent screen
- *   2. Google redirects to frontend with `code`
- *   3. Frontend POSTs `{ code }` to this endpoint
- *   4. We exchange the code for tokens, get user profile
+ *   1. Frontend opens Google consent screen via initTokenClient (implicit/token flow)
+ *   2. Google returns an access_token directly to the frontend callback
+ *   3. Frontend POSTs { accessToken } to this endpoint
+ *   4. We call the Google userinfo endpoint with the token to verify identity
  *   5. Match email to an existing User row (no auto-registration — admin-only)
- *   6. Issue our JWT cookie + token
+ *   6. Issue our JWT
  */
-
-interface GoogleTokenResponse {
-  access_token: string;
-  id_token: string;
-  token_type: string;
-}
 
 interface GoogleUserInfo {
   email: string;
@@ -31,43 +25,14 @@ interface GoogleUserInfo {
   email_verified: boolean;
 }
 
-/** Exchange authorization code for Google tokens */
-async function exchangeCodeForTokens(code: string): Promise<GoogleTokenResponse> {
-  const backendUrl = env.isProduction
-    ? `${env.FRONTEND_URL.replace(/\/$/, "")}`
-    : `http://localhost:${env.PORT}`;
-
-  // "postmessage" is Google's special redirect_uri for popup-based OAuth flows.
-  // The frontend uses google.accounts.oauth2.initCodeClient() which returns the
-  // auth code directly via postMessage — no redirect needed.
-  const res = await fetch("https://oauth2.googleapis.com/token", {
-    method: "POST",
-    headers: { "Content-Type": "application/x-www-form-urlencoded" },
-    body: new URLSearchParams({
-      code,
-      client_id: env.GOOGLE_CLIENT_ID,
-      client_secret: env.GOOGLE_CLIENT_SECRET,
-      redirect_uri: "postmessage",
-      grant_type: "authorization_code",
-    }),
-  });
-
-  if (!res.ok) {
-    const body = await res.text();
-    throw new AppError(401, "GOOGLE_AUTH_FAILED", `Google token exchange failed: ${body}`);
-  }
-
-  return res.json() as Promise<GoogleTokenResponse>;
-}
-
-/** Fetch Google user profile using access token */
+/** Verify an access token by fetching the Google userinfo endpoint */
 async function getGoogleUserInfo(accessToken: string): Promise<GoogleUserInfo> {
   const res = await fetch("https://www.googleapis.com/oauth2/v2/userinfo", {
     headers: { Authorization: `Bearer ${accessToken}` },
   });
 
   if (!res.ok) {
-    throw new AppError(401, "GOOGLE_AUTH_FAILED", "Failed to fetch Google user info");
+    throw new AppError(401, "GOOGLE_AUTH_FAILED", "Failed to fetch Google user info — token may be invalid or expired");
   }
 
   return res.json() as Promise<GoogleUserInfo>;
@@ -75,9 +40,9 @@ async function getGoogleUserInfo(accessToken: string): Promise<GoogleUserInfo> {
 
 /**
  * POST /api/auth/google
- * Body: { code: string }
+ * Body: { accessToken: string }
  *
- * Exchanges a Google auth code for a session.
+ * Verifies a Google access token and issues a session.
  * Only allows login for existing, active users — no auto-registration.
  */
 export async function googleLogin(req: Request, res: Response) {
@@ -85,16 +50,13 @@ export async function googleLogin(req: Request, res: Response) {
     throw new AppError(501, "GOOGLE_AUTH_DISABLED", "Google authentication is not configured");
   }
 
-  const { code } = req.body;
-  if (!code || typeof code !== "string") {
-    throw new AppError(400, "INVALID_CODE", "Authorization code is required");
+  const { accessToken } = req.body;
+  if (!accessToken || typeof accessToken !== "string") {
+    throw new AppError(400, "INVALID_TOKEN", "Google access token is required");
   }
 
-  // Exchange code for tokens
-  const tokens = await exchangeCodeForTokens(code);
-
-  // Get user profile from Google
-  const googleUser = await getGoogleUserInfo(tokens.access_token);
+  // Verify the access token and get user profile
+  const googleUser = await getGoogleUserInfo(accessToken);
 
   if (googleUser.email_verified === false) {
     throw new AppError(401, "EMAIL_NOT_VERIFIED", "Google email is not verified");

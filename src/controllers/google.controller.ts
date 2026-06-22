@@ -194,6 +194,51 @@ async function buildAdsSource(): Promise<GoogleSource> {
   }
 }
 
+/* ── Sync status stub ────────────────────────────────────────────────────────
+   Returns a minimal sync-status payload. Real cron sync is not yet wired, so
+   this returns a graceful "no sync data" response that the frontend renders as
+   "No Sync Data" rather than an error.
+   ─────────────────────────────────────────────────────────────────────────── */
+export async function getGoogleSyncStatus(_req: Request, res: Response) {
+  return sendSuccess(res, {
+    lastSync: null,
+    nextSyncAt: new Date(Date.now() + 60 * 60 * 1_000).toISOString(), // 1 hour from now
+    intervalMs: 60 * 60 * 1_000,
+    intervalHuman: "Every 1 hour",
+    history: [],
+  });
+}
+
+/* ── Manual sync trigger ─────────────────────────────────────────────────────
+   Re-fetches the overview (same as GET /google/overview) and returns it as
+   { sync: { status, duration }, overview }.
+   ─────────────────────────────────────────────────────────────────────────── */
+export async function triggerGoogleSync(_req: Request, res: Response) {
+  const t0 = Date.now();
+  try {
+    const [logins, analytics, searchConsole, ads] = await Promise.all([
+      buildLoginsSource(),
+      buildAnalyticsSource(),
+      buildSearchConsoleSource(),
+      buildAdsSource(),
+    ]);
+    const overview = {
+      range: "Last 28 days",
+      generatedAt: new Date().toISOString(),
+      sources: [logins, analytics, searchConsole, ads],
+    };
+    return sendSuccess(res, {
+      sync: { status: "SUCCESS", duration: Date.now() - t0, error: null },
+      overview,
+    });
+  } catch (e) {
+    return sendSuccess(res, {
+      sync: { status: "ERROR", duration: Date.now() - t0, error: e instanceof Error ? e.message : "Unknown error" },
+      overview: null,
+    });
+  }
+}
+
 export async function getGoogleOverview(_req: Request, res: Response) {
   const [logins, analytics, searchConsole, ads] = await Promise.all([
     buildLoginsSource(),
