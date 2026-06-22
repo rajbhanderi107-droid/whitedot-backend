@@ -16,7 +16,7 @@ RUN npx prisma generate
 COPY tsconfig.json ./
 COPY src ./src
 # Compile TS only. Migrations run at container start, not build time.
-RUN npx tsc
+RUN NODE_OPTIONS="--max-old-space-size=3000" npx tsc --skipLibCheck
 
 # ---- Runtime ----
 FROM node:20.19.0-slim AS runtime
