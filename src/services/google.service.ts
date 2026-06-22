@@ -28,8 +28,12 @@ function getCredentials(): ServiceAccountKey | null {
   const raw = process.env.GOOGLE_SERVICE_ACCOUNT_JSON;
   if (!raw || !raw.trim()) return null;
   try {
-    const parsed = JSON.parse(raw) as ServiceAccountKey;
-    // Render often stores newlines as literal "\n" — normalise the private key.
+    // Support both plain JSON and base64-encoded JSON (base64 avoids shell escaping issues)
+    let jsonStr = raw.trim();
+    if (!jsonStr.startsWith("{")) {
+      jsonStr = Buffer.from(jsonStr, "base64").toString("utf8");
+    }
+    const parsed = JSON.parse(jsonStr) as ServiceAccountKey;
     if (parsed.private_key) parsed.private_key = parsed.private_key.replace(/\\n/g, "\n");
     return parsed;
   } catch {
