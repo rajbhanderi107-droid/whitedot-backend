@@ -1,31 +1,26 @@
+# Local development only — production uses Cloud Run + Supabase
 services:
   db:
     image: postgres:16-alpine
     restart: always
+    ports:
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: whitedot
       POSTGRES_USER: whitedot
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U whitedot"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+      POSTGRES_PASSWORD: localdev
 
   api:
     build: .
     restart: always
     ports:
-      - "127.0.0.1:4000:4000"
+      - "4000:4000"
     env_file:
       - .env
-    environment:
-      - NODE_ENV=production
     depends_on:
-      db:
-        condition: service_healthy
+      - db
 
 volumes:
   pgdata:
