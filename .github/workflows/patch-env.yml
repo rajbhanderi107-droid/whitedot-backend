@@ -1,0 +1,28 @@
+name: Patch VPS env credentials
+
+on:
+  workflow_dispatch:
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Patch .env on VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: GOOGLE_CLIENT_ID_WEB,GOOGLE_CLIENT_SECRET_WEB
+          script: |
+            set -e
+            ENV_FILE=/opt/whitedot-backend/.env
+            sed -i "s|^GOOGLE_CLIENT_ID=.*|GOOGLE_CLIENT_ID=\"$GOOGLE_CLIENT_ID_WEB\"|" "$ENV_FILE"
+            sed -i "s|^GOOGLE_CLIENT_SECRET=.*|GOOGLE_CLIENT_SECRET=\"$GOOGLE_CLIENT_SECRET_WEB\"|" "$ENV_FILE"
+            grep "GOOGLE_CLIENT_ID=" "$ENV_FILE" | cut -c1-40
+            docker compose -f /opt/whitedot-backend/docker-compose.yml up -d
+            sleep 6
+            curl -sf http://localhost:4000/api/health && echo "Health OK"
+        env:
+          GOOGLE_CLIENT_ID_WEB: ${{ secrets.GOOGLE_CLIENT_ID_WEB }}
+          GOOGLE_CLIENT_SECRET_WEB: ${{ secrets.GOOGLE_CLIENT_SECRET_WEB }}
