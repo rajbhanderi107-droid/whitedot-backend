@@ -1,26 +1,33 @@
-# Local development only — production uses Cloud Run + Supabase
+# Production — Hostinger VPS (187.127.185.57)
+# Frontend: whitedotindia.in  |  Backend API: api.whitedotindia.in:4000
 services:
   db:
     image: postgres:16-alpine
     restart: always
     ports:
-      - "5432:5432"
+      - "127.0.0.1:5432:5432"   # localhost-only — not exposed publicly
     volumes:
       - pgdata:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: whitedot
       POSTGRES_USER: whitedot
-      POSTGRES_PASSWORD: localdev
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U whitedot"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
 
   api:
     build: .
     restart: always
     ports:
-      - "4000:4000"
+      - "127.0.0.1:4000:4000"   # localhost-only — nginx proxies external traffic
     env_file:
       - .env
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
 volumes:
   pgdata:

@@ -1,4 +1,4 @@
-name: Deploy backend (Google Cloud Run)
+name: Deploy backend to Hostinger VPS
 
 on:
   push:
@@ -7,80 +7,27 @@ on:
       - 'src/**'
       - 'prisma/**'
       - 'Dockerfile'
+      - 'docker-compose.yml'
+      - 'docker-entrypoint.sh'
       - 'package.json'
       - 'package-lock.json'
-      - 'docker-entrypoint.sh'
   workflow_dispatch:
-
-env:
-  PROJECT_ID: fresh-strategy-497720-q7
-  REGION: asia-south1
-  SERVICE: whitedot-backend
-  IMAGE: asia-south1-docker.pkg.dev/fresh-strategy-497720-q7/whitedot/backend
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
-
-      - name: Set up gcloud
-        uses: google-github-actions/setup-gcloud@v2
-
-      - name: Configure Docker for Artifact Registry
-        run: gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
-
-      - name: Build and push image
-        run: |
-          docker build -t $IMAGE:$GITHUB_SHA -t $IMAGE:latest .
-          docker push $IMAGE:$GITHUB_SHA
-          docker push $IMAGE:latest
-
-      - name: Create env vars file
-        env:
-          V_FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
-          V_FRONTEND_ORIGINS: ${{ secrets.FRONTEND_ORIGINS }}
-          V_DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          V_DIRECT_URL: ${{ secrets.DIRECT_URL }}
-          V_JWT_SECRET: ${{ secrets.JWT_SECRET }}
-          V_ADMIN_SEED_EMAIL: ${{ secrets.ADMIN_SEED_EMAIL }}
-          V_ADMIN_SEED_PASSWORD: ${{ secrets.ADMIN_SEED_PASSWORD }}
-          V_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
-          V_GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
-          V_GOOGLE_AI_KEY: ${{ secrets.GOOGLE_AI_KEY }}
-        run: |
-          python3 -c "
-          import os, json
-          keys = ['FRONTEND_URL','FRONTEND_ORIGINS','DATABASE_URL','DIRECT_URL','JWT_SECRET','ADMIN_SEED_EMAIL','ADMIN_SEED_PASSWORD','GOOGLE_CLIENT_ID','GOOGLE_CLIENT_SECRET','GOOGLE_AI_KEY']
-          lines = ['NODE_ENV: production']
-          for k in keys:
-              v = os.environ.get('V_' + k, '')
-              lines.append(k + ': ' + json.dumps(v))
-          open('/tmp/cloudrun-env.yaml','w').write('\n'.join(lines)+'\n')
-          print(open('/tmp/cloudrun-env.yaml').read())
-          "
-
-      - name: Deploy to Cloud Run
-        run: |
-          gcloud run deploy $SERVICE \
-            --image "$IMAGE:$GITHUB_SHA" \
-            --region $REGION \
-            --platform managed \
-            --allow-unauthenticated \
-            --min-instances 1 \
-            --max-instances 5 \
-            --memory 512Mi \
-            --cpu 1 \
-            --port 4000 \
-            --env-vars-file /tmp/cloudrun-env.yaml
-
-      - name: Show service URL
-        run: |
-          gcloud run services describe $SERVICE --region $REGION \
-            --format='value(status.url)'
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -e
+            cd /opt/whitedot-backend
+            git pull origin master
+            docker compose up --build -d
+            docker image prune -f
+            echo "Deploy done: $(date)"
+            curl -sf http://localhost:4000/api/health && echo "Health OK" || (echo "Health check FAILED" && exit 1)
