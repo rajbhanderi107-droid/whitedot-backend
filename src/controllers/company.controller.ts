@@ -47,7 +47,8 @@ export async function getCompany(req: Request, res: Response) {
 }
 
 export async function createCompany(req: Request, res: Response) {
-  const company = await prisma.company.create({ data: req.body });
+  const { companyName, industry, contactPerson, email, phone, website, city, state, country, address, gstNumber, status, notes } = req.body;
+  const company = await prisma.company.create({ data: { companyName, industry, contactPerson, email, phone, website, city, state, country, address, gstNumber, status, notes } });
 
   await logActivity({
     userId: req.currentUser!.id,
@@ -61,7 +62,8 @@ export async function createCompany(req: Request, res: Response) {
 
 export async function updateCompany(req: Request, res: Response) {
   const id = paramId(req);
-  const company = await prisma.company.update({ where: { id }, data: req.body });
+  const { companyName, industry, contactPerson, email, phone, website, city, state, country, address, gstNumber, status, notes } = req.body;
+  const company = await prisma.company.update({ where: { id }, data: { companyName, industry, contactPerson, email, phone, website, city, state, country, address, gstNumber, status, notes } });
 
   await logActivity({
     userId: req.currentUser!.id,

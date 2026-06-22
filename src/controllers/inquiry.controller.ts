@@ -52,7 +52,8 @@ export async function getInquiry(req: Request, res: Response) {
 
 export async function updateInquiry(req: Request, res: Response) {
   const id = paramId(req);
-  const inquiry = await prisma.inquiry.update({ where: { id }, data: req.body });
+  const { name, email, phone, companyName, designation, city, country, industry, inquiryType, message, status, priority, assignedToId, companyId, internalNotes, followUpDate } = req.body;
+  const inquiry = await prisma.inquiry.update({ where: { id }, data: { name, email, phone, companyName, designation, city, country, industry, inquiryType, message, status, priority, assignedToId, companyId, internalNotes, followUpDate } });
 
   await logActivity({
     userId: req.currentUser!.id,

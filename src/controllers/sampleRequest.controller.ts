@@ -49,7 +49,8 @@ export async function getSampleRequest(req: Request, res: Response) {
 
 export async function updateSampleRequest(req: Request, res: Response) {
   const id = paramId(req);
-  const sample = await prisma.sampleRequest.update({ where: { id }, data: req.body });
+  const { contactPerson, email, phone, requestedMaterialType, application, quantity, deliveryAddress, courierTracking, status, remarks, companyId } = req.body;
+  const sample = await prisma.sampleRequest.update({ where: { id }, data: { contactPerson, email, phone, requestedMaterialType, application, quantity, deliveryAddress, courierTracking, status, remarks, companyId } });
 
   await logActivity({
     userId: req.currentUser!.id,

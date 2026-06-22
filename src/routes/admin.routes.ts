@@ -28,6 +28,7 @@ import {
   createFollowUpTaskSchema,
   updateFollowUpTaskSchema,
   createDocumentSchema,
+  updateDocumentSchema,
   updateWebsiteSettingSchema,
   createUserSchema,
   updateUserSchema,
@@ -104,7 +105,7 @@ router.delete("/follow-ups/:id", asyncHandler(followUps.deleteFollowUp));
 // ─── Documents ───────────────────────────────────
 router.get("/documents", asyncHandler(documents.listDocuments));
 router.post("/documents", validate(createDocumentSchema), asyncHandler(documents.createDocument));
-router.patch("/documents/:id", asyncHandler(documents.updateDocument));
+router.patch("/documents/:id", validate(updateDocumentSchema), asyncHandler(documents.updateDocument));
 router.delete("/documents/:id", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(documents.deleteDocument));
 
 // ─── Website Settings ────────────────────────────

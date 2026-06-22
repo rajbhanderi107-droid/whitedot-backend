@@ -21,7 +21,7 @@ export function requestLogger(req: Request, res: Response, next: NextFunction) {
     const status = res.statusCode;
     const method = req.method;
     const path = req.originalUrl;
-    const userId = (req as any).currentUser?.id || "-";
+    const userId = req.currentUser?.id || "-";
 
     // Color-code by status range for easier scanning
     const statusTag = status >= 500 ? "ERR" : status >= 400 ? "WARN" : "OK";

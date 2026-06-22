@@ -1,6 +1,7 @@
 import express from "express";
 import helmet from "helmet";
 import cors from "cors";
+import compression from "compression";
 import cookieParser from "cookie-parser";
 import { env } from "./config/env.js";
 import { errorHandler } from "./middleware/error.middleware.js";
@@ -85,6 +86,9 @@ app.use(
 app.use(express.json({ limit: "500kb" }));
 app.use(express.urlencoded({ extended: true, limit: "50kb" }));
 app.use(cookieParser());
+
+// ─── Performance: gzip compress all responses ────────────────────────
+app.use(compression());
 
 // ─── Layer 2: Input sanitization on all incoming bodies ─────────────
 app.use(sanitizeBody);

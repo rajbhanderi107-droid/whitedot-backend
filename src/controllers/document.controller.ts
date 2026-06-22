@@ -34,8 +34,9 @@ export async function listDocuments(req: Request, res: Response) {
 }
 
 export async function createDocument(req: Request, res: Response) {
+  const { title, description, fileUrl, fileType, fileSize, category, isPublic, companyId } = req.body;
   const doc = await prisma.documentAsset.create({
-    data: { ...req.body, uploadedById: req.currentUser!.id },
+    data: { title, description, fileUrl, fileType, fileSize, category, isPublic, companyId, uploadedById: req.currentUser!.id },
   });
 
   await logActivity({
@@ -50,7 +51,8 @@ export async function createDocument(req: Request, res: Response) {
 
 export async function updateDocument(req: Request, res: Response) {
   const id = paramId(req);
-  const doc = await prisma.documentAsset.update({ where: { id }, data: req.body });
+  const { title, description, fileUrl, fileType, fileSize, category, isPublic, companyId } = req.body;
+  const doc = await prisma.documentAsset.update({ where: { id }, data: { title, description, fileUrl, fileType, fileSize, category, isPublic, companyId } });
   return sendSuccess(res, doc, "Document updated");
 }
 

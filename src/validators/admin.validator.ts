@@ -117,6 +117,8 @@ export const createDocumentSchema = z.object({
   companyId: z.string().optional(),
 }).strip();
 
+export const updateDocumentSchema = createDocumentSchema.partial();
+
 // ─── Website Setting ─────────────────────────────
 export const updateWebsiteSettingSchema = z.object({
   value: z.string().max(5000),

@@ -50,7 +50,8 @@ export async function getQuoteRequest(req: Request, res: Response) {
 
 export async function updateQuoteRequest(req: Request, res: Response) {
   const id = paramId(req);
-  const quote = await prisma.quoteRequest.update({ where: { id }, data: req.body });
+  const { contactPerson, email, phone, productCategory, currentMaterial, currentPlasticGrade, monthlyQuantity, targetApplication, strengthRequirement, foodContactRequired, colorRequirement, sustainabilityGoal, expectedPriceRange, message, status, priority, assignedToId, companyId } = req.body;
+  const quote = await prisma.quoteRequest.update({ where: { id }, data: { contactPerson, email, phone, productCategory, currentMaterial, currentPlasticGrade, monthlyQuantity, targetApplication, strengthRequirement, foodContactRequired, colorRequirement, sustainabilityGoal, expectedPriceRange, message, status, priority, assignedToId, companyId } });
 
   await logActivity({
     userId: req.currentUser!.id,

@@ -137,7 +137,7 @@ async function callGemma(opts: { system: string; prompt: string; model: string; 
 
 // ─── Agent Run (enriched) ────────────────────────────────────────────
 
-router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
+router.post("/ai-agents/:id/run", asyncHandler(async (req: Request, res) => {
   if (!env.llmConfigured) {
     res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "GOOGLE_AI_KEY not set" } });
     return;
@@ -146,6 +146,14 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
   const { input, context } = req.body as { input: string; context?: string };
   if (!input?.trim()) {
     res.status(400).json({ success: false, error: { code: "MISSING_INPUT", message: "input is required" } });
+    return;
+  }
+  if (input.length > 10_000) {
+    res.status(400).json({ success: false, error: { code: "INPUT_TOO_LONG", message: "input must be under 10,000 characters" } });
+    return;
+  }
+  if (context && context.length > 20_000) {
+    res.status(400).json({ success: false, error: { code: "CONTEXT_TOO_LONG", message: "context must be under 20,000 characters" } });
     return;
   }
 
@@ -195,7 +203,7 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
 
 // ─── Agent Batch Run ─────────────────────────────────────────────────
 
-router.post("/ai-agents/batch", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
+router.post("/ai-agents/batch", asyncHandler(async (req: Request, res) => {
   if (!env.llmConfigured) {
     res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "GOOGLE_AI_KEY not set" } });
     return;
@@ -245,6 +253,14 @@ router.post("/ai/tool", asyncHandler(async (req, res) => {
     return;
   }
   const { tool, inputs } = req.body as { tool: string; inputs: Record<string, string> };
+  if (!tool || typeof tool !== "string" || tool.length > 100) {
+    res.status(400).json({ success: false, error: { code: "INVALID_TOOL", message: "tool must be a string under 100 chars" } });
+    return;
+  }
+  if (!inputs || typeof inputs !== "object" || Array.isArray(inputs)) {
+    res.status(400).json({ success: false, error: { code: "INVALID_INPUTS", message: "inputs must be an object" } });
+    return;
+  }
   const toolConfig = TOOL_CONFIGS[tool];
   const system = toolConfig?.system ?? `You are a business AI tool. Tool: "${tool}". Provide a concise, professional response.`;
   const model = toolConfig?.model ?? "gemma-3n-e4b-it";
@@ -261,7 +277,7 @@ router.post("/ai/tool", asyncHandler(async (req, res) => {
 
 // ─── AI Draft (enriched with lead history) ───────────────────────────
 
-router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
+router.post("/ai-draft", asyncHandler(async (req: Request, res) => {
   const { kind, lead } = req.body as {
     kind: "followup_email" | "followup_whatsapp" | "proposal_intro" | "reactivation" | "cold_outreach" | "thank_you" | "objection_handler";
     lead: { name: string; company?: string; status?: string; industry?: string; product?: string; notes?: string; email?: string };
@@ -308,7 +324,7 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
         kind,
         risk,
         preview,
-        ...(req.user?.id && { createdById: req.user.id }),
+        ...(req.currentUser?.id && { createdById: req.currentUser.id }),
       },
       include: { createdBy: { select: { name: true } }, decidedBy: { select: { name: true } } },
     });
@@ -398,23 +414,27 @@ router.get("/approvals", asyncHandler(async (req, res) => {
   res.json({ success: true, data: rows });
 }));
 
-router.post("/approvals", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
+router.post("/approvals", asyncHandler(async (req: Request, res) => {
   const { title, kind, automationId, risk, preview } = req.body as {
     title: string; kind: string; automationId?: string; risk?: ApprovalRisk; preview: string;
   };
   const row = await prisma.approval.create({
-    data: { title, kind, automationId, risk: risk ?? "LOW", preview, ...(req.user?.id && { createdById: req.user.id }) },
+    data: { title, kind, automationId, risk: risk ?? "LOW", preview, ...(req.currentUser?.id && { createdById: req.currentUser.id }) },
     include: { createdBy: { select: { name: true } }, decidedBy: { select: { name: true } } },
   });
   res.status(201).json({ success: true, data: row });
 }));
 
-router.post("/approvals/:id/decide", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
+router.post("/approvals/:id/decide", asyncHandler(async (req: Request, res) => {
   const { id } = req.params as Record<string, string>;
   const { decision } = req.body as { decision: "APPROVED" | "REJECTED" };
+  if (decision !== "APPROVED" && decision !== "REJECTED") {
+    res.status(400).json({ success: false, error: { code: "INVALID_DECISION", message: "decision must be APPROVED or REJECTED" } });
+    return;
+  }
   const row = await prisma.approval.update({
     where: { id },
-    data: { status: decision, decidedAt: new Date(), ...(req.user?.id && { decidedById: req.user.id }) },
+    data: { status: decision, decidedAt: new Date(), ...(req.currentUser?.id && { decidedById: req.currentUser.id }) },
     include: { createdBy: { select: { name: true } }, decidedBy: { select: { name: true } } },
   });
   res.json({ success: true, data: row });
@@ -427,10 +447,14 @@ router.get("/workflows", asyncHandler(async (_req, res) => {
   res.json({ success: true, data: rows });
 }));
 
-router.post("/workflows", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
+router.post("/workflows", asyncHandler(async (req: Request, res) => {
   const { name, trigger, condition, action } = req.body as { name: string; trigger: string; condition: string; action: string };
+  if (!name || !trigger || !condition || !action) {
+    res.status(400).json({ success: false, error: { code: "MISSING_FIELDS", message: "name, trigger, condition, action are required" } });
+    return;
+  }
   const row = await prisma.workflow.create({
-    data: { name, trigger, condition, action, ...(req.user?.id && { createdById: req.user.id }) },
+    data: { name, trigger, condition, action, ...(req.currentUser?.id && { createdById: req.currentUser.id }) },
   });
   res.status(201).json({ success: true, data: row });
 }));
@@ -642,18 +666,36 @@ type ResourceHandler = {
 const RESOURCE_MAP: Record<string, ResourceHandler> = {
   "quote-requests": {
     list: () => prisma.quoteRequest.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
-    patch: (id, body) => prisma.quoteRequest.update({ where: { id }, data: body as never }),
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const allowed = ["status", "priority", "assignedToId", "companyId", "message", "contactPerson", "email", "phone", "productCategory", "currentMaterial", "currentPlasticGrade", "monthlyQuantity", "targetApplication", "strengthRequirement", "foodContactRequired", "colorRequirement", "sustainabilityGoal", "expectedPriceRange"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
+      return prisma.quoteRequest.update({ where: { id }, data });
+    },
   },
   "sample-requests": {
     list: () => prisma.sampleRequest.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
-    patch: (id, body) => prisma.sampleRequest.update({ where: { id }, data: body as never }),
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const allowed = ["status", "remarks", "companyId", "contactPerson", "email", "phone", "requestedMaterialType", "application", "quantity", "deliveryAddress", "courierTracking"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
+      return prisma.sampleRequest.update({ where: { id }, data });
+    },
   },
   "calculator-submissions": {
     list: () => prisma.calculatorSubmission.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
   },
   "follow-ups": {
     list: () => prisma.followUpTask.findMany({ orderBy: { dueDate: "asc" }, take: 100 }),
-    patch: (id, body) => prisma.followUpTask.update({ where: { id }, data: body as never }),
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const allowed = ["title", "description", "dueDate", "status", "assignedToId", "companyId", "inquiryId", "quoteRequestId", "sampleRequestId"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
+      return prisma.followUpTask.update({ where: { id }, data });
+    },
   },
   "agent-runs": {
     list: () => prisma.agentRun.findMany({ orderBy: { createdAt: "desc" }, take: 50 }),
@@ -783,7 +825,12 @@ const RESOURCE_MAP: Record<string, ResourceHandler> = {
         status: String(b.status ?? "DRAFT"),
       }});
     },
-    patch: (id, body) => prisma.product.update({ where: { id }, data: body as never }),
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const data: Record<string, unknown> = {};
+      for (const k of ["name", "code", "category", "status"]) if (b[k] !== undefined) data[k] = b[k];
+      return prisma.product.update({ where: { id }, data });
+    },
     del: (id) => prisma.product.delete({ where: { id } }),
   },
 
@@ -826,7 +873,12 @@ const RESOURCE_MAP: Record<string, ResourceHandler> = {
         status: String(b.status ?? "OPEN"),
       }});
     },
-    patch: (id, body) => prisma.bug.update({ where: { id }, data: body as never }),
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const data: Record<string, unknown> = {};
+      for (const k of ["title", "severity", "source", "detail", "status"]) if (b[k] !== undefined) data[k] = b[k];
+      return prisma.bug.update({ where: { id }, data });
+    },
     del: (id) => prisma.bug.delete({ where: { id } }),
   },
 };
