@@ -1,44 +1,35 @@
-name: Deploy backend (ECS Fargate via Copilot)
+name: Deploy backend (Hostinger VPS)
 
 on:
-  # Manual-only until AWS is bootstrapped (OIDC role AWS_DEPLOY_ROLE_ARN +
-  # Copilot app/env exist). To enable auto-deploy, uncomment the push block.
-  # NOTE: this repo's default branch is `master`, not `main`.
-  # push:
-  #   branches: [master]
-  #   paths:
-  #     - 'src/**'
-  #     - 'prisma/**'
-  #     - 'Dockerfile'
-  #     - 'copilot/**'
-  #     - 'package.json'
-  #     - 'package-lock.json'
+  push:
+    branches: [master]
+    paths:
+      - 'src/**'
+      - 'prisma/**'
+      - 'Dockerfile'
+      - 'docker-compose.yml'
+      - 'docker-entrypoint.sh'
+      - 'package.json'
+      - 'package-lock.json'
   workflow_dispatch:
-
-permissions:
-  id-token: write   # OIDC -> AWS, no long-lived keys
-  contents: read
-
-env:
-  AWS_REGION: ap-south-1
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Configure AWS credentials (OIDC)
-        uses: aws-actions/configure-aws-credentials@v4
+      - name: Deploy via SSH
+        uses: appleboy/ssh-action@v1.2.0
         with:
-          role-to-assume: ${{ secrets.AWS_DEPLOY_ROLE_ARN }}
-          aws-region: ${{ env.AWS_REGION }}
-
-      - name: Install AWS Copilot
-        run: |
-          curl -Lo copilot https://github.com/aws/copilot-cli/releases/latest/download/copilot-linux
-          chmod +x copilot && sudo mv copilot /usr/local/bin/copilot
-          copilot --version
-
-      - name: Deploy
-        run: copilot deploy --name api --env prod
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          port: ${{ secrets.VPS_PORT || 22 }}
+          script: |
+            set -e
+            cd /opt/whitedot-backend
+            git pull origin master
+            docker compose up --build -d
+            docker image prune -f
+            echo "Deploy complete. Health check..."
+            sleep 5
+            curl -sf http://localhost:4000/api/health || echo "WARNING: health check failed"

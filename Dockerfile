@@ -34,8 +34,9 @@ COPY --from=builder /app/node_modules/prisma ./node_modules/prisma
 COPY --from=builder /app/node_modules/@prisma ./node_modules/@prisma
 COPY --from=builder /app/dist ./dist
 COPY prisma ./prisma
+COPY docker-entrypoint.sh ./
+RUN chmod +x docker-entrypoint.sh
 
 EXPOSE 4000
 
-# Apply pending migrations, then boot. Mirrors the existing Procfile.
-CMD ["sh", "-c", "npx prisma migrate deploy && node dist/index.js"]
+CMD ["./docker-entrypoint.sh"]
