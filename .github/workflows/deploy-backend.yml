@@ -31,4 +31,5 @@ jobs:
             docker compose up --build -d
             docker image prune -f
             echo "Deploy done: $(date)"
-            curl -sf http://localhost:4000/api/health && echo "Health OK" || (echo "Health check FAILED" && exit 1)
+            sleep 8
+            curl -sf http://localhost:4000/api/health && echo "Health OK" || (docker compose -f /opt/whitedot-backend/docker-compose.yml logs --tail=30 api && echo "Health check FAILED" && exit 1)
