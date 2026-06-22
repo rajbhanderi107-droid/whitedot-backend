@@ -1,120 +1,192 @@
 # Hostinger VPS Deployment Runbook — whitedot-backend
 
-Backend: `api.whitedotindia.in` → Hostinger VPS port 4000 (Docker) via Nginx reverse proxy.
+**Stack:** Node.js (Docker) + Postgres (Docker) + Nginx reverse proxy  
+**Domain:** `api.whitedotindia.in` → port 4000
 
 ---
 
-## One-time VPS Setup (do once via SSH)
+## PHASE 1 — Buy Hostinger VPS
+
+1. Go to https://www.hostinger.com/vps-hosting
+2. Click **KVM 1** → Add to cart
+3. During checkout:
+   - Billing: 1 month
+   - **OS: Ubuntu 24.04 LTS** (important — pick this exact one)
+   - Set a root password (save it)
+   - Complete payment
+4. After purchase → go to **hPanel** → VPS section
+5. Copy the **VPS public IP address** (you'll need it for DNS + GitHub secrets)
+
+---
+
+## PHASE 2 — GoDaddy DNS (do this while VPS boots)
+
+1. Log in to GoDaddy → My Products → Domains → `whitedotindia.in` → DNS
+2. Find existing `api` record (type A) — edit it, or add new:
+   ```
+   Type:  A
+   Name:  api
+   Value: <YOUR_VPS_IP>
+   TTL:   600
+   ```
+3. Save. Takes 5–15 min to propagate.
+
+---
+
+## PHASE 3 — First SSH into VPS
 
 ```bash
-# 1. Install Docker
+ssh root@<YOUR_VPS_IP>
+```
+
+(Use the password you set during checkout, or SSH key if you added one)
+
+---
+
+## PHASE 4 — Install Docker + Nginx + Certbot
+
+Paste this entire block — runs as one script:
+
+```bash
+# Update system
+apt update && apt upgrade -y
+
+# Install Docker
 curl -fsSL https://get.docker.com | sh
-sudo usermod -aG docker $USER   # re-login after this
 
-# 2. Install Nginx + Certbot
-sudo apt update && sudo apt install -y nginx certbot python3-certbot-nginx
+# Install Nginx + Certbot
+apt install -y nginx certbot python3-certbot-nginx git
 
-# 3. Clone repo
-sudo mkdir -p /opt/whitedot-backend
-sudo chown $USER:$USER /opt/whitedot-backend
-git clone https://github.com/rajbhanderi107-droid/whitedot-backend.git /opt/whitedot-backend
+# Enable services
+systemctl enable nginx docker
+systemctl start nginx docker
 
-# 4. Create .env on the server (copy from .env.example, fill real values)
-cp /opt/whitedot-backend/.env.example /opt/whitedot-backend/.env
-nano /opt/whitedot-backend/.env
-```
-
-### .env values needed on VPS
-```
-DATABASE_URL=postgresql://...   # Neon / Supabase / Hostinger managed PG
-DIRECT_URL=postgresql://...     # same as DATABASE_URL unless connection pooling
-JWT_SECRET=<long-random-string>
-NODE_ENV=production
-PORT=4000
-FRONTEND_URL=https://whitedotindia.in
-FRONTEND_ORIGINS=https://whitedotindia.in,https://rajbhanderi107-droid.github.io
-ADMIN_SEED_EMAIL=admin@whitedot.in
-ADMIN_SEED_PASSWORD=<strong-password>
-GOOGLE_CLIENT_ID=689571813571-q5ctmgkmu8vt1cvgbeeubqdmabs2a7ec.apps.googleusercontent.com
-GOOGLE_CLIENT_SECRET=<from-gcp-console>
-ANTHROPIC_API_KEY=<from-anthropic-console>
-ANTHROPIC_MODEL=claude-sonnet-4-6
+echo "Done. Docker + Nginx + Certbot installed."
 ```
 
 ---
 
-## 5. First deploy (manual)
+## PHASE 5 — Clone repo + create .env
+
+```bash
+# Clone backend repo
+git clone https://github.com/rajbhanderi107-droid/whitedot-backend.git /opt/whitedot-backend
+cd /opt/whitedot-backend
+
+# Create .env from example
+cp .env.example .env
+nano .env
+```
+
+**Edit these values in nano** (Ctrl+O to save, Ctrl+X to exit):
+
+| Variable | What to set |
+|---|---|
+| `POSTGRES_PASSWORD` | Pick a strong password (e.g. `Wd@2026#Secure!`) |
+| `DATABASE_URL` | Replace `CHANGE_ME` with same password |
+| `DIRECT_URL` | Same as `DATABASE_URL` |
+| `JWT_SECRET` | Random 64-char string (run: `openssl rand -hex 32`) |
+| `ADMIN_SEED_EMAIL` | `admin@whitedot.in` |
+| `ADMIN_SEED_PASSWORD` | Your admin login password |
+| `GOOGLE_CLIENT_SECRET` | From GCP Console |
+| `ANTHROPIC_API_KEY` | From console.anthropic.com |
+
+---
+
+## PHASE 6 — Start containers
+
 ```bash
 cd /opt/whitedot-backend
 docker compose up --build -d
-docker compose logs -f   # watch for "Server running on port 4000"
+```
+
+This will:
+- Pull Postgres 16 image
+- Build the Node.js app
+- Run `prisma migrate deploy` (creates all tables)
+- Start both containers
+
+Check logs:
+```bash
+docker compose logs -f
+# Should see: "Server running on port 4000" and "db connected"
+# Ctrl+C to stop watching logs
+```
+
+Test locally on the VPS:
+```bash
+curl http://localhost:4000/api/health
+# Should return: {"status":"ok","db":"connected"}
 ```
 
 ---
 
-## 6. Nginx + SSL
+## PHASE 7 — Nginx SSL setup
 
 ```bash
-# Copy nginx config
-sudo cp /opt/whitedot-backend/nginx/api.whitedotindia.in.conf /etc/nginx/sites-available/api.whitedotindia.in
-sudo ln -s /etc/nginx/sites-available/api.whitedotindia.in /etc/nginx/sites-enabled/
-sudo nginx -t && sudo systemctl reload nginx
+# Copy Nginx config
+cp /opt/whitedot-backend/nginx/api.whitedotindia.in.conf /etc/nginx/sites-available/api.whitedotindia.in
+ln -s /etc/nginx/sites-available/api.whitedotindia.in /etc/nginx/sites-enabled/
+nginx -t && systemctl reload nginx
 
-# Issue SSL cert (requires api.whitedotindia.in A record → VPS IP already set in GoDaddy)
-sudo certbot --nginx -d api.whitedotindia.in --non-interactive --agree-tos -m rajbhanderi107@gmail.com
+# Issue SSL certificate (DNS must be propagated first — test: ping api.whitedotindia.in)
+certbot --nginx -d api.whitedotindia.in --non-interactive --agree-tos -m rajbhanderi107@gmail.com
+```
 
-# Auto-renew is set up by certbot automatically (systemd timer)
+Test from your laptop:
+```bash
+curl https://api.whitedotindia.in/api/health
 ```
 
 ---
 
-## 7. GoDaddy DNS
+## PHASE 8 — GitHub Actions auto-deploy secrets
 
-Go to GoDaddy → DNS → add/update:
-```
-Type: A
-Name: api
-Value: <Hostinger VPS public IP>
-TTL: 600
-```
+In GitHub → `whitedot-backend` repo → Settings → Secrets and variables → Actions → New secret:
 
-Wait ~5 min for propagation, then verify: `curl https://api.whitedotindia.in/api/health`
-
----
-
-## 8. GitHub Actions secrets (for auto-deploy on push)
-
-In GitHub repo → Settings → Secrets → Actions:
-
-| Secret | Value |
+| Name | Value |
 |---|---|
-| `VPS_HOST` | Hostinger VPS public IP |
-| `VPS_USER` | SSH username (usually `root` or your user) |
-| `VPS_SSH_KEY` | Private key (paste contents of `~/.ssh/id_rsa`) |
-| `VPS_PORT` | SSH port (default 22, skip if default) |
+| `VPS_HOST` | Your VPS public IP |
+| `VPS_USER` | `root` |
+| `VPS_SSH_KEY` | Contents of your SSH private key |
 
-After this, every push to `master` that touches `src/`, `prisma/`, `Dockerfile`, etc. auto-deploys.
+**To generate an SSH key for GitHub Actions (run on VPS):**
+```bash
+ssh-keygen -t ed25519 -C "github-actions" -f /root/.ssh/github_deploy -N ""
+cat /root/.ssh/github_deploy.pub >> /root/.ssh/authorized_keys
+cat /root/.ssh/github_deploy   # copy this → paste as VPS_SSH_KEY secret
+```
+
+After this, every push to `master` auto-deploys.
 
 ---
 
-## Useful commands on VPS
+## Useful commands
 
 ```bash
-# Logs
+# View logs
 docker compose -f /opt/whitedot-backend/docker-compose.yml logs -f
 
-# Restart
-docker compose -f /opt/whitedot-backend/docker-compose.yml restart
+# Restart app only
+docker compose -f /opt/whitedot-backend/docker-compose.yml restart api
 
-# Shell into container
-docker compose -f /opt/whitedot-backend/docker-compose.yml exec api sh
-
-# Rebuild manually
+# Manual redeploy
 cd /opt/whitedot-backend && git pull && docker compose up --build -d && docker image prune -f
+
+# Postgres shell
+docker compose -f /opt/whitedot-backend/docker-compose.yml exec db psql -U whitedot -d whitedot
 ```
 
 ---
 
-## Keep-alive cron (frontend)
+## Backup Postgres data
 
-`keep-alive.yml` in `whitedot-limex.in` already pings `api.whitedotindia.in/api/health` — no change needed.
+```bash
+# Dump
+docker compose -f /opt/whitedot-backend/docker-compose.yml exec db \
+  pg_dump -U whitedot whitedot > backup_$(date +%Y%m%d).sql
+
+# Restore
+cat backup_YYYYMMDD.sql | docker compose -f /opt/whitedot-backend/docker-compose.yml exec -T db \
+  psql -U whitedot -d whitedot
+```
