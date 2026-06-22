@@ -43,20 +43,28 @@ jobs:
           docker push $IMAGE:latest
 
       - name: Create env vars file
+        env:
+          V_FRONTEND_URL: ${{ secrets.FRONTEND_URL }}
+          V_FRONTEND_ORIGINS: ${{ secrets.FRONTEND_ORIGINS }}
+          V_DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          V_DIRECT_URL: ${{ secrets.DIRECT_URL }}
+          V_JWT_SECRET: ${{ secrets.JWT_SECRET }}
+          V_ADMIN_SEED_EMAIL: ${{ secrets.ADMIN_SEED_EMAIL }}
+          V_ADMIN_SEED_PASSWORD: ${{ secrets.ADMIN_SEED_PASSWORD }}
+          V_GOOGLE_CLIENT_ID: ${{ secrets.GOOGLE_CLIENT_ID }}
+          V_GOOGLE_CLIENT_SECRET: ${{ secrets.GOOGLE_CLIENT_SECRET }}
+          V_GOOGLE_AI_KEY: ${{ secrets.GOOGLE_AI_KEY }}
         run: |
-          cat > /tmp/cloudrun-env.yaml << 'ENVEOF'
-          NODE_ENV: "production"
-          FRONTEND_URL: "${{ secrets.FRONTEND_URL }}"
-          FRONTEND_ORIGINS: "${{ secrets.FRONTEND_ORIGINS }}"
-          DATABASE_URL: "${{ secrets.DATABASE_URL }}"
-          DIRECT_URL: "${{ secrets.DIRECT_URL }}"
-          JWT_SECRET: "${{ secrets.JWT_SECRET }}"
-          ADMIN_SEED_EMAIL: "${{ secrets.ADMIN_SEED_EMAIL }}"
-          ADMIN_SEED_PASSWORD: "${{ secrets.ADMIN_SEED_PASSWORD }}"
-          GOOGLE_CLIENT_ID: "${{ secrets.GOOGLE_CLIENT_ID }}"
-          GOOGLE_CLIENT_SECRET: "${{ secrets.GOOGLE_CLIENT_SECRET }}"
-          GOOGLE_AI_KEY: "${{ secrets.GOOGLE_AI_KEY }}"
-          ENVEOF
+          python3 -c "
+          import os, json
+          keys = ['FRONTEND_URL','FRONTEND_ORIGINS','DATABASE_URL','DIRECT_URL','JWT_SECRET','ADMIN_SEED_EMAIL','ADMIN_SEED_PASSWORD','GOOGLE_CLIENT_ID','GOOGLE_CLIENT_SECRET','GOOGLE_AI_KEY']
+          lines = ['NODE_ENV: production']
+          for k in keys:
+              v = os.environ.get('V_' + k, '')
+              lines.append(k + ': ' + json.dumps(v))
+          open('/tmp/cloudrun-env.yaml','w').write('\n'.join(lines)+'\n')
+          print(open('/tmp/cloudrun-env.yaml').read())
+          "
 
       - name: Deploy to Cloud Run
         run: |
