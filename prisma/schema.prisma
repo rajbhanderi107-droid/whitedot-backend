@@ -892,3 +892,118 @@ model Announcement {
 
   @@index([audience])
 }
+
+// ─── Business modules (CPQ, Orders, Campaigns, Content, PIM, Inventory, Bugs) ──
+
+model Quotation {
+  id         String    @id @default(cuid())
+  number     String?
+  customer   String
+  subtotal   Float     @default(0)
+  gstPct     Float     @default(18)
+  transport  Float     @default(0)
+  discount   Float     @default(0)
+  total      Float     @default(0)
+  validUntil DateTime?
+  notes      String?
+  status     String    @default("DRAFT")
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Order {
+  id            String   @id @default(cuid())
+  customer      String
+  quotationRef  String?
+  amount        Float    @default(0)
+  invoiceNumber String?
+  paymentStatus String   @default("UNPAID")
+  status        String   @default("CREATED")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Campaign {
+  id        String    @id @default(cuid())
+  name      String
+  type      String?
+  channel   String?
+  budget    Float     @default(0)
+  spend     Float     @default(0)
+  leads     Int       @default(0)
+  startDate DateTime?
+  endDate   DateTime?
+  status    String    @default("DRAFT")
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Content {
+  id           String    @id @default(cuid())
+  title        String
+  kind         String    @default("SOCIAL")
+  channel      String?
+  body         String?
+  scheduledFor DateTime?
+  status       String    @default("DRAFT")
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+
+  @@index([kind])
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Product {
+  id        String   @id @default(cuid())
+  name      String
+  code      String?
+  category  String?
+  status    String   @default("DRAFT")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model InventoryItem {
+  id            String   @id @default(cuid())
+  name          String
+  sku           String?
+  location      String?
+  totalStock    Int      @default(0)
+  reservedStock Int      @default(0)
+  sampleStock   Int      @default(0)
+  reorderPoint  Int      @default(0)
+  status        String   @default("ACTIVE")
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model Bug {
+  id        String   @id @default(cuid())
+  title     String
+  severity  String   @default("MEDIUM")
+  source    String   @default("MANUAL")
+  detail    String?
+  status    String   @default("OPEN")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([severity])
+  @@index([status])
+  @@index([createdAt])
+}

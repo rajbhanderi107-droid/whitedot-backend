@@ -501,13 +501,16 @@ router.get("/bi/summary", asyncHandler(async (_req, res) => {
     return { key: `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`, label: d.toLocaleString("default", { month: "short" }), start: d, end: new Date(d.getFullYear(), d.getMonth() + 1, 1) };
   });
 
-  const [monthlyLeads, funnelGroups, industryGroups, quoteCount, sampleCount, calcCount] = await Promise.all([
+  const [monthlyLeads, funnelGroups, industryGroups, quoteCount, sampleCount, calcCount, quotationAgg, orderAgg, campaignAgg] = await Promise.all([
     Promise.all(months.map(m => prisma.inquiry.count({ where: { createdAt: { gte: m.start, lt: m.end } } }))),
     prisma.inquiry.groupBy({ by: ["status"], _count: { status: true } }),
     prisma.inquiry.groupBy({ by: ["industry"], _count: { industry: true }, orderBy: { _count: { industry: "desc" } }, take: 5 }),
     prisma.quoteRequest.count(),
     prisma.sampleRequest.count(),
     prisma.calculatorSubmission.count(),
+    prisma.quotation.aggregate({ _count: { id: true }, _sum: { total: true } }),
+    prisma.order.aggregate({ _count: { id: true }, _sum: { amount: true } }),
+    prisma.campaign.aggregate({ _count: { id: true }, _sum: { budget: true, spend: true, leads: true } }),
   ]);
 
   const funnel: Record<string, number> = {};
@@ -517,7 +520,13 @@ router.get("/bi/summary", asyncHandler(async (_req, res) => {
     monthlyLeads: months.map((m, i) => ({ key: m.key, label: m.label, count: monthlyLeads[i] })),
     funnel,
     topIndustries: industryGroups.map(g => ({ industry: g.industry ?? "Unknown", count: g._count.industry })),
-    totals: { quotes: quoteCount, samples: sampleCount, calculators: calcCount, quotations: 0, quotationValue: 0, orders: 0, orderValue: 0, campaigns: 0, campaignBudget: 0, campaignSpend: 0, campaignLeads: 0 },
+    totals: {
+      quotes: quoteCount, samples: sampleCount, calculators: calcCount,
+      quotations: quotationAgg._count.id, quotationValue: quotationAgg._sum.total ?? 0,
+      orders: orderAgg._count.id, orderValue: orderAgg._sum.amount ?? 0,
+      campaigns: campaignAgg._count.id, campaignBudget: campaignAgg._sum.budget ?? 0,
+      campaignSpend: campaignAgg._sum.spend ?? 0, campaignLeads: campaignAgg._sum.leads ?? 0,
+    },
   }});
 }));
 
@@ -623,7 +632,14 @@ router.get("/backup/stats", asyncHandler(async (_req, res) => {
 
 // ─── Generic Resource CRUD ────────────────────────────────────────────
 
-const RESOURCE_MAP: Record<string, { list: () => Promise<unknown[]>; create?: (body: unknown) => Promise<unknown>; patch?: (id: string, body: unknown) => Promise<unknown>; del?: (id: string) => Promise<unknown> }> = {
+type ResourceHandler = {
+  list: (q?: Record<string, string>) => Promise<unknown[]>;
+  create?: (body: unknown) => Promise<unknown>;
+  patch?: (id: string, body: unknown) => Promise<unknown>;
+  del?: (id: string) => Promise<unknown>;
+};
+
+const RESOURCE_MAP: Record<string, ResourceHandler> = {
   "quote-requests": {
     list: () => prisma.quoteRequest.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
     patch: (id, body) => prisma.quoteRequest.update({ where: { id }, data: body as never }),
@@ -645,13 +661,181 @@ const RESOURCE_MAP: Record<string, { list: () => Promise<unknown[]>; create?: (b
   "security-events": {
     list: () => prisma.securityEvent.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
   },
+
+  // ─── Business modules ────────────────────────────────────
+  "quotations": {
+    list: () => prisma.quotation.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
+    create: (body) => {
+      const b = body as Record<string, unknown>;
+      return prisma.quotation.create({ data: {
+        number: b.number as string | undefined,
+        customer: String(b.customer ?? ""),
+        subtotal: Number(b.subtotal ?? 0),
+        gstPct: Number(b.gstPct ?? 18),
+        transport: Number(b.transport ?? 0),
+        discount: Number(b.discount ?? 0),
+        total: Number(b.total ?? 0),
+        validUntil: b.validUntil ? new Date(String(b.validUntil)) : undefined,
+        notes: b.notes as string | undefined,
+        status: String(b.status ?? "DRAFT"),
+      }});
+    },
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const data: Record<string, unknown> = { ...b };
+      if (b.validUntil) data.validUntil = new Date(String(b.validUntil));
+      if (b.subtotal !== undefined) data.subtotal = Number(b.subtotal);
+      if (b.gstPct !== undefined) data.gstPct = Number(b.gstPct);
+      if (b.transport !== undefined) data.transport = Number(b.transport);
+      if (b.discount !== undefined) data.discount = Number(b.discount);
+      if (b.total !== undefined) data.total = Number(b.total);
+      return prisma.quotation.update({ where: { id }, data: data as never });
+    },
+    del: (id) => prisma.quotation.delete({ where: { id } }),
+  },
+
+  "orders": {
+    list: () => prisma.order.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
+    create: (body) => {
+      const b = body as Record<string, unknown>;
+      return prisma.order.create({ data: {
+        customer: String(b.customer ?? ""),
+        quotationRef: b.quotationId as string | undefined ?? b.quotationRef as string | undefined,
+        amount: Number(b.amount ?? 0),
+        invoiceNumber: b.invoiceNumber as string | undefined,
+        paymentStatus: String(b.paymentStatus ?? "UNPAID"),
+        status: String(b.status ?? "CREATED"),
+      }});
+    },
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const data: Record<string, unknown> = { ...b };
+      if (b.amount !== undefined) data.amount = Number(b.amount);
+      if (b.quotationId !== undefined) { data.quotationRef = b.quotationId; delete data.quotationId; }
+      return prisma.order.update({ where: { id }, data: data as never });
+    },
+    del: (id) => prisma.order.delete({ where: { id } }),
+  },
+
+  "campaigns": {
+    list: () => prisma.campaign.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
+    create: (body) => {
+      const b = body as Record<string, unknown>;
+      return prisma.campaign.create({ data: {
+        name: String(b.name ?? ""),
+        type: b.type as string | undefined,
+        channel: b.channel as string | undefined,
+        budget: Number(b.budget ?? 0),
+        spend: Number(b.spend ?? 0),
+        leads: Number(b.leads ?? 0),
+        startDate: b.startDate ? new Date(String(b.startDate)) : undefined,
+        endDate: b.endDate ? new Date(String(b.endDate)) : undefined,
+        status: String(b.status ?? "DRAFT"),
+      }});
+    },
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const data: Record<string, unknown> = { ...b };
+      if (b.startDate) data.startDate = new Date(String(b.startDate));
+      if (b.endDate) data.endDate = new Date(String(b.endDate));
+      if (b.budget !== undefined) data.budget = Number(b.budget);
+      if (b.spend !== undefined) data.spend = Number(b.spend);
+      if (b.leads !== undefined) data.leads = Number(b.leads);
+      return prisma.campaign.update({ where: { id }, data: data as never });
+    },
+    del: (id) => prisma.campaign.delete({ where: { id } }),
+  },
+
+  "content": {
+    list: (q) => prisma.content.findMany({
+      where: q?.kind ? { kind: q.kind } : undefined,
+      orderBy: { createdAt: "desc" },
+      take: 100,
+    }),
+    create: (body) => {
+      const b = body as Record<string, unknown>;
+      return prisma.content.create({ data: {
+        title: String(b.title ?? ""),
+        kind: String(b.kind ?? "SOCIAL"),
+        channel: b.channel as string | undefined,
+        body: b.body as string | undefined,
+        scheduledFor: b.scheduledFor ? new Date(String(b.scheduledFor)) : undefined,
+        status: String(b.status ?? "DRAFT"),
+      }});
+    },
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const data: Record<string, unknown> = { ...b };
+      if (b.scheduledFor) data.scheduledFor = new Date(String(b.scheduledFor));
+      return prisma.content.update({ where: { id }, data: data as never });
+    },
+    del: (id) => prisma.content.delete({ where: { id } }),
+  },
+
+  "products": {
+    list: () => prisma.product.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
+    create: (body) => {
+      const b = body as Record<string, unknown>;
+      return prisma.product.create({ data: {
+        name: String(b.name ?? ""),
+        code: b.code as string | undefined,
+        category: b.category as string | undefined,
+        status: String(b.status ?? "DRAFT"),
+      }});
+    },
+    patch: (id, body) => prisma.product.update({ where: { id }, data: body as never }),
+    del: (id) => prisma.product.delete({ where: { id } }),
+  },
+
+  "inventory": {
+    list: () => prisma.inventoryItem.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
+    create: (body) => {
+      const b = body as Record<string, unknown>;
+      return prisma.inventoryItem.create({ data: {
+        name: String(b.name ?? ""),
+        sku: b.sku as string | undefined,
+        location: b.location as string | undefined,
+        totalStock: Number(b.totalStock ?? 0),
+        reservedStock: Number(b.reservedStock ?? 0),
+        sampleStock: Number(b.sampleStock ?? 0),
+        reorderPoint: Number(b.reorderPoint ?? 0),
+        status: String(b.status ?? "ACTIVE"),
+      }});
+    },
+    patch: (id, body) => {
+      const b = body as Record<string, unknown>;
+      const data: Record<string, unknown> = { ...b };
+      if (b.totalStock !== undefined) data.totalStock = Number(b.totalStock);
+      if (b.reservedStock !== undefined) data.reservedStock = Number(b.reservedStock);
+      if (b.sampleStock !== undefined) data.sampleStock = Number(b.sampleStock);
+      if (b.reorderPoint !== undefined) data.reorderPoint = Number(b.reorderPoint);
+      return prisma.inventoryItem.update({ where: { id }, data: data as never });
+    },
+    del: (id) => prisma.inventoryItem.delete({ where: { id } }),
+  },
+
+  "bugs": {
+    list: () => prisma.bug.findMany({ orderBy: { createdAt: "desc" }, take: 100 }),
+    create: (body) => {
+      const b = body as Record<string, unknown>;
+      return prisma.bug.create({ data: {
+        title: String(b.title ?? ""),
+        severity: String(b.severity ?? "MEDIUM"),
+        source: String(b.source ?? "MANUAL"),
+        detail: b.detail as string | undefined,
+        status: String(b.status ?? "OPEN"),
+      }});
+    },
+    patch: (id, body) => prisma.bug.update({ where: { id }, data: body as never }),
+    del: (id) => prisma.bug.delete({ where: { id } }),
+  },
 };
 
 router.get("/r/:resource", asyncHandler(async (req, res) => {
   const p = req.params as Record<string, string>;
   const handler = RESOURCE_MAP[p.resource];
   if (!handler) { res.status(404).json({ success: false, error: { code: "NOT_FOUND" } }); return; }
-  const data = await handler.list();
+  const data = await handler.list(req.query as Record<string, string>);
   res.json({ success: true, data });
 }));
 
