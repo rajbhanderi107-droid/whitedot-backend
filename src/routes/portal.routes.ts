@@ -209,9 +209,19 @@ router.post("/ai-agents/batch", asyncHandler(async (req: Request, res) => {
     return;
   }
   const { tasks } = req.body as { tasks: { agentId: string; input: string; context?: string }[] };
-  if (!tasks?.length || tasks.length > 10) {
+  if (!Array.isArray(tasks) || tasks.length === 0 || tasks.length > 10) {
     res.status(400).json({ success: false, error: { code: "INVALID_BATCH", message: "1-10 tasks required" } });
     return;
+  }
+  for (const task of tasks) {
+    if (!task.input || typeof task.input !== "string" || task.input.length > 10_000) {
+      res.status(400).json({ success: false, error: { code: "INVALID_TASK_INPUT", message: "Each task input must be a non-empty string under 10,000 characters" } });
+      return;
+    }
+    if (task.context && (typeof task.context !== "string" || task.context.length > 20_000)) {
+      res.status(400).json({ success: false, error: { code: "INVALID_TASK_CONTEXT", message: "Each task context must be a string under 20,000 characters" } });
+      return;
+    }
   }
 
   const results = await Promise.allSettled(
@@ -342,9 +352,15 @@ router.post("/ai/chain", asyncHandler(async (req, res) => {
     return;
   }
   const { steps } = req.body as { steps: { agent: string; input: string }[] };
-  if (!steps?.length || steps.length > 5) {
+  if (!Array.isArray(steps) || steps.length === 0 || steps.length > 5) {
     res.status(400).json({ success: false, error: { code: "INVALID_CHAIN", message: "1-5 steps required" } });
     return;
+  }
+  for (const step of steps) {
+    if (!step.input || typeof step.input !== "string" || step.input.length > 10_000) {
+      res.status(400).json({ success: false, error: { code: "INVALID_STEP_INPUT", message: "Each step input must be a non-empty string under 10,000 characters" } });
+      return;
+    }
   }
 
   const results: { agent: string; output: string }[] = [];
@@ -724,7 +740,9 @@ const RESOURCE_MAP: Record<string, ResourceHandler> = {
     },
     patch: (id, body) => {
       const b = body as Record<string, unknown>;
-      const data: Record<string, unknown> = { ...b };
+      const allowed = ["number", "customer", "subtotal", "gstPct", "transport", "discount", "total", "validUntil", "notes", "status"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
       if (b.validUntil) data.validUntil = new Date(String(b.validUntil));
       if (b.subtotal !== undefined) data.subtotal = Number(b.subtotal);
       if (b.gstPct !== undefined) data.gstPct = Number(b.gstPct);
@@ -751,7 +769,9 @@ const RESOURCE_MAP: Record<string, ResourceHandler> = {
     },
     patch: (id, body) => {
       const b = body as Record<string, unknown>;
-      const data: Record<string, unknown> = { ...b };
+      const allowed = ["customer", "quotationRef", "quotationId", "amount", "invoiceNumber", "paymentStatus", "status"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
       if (b.amount !== undefined) data.amount = Number(b.amount);
       if (b.quotationId !== undefined) { data.quotationRef = b.quotationId; delete data.quotationId; }
       return prisma.order.update({ where: { id }, data: data as never });
@@ -777,7 +797,9 @@ const RESOURCE_MAP: Record<string, ResourceHandler> = {
     },
     patch: (id, body) => {
       const b = body as Record<string, unknown>;
-      const data: Record<string, unknown> = { ...b };
+      const allowed = ["name", "type", "channel", "budget", "spend", "leads", "startDate", "endDate", "status"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
       if (b.startDate) data.startDate = new Date(String(b.startDate));
       if (b.endDate) data.endDate = new Date(String(b.endDate));
       if (b.budget !== undefined) data.budget = Number(b.budget);
@@ -807,7 +829,9 @@ const RESOURCE_MAP: Record<string, ResourceHandler> = {
     },
     patch: (id, body) => {
       const b = body as Record<string, unknown>;
-      const data: Record<string, unknown> = { ...b };
+      const allowed = ["title", "kind", "channel", "body", "scheduledFor", "status"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
       if (b.scheduledFor) data.scheduledFor = new Date(String(b.scheduledFor));
       return prisma.content.update({ where: { id }, data: data as never });
     },
@@ -851,7 +875,9 @@ const RESOURCE_MAP: Record<string, ResourceHandler> = {
     },
     patch: (id, body) => {
       const b = body as Record<string, unknown>;
-      const data: Record<string, unknown> = { ...b };
+      const allowed = ["name", "sku", "location", "totalStock", "reservedStock", "sampleStock", "reorderPoint", "status"];
+      const data: Record<string, unknown> = {};
+      for (const k of allowed) if (b[k] !== undefined) data[k] = b[k];
       if (b.totalStock !== undefined) data.totalStock = Number(b.totalStock);
       if (b.reservedStock !== undefined) data.reservedStock = Number(b.reservedStock);
       if (b.sampleStock !== undefined) data.sampleStock = Number(b.sampleStock);
