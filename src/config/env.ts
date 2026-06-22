@@ -37,7 +37,7 @@ export const env = {
     return Boolean(this.GOOGLE_CLIENT_ID && this.GOOGLE_CLIENT_SECRET);
   },
 
-  OPENAI_API_KEY: process.env.OPENAI_API_KEY || "",
+  GOOGLE_AI_KEY: process.env.GOOGLE_AI_KEY || "",
   GITHUB_TOKEN: process.env.GITHUB_TOKEN || "",
   GITHUB_REPO: process.env.GITHUB_REPO || "rajbhanderi107-droid/whitedot-limex.in",
 
@@ -46,6 +46,6 @@ export const env = {
   },
 
   get llmConfigured() {
-    return Boolean(this.OPENAI_API_KEY);
+    return Boolean(this.GOOGLE_AI_KEY);
   },
 } as const;

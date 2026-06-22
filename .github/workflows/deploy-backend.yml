@@ -64,8 +64,7 @@ jobs:
           ADMIN_SEED_PASSWORD=${{ secrets.ADMIN_SEED_PASSWORD }},\
           GOOGLE_CLIENT_ID=${{ secrets.GOOGLE_CLIENT_ID }},\
           GOOGLE_CLIENT_SECRET=${{ secrets.GOOGLE_CLIENT_SECRET }},\
-          ANTHROPIC_API_KEY=${{ secrets.ANTHROPIC_API_KEY }},\
-          ANTHROPIC_MODEL=claude-sonnet-4-6"
+          GOOGLE_AI_KEY=${{ secrets.GOOGLE_AI_KEY }}"
 
       - name: Show service URL
         run: |

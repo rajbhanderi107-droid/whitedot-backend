@@ -72,70 +72,66 @@ router.patch("/ai-agents/:id", asyncHandler(async (req, res) => {
 const AGENT_SYSTEMS: Record<string, { system: string; model: string; maxTokens: number }> = {
   "lead-qualifier": {
     system: `You are an expert B2B lead qualification agent for White Dot LLP, authorized marketers of LIMEX material in western India (Gujarat, Rajasthan, Goa, Daman, Diu). LIMEX is a Japanese limestone-based sustainable alternative to plastic and paper — 50-80% less plastic, lower CO2. Score leads 1-100, identify buying signals, recommend next action. Be data-driven and concise.`,
-    model: "gpt-4o",
+    model: "gemma-3-27b-it",
     maxTokens: 2048,
   },
   "content-writer": {
     system: `You are a premium content writer for White Dot LLP / LIMEX sustainable materials. Write in a dark, premium, Apple-level clarity tone. Target audience: FMCG, packaging, manufacturing decision-makers in India. Always emphasize: sustainability, cost savings, Japanese innovation, recyclability. No fluff, no jargon.`,
-    model: "gpt-4o",
+    model: "gemma-3-27b-it",
     maxTokens: 4096,
   },
   "data-analyst": {
     system: `You are a business intelligence analyst for White Dot LLP CRM. Analyze lead data, conversion funnels, industry trends. Return structured insights with numbers, percentages, and actionable recommendations. Format as bullet points.`,
-    model: "gpt-4o",
+    model: "gemma-3-27b-it",
     maxTokens: 2048,
   },
   "sales-coach": {
     system: `You are an expert sales coach for B2B sustainable materials. Help sales reps craft responses, handle objections about LIMEX vs traditional plastics, prepare for meetings. Key differentiators: 50-80% less plastic, limestone-based, Japanese tech (TBM Co.), recyclable, cost-competitive at scale. Be direct, give scripts they can use verbatim.`,
-    model: "gpt-4o",
+    model: "gemma-3-27b-it",
     maxTokens: 2048,
   },
   "seo-optimizer": {
     system: `You are an SEO specialist for whitedotindia.in. Analyze content, suggest meta tags, keywords, internal linking, schema markup. Focus on: LIMEX material, sustainable packaging India, plastic alternatives, limestone material. Return actionable recommendations with exact copy to use.`,
-    model: "gpt-4o-mini",
+    model: "gemma-3n-e4b-it",
     maxTokens: 2048,
   },
   "operations-planner": {
     system: `You are an operations planning agent for a materials distribution company. Help plan logistics, follow-ups, sample dispatches, meeting schedules, and client onboarding workflows. Be specific with timelines and action items.`,
-    model: "gpt-4o-mini",
+    model: "gemma-3n-e4b-it",
     maxTokens: 1024,
   },
 };
 
-const DEFAULT_AGENT = { system: "You are a helpful business assistant for White Dot LLP, a LIMEX sustainable material company in India.", model: "gpt-4o-mini", maxTokens: 1024 };
+const DEFAULT_AGENT = { system: "You are a helpful business assistant for White Dot LLP, a LIMEX sustainable material company in India.", model: "gemma-3n-e4b-it", maxTokens: 1024 };
 
-// ─── OpenAI helper ───────────────────────────────────────────────────
+// ─── Google Gemma helper (Google AI Studio) ───────────────────────────
 
 type LlmResult = { output: string; model: string; inputTokens: number; outputTokens: number };
 
-async function callOpenAI(opts: { system: string; prompt: string; model: string; maxTokens: number; temperature?: number }): Promise<LlmResult> {
-  const resp = await fetch("https://api.openai.com/v1/chat/completions", {
+async function callGemma(opts: { system: string; prompt: string; model: string; maxTokens: number; temperature?: number }): Promise<LlmResult> {
+  const url = `https://generativelanguage.googleapis.com/v1beta/models/${opts.model}:generateContent?key=${env.GOOGLE_AI_KEY}`;
+  const resp = await fetch(url, {
     method: "POST",
-    headers: { authorization: `Bearer ${env.OPENAI_API_KEY}`, "content-type": "application/json" },
+    headers: { "content-type": "application/json" },
     body: JSON.stringify({
-      model: opts.model,
-      max_tokens: opts.maxTokens,
-      temperature: opts.temperature ?? 0.7,
-      messages: [
-        { role: "system", content: opts.system },
-        { role: "user", content: opts.prompt },
-      ],
+      system_instruction: { parts: [{ text: opts.system }] },
+      contents: [{ role: "user", parts: [{ text: opts.prompt }] }],
+      generationConfig: { maxOutputTokens: opts.maxTokens, temperature: opts.temperature ?? 0.7 },
     }),
   });
   if (!resp.ok) {
     const e = await resp.text().catch(() => "");
-    throw new Error(`OpenAI ${resp.status}: ${e.slice(0, 200)}`);
+    throw new Error(`Gemma ${resp.status}: ${e.slice(0, 200)}`);
   }
   const j = (await resp.json()) as {
-    choices: { message: { content: string } }[];
-    model: string;
-    usage?: { prompt_tokens: number; completion_tokens: number };
+    candidates: { content: { parts: { text: string }[] } }[];
+    usageMetadata?: { promptTokenCount: number; candidatesTokenCount: number };
   };
   return {
-    output: j.choices[0]?.message?.content ?? "",
-    model: j.model,
-    inputTokens: j.usage?.prompt_tokens ?? 0,
-    outputTokens: j.usage?.completion_tokens ?? 0,
+    output: j.candidates[0]?.content?.parts[0]?.text ?? "",
+    model: opts.model,
+    inputTokens: j.usageMetadata?.promptTokenCount ?? 0,
+    outputTokens: j.usageMetadata?.candidatesTokenCount ?? 0,
   };
 }
 
@@ -143,7 +139,7 @@ async function callOpenAI(opts: { system: string; prompt: string; model: string;
 
 router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "GOOGLE_AI_KEY not set" } });
     return;
   }
   const { id } = req.params as Record<string, string>;
@@ -180,7 +176,7 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
   const fullPrompt = context ? `Context:\n${context}${memoryContext}${crmContext}\n\nTask:\n${input}` : `${input}${memoryContext}${crmContext}`;
 
   try {
-    const llm = await callOpenAI({
+    const llm = await callGemma({
       system: agentConfig.system,
       model: agentConfig.model,
       maxTokens: agentConfig.maxTokens,
@@ -193,7 +189,7 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
     });
     res.json({ success: true, data: { runId: run.id, agentId: id, output, model: run.model, inputTokens: llm.inputTokens, outputTokens: llm.outputTokens, createdAt: run.createdAt } });
   } catch {
-    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "OpenAI call failed" } });
+    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "Gemma call failed" } });
   }
 }));
 
@@ -201,7 +197,7 @@ router.post("/ai-agents/:id/run", asyncHandler(async (req: Request & { user?: { 
 
 router.post("/ai-agents/batch", asyncHandler(async (req: Request & { user?: { id: string } }, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "GOOGLE_AI_KEY not set" } });
     return;
   }
   const { tasks } = req.body as { tasks: { agentId: string; input: string; context?: string }[] };
@@ -213,7 +209,7 @@ router.post("/ai-agents/batch", asyncHandler(async (req: Request & { user?: { id
   const results = await Promise.allSettled(
     tasks.map(async (task) => {
       const agentConfig = AGENT_SYSTEMS[task.agentId] ?? DEFAULT_AGENT;
-      const llm = await callOpenAI({
+      const llm = await callGemma({
         system: agentConfig.system,
         model: agentConfig.model,
         maxTokens: agentConfig.maxTokens,
@@ -233,33 +229,33 @@ router.post("/ai-agents/batch", asyncHandler(async (req: Request & { user?: { id
 // ─── AI Tools (enriched) ─────────────────────────────────────────────
 
 const TOOL_CONFIGS: Record<string, { system: string; model: string }> = {
-  "lead-scorer": { system: "Score this B2B lead 1-100 for LIMEX material potential. Consider: industry fit, company size, sustainability commitment, geographic match (western India preferred). Return JSON: { score, reasons[], nextAction }.", model: "gpt-4o" },
-  "email-writer": { system: "Write a professional B2B email for LIMEX sustainable material. Premium tone, concise, focused on value. Include subject line.", model: "gpt-4o" },
-  "competitor-analyzer": { system: "Analyze competitive positioning for LIMEX vs traditional plastics/paper. Focus on: cost, sustainability, durability, regulatory advantage.", model: "gpt-4o" },
-  "meeting-prep": { system: "Prepare a meeting brief for a LIMEX material sales call. Include: talking points, objection handlers, relevant case studies to reference, questions to ask.", model: "gpt-4o" },
-  "report-generator": { system: "Generate a structured business report. Use headers, bullet points, data tables where relevant. Be analytical and actionable.", model: "gpt-4o" },
-  "whatsapp-drafter": { system: "Write a WhatsApp business message. Under 300 chars, warm but professional, include a clear CTA.", model: "gpt-4o-mini" },
-  "proposal-writer": { system: "Write a professional proposal section for LIMEX material supply. Highlight: sustainability metrics, cost comparison, delivery capability, quality assurance.", model: "gpt-4o" },
-  "social-media": { system: "Write social media content for White Dot LLP / LIMEX. Platform-native format, sustainability angle, engaging hooks. Include hashtag suggestions.", model: "gpt-4o-mini" },
+  "lead-scorer": { system: "Score this B2B lead 1-100 for LIMEX material potential. Consider: industry fit, company size, sustainability commitment, geographic match (western India preferred). Return JSON: { score, reasons[], nextAction }.", model: "gemma-3-27b-it" },
+  "email-writer": { system: "Write a professional B2B email for LIMEX sustainable material. Premium tone, concise, focused on value. Include subject line.", model: "gemma-3-27b-it" },
+  "competitor-analyzer": { system: "Analyze competitive positioning for LIMEX vs traditional plastics/paper. Focus on: cost, sustainability, durability, regulatory advantage.", model: "gemma-3-27b-it" },
+  "meeting-prep": { system: "Prepare a meeting brief for a LIMEX material sales call. Include: talking points, objection handlers, relevant case studies to reference, questions to ask.", model: "gemma-3-27b-it" },
+  "report-generator": { system: "Generate a structured business report. Use headers, bullet points, data tables where relevant. Be analytical and actionable.", model: "gemma-3-27b-it" },
+  "whatsapp-drafter": { system: "Write a WhatsApp business message. Under 300 chars, warm but professional, include a clear CTA.", model: "gemma-3n-e4b-it" },
+  "proposal-writer": { system: "Write a professional proposal section for LIMEX material supply. Highlight: sustainability metrics, cost comparison, delivery capability, quality assurance.", model: "gemma-3-27b-it" },
+  "social-media": { system: "Write social media content for White Dot LLP / LIMEX. Platform-native format, sustainability angle, engaging hooks. Include hashtag suggestions.", model: "gemma-3n-e4b-it" },
 };
 
 router.post("/ai/tool", asyncHandler(async (req, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "GOOGLE_AI_KEY not set" } });
     return;
   }
   const { tool, inputs } = req.body as { tool: string; inputs: Record<string, string> };
   const toolConfig = TOOL_CONFIGS[tool];
   const system = toolConfig?.system ?? `You are a business AI tool. Tool: "${tool}". Provide a concise, professional response.`;
-  const model = toolConfig?.model ?? "gpt-4o-mini";
+  const model = toolConfig?.model ?? "gemma-3n-e4b-it";
   const prompt = Object.entries(inputs).map(([k, v]) => `${k}: ${v}`).join("\n");
 
   try {
-    const llm = await callOpenAI({ system, model, maxTokens: 2048, prompt });
+    const llm = await callGemma({ system, model, maxTokens: 2048, prompt });
     const runId = `tool-${Date.now()}`;
     res.json({ success: true, data: { runId, tool, output: llm.output, model: llm.model || model, inputTokens: llm.inputTokens, outputTokens: llm.outputTokens, createdAt: new Date().toISOString() } });
   } catch {
-    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "AI tool call failed" } });
+    res.status(502).json({ success: false, error: { code: "LLM_ERROR", message: "Gemma tool call failed" } });
   }
 }));
 
@@ -271,7 +267,7 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
     lead: { name: string; company?: string; status?: string; industry?: string; product?: string; notes?: string; email?: string };
   };
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "GOOGLE_AI_KEY not set" } });
     return;
   }
 
@@ -302,7 +298,7 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
   const prompt = prompts[kind] ?? prompts.followup_email;
 
   try {
-    const llm = await callOpenAI({ prompt, model: "gpt-4o", maxTokens: 1024, temperature: 0.8, system: "You are a premium B2B sales writer for White Dot LLP / LIMEX sustainable material. Write in a professional, warm tone that reflects Japanese precision and Indian warmth." });
+    const llm = await callGemma({ prompt, model: "gemma-3-27b-it", maxTokens: 1024, temperature: 0.8, system: "You are a premium B2B sales writer for White Dot LLP / LIMEX sustainable material. Write in a professional, warm tone that reflects Japanese precision and Indian warmth." });
     const preview = llm.output;
 
     const risk = kind === "cold_outreach" ? "MEDIUM" as const : "LOW" as const;
@@ -326,7 +322,7 @@ router.post("/ai-draft", asyncHandler(async (req: Request & { user?: { id: strin
 
 router.post("/ai/chain", asyncHandler(async (req, res) => {
   if (!env.llmConfigured) {
-    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "OPENAI_API_KEY not set" } });
+    res.status(503).json({ success: false, error: { code: "LLM_NOT_CONFIGURED", message: "GOOGLE_AI_KEY not set" } });
     return;
   }
   const { steps } = req.body as { steps: { agent: string; input: string }[] };
@@ -341,7 +337,7 @@ router.post("/ai/chain", asyncHandler(async (req, res) => {
   for (const step of steps) {
     const agentConfig = AGENT_SYSTEMS[step.agent] ?? DEFAULT_AGENT;
     const enrichedInput = prevOutput ? `Previous step output:\n${prevOutput}\n\nNew task:\n${step.input}` : step.input;
-    const llm = await callOpenAI({
+    const llm = await callGemma({
       system: agentConfig.system,
       model: agentConfig.model,
       maxTokens: agentConfig.maxTokens,
