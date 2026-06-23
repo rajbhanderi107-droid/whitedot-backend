@@ -30,6 +30,6 @@ jobs:
           key: ${{ secrets.VPS_SSH_KEY }}
           script: |
             set -e
-            cd /root/whitedot-backend
+            cd /opt/whitedot-backend
             git pull origin main
             docker-compose up --build -d --remove-orphans
