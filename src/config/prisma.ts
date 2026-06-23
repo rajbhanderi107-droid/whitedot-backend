@@ -9,7 +9,6 @@ export const prisma =
   globalForPrisma.prisma ??
   new PrismaClient({
     log: env.isProduction ? ["error"] : ["warn", "error"],
-    // Connection pool — tuned for Render free tier (limited connections)
     datasources: {
       db: {
         url: env.DATABASE_URL,

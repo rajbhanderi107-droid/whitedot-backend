@@ -5,9 +5,9 @@ import { GoogleAdsApi } from "google-ads-api";
 /* ───────────────────────────────────────────────────────────────────────────
    Google data fetchers — GA4 + Search Console.
 
-   Auth: a single Google service account. On Render, set the key as INLINE JSON
-   in GOOGLE_SERVICE_ACCOUNT_JSON (paste the whole key file). Locally you can use
-   GOOGLE_APPLICATION_CREDENTIALS as a file path instead.
+   Auth: a single Google service account. Set the key as INLINE JSON
+   in GOOGLE_SERVICE_ACCOUNT_JSON (paste the whole key file) in the VPS .env file.
+   Locally you can use GOOGLE_APPLICATION_CREDENTIALS as a file path instead.
 
    The service account email must be granted:
      • GA4   → Viewer on the GA4 property (Admin → Property Access Management)

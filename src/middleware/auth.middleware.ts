@@ -7,8 +7,8 @@ import { isTokenRevoked } from "../services/tokenBlacklist.service.js";
 import { logSecurityEvent } from "../services/watchtower.service.js";
 
 /** Verify JWT from Authorization header or cookie and attach currentUser to request.
- *  Header takes precedence — cross-origin frontends (GitHub Pages ↔ Render) can't
- *  use cookies because browsers block third-party cookies.
+ *  Header takes precedence — cross-origin frontends can't use cookies because
+ *  browsers block third-party cookies.
  *  Security dome Layer 3: also checks jti blacklist to block replayed/stolen tokens. */
 export async function requireAuth(req: Request, _res: Response, next: NextFunction) {
   try {

@@ -166,7 +166,7 @@ async function buildAdsSource(): Promise<GoogleSource> {
       "ads",
       "Google Ads",
       consoleUrl,
-      "Set GOOGLE_ADS_DEVELOPER_TOKEN (requires Google approval), GOOGLE_ADS_CUSTOMER_ID, GOOGLE_ADS_REFRESH_TOKEN on Render. The GOOGLE_CLIENT_ID + GOOGLE_CLIENT_SECRET already set are reused. The card then shows live spend, clicks and top campaigns.",
+      "Set GOOGLE_ADS_DEVELOPER_TOKEN (requires Google approval), GOOGLE_ADS_CUSTOMER_ID, GOOGLE_ADS_REFRESH_TOKEN in the VPS .env file. The GOOGLE_CLIENT_ID + GOOGLE_CLIENT_SECRET already set are reused. The card then shows live spend, clicks and top campaigns.",
     );
   }
   try {
