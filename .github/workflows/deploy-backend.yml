@@ -3,14 +3,6 @@ name: Deploy backend to Hostinger VPS
 on:
   push:
     branches: [master]
-    paths:
-      - 'src/**'
-      - 'prisma/**'
-      - 'Dockerfile'
-      - 'docker-compose.yml'
-      - 'docker-entrypoint.sh'
-      - 'package.json'
-      - 'package-lock.json'
   workflow_dispatch:
 
 jobs:
