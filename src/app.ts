@@ -23,6 +23,8 @@ import { pruneExpiredTokens } from "./services/tokenBlacklist.service.js";
 
 const app = express();
 
+app.set("trust proxy", 1);
+
 // ════════════════════════════════════════════════════════════════════
 //  SECURITY DOME — 5 LAYERS
 // ════════════════════════════════════════════════════════════════════
