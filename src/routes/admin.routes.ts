@@ -11,6 +11,7 @@ import * as calculator from "../controllers/calculator.controller.js";
 import * as followUps from "../controllers/followUp.controller.js";
 import * as documents from "../controllers/document.controller.js";
 import * as settings from "../controllers/settings.controller.js";
+import * as caseStudy from "../controllers/caseStudy.controller.js";
 import * as users from "../controllers/user.controller.js";
 import * as attendance from "../controllers/attendance.controller.js";
 import * as employees from "../controllers/employee.controller.js";
@@ -111,6 +112,10 @@ router.delete("/documents/:id", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandle
 // ─── Website Settings ────────────────────────────
 router.get("/website-settings", asyncHandler(settings.listSettings));
 router.patch("/website-settings/:key", requireRole("SUPER_ADMIN", "ADMIN"), validate(updateWebsiteSettingSchema), asyncHandler(settings.updateSetting));
+
+// ─── Case Studies (portal-editable product data) ───
+router.get("/case-studies", asyncHandler(caseStudy.getCaseStudies));
+router.patch("/case-studies", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(caseStudy.updateCaseStudies));
 
 // ─── Users (SUPER_ADMIN only) ────────────────────
 router.get("/users", requireRole("SUPER_ADMIN"), asyncHandler(users.listUsers));
