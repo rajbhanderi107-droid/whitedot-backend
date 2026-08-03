@@ -71,22 +71,22 @@ router.patch("/ai-agents/:id", asyncHandler(async (req, res) => {
 
 const AGENT_SYSTEMS: Record<string, { system: string; model: string; maxTokens: number }> = {
   "lead-qualifier": {
-    system: `You are an expert B2B lead qualification agent for White Dot LLP, authorized marketers of LIMEX material in western India (Gujarat, Rajasthan, Goa, Daman, Diu). LIMEX is a Japanese limestone-based sustainable alternative to plastic and paper — 50-80% less plastic, lower CO2. Score leads 1-100, identify buying signals, recommend next action. Be data-driven and concise.`,
+    system: `You are an expert B2B lead qualification agent for White Dot, authorized marketers of LIMEX material in western India (Gujarat, Rajasthan, Goa, Daman, Diu). LIMEX is a limestone-based sustainable alternative to plastic and paper — 50-80% less plastic, lower CO2. Score leads 1-100, identify buying signals, recommend next action. Be data-driven and concise.`,
     model: "gemma-3-27b-it",
     maxTokens: 2048,
   },
   "content-writer": {
-    system: `You are a premium content writer for White Dot LLP / LIMEX sustainable materials. Write in a dark, premium, Apple-level clarity tone. Target audience: FMCG, packaging, manufacturing decision-makers in India. Always emphasize: sustainability, cost savings, Japanese innovation, recyclability. No fluff, no jargon.`,
+    system: `You are a premium content writer for White Dot / LIMEX sustainable materials. Write in a dark, premium, Apple-level clarity tone. Target audience: FMCG, packaging, manufacturing decision-makers in India. Always emphasize: sustainability, cost savings, material innovation, recyclability. No fluff, no jargon.`,
     model: "gemma-3-27b-it",
     maxTokens: 4096,
   },
   "data-analyst": {
-    system: `You are a business intelligence analyst for White Dot LLP CRM. Analyze lead data, conversion funnels, industry trends. Return structured insights with numbers, percentages, and actionable recommendations. Format as bullet points.`,
+    system: `You are a business intelligence analyst for White Dot CRM. Analyze lead data, conversion funnels, industry trends. Return structured insights with numbers, percentages, and actionable recommendations. Format as bullet points.`,
     model: "gemma-3-27b-it",
     maxTokens: 2048,
   },
   "sales-coach": {
-    system: `You are an expert sales coach for B2B sustainable materials. Help sales reps craft responses, handle objections about LIMEX vs traditional plastics, prepare for meetings. Key differentiators: 50-80% less plastic, limestone-based, Japanese tech (TBM Co.), recyclable, cost-competitive at scale. Be direct, give scripts they can use verbatim.`,
+    system: `You are an expert sales coach for B2B sustainable materials. Help sales reps craft responses, handle objections about LIMEX vs traditional plastics, prepare for meetings. Key differentiators: 50-80% less plastic, limestone-based, TBM material tech, recyclable, cost-competitive at scale. Be direct, give scripts they can use verbatim.`,
     model: "gemma-3-27b-it",
     maxTokens: 2048,
   },
@@ -102,7 +102,7 @@ const AGENT_SYSTEMS: Record<string, { system: string; model: string; maxTokens: 
   },
 };
 
-const DEFAULT_AGENT = { system: "You are a helpful business assistant for White Dot LLP, a LIMEX sustainable material company in India.", model: "gemma-3n-e4b-it", maxTokens: 1024 };
+const DEFAULT_AGENT = { system: "You are a helpful business assistant for White Dot, a LIMEX sustainable material company in India.", model: "gemma-3n-e4b-it", maxTokens: 1024 };
 
 // ─── Google Gemma helper (Google AI Studio) ───────────────────────────
 
@@ -254,7 +254,7 @@ const TOOL_CONFIGS: Record<string, { system: string; model: string }> = {
   "report-generator": { system: "Generate a structured business report. Use headers, bullet points, data tables where relevant. Be analytical and actionable.", model: "gemma-3-27b-it" },
   "whatsapp-drafter": { system: "Write a WhatsApp business message. Under 300 chars, warm but professional, include a clear CTA.", model: "gemma-3n-e4b-it" },
   "proposal-writer": { system: "Write a professional proposal section for LIMEX material supply. Highlight: sustainability metrics, cost comparison, delivery capability, quality assurance.", model: "gemma-3-27b-it" },
-  "social-media": { system: "Write social media content for White Dot LLP / LIMEX. Platform-native format, sustainability angle, engaging hooks. Include hashtag suggestions.", model: "gemma-3n-e4b-it" },
+  "social-media": { system: "Write social media content for White Dot / LIMEX. Platform-native format, sustainability angle, engaging hooks. Include hashtag suggestions.", model: "gemma-3n-e4b-it" },
 };
 
 router.post("/ai/tool", asyncHandler(async (req, res) => {
@@ -318,13 +318,13 @@ router.post("/ai-draft", asyncHandler(async (req: Request, res) => {
     reactivation: `Write a reactivation outreach for ${lead.name} from ${lead.company ?? ""} who went cold. LIMEX material. Reference their previous interest in ${lead.product ?? "LIMEX"}. Max 3 sentences.${leadHistory}`,
     cold_outreach: `Write a cold outreach email for ${lead.name} at ${lead.company ?? ""} in ${lead.industry ?? "manufacturing"}. Introduce LIMEX as a sustainable alternative to plastic/paper. Concise, value-first, include subject line. End with a soft CTA (meeting/sample).`,
     thank_you: `Write a thank-you follow-up for ${lead.name} from ${lead.company ?? ""} after a meeting/call about LIMEX material. Reference their interest in ${lead.product ?? "LIMEX products"}. Brief, professional, include next steps.${leadHistory}`,
-    objection_handler: `The lead ${lead.name} from ${lead.company ?? ""} raised concerns. Their notes: "${lead.notes ?? "price concerns"}". Write a response addressing their objections about LIMEX material. Use data: 50-80% less plastic, competitive pricing at scale, Japanese quality (TBM Co.), fully recyclable. Be empathetic but confident.${leadHistory}`,
+    objection_handler: `The lead ${lead.name} from ${lead.company ?? ""} raised concerns. Their notes: "${lead.notes ?? "price concerns"}". Write a response addressing their objections about LIMEX material. Use data: 50-80% less plastic, competitive pricing at scale, TBM-grade quality, fully recyclable. Be empathetic but confident.${leadHistory}`,
   };
 
   const prompt = prompts[kind] ?? prompts.followup_email;
 
   try {
-    const llm = await callGemma({ prompt, model: "gemma-3-27b-it", maxTokens: 1024, temperature: 0.8, system: "You are a premium B2B sales writer for White Dot LLP / LIMEX sustainable material. Write in a professional, warm tone that reflects Japanese precision and Indian warmth." });
+    const llm = await callGemma({ prompt, model: "gemma-3-27b-it", maxTokens: 1024, temperature: 0.8, system: "You are a premium B2B sales writer for White Dot / LIMEX sustainable material. Write in a professional, warm tone that reflects engineering precision and Indian warmth." });
     const preview = llm.output;
 
     const risk = kind === "cold_outreach" ? "MEDIUM" as const : "LOW" as const;

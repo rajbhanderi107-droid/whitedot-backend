@@ -104,7 +104,7 @@ app.use(requestTimeout(30_000));
 // ════════════════════════════════════════════════════════════════════
 
 app.get("/", (_req, res) => {
-  res.json({ service: "White Dot LLP — LIMEX CRM API", status: "ok" });
+  res.json({ service: "White Dot — LIMEX CRM API", status: "ok" });
 });
 
 // Layer 4: Health endpoint — no internal data exposed
