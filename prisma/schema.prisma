@@ -151,6 +151,7 @@ enum ActivityEntityType {
   CALCULATOR_SUBMISSION
   DOCUMENT
   WEBSITE_SETTING
+  ROUTE_BOOK
 }
 
 enum NotificationType {
@@ -211,6 +212,12 @@ model User {
   onboardingTasks   OnboardingTask[]
   payslips          Payslip[]
   announcements     Announcement[]       @relation("AnnouncementAuthor")
+  routeBookStops    RouteBookStop[]      @relation("RouteBookStopAdder")
+  routeBookMarks    RouteBookMark[]      @relation("RouteBookMarkUpdater")
+  routeBookLegMarks RouteBookLegMark[]   @relation("RouteBookLegMarkUpdater")
+  routeBookEvents   RouteBookEvent[]     @relation("RouteBookEventActor")
+  routeBookViews    RouteBookView[]      @relation("RouteBookViewCreator")
+  routeBookPref     RouteBookPref?
 
   @@index([email])
   @@index([role])
@@ -1006,4 +1013,156 @@ model Bug {
   @@index([severity])
   @@index([status])
   @@index([createdAt])
+}
+
+// ═══════════════════════════════════════════════════════════════════════
+// LIMEX Route Book — field-sales prospect book (Gujarat plastics makers)
+//
+// Stops (companies) are seeded from prisma/data/route-book.json and are
+// never mutated by day-to-day use; everything a salesperson does lives in
+// RouteBookMark (one row per stop, shared by every admin user) and is
+// journaled into RouteBookEvent so any day can be replayed later.
+// ═══════════════════════════════════════════════════════════════════════
+
+model RouteBookFamily {
+  id        String  @id
+  name      String
+  blurb     String?
+  sortOrder Int     @default(0)
+
+  legs RouteBookLeg[]
+}
+
+model RouteBookLeg {
+  id        String  @id
+  name      String
+  belt      String?
+  nav       String?
+  sortOrder Int     @default(0)
+
+  family   RouteBookFamily @relation(fields: [familyId], references: [id], onDelete: Cascade)
+  familyId String
+
+  stops RouteBookStop[]
+  mark  RouteBookLegMark?
+
+  @@index([familyId])
+}
+
+model RouteBookStop {
+  id        String    @id @default(cuid())
+  name      String
+  addr      String?
+  makes     String?
+  src       String?
+  tags      Json?
+  precise   Boolean   @default(false)
+  map       String?
+  tel       String?
+  telLabel  String?
+  link      String?
+  linkLabel String?
+  fit       String    @default("good")
+  why       String?
+  sortOrder Int       @default(0)
+  userAdded Boolean   @default(false)
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  leg   RouteBookLeg @relation(fields: [legId], references: [id], onDelete: Cascade)
+  legId String
+
+  addedBy   User?   @relation("RouteBookStopAdder", fields: [addedById], references: [id], onDelete: SetNull)
+  addedById String?
+
+  mark   RouteBookMark?
+  events RouteBookEvent[]
+
+  @@index([legId])
+  @@index([fit])
+  @@index([name])
+  @@index([userAdded])
+}
+
+model RouteBookMark {
+  stopId       String   @id
+  ticked       Boolean  @default(false)
+  tickedOn     String?
+  starred      Boolean  @default(false)
+  note         String?
+  outcome      String?
+  dueOn        String?
+  contactName  String?
+  contactPhone String?
+  addrOverride String?
+  addrPrecise  Boolean?
+  dnc          Boolean  @default(false)
+  removed      Boolean  @default(false)
+  dupOf        String?
+  snoozedOn    String?
+  companyId    String?
+  followUpId   String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  stop RouteBookStop @relation(fields: [stopId], references: [id], onDelete: Cascade)
+
+  updatedBy   User?   @relation("RouteBookMarkUpdater", fields: [updatedById], references: [id], onDelete: SetNull)
+  updatedById String?
+
+  @@index([ticked])
+  @@index([starred])
+  @@index([dueOn])
+  @@index([outcome])
+}
+
+model RouteBookLegMark {
+  legId     String   @id
+  ticked    Boolean  @default(false)
+  starred   Boolean  @default(false)
+  note      String?
+  updatedAt DateTime @updatedAt
+
+  leg RouteBookLeg @relation(fields: [legId], references: [id], onDelete: Cascade)
+
+  updatedBy   User?   @relation("RouteBookLegMarkUpdater", fields: [updatedById], references: [id], onDelete: SetNull)
+  updatedById String?
+}
+
+model RouteBookEvent {
+  id    String   @id @default(cuid())
+  kind  String
+  value String?
+  day   String
+  at    DateTime @default(now())
+
+  stop   RouteBookStop? @relation(fields: [stopId], references: [id], onDelete: SetNull)
+  stopId String?
+  legId  String?
+
+  user   User?   @relation("RouteBookEventActor", fields: [userId], references: [id], onDelete: SetNull)
+  userId String?
+
+  @@index([day])
+  @@index([stopId])
+  @@index([at])
+}
+
+model RouteBookView {
+  id        String   @id @default(cuid())
+  name      String
+  filters   Json
+  createdAt DateTime @default(now())
+
+  createdBy   User?   @relation("RouteBookViewCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  createdById String?
+}
+
+model RouteBookPref {
+  userId    String   @id
+  data      Json
+  updatedAt DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
