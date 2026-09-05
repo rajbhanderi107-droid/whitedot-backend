@@ -7,6 +7,9 @@ import {
   patchMarkSchema, bulkMarksSchema, patchLegMarkSchema,
   createStopSchema, bulkStopsSchema, updateStopSchema,
   createViewSchema, putPrefsSchema,
+  createSampleSchema,
+  updateSampleSchema,
+  putSettingsSchema,
 } from "../validators/routeBook.validator.js";
 
 const router = Router();
@@ -37,6 +40,14 @@ router.post("/stops/:id/restore", asyncHandler(rb.restoreStop));
 router.get("/views", asyncHandler(rb.listViews));
 router.post("/views", validate(createViewSchema), asyncHandler(rb.createView));
 router.delete("/views/:id", asyncHandler(rb.deleteView));
+// ─── Samples & commercial settings ───────────────
+router.get("/samples/open", asyncHandler(rb.openSamples));
+router.post("/stops/:stopId/samples", validate(createSampleSchema), asyncHandler(rb.createSample));
+router.patch("/samples/:id", validate(updateSampleSchema), asyncHandler(rb.updateSample));
+router.delete("/samples/:id", asyncHandler(rb.deleteSample));
+router.get("/settings", asyncHandler(rb.getSettings));
+router.patch("/settings", requireRole("SUPER_ADMIN", "ADMIN"), validate(putSettingsSchema), asyncHandler(rb.putSettings));
+
 router.get("/prefs", asyncHandler(rb.getPrefs));
 router.patch("/prefs", validate(putPrefsSchema), asyncHandler(rb.putPrefs));
 

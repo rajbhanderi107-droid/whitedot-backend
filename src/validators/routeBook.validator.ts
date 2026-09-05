@@ -29,6 +29,37 @@ export const markFieldsSchema = z.object({
   snoozedOn: dayString.nullable().optional(),
   companyId: text(60).nullable().optional(),
   followUpId: text(60).nullable().optional(),
+
+  // Fit profile — the facts that decide whether LIMEX suits the plant.
+  polymers: text(120).nullable().optional(),
+  processes: text(120).nullable().optional(),
+  monthlyTonnes: z.number().min(0).max(100000).nullable().optional(),
+  machines: z.number().int().min(0).max(10000).nullable().optional(),
+  fillerPct: z.number().int().min(0).max(100).nullable().optional(),
+  resinRate: z.number().min(0).max(100000).nullable().optional(),
+  thinWall: z.boolean().nullable().optional(),
+  profiledOn: dayString.nullable().optional(),
+}).strip();
+
+export const SAMPLE_RESULTS = ["PENDING", "PASS", "PARTIAL", "FAIL"] as const;
+
+export const createSampleSchema = z.object({
+  grade: text(80),
+  kg: z.number().min(0).max(100000),
+  givenOn: dayString.optional(),
+  contactName: text(200).nullable().optional(),
+  trialDueOn: dayString.nullable().optional(),
+  result: z.enum(SAMPLE_RESULTS).optional(),
+  resultOn: dayString.nullable().optional(),
+  resultNote: text(2000).nullable().optional(),
+}).strip();
+
+export const updateSampleSchema = createSampleSchema.partial().strip();
+
+export const putSettingsSchema = z.object({
+  limexRate: z.number().min(0).max(100000).nullable().optional(),
+  substitutionPct: z.number().int().min(0).max(100).optional(),
+  currency: text(8).optional(),
 }).strip();
 
 export const patchMarkSchema = markFieldsSchema.extend({ day: dayString.optional() }).strip();

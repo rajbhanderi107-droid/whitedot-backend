@@ -214,6 +214,8 @@ model User {
   announcements     Announcement[]       @relation("AnnouncementAuthor")
   routeBookStops    RouteBookStop[]      @relation("RouteBookStopAdder")
   routeBookMarks    RouteBookMark[]      @relation("RouteBookMarkUpdater")
+  routeBookSamples  RouteBookSample[]    @relation("RouteBookSampleCreator")
+  routeBookSettings RouteBookSetting[]   @relation("RouteBookSettingUpdater")
   routeBookLegMarks RouteBookLegMark[]   @relation("RouteBookLegMarkUpdater")
   routeBookEvents   RouteBookEvent[]     @relation("RouteBookEventActor")
   routeBookViews    RouteBookView[]      @relation("RouteBookViewCreator")
@@ -1103,6 +1105,20 @@ model RouteBookMark {
   snoozedOn    String?
   companyId    String?
   followUpId   String?
+
+  // ─── Fit profile: what actually decides whether LIMEX suits this plant.
+  // LIMEX is >50% calcium carbonate in a polyolefin carrier and runs on the
+  // converter's existing machines, so the deciding facts are which polymer
+  // and process they run, how much they consume, and what they pay today.
+  polymers      String?  // csv: PP,HDPE,LDPE,PS,PVC,PET,ABS,OTHER
+  processes     String?  // csv: INJECTION,BLOW,EXTRUSION,THERMOFORM,FILM,SHEET
+  monthlyTonnes Decimal? @db.Decimal(10, 2)
+  machines      Int?
+  fillerPct     Int?     // CaCO3 / masterbatch they already run, %
+  resinRate     Decimal? @db.Decimal(10, 2) // what they pay per kg today
+  thinWall      Boolean? // thin-wall work caps how much filler they can take
+  profiledOn    String?  // YYYY-MM-DD the profile was captured
+
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -1111,10 +1127,54 @@ model RouteBookMark {
   updatedBy   User?   @relation("RouteBookMarkUpdater", fields: [updatedById], references: [id], onDelete: SetNull)
   updatedById String?
 
+  samples RouteBookSample[]
+
   @@index([ticked])
   @@index([starred])
   @@index([dueOn])
   @@index([outcome])
+  @@index([monthlyTonnes])
+}
+
+/// One physical LIMEX sample handed to a plant, and what came back.
+/// Materials sales turn on this cycle: sample -> trial -> qualification ->
+/// volume order, and a sample with no trial result is where deals go quiet.
+model RouteBookSample {
+  id          String    @id @default(cuid())
+  stopId      String
+  grade       String                       // the LIMEX grade handed over
+  kg          Decimal   @db.Decimal(10, 2)
+  givenOn     String                       // YYYY-MM-DD
+  contactName String?
+  trialDueOn  String?                      // when they said they would run it
+  result      String    @default("PENDING") // PENDING|PASS|PARTIAL|FAIL
+  resultOn    String?
+  resultNote  String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  mark RouteBookMark @relation(fields: [stopId], references: [stopId], onDelete: Cascade)
+
+  createdBy   User?   @relation("RouteBookSampleCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  createdById String?
+
+  @@index([stopId])
+  @@index([result])
+  @@index([givenOn])
+  @@index([trialDueOn])
+}
+
+/// Shared commercial assumptions for opportunity sizing. One row, id "singleton".
+/// Every rupee figure in the Route Book comes from here — nothing is guessed.
+model RouteBookSetting {
+  id              String   @id @default("singleton")
+  limexRate       Decimal? @db.Decimal(10, 2) // your selling price per kg
+  substitutionPct Int      @default(30)       // share of their volume you target
+  currency        String   @default("INR")
+  updatedAt       DateTime @updatedAt
+
+  updatedBy   User?   @relation("RouteBookSettingUpdater", fields: [updatedById], references: [id], onDelete: SetNull)
+  updatedById String?
 }
 
 model RouteBookLegMark {
