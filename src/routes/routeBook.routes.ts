@@ -38,7 +38,7 @@ router.get("/views", asyncHandler(rb.listViews));
 router.post("/views", validate(createViewSchema), asyncHandler(rb.createView));
 router.delete("/views/:id", asyncHandler(rb.deleteView));
 router.get("/prefs", asyncHandler(rb.getPrefs));
-router.put("/prefs", validate(putPrefsSchema), asyncHandler(rb.putPrefs));
+router.patch("/prefs", validate(putPrefsSchema), asyncHandler(rb.putPrefs));
 
 // ─── Maintenance ─────────────────────────────────
 router.post("/reseed", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(rb.reseed));
