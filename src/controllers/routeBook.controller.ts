@@ -8,7 +8,14 @@ import { sendSuccess } from "../utils/apiResponse.js";
 import { paramId } from "../utils/params.js";
 import { AppError } from "../middleware/error.middleware.js";
 import { logActivity } from "../services/activity.service.js";
-import { eventsQuerySchema, type MarkFields, type StopFields } from "../validators/routeBook.validator.js";
+import {
+  eventsQuerySchema,
+  createSampleSchema,
+  updateSampleSchema,
+  putSettingsSchema,
+  type MarkFields,
+  type StopFields,
+} from "../validators/routeBook.validator.js";
 
 /* ─── Seed data ──────────────────────────────────────────────────────────
  * The register-sourced book ships with the backend (prisma/data/…, copied
@@ -109,7 +116,10 @@ const STOP_SELECT = {
   addedBy: { select: { name: true } },
 } satisfies Prisma.RouteBookStopSelect;
 
-const MARK_INCLUDE = { updatedBy: { select: { id: true, name: true } } } satisfies Prisma.RouteBookMarkInclude;
+const MARK_INCLUDE = {
+  updatedBy: { select: { id: true, name: true } },
+  samples: { orderBy: { givenOn: "desc" }, include: { createdBy: { select: { id: true, name: true } } } },
+} satisfies Prisma.RouteBookMarkInclude;
 
 type Tx = Prisma.TransactionClient;
 
@@ -151,6 +161,17 @@ function diffEvents(prev: RouteBookMark | null, next: MarkFields): { kind: strin
   if (next.followUpId !== undefined && next.followUpId && next.followUpId !== p?.followUpId) {
     ev.push({ kind: "followup", value: next.followUpId });
   }
+  // One "profile" entry covers the whole fit capture — a separate line per
+  // field would bury the day's real work under form noise.
+  const profileKeys = ["polymers", "processes", "monthlyTonnes", "machines", "fillerPct", "resinRate", "thinWall"] as const;
+  if (profileKeys.some((k) => next[k] !== undefined && changed(next[k], p?.[k] == null ? null : String(p[k])))) {
+    const bits = [
+      next.polymers ?? p?.polymers,
+      next.processes ?? p?.processes,
+      (next.monthlyTonnes ?? p?.monthlyTonnes) != null ? `${next.monthlyTonnes ?? p?.monthlyTonnes} t/mo` : null,
+    ].filter(Boolean).join(" · ");
+    ev.push({ kind: "profile", value: bits || "updated" });
+  }
   return ev;
 }
 
@@ -181,7 +202,7 @@ async function applyMark(tx: Tx, stopId: string, fields: MarkFields, day: string
 export async function bootstrap(req: Request, res: Response) {
   const user = req.currentUser!;
   await ensureSeeded();
-  const [fams, legs, stops, marks, legMarks, views, pref] = await Promise.all([
+  const [fams, legs, stops, marks, legMarks, views, pref, settings] = await Promise.all([
     prisma.routeBookFamily.findMany({ orderBy: { sortOrder: "asc" } }),
     prisma.routeBookLeg.findMany({ orderBy: { sortOrder: "asc" } }),
     prisma.routeBookStop.findMany({ where: { deletedAt: null }, orderBy: { sortOrder: "asc" }, select: STOP_SELECT }),
@@ -189,9 +210,10 @@ export async function bootstrap(req: Request, res: Response) {
     prisma.routeBookLegMark.findMany(),
     prisma.routeBookView.findMany({ orderBy: { createdAt: "asc" }, include: { createdBy: { select: { id: true, name: true } } } }),
     prisma.routeBookPref.findUnique({ where: { userId: user.id } }),
+    prisma.routeBookSetting.findUnique({ where: { id: "singleton" } }),
   ]);
   return sendSuccess(res, {
-    fams, legs, stops, marks, legMarks, views,
+    fams, legs, stops, marks, legMarks, views, settings,
     prefs: (pref?.data as Record<string, unknown> | undefined) ?? {},
     me: { id: user.id, name: user.name, role: user.role },
     serverDay: todayUtc(),
@@ -414,6 +436,106 @@ export async function putPrefs(req: Request, res: Response) {
 }
 
 /* ─── Maintenance ──────────────────────────────────────────────────────── */
+
+/* ─── Samples ──────────────────────────────────────────────────────────────
+   A sample only means something attached to the plant that took it, so the
+   mark row is created on demand if this is the first thing recorded here. */
+
+async function ensureMark(tx: Tx, stopId: string, userId: string) {
+  const stop = await tx.routeBookStop.findFirst({ where: { id: stopId, deletedAt: null }, select: { id: true } });
+  if (!stop) throw new AppError(404, "NOT_FOUND", `Stop ${stopId} not found`);
+  await tx.routeBookMark.upsert({ where: { stopId }, update: {}, create: { stopId, updatedById: userId } });
+}
+
+export async function createSample(req: Request, res: Response) {
+  const user = req.currentUser!;
+  const stopId = paramId(req, "stopId");
+  const body = createSampleSchema.parse(req.body);
+  const givenOn = body.givenOn ?? todayUtc();
+  const sample = await prisma.$transaction(async (tx) => {
+    await ensureMark(tx, stopId, user.id);
+    const row = await tx.routeBookSample.create({
+      data: { ...body, givenOn, stopId, createdById: user.id },
+      include: { createdBy: { select: { id: true, name: true } } },
+    });
+    // A sample handed over is a visit that happened; keep the book honest.
+    await tx.routeBookMark.update({
+      where: { stopId },
+      data: { ticked: true, tickedOn: givenOn, outcome: "smp", updatedById: user.id },
+    });
+    await tx.routeBookEvent.create({
+      data: { stopId, kind: "sample", value: `${body.grade} · ${body.kg} kg`, day: givenOn, userId: user.id },
+    });
+    return row;
+  });
+  return sendSuccess(res, sample, "Sample recorded", 201);
+}
+
+export async function updateSample(req: Request, res: Response) {
+  const user = req.currentUser!;
+  const id = paramId(req, "id");
+  const body = updateSampleSchema.parse(req.body);
+  const prev = await prisma.routeBookSample.findUnique({ where: { id } });
+  if (!prev) throw new AppError(404, "NOT_FOUND", "Sample not found");
+  const sample = await prisma.$transaction(async (tx) => {
+    const row = await tx.routeBookSample.update({
+      where: { id }, data: body,
+      include: { createdBy: { select: { id: true, name: true } } },
+    });
+    if (body.result && body.result !== prev.result) {
+      await tx.routeBookEvent.create({
+        data: {
+          stopId: prev.stopId, kind: "trial", value: `${prev.grade}: ${body.result}`,
+          day: body.resultOn ?? todayUtc(), userId: user.id,
+        },
+      });
+    }
+    return row;
+  });
+  return sendSuccess(res, sample);
+}
+
+export async function deleteSample(req: Request, res: Response) {
+  const id = paramId(req, "id");
+  const prev = await prisma.routeBookSample.findUnique({ where: { id } });
+  if (!prev) throw new AppError(404, "NOT_FOUND", "Sample not found");
+  await prisma.routeBookSample.delete({ where: { id } });
+  return sendSuccess(res, { id });
+}
+
+/** Samples handed out with no trial result yet — where deals go quiet. */
+export async function openSamples(_req: Request, res: Response) {
+  const rows = await prisma.routeBookSample.findMany({
+    where: { result: "PENDING" },
+    orderBy: { givenOn: "asc" },
+    take: 500,
+    include: {
+      createdBy: { select: { id: true, name: true } },
+      mark: { select: { stopId: true, contactName: true, contactPhone: true, stop: { select: { name: true, legId: true } } } },
+    },
+  });
+  return sendSuccess(res, rows);
+}
+
+/* ─── Commercial settings ─────────────────────────────────────────────────
+   Every rupee figure the Route Book shows is derived from these, so they are
+   entered once by an admin rather than guessed anywhere in the code. */
+
+export async function getSettings(_req: Request, res: Response) {
+  const row = await prisma.routeBookSetting.findUnique({ where: { id: "singleton" } });
+  return sendSuccess(res, row ?? { id: "singleton", limexRate: null, substitutionPct: 30, currency: "INR" });
+}
+
+export async function putSettings(req: Request, res: Response) {
+  const user = req.currentUser!;
+  const body = putSettingsSchema.parse(req.body);
+  const row = await prisma.routeBookSetting.upsert({
+    where: { id: "singleton" },
+    update: { ...body, updatedById: user.id },
+    create: { id: "singleton", ...body, updatedById: user.id },
+  });
+  return sendSuccess(res, row);
+}
 
 export async function reseed(req: Request, res: Response) {
   const user = req.currentUser!;
