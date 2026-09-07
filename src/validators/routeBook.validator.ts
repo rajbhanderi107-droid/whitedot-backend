@@ -95,6 +95,20 @@ export const createOrderSchema = z.object({
 
 export const updateOrderSchema = createOrderSchema.partial().strip();
 
+/** A book kept elsewhere, arriving whole: the marks and the day journal that
+ *  produced them. Journal lines carry their own day and instant so an import
+ *  does not re-date someone's round to today. */
+export const importSchema = z.object({
+  marks: z.array(markFieldsSchema.extend({ stopId: z.string().min(1).max(80) })).max(5000).default([]),
+  events: z.array(z.object({
+    stopId: z.string().min(1).max(80),
+    kind: text(24).min(1),
+    value: text(4000).nullable().optional(),
+    day: dayString,
+    at: z.string().datetime({ offset: true }),
+  })).max(20000).default([]),
+}).strip();
+
 export const patchMarkSchema = markFieldsSchema.extend({ day: dayString.optional() }).strip();
 
 // sanitizeBody caps request arrays at 50 entries — bulk calls are chunked to match.

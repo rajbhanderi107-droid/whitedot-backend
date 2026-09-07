@@ -15,6 +15,7 @@ import {
   putSettingsSchema,
   createOrderSchema,
   updateOrderSchema,
+  importSchema,
   type MarkFields,
   type StopFields,
 } from "../validators/routeBook.validator.js";
@@ -594,6 +595,96 @@ export async function openSamples(_req: Request, res: Response) {
     },
   });
   return sendSuccess(res, rows);
+}
+
+/* ─── Clearing a line from the day record ──────────────────────────────────
+   A tick logged against the wrong company is worse than no tick: the record
+   is what the round gets judged on. This removes one company's lines from one
+   day and nothing else — the mark itself, and every other day, stay. */
+
+export async function clearDayRow(req: Request, res: Response) {
+  const user = req.currentUser!;
+  const day = String(req.params.day ?? "");
+  const stopId = paramId(req, "stopId");
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) throw new AppError(400, "BAD_DAY", "Expected a YYYY-MM-DD day");
+  const { count } = await prisma.routeBookEvent.deleteMany({ where: { day, stopId } });
+  if (count) {
+    await logActivity({
+      userId: user.id, action: "ROUTE_BOOK_CLEAR_DAY_ROW", entityType: "ROUTE_BOOK",
+      metadata: { day, stopId, removed: count },
+    });
+  }
+  return sendSuccess(res, { day, stopId, removed: count }, count ? "Cleared from the record" : "Nothing to clear");
+}
+
+/* ─── Import ───────────────────────────────────────────────────────────────
+   Brings a book kept somewhere else — the standalone Route Book app — into
+   the portal, marks and day record together. Marks are written directly
+   rather than through applyMark, because the journal arrives with the import
+   and re-deriving it would date every line today. The CRM mirror still runs,
+   so imported work reaches the pipeline like any other. Re-running the same
+   import is safe: identical journal lines are skipped, not duplicated. */
+
+export async function importBook(req: Request, res: Response) {
+  const user = req.currentUser!;
+  const body = importSchema.parse(req.body);
+
+  const known = new Set(
+    (await prisma.routeBookStop.findMany({ where: { deletedAt: null }, select: { id: true } })).map((s) => s.id),
+  );
+  const marks = body.marks.filter((m) => known.has(m.stopId));
+  const events = body.events.filter((e) => known.has(e.stopId));
+  const skippedStops = [...new Set(
+    [...body.marks.map((m) => m.stopId), ...body.events.map((e) => e.stopId)].filter((id) => !known.has(id)),
+  )];
+
+  let marksWritten = 0;
+  for (const { stopId, ...fields } of marks) {
+    await prisma.$transaction(async (tx) => {
+      const stop = await tx.routeBookStop.findUnique({ where: { id: stopId }, select: CRM_STOP_SELECT });
+      if (!stop) return;
+      const mark = await tx.routeBookMark.upsert({
+        where: { stopId },
+        update: { ...fields, updatedById: user.id },
+        create: { stopId, ...fields, updatedById: user.id },
+      });
+      const ids = await mirrorToCrm(tx, stop, mark);
+      if (ids.companyId !== mark.companyId || ids.inquiryId !== mark.inquiryId) {
+        await tx.routeBookMark.update({
+          where: { stopId },
+          data: { companyId: ids.companyId, inquiryId: ids.inquiryId },
+        });
+      }
+      marksWritten++;
+    });
+  }
+
+  // One line is "the same line" when the stop, day, kind and instant match.
+  const days = [...new Set(events.map((e) => e.day))];
+  const existing = new Set(
+    (await prisma.routeBookEvent.findMany({
+      where: { day: { in: days } },
+      select: { stopId: true, day: true, kind: true, at: true },
+    })).map((e) => `${e.stopId}|${e.day}|${e.kind}|${e.at.getTime()}`),
+  );
+  const fresh = events.filter((e) => !existing.has(`${e.stopId}|${e.day}|${e.kind}|${new Date(e.at).getTime()}`));
+  for (let i = 0; i < fresh.length; i += 500) {
+    await prisma.routeBookEvent.createMany({
+      data: fresh.slice(i, i + 500).map((e) => ({
+        stopId: e.stopId, kind: e.kind, value: e.value ?? null, day: e.day, at: new Date(e.at), userId: user.id,
+      })),
+    });
+  }
+
+  const result = {
+    marks: marksWritten,
+    events: fresh.length,
+    duplicateEvents: events.length - fresh.length,
+    days: days.sort(),
+    skippedStops,
+  };
+  await logActivity({ userId: user.id, action: "ROUTE_BOOK_IMPORT", entityType: "ROUTE_BOOK", metadata: result });
+  return sendSuccess(res, result, `Imported ${marksWritten} companies and ${fresh.length} journal lines`);
 }
 
 /* ─── Orders ───────────────────────────────────────────────────────────────
