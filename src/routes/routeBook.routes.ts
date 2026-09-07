@@ -23,6 +23,7 @@ router.use(requireAuth);
 // ─── Read ────────────────────────────────────────
 router.get("/bootstrap", asyncHandler(rb.bootstrap));
 router.get("/summary", asyncHandler(rb.summary));
+router.get("/changes", asyncHandler(rb.changes));
 router.get("/events", asyncHandler(rb.listEvents));
 router.get("/days", asyncHandler(rb.listDays));
 

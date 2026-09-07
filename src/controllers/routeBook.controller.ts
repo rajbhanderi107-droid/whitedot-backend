@@ -292,6 +292,34 @@ export async function summary(_req: Request, res: Response) {
   });
 }
 
+/* ─── Live sync ────────────────────────────────────────────────────────────
+   Two phones open on the same book have to agree. Re-fetching the whole
+   bootstrap every few seconds would burn a salesperson's mobile data on a
+   1,400-stop book, so this returns only what moved since the caller last
+   looked — usually an empty array. */
+
+export async function changes(req: Request, res: Response) {
+  const raw = typeof req.query.since === "string" ? req.query.since : "";
+  const since = new Date(raw);
+  if (!raw || Number.isNaN(since.getTime())) throw new AppError(400, "BAD_SINCE", "`since` must be an ISO timestamp");
+  const at = new Date().toISOString();
+
+  // A changed order or trial result does not touch its mark row, so collect
+  // the affected stops from all three tables before reading the marks back.
+  const [touchedMarks, touchedOrders, touchedSamples, stops, gone] = await Promise.all([
+    prisma.routeBookMark.findMany({ where: { updatedAt: { gt: since } }, select: { stopId: true } }),
+    prisma.routeBookOrder.findMany({ where: { updatedAt: { gt: since } }, select: { stopId: true } }),
+    prisma.routeBookSample.findMany({ where: { updatedAt: { gt: since } }, select: { stopId: true } }),
+    prisma.routeBookStop.findMany({ where: { updatedAt: { gt: since }, deletedAt: null }, select: STOP_SELECT }),
+    prisma.routeBookStop.findMany({ where: { updatedAt: { gt: since }, deletedAt: { not: null } }, select: { id: true } }),
+  ]);
+  const stopIds = [...new Set([...touchedMarks, ...touchedOrders, ...touchedSamples].map((r) => r.stopId))];
+  const marks = stopIds.length
+    ? await prisma.routeBookMark.findMany({ where: { stopId: { in: stopIds } }, include: MARK_INCLUDE })
+    : [];
+  return sendSuccess(res, { marks, stops, removedStopIds: gone.map((g) => g.id), at });
+}
+
 export async function listEvents(req: Request, res: Response) {
   const q = eventsQuerySchema.parse(req.query);
   const where: Prisma.RouteBookEventWhereInput = {};
