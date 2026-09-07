@@ -6,6 +6,9 @@ import { z } from "zod";
 export const dayString = z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Expected YYYY-MM-DD");
 
 export const OUTCOMES = ["int", "smp", "later", "noans", "dead"] as const;
+/** Where a company sits in the sale. One field, three books. */
+export const STAGES = ["PROSPECT", "LEAD", "CUSTOMER", "LOST"] as const;
+export const ORDER_STATUSES = ["CONFIRMED", "DISPATCHED", "DELIVERED", "PAID", "CANCELLED"] as const;
 export const FITS = ["prime", "good", "weak", "channel", "no", "clear"] as const;
 
 const text = (max: number) => z.string().max(max);
@@ -39,6 +42,22 @@ export const markFieldsSchema = z.object({
   resinRate: z.number().min(0).max(100000).nullable().optional(),
   thinWall: z.boolean().nullable().optional(),
   profiledOn: dayString.nullable().optional(),
+
+  // Lifecycle. `stage` is what decides which of the three books shows this
+  // company, so it travels with the marks and works offline like everything
+  // else the salesperson does on the road.
+  stage: z.enum(STAGES).optional(),
+  leadOn: dayString.nullable().optional(),
+  customerOn: dayString.nullable().optional(),
+  lostOn: dayString.nullable().optional(),
+  lostReason: text(400).nullable().optional(),
+  nextStep: text(400).nullable().optional(),
+  expectedMt: z.number().min(0).max(1_000_000).nullable().optional(),
+  quotedRate: z.number().min(0).max(100000).nullable().optional(),
+  gstNumber: text(20).nullable().optional(),
+  billTo: text(1000).nullable().optional(),
+  shipTo: text(1000).nullable().optional(),
+  paymentTerms: text(200).nullable().optional(),
 }).strip();
 
 export const SAMPLE_RESULTS = ["PENDING", "PASS", "PARTIAL", "FAIL"] as const;
@@ -61,6 +80,20 @@ export const putSettingsSchema = z.object({
   substitutionPct: z.number().int().min(0).max(100).optional(),
   currency: text(8).optional(),
 }).strip();
+
+/** An order, in metric tonnes — the unit LIMEX is actually sold in. */
+export const createOrderSchema = z.object({
+  grade: text(80).min(1, "Grade is required"),
+  quantityMt: z.number().min(0.001, "Quantity must be more than zero").max(1_000_000),
+  rate: z.number().min(0).max(100000).nullable().optional(),
+  orderedOn: dayString.optional(),
+  dispatchOn: dayString.nullable().optional(),
+  status: z.enum(ORDER_STATUSES).optional(),
+  poRef: text(80).nullable().optional(),
+  note: text(2000).nullable().optional(),
+}).strip();
+
+export const updateOrderSchema = createOrderSchema.partial().strip();
 
 export const patchMarkSchema = markFieldsSchema.extend({ day: dayString.optional() }).strip();
 

@@ -219,6 +219,7 @@ model User {
   routeBookLegMarks RouteBookLegMark[]   @relation("RouteBookLegMarkUpdater")
   routeBookEvents   RouteBookEvent[]     @relation("RouteBookEventActor")
   routeBookViews    RouteBookView[]      @relation("RouteBookViewCreator")
+  routeBookOrders   RouteBookOrder[]     @relation("RouteBookOrderCreator")
   routeBookPref     RouteBookPref?
 
   @@index([email])
@@ -1119,6 +1120,29 @@ model RouteBookMark {
   thinWall      Boolean? // thin-wall work caps how much filler they can take
   profiledOn    String?  // YYYY-MM-DD the profile was captured
 
+  // ─── Lifecycle: one company, three books. Route Book holds every prospect,
+  // Lead Book the ones in a live deal, Customer Book the ones buying. `stage`
+  // is the single field that decides which book a company appears in, so a
+  // company can never be in two books at once or drift between copies.
+  stage        String  @default("PROSPECT") // PROSPECT|LEAD|CUSTOMER|LOST
+  leadOn       String? // YYYY-MM-DD they turned into a live deal
+  customerOn   String? // YYYY-MM-DD of the first confirmed order
+  lostOn       String?
+  lostReason   String?
+  nextStep     String? // the one thing that has to happen next
+  expectedMt   Decimal? @db.Decimal(12, 3) // MT/month they say they would take
+  quotedRate   Decimal? @db.Decimal(10, 2) // ₹/kg quoted to them
+
+  // Billing facts, needed only once they buy.
+  gstNumber    String?
+  billTo       String?
+  shipTo       String?
+  paymentTerms String?
+
+  // Mirrors into the portal CRM, so the pipeline board and the books are the
+  // same companies rather than two lists that have to be reconciled by hand.
+  inquiryId    String?
+
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
@@ -1128,12 +1152,14 @@ model RouteBookMark {
   updatedById String?
 
   samples RouteBookSample[]
+  orders  RouteBookOrder[]
 
   @@index([ticked])
   @@index([starred])
   @@index([dueOn])
   @@index([outcome])
   @@index([monthlyTonnes])
+  @@index([stage])
 }
 
 /// One physical LIMEX sample handed to a plant, and what came back.
@@ -1166,6 +1192,36 @@ model RouteBookSample {
 
 /// Shared commercial assumptions for opportunity sizing. One row, id "singleton".
 /// Every rupee figure in the Route Book comes from here — nothing is guessed.
+/// A confirmed order. LIMEX is sold by the metric tonne, so quantity is MT and
+/// every rupee figure is derived from it server-side (MT x 1000 x rate/kg) —
+/// the amount is stored so an exported invoice can never disagree with the
+/// screen it was printed from.
+model RouteBookOrder {
+  id         String   @id @default(cuid())
+  stopId     String
+  orderNo    String   @unique
+  grade      String
+  quantityMt Decimal  @db.Decimal(12, 3)
+  rate       Decimal? @db.Decimal(10, 2)  // ₹/kg agreed for this order
+  amount     Decimal? @db.Decimal(16, 2)  // quantityMt * 1000 * rate
+  orderedOn  String                       // YYYY-MM-DD
+  dispatchOn String?
+  status     String   @default("CONFIRMED") // CONFIRMED|DISPATCHED|DELIVERED|PAID|CANCELLED
+  poRef      String?
+  note       String?
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  mark RouteBookMark @relation(fields: [stopId], references: [stopId], onDelete: Cascade)
+
+  createdBy   User?   @relation("RouteBookOrderCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  createdById String?
+
+  @@index([stopId])
+  @@index([status])
+  @@index([orderedOn])
+}
+
 model RouteBookSetting {
   id              String   @id @default("singleton")
   limexRate       Decimal? @db.Decimal(10, 2) // your selling price per kg

@@ -10,6 +10,8 @@ import {
   createSampleSchema,
   updateSampleSchema,
   putSettingsSchema,
+  createOrderSchema,
+  updateOrderSchema,
 } from "../validators/routeBook.validator.js";
 
 const router = Router();
@@ -21,6 +23,7 @@ router.use(requireAuth);
 // ─── Read ────────────────────────────────────────
 router.get("/bootstrap", asyncHandler(rb.bootstrap));
 router.get("/summary", asyncHandler(rb.summary));
+router.get("/changes", asyncHandler(rb.changes));
 router.get("/events", asyncHandler(rb.listEvents));
 router.get("/days", asyncHandler(rb.listDays));
 
@@ -45,6 +48,13 @@ router.get("/samples/open", asyncHandler(rb.openSamples));
 router.post("/stops/:stopId/samples", validate(createSampleSchema), asyncHandler(rb.createSample));
 router.patch("/samples/:id", validate(updateSampleSchema), asyncHandler(rb.updateSample));
 router.delete("/samples/:id", asyncHandler(rb.deleteSample));
+
+// ─── Orders (metric tonnes) ──────────────────────
+router.get("/orders", asyncHandler(rb.listOrders));
+router.post("/stops/:stopId/orders", validate(createOrderSchema), asyncHandler(rb.createOrder));
+router.patch("/orders/:id", validate(updateOrderSchema), asyncHandler(rb.updateOrder));
+router.delete("/orders/:id", asyncHandler(rb.deleteOrder));
+
 router.get("/settings", asyncHandler(rb.getSettings));
 router.patch("/settings", requireRole("SUPER_ADMIN", "ADMIN"), validate(putSettingsSchema), asyncHandler(rb.putSettings));
 

@@ -13,9 +13,12 @@ import {
   createSampleSchema,
   updateSampleSchema,
   putSettingsSchema,
+  createOrderSchema,
+  updateOrderSchema,
   type MarkFields,
   type StopFields,
 } from "../validators/routeBook.validator.js";
+import { mirrorToCrm } from "../services/routeBookCrm.service.js";
 
 /* ─── Seed data ──────────────────────────────────────────────────────────
  * The register-sourced book ships with the backend (prisma/data/…, copied
@@ -119,9 +122,13 @@ const STOP_SELECT = {
 const MARK_INCLUDE = {
   updatedBy: { select: { id: true, name: true } },
   samples: { orderBy: { givenOn: "desc" }, include: { createdBy: { select: { id: true, name: true } } } },
+  orders: { orderBy: { orderedOn: "desc" }, include: { createdBy: { select: { id: true, name: true } } } },
 } satisfies Prisma.RouteBookMarkInclude;
 
 type Tx = Prisma.TransactionClient;
+
+/** What the CRM mirror needs to describe a company it has not met before. */
+const CRM_STOP_SELECT = { id: true, name: true, legId: true, addr: true, tel: true, makes: true } as const;
 
 /** Turn a partial mark update into journal entries by diffing against the
  *  row that was there before, so the day log only records real changes. */
@@ -161,6 +168,13 @@ function diffEvents(prev: RouteBookMark | null, next: MarkFields): { kind: strin
   if (next.followUpId !== undefined && next.followUpId && next.followUpId !== p?.followUpId) {
     ev.push({ kind: "followup", value: next.followUpId });
   }
+  if (next.stage !== undefined && next.stage !== (p?.stage ?? "PROSPECT")) {
+    ev.push({ kind: "stage", value: next.stage });
+  }
+  if (next.nextStep !== undefined && changed(next.nextStep, p?.nextStep)) ev.push({ kind: "next", value: next.nextStep ?? "" });
+  if (next.quotedRate !== undefined && changed(next.quotedRate, p?.quotedRate == null ? null : Number(p.quotedRate))) {
+    ev.push({ kind: "quote", value: next.quotedRate == null ? "" : `${next.quotedRate}/kg` });
+  }
   // One "profile" entry covers the whole fit capture — a separate line per
   // field would bury the day's real work under form noise.
   const profileKeys = ["polymers", "processes", "monthlyTonnes", "machines", "fillerPct", "resinRate", "thinWall"] as const;
@@ -176,19 +190,43 @@ function diffEvents(prev: RouteBookMark | null, next: MarkFields): { kind: strin
 }
 
 async function applyMark(tx: Tx, stopId: string, fields: MarkFields, day: string, userId: string) {
-  const stop = await tx.routeBookStop.findFirst({ where: { id: stopId, deletedAt: null }, select: { id: true } });
+  const stop = await tx.routeBookStop.findFirst({ where: { id: stopId, deletedAt: null }, select: CRM_STOP_SELECT });
   if (!stop) throw new AppError(404, "NOT_FOUND", `Stop ${stopId} not found`);
   const prev = await tx.routeBookMark.findUnique({ where: { stopId } });
   const data: MarkFields = { ...fields };
   if (data.ticked === true && !data.tickedOn && !prev?.tickedOn) data.tickedOn = day;
   if (data.ticked === false) data.tickedOn = null;
+  // A stage change stamps its own date once, so the books can say when a
+  // company became a lead or a customer without anyone typing it in.
+  if (data.stage && data.stage !== (prev?.stage ?? "PROSPECT")) {
+    if (data.stage === "LEAD" && !data.leadOn && !prev?.leadOn) data.leadOn = day;
+    if (data.stage === "CUSTOMER") {
+      if (!data.leadOn && !prev?.leadOn) data.leadOn = day;
+      if (!data.customerOn && !prev?.customerOn) data.customerOn = day;
+    }
+    if (data.stage === "LOST" && !data.lostOn) data.lostOn = day;
+    if (data.stage !== "LOST") { data.lostOn = null; data.lostReason = null; }
+  }
   const events = diffEvents(prev, data);
-  const mark = await tx.routeBookMark.upsert({
+  let mark = await tx.routeBookMark.upsert({
     where: { stopId },
     update: { ...data, updatedById: userId },
     create: { stopId, ...data, updatedById: userId },
     include: MARK_INCLUDE,
   });
+  // Keep the CRM and the pipeline board in step with the book. Cheap when
+  // nothing has happened at this stop yet — the mirror returns immediately.
+  const ids = await mirrorToCrm(tx, stop, mark);
+  if (ids.companyId !== mark.companyId || ids.inquiryId !== mark.inquiryId) {
+    mark = await tx.routeBookMark.update({
+      where: { stopId },
+      data: { companyId: ids.companyId, inquiryId: ids.inquiryId },
+      include: MARK_INCLUDE,
+    });
+    if (ids.companyId && ids.companyId !== prev?.companyId) {
+      events.push({ kind: "promote", value: ids.companyId });
+    }
+  }
   if (events.length) {
     await tx.routeBookEvent.createMany({
       data: events.map((e) => ({ stopId, kind: e.kind, value: e.value, day, userId })),
@@ -225,7 +263,7 @@ export async function summary(_req: Request, res: Response) {
   await ensureSeeded();
   const today = todayUtc();
   const weekAgo = new Date(Date.now() - 6 * 86_400_000).toISOString().slice(0, 10);
-  const [total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent] = await Promise.all([
+  const [total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent, leads, customers, orderAgg] = await Promise.all([
     prisma.routeBookStop.count({ where: { deletedAt: null } }),
     prisma.routeBookStop.count({
       where: { deletedAt: null, fit: { notIn: PARKED_FITS }, OR: [{ mark: null }, { mark: { removed: false } }] },
@@ -237,8 +275,49 @@ export async function summary(_req: Request, res: Response) {
     prisma.routeBookMark.count({ where: { starred: true } }),
     prisma.routeBookMark.count({ where: { dueOn: { lte: today } } }),
     prisma.routeBookEvent.findFirst({ orderBy: { at: "desc" }, select: { at: true, kind: true, user: { select: { name: true } } } }),
+    prisma.routeBookMark.count({ where: { stage: "LEAD" } }),
+    prisma.routeBookMark.count({ where: { stage: "CUSTOMER" } }),
+    prisma.routeBookOrder.aggregate({
+      where: { status: { not: "CANCELLED" } },
+      _sum: { quantityMt: true, amount: true },
+      _count: { _all: true },
+    }),
   ]);
-  return sendSuccess(res, { total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent });
+  return sendSuccess(res, {
+    total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent,
+    leads, customers,
+    orders: orderAgg._count._all,
+    orderedMt: Number(orderAgg._sum.quantityMt ?? 0),
+    orderedValue: orderAgg._sum.amount == null ? null : Number(orderAgg._sum.amount),
+  });
+}
+
+/* ─── Live sync ────────────────────────────────────────────────────────────
+   Two phones open on the same book have to agree. Re-fetching the whole
+   bootstrap every few seconds would burn a salesperson's mobile data on a
+   1,400-stop book, so this returns only what moved since the caller last
+   looked — usually an empty array. */
+
+export async function changes(req: Request, res: Response) {
+  const raw = typeof req.query.since === "string" ? req.query.since : "";
+  const since = new Date(raw);
+  if (!raw || Number.isNaN(since.getTime())) throw new AppError(400, "BAD_SINCE", "`since` must be an ISO timestamp");
+  const at = new Date().toISOString();
+
+  // A changed order or trial result does not touch its mark row, so collect
+  // the affected stops from all three tables before reading the marks back.
+  const [touchedMarks, touchedOrders, touchedSamples, stops, gone] = await Promise.all([
+    prisma.routeBookMark.findMany({ where: { updatedAt: { gt: since } }, select: { stopId: true } }),
+    prisma.routeBookOrder.findMany({ where: { updatedAt: { gt: since } }, select: { stopId: true } }),
+    prisma.routeBookSample.findMany({ where: { updatedAt: { gt: since } }, select: { stopId: true } }),
+    prisma.routeBookStop.findMany({ where: { updatedAt: { gt: since }, deletedAt: null }, select: STOP_SELECT }),
+    prisma.routeBookStop.findMany({ where: { updatedAt: { gt: since }, deletedAt: { not: null } }, select: { id: true } }),
+  ]);
+  const stopIds = [...new Set([...touchedMarks, ...touchedOrders, ...touchedSamples].map((r) => r.stopId))];
+  const marks = stopIds.length
+    ? await prisma.routeBookMark.findMany({ where: { stopId: { in: stopIds } }, include: MARK_INCLUDE })
+    : [];
+  return sendSuccess(res, { marks, stops, removedStopIds: gone.map((g) => g.id), at });
 }
 
 export async function listEvents(req: Request, res: Response) {
@@ -515,6 +594,112 @@ export async function openSamples(_req: Request, res: Response) {
     },
   });
   return sendSuccess(res, rows);
+}
+
+/* ─── Orders ───────────────────────────────────────────────────────────────
+   LIMEX is sold by the metric tonne. Quantity is MT, the rate is per kg the
+   way converters quote resin, and the rupee amount is worked out here rather
+   than in the browser so an exported invoice can never disagree with the
+   screen it was printed from. */
+
+const MT_TO_KG = 1000;
+
+/** WD-2026-0001 — readable on a phone call, sortable in a spreadsheet. */
+async function nextOrderNo(tx: Tx, day: string) {
+  const year = day.slice(0, 4);
+  const prefix = `WD-${year}-`;
+  const last = await tx.routeBookOrder.findFirst({
+    where: { orderNo: { startsWith: prefix } },
+    orderBy: { orderNo: "desc" },
+    select: { orderNo: true },
+  });
+  const n = last ? Number(last.orderNo.slice(prefix.length)) + 1 : 1;
+  return `${prefix}${String(n).padStart(4, "0")}`;
+}
+
+function orderAmount(quantityMt: number, rate: number | null | undefined) {
+  return rate == null ? null : Number((quantityMt * MT_TO_KG * rate).toFixed(2));
+}
+
+const ORDER_INCLUDE = { createdBy: { select: { id: true, name: true } } } satisfies Prisma.RouteBookOrderInclude;
+
+export async function createOrder(req: Request, res: Response) {
+  const user = req.currentUser!;
+  const stopId = paramId(req, "stopId");
+  const body = createOrderSchema.parse(req.body);
+  const orderedOn = body.orderedOn ?? todayUtc();
+  const result = await prisma.$transaction(async (tx) => {
+    await ensureMark(tx, stopId, user.id);
+    const rate = body.rate ?? null;
+    const order = await tx.routeBookOrder.create({
+      data: {
+        ...body,
+        orderedOn,
+        rate,
+        amount: orderAmount(body.quantityMt, rate),
+        orderNo: await nextOrderNo(tx, orderedOn),
+        stopId,
+        createdById: user.id,
+      },
+      include: ORDER_INCLUDE,
+    });
+    // An order is the definition of a customer — the book should not need a
+    // second click to agree with itself.
+    const mark = await applyMark(tx, stopId, { stage: "CUSTOMER" }, orderedOn, user.id);
+    await tx.routeBookEvent.create({
+      data: {
+        stopId, kind: "order", day: orderedOn, userId: user.id,
+        value: `${order.orderNo} · ${body.quantityMt} MT ${body.grade}`,
+      },
+    });
+    return { order, mark };
+  }, { timeout: 30_000 });
+  return sendSuccess(res, result, "Order recorded", 201);
+}
+
+export async function updateOrder(req: Request, res: Response) {
+  const user = req.currentUser!;
+  const id = paramId(req, "id");
+  const body = updateOrderSchema.parse(req.body);
+  const prev = await prisma.routeBookOrder.findUnique({ where: { id } });
+  if (!prev) throw new AppError(404, "NOT_FOUND", "Order not found");
+  const quantityMt = body.quantityMt ?? Number(prev.quantityMt);
+  const rate = body.rate !== undefined ? body.rate : prev.rate == null ? null : Number(prev.rate);
+  const order = await prisma.routeBookOrder.update({
+    where: { id },
+    data: { ...body, amount: orderAmount(quantityMt, rate) },
+    include: ORDER_INCLUDE,
+  });
+  if (body.status && body.status !== prev.status) {
+    await prisma.routeBookEvent.create({
+      data: {
+        stopId: prev.stopId, kind: "order", day: todayUtc(), userId: user.id,
+        value: `${prev.orderNo}: ${body.status.toLowerCase()}`,
+      },
+    });
+  }
+  return sendSuccess(res, order, "Order updated");
+}
+
+export async function deleteOrder(req: Request, res: Response) {
+  const id = paramId(req, "id");
+  const prev = await prisma.routeBookOrder.findUnique({ where: { id } });
+  if (!prev) throw new AppError(404, "NOT_FOUND", "Order not found");
+  await prisma.routeBookOrder.delete({ where: { id } });
+  return sendSuccess(res, { id }, "Order removed");
+}
+
+/** Every order across the book, for the Customer Book ledger and exports. */
+export async function listOrders(_req: Request, res: Response) {
+  const orders = await prisma.routeBookOrder.findMany({
+    orderBy: { orderedOn: "desc" },
+    take: 2000,
+    include: {
+      ...ORDER_INCLUDE,
+      mark: { select: { stopId: true, gstNumber: true, contactName: true, contactPhone: true, stop: { select: { name: true, legId: true } } } },
+    },
+  });
+  return sendSuccess(res, orders);
 }
 
 /* ─── Commercial settings ─────────────────────────────────────────────────
