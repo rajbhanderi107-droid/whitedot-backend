@@ -26,7 +26,11 @@ export interface ImportResult {
   skippedStops: string[];
 }
 
-export async function applyImport(book: BookImport, userId: string): Promise<ImportResult> {
+/** What an import would touch, worked out without writing anything.
+ *
+ *  Both the real import and the preview go through this, so what the preview
+ *  reports is what the import does — the two cannot drift into disagreeing. */
+async function plan(book: BookImport) {
   const known = new Set(
     (await prisma.routeBookStop.findMany({ where: { deletedAt: null }, select: { id: true } })).map((s) => s.id),
   );
@@ -35,6 +39,35 @@ export async function applyImport(book: BookImport, userId: string): Promise<Imp
   const skippedStops = [...new Set(
     [...book.marks.map((m) => m.stopId), ...book.events.map((e) => e.stopId)].filter((id) => !known.has(id)),
   )];
+
+  // One line is "the same line" when the stop, day, kind and instant match, so
+  // running the same import twice adds nothing.
+  const days = [...new Set(events.map((e) => e.day))];
+  const existing = new Set(
+    (await prisma.routeBookEvent.findMany({
+      where: { day: { in: days } },
+      select: { stopId: true, day: true, kind: true, at: true },
+    })).map((e) => `${e.stopId}|${e.day}|${e.kind}|${e.at.getTime()}`),
+  );
+  const fresh = events.filter((e) => !existing.has(`${e.stopId}|${e.day}|${e.kind}|${new Date(e.at).getTime()}`));
+
+  return { marks, events, fresh, days: days.sort(), skippedStops };
+}
+
+/** Read-only: what `applyImport` would do, for looking before writing. */
+export async function previewImport(book: BookImport): Promise<ImportResult> {
+  const p = await plan(book);
+  return {
+    marks: p.marks.length,
+    events: p.fresh.length,
+    duplicateEvents: p.events.length - p.fresh.length,
+    days: p.days,
+    skippedStops: p.skippedStops,
+  };
+}
+
+export async function applyImport(book: BookImport, userId: string): Promise<ImportResult> {
+  const { marks, fresh, events, days, skippedStops } = await plan(book);
 
   let marksWritten = 0;
   for (const { stopId, ...fields } of marks) {
@@ -57,16 +90,6 @@ export async function applyImport(book: BookImport, userId: string): Promise<Imp
     });
   }
 
-  // One line is "the same line" when the stop, day, kind and instant match, so
-  // running the same import twice adds nothing.
-  const days = [...new Set(events.map((e) => e.day))];
-  const existing = new Set(
-    (await prisma.routeBookEvent.findMany({
-      where: { day: { in: days } },
-      select: { stopId: true, day: true, kind: true, at: true },
-    })).map((e) => `${e.stopId}|${e.day}|${e.kind}|${e.at.getTime()}`),
-  );
-  const fresh = events.filter((e) => !existing.has(`${e.stopId}|${e.day}|${e.kind}|${new Date(e.at).getTime()}`));
   for (let i = 0; i < fresh.length; i += 500) {
     await prisma.routeBookEvent.createMany({
       data: fresh.slice(i, i + 500).map((e) => ({
@@ -79,7 +102,7 @@ export async function applyImport(book: BookImport, userId: string): Promise<Imp
     marks: marksWritten,
     events: fresh.length,
     duplicateEvents: events.length - fresh.length,
-    days: days.sort(),
+    days,
     skippedStops,
   };
   await logActivity({ userId, action: "ROUTE_BOOK_IMPORT", entityType: "ROUTE_BOOK", metadata: { ...result } });
