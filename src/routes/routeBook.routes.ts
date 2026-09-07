@@ -12,6 +12,7 @@ import {
   putSettingsSchema,
   createOrderSchema,
   updateOrderSchema,
+  importSchema,
 } from "../validators/routeBook.validator.js";
 
 const router = Router();
@@ -61,7 +62,11 @@ router.patch("/settings", requireRole("SUPER_ADMIN", "ADMIN"), validate(putSetti
 router.get("/prefs", asyncHandler(rb.getPrefs));
 router.patch("/prefs", validate(putPrefsSchema), asyncHandler(rb.putPrefs));
 
+// ─── The day record ──────────────────────────────
+router.delete("/days/:day/stops/:stopId", asyncHandler(rb.clearDayRow));
+
 // ─── Maintenance ─────────────────────────────────
 router.post("/reseed", requireRole("SUPER_ADMIN", "ADMIN"), asyncHandler(rb.reseed));
+router.post("/import", requireRole("SUPER_ADMIN", "ADMIN"), validate(importSchema), asyncHandler(rb.importBook));
 
 export default router;
