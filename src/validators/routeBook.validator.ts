@@ -156,5 +156,6 @@ export const eventsQuerySchema = z.object({
   stopId: z.string().max(80).optional(),
 }).strip();
 
+export type BookImport = z.infer<typeof importSchema>;
 export type MarkFields = z.infer<typeof markFieldsSchema>;
 export type StopFields = z.infer<typeof stopFieldsSchema>;

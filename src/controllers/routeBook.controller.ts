@@ -20,6 +20,7 @@ import {
   type StopFields,
 } from "../validators/routeBook.validator.js";
 import { mirrorToCrm } from "../services/routeBookCrm.service.js";
+import { applyImport } from "../services/routeBookImport.service.js";
 
 /* ─── Seed data ──────────────────────────────────────────────────────────
  * The register-sourced book ships with the backend (prisma/data/…, copied
@@ -95,7 +96,10 @@ async function applySeed(mode: "create" | "upsert") {
 }
 
 let seededThisProcess = false;
-async function ensureSeeded() {
+/** Exported so a CLI run can seed the register too: the book seeds lazily on
+ *  the first bootstrap call, so a script that skips the API would otherwise
+ *  find an empty register and silently import nothing. */
+export async function ensureSeeded() {
   if (seededThisProcess) return;
   const n = await prisma.routeBookStop.count();
   if (n === 0) await applySeed("create");
@@ -627,64 +631,9 @@ export async function clearDayRow(req: Request, res: Response) {
 
 export async function importBook(req: Request, res: Response) {
   const user = req.currentUser!;
-  const body = importSchema.parse(req.body);
-
-  const known = new Set(
-    (await prisma.routeBookStop.findMany({ where: { deletedAt: null }, select: { id: true } })).map((s) => s.id),
-  );
-  const marks = body.marks.filter((m) => known.has(m.stopId));
-  const events = body.events.filter((e) => known.has(e.stopId));
-  const skippedStops = [...new Set(
-    [...body.marks.map((m) => m.stopId), ...body.events.map((e) => e.stopId)].filter((id) => !known.has(id)),
-  )];
-
-  let marksWritten = 0;
-  for (const { stopId, ...fields } of marks) {
-    await prisma.$transaction(async (tx) => {
-      const stop = await tx.routeBookStop.findUnique({ where: { id: stopId }, select: CRM_STOP_SELECT });
-      if (!stop) return;
-      const mark = await tx.routeBookMark.upsert({
-        where: { stopId },
-        update: { ...fields, updatedById: user.id },
-        create: { stopId, ...fields, updatedById: user.id },
-      });
-      const ids = await mirrorToCrm(tx, stop, mark);
-      if (ids.companyId !== mark.companyId || ids.inquiryId !== mark.inquiryId) {
-        await tx.routeBookMark.update({
-          where: { stopId },
-          data: { companyId: ids.companyId, inquiryId: ids.inquiryId },
-        });
-      }
-      marksWritten++;
-    });
-  }
-
-  // One line is "the same line" when the stop, day, kind and instant match.
-  const days = [...new Set(events.map((e) => e.day))];
-  const existing = new Set(
-    (await prisma.routeBookEvent.findMany({
-      where: { day: { in: days } },
-      select: { stopId: true, day: true, kind: true, at: true },
-    })).map((e) => `${e.stopId}|${e.day}|${e.kind}|${e.at.getTime()}`),
-  );
-  const fresh = events.filter((e) => !existing.has(`${e.stopId}|${e.day}|${e.kind}|${new Date(e.at).getTime()}`));
-  for (let i = 0; i < fresh.length; i += 500) {
-    await prisma.routeBookEvent.createMany({
-      data: fresh.slice(i, i + 500).map((e) => ({
-        stopId: e.stopId, kind: e.kind, value: e.value ?? null, day: e.day, at: new Date(e.at), userId: user.id,
-      })),
-    });
-  }
-
-  const result = {
-    marks: marksWritten,
-    events: fresh.length,
-    duplicateEvents: events.length - fresh.length,
-    days: days.sort(),
-    skippedStops,
-  };
-  await logActivity({ userId: user.id, action: "ROUTE_BOOK_IMPORT", entityType: "ROUTE_BOOK", metadata: result });
-  return sendSuccess(res, result, `Imported ${marksWritten} companies and ${fresh.length} journal lines`);
+  const book = importSchema.parse(req.body);
+  const result = await applyImport(book, user.id);
+  return sendSuccess(res, result, `Imported ${result.marks} companies and ${result.events} journal lines`);
 }
 
 /* ─── Orders ───────────────────────────────────────────────────────────────
