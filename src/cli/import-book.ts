@@ -1,7 +1,8 @@
 /* Import a Route Book from a JSON file, from inside the container.
  *
- *   node dist/cli/import-book.js /tmp/book.json     (in the container)
- *   npx tsx src/cli/import-book.ts /tmp/book.json  (locally)
+ *   node dist/cli/import-book.js /tmp/book.json              (in the container)
+ *   node dist/cli/import-book.js /tmp/book.json --dry-run    (writes nothing)
+ *   npx tsx src/cli/import-book.ts /tmp/book.json           (locally)
  *
  * It lives at src/cli/ rather than scripts/ for two reasons: .gitignore has a
  * bare `scripts/` rule, which matches that directory at any depth and would
@@ -19,12 +20,14 @@
 import { readFileSync } from "node:fs";
 import { prisma } from "../config/prisma.js";
 import { importSchema } from "../validators/routeBook.validator.js";
-import { applyImport } from "../services/routeBookImport.service.js";
+import { applyImport, previewImport } from "../services/routeBookImport.service.js";
 import { ensureSeeded } from "../controllers/routeBook.controller.js";
 
 async function main() {
-  const path = process.argv[2];
-  if (!path) throw new Error("Usage: tsx scripts/import-book.ts <book.json>");
+  const args = process.argv.slice(2);
+  const dryRun = args.includes("--dry-run");
+  const path = args.find((a) => !a.startsWith("--"));
+  if (!path) throw new Error("Usage: import-book <book.json> [--dry-run]");
 
   const book = importSchema.parse(JSON.parse(readFileSync(path, "utf8")));
   console.log(`Read ${book.marks.length} marks and ${book.events.length} journal lines from ${path}`);
@@ -35,6 +38,21 @@ async function main() {
   await ensureSeeded();
   const stops = await prisma.routeBookStop.count({ where: { deletedAt: null } });
   console.log(`Register holds ${stops} companies`);
+
+  // A dry run answers "what would this do" without writing, so a production
+  // import can be looked at before it happens. It shares applyImport's own
+  // matching, so what it reports is what the import would do.
+  if (dryRun) {
+    const preview = await previewImport(book);
+    console.log(JSON.stringify(preview, null, 2));
+    console.log(
+      `\nDRY RUN — nothing was written. Would import ${preview.marks} companies` +
+      ` and ${preview.events} journal lines across ${preview.days.length} day(s).` +
+      (preview.duplicateEvents ? ` ${preview.duplicateEvents} already present, would be skipped.` : "") +
+      (preview.skippedStops.length ? ` ${preview.skippedStops.length} stop(s) are not in the register.` : ""),
+    );
+    return;
+  }
 
   const actor = await prisma.user.findFirst({
     where: { role: "SUPER_ADMIN" },

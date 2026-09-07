@@ -1,0 +1,98 @@
+# Import a Route Book into production, without anyone's password.
+#
+# The portal's Import button needs an admin session in a browser. This runs the
+# same code server-side instead: it copies the book into the API container and
+# runs src/cli/import-book.ts, which talks to the database directly and
+# attributes the work to the oldest SUPER_ADMIN.
+#
+# The book holds customer contact details, so it travels as a repository
+# secret — GitHub masks secrets in logs — and never as a workflow input, which
+# would be printed in the run header for anyone with read access to see.
+#
+# Setup, once:
+#   Settings -> Secrets and variables -> Actions -> New repository secret
+#     Name:  ROUTE_BOOK_IMPORT_JSON
+#     Value: the whole contents of the book .json file
+#   (VPS_HOST, VPS_USER and VPS_SSH_KEY already exist for the deploy.)
+#
+# Then run it from the Actions tab. It defaults to a dry run: nothing is
+# written until you set "apply" to true. The import is idempotent either way —
+# a line already present is skipped, so running it twice changes nothing.
+
+name: Import Route Book
+
+on:
+  workflow_dispatch:
+    inputs:
+      apply:
+        description: "Write to the database. Leave false for a dry run that reports what would happen."
+        type: boolean
+        default: false
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  # Never let two imports touch the database at once.
+  group: route-book-import
+  cancel-in-progress: false
+
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check the book secret is set
+        env:
+          BOOK: ${{ secrets.ROUTE_BOOK_IMPORT_JSON }}
+        run: |
+          if [ -z "${BOOK}" ]; then
+            echo "::error::ROUTE_BOOK_IMPORT_JSON is not set. Add the book JSON as a repository secret first - see the comment at the top of this workflow."
+            exit 1
+          fi
+          # Size only. Printing any of it would defeat the point of a secret.
+          echo "Book secret present (${#BOOK} bytes)."
+
+      - name: Run the import on the VPS
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          BOOK: ${{ secrets.ROUTE_BOOK_IMPORT_JSON }}
+          APPLY: ${{ inputs.apply }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: BOOK,APPLY
+          script: |
+            set -euo pipefail
+
+            # The book exists on disk for as long as the import takes and no
+            # longer, readable only by this user, and is removed even if the
+            # import fails or the run is cancelled.
+            umask 077
+            TMP="$(mktemp -d)"
+            chmod 700 "$TMP"
+            CID=""
+            cleanup() {
+              [ -n "$CID" ] && docker exec "$CID" rm -f /tmp/book.json >/dev/null 2>&1 || true
+              rm -rf "$TMP"
+            }
+            trap cleanup EXIT INT TERM
+
+            printf '%s' "$BOOK" > "$TMP/book.json"
+            node -e 'JSON.parse(require("fs").readFileSync(process.argv[1],"utf8"))' "$TMP/book.json" \
+              || { echo "The secret is not valid JSON."; exit 1; }
+
+            cd /opt/whitedot-backend
+            CID="$(docker compose ps -q api)"
+            if [ -z "$CID" ]; then echo "The api container is not running."; exit 1; fi
+
+            docker cp "$TMP/book.json" "$CID:/tmp/book.json"
+
+            if [ "$APPLY" = "true" ]; then
+              echo "Applying the import."
+              docker exec "$CID" node dist/cli/import-book.js /tmp/book.json
+            else
+              echo "Dry run - nothing will be written. Set the apply input to true to import for real."
+              docker exec "$CID" node dist/cli/import-book.js /tmp/book.json --dry-run
+            fi
