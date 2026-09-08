@@ -1,0 +1,94 @@
+# Look at, and correct, the Customer Book — without anyone's password.
+#
+# The portal's "Not a customer" button needs an admin session in a browser.
+# This runs the same operation server-side, inside the API container.
+#
+# Two things it can do, from the Actions tab:
+#
+#   action: list                 print the Customer Book. Writes nothing.
+#   action: remove-trial         remove the one customer that was added by
+#                                hand rather than coming from the register
+#   action: remove               remove the customer named in stop_id
+#
+# Both remove actions are a DRY RUN unless you also tick apply. A removal
+# deletes that company's orders and puts it back in the Lead Book; its visit,
+# notes and day record are untouched.
+#
+# No secret to set up: it uses the VPS_HOST / VPS_USER / VPS_SSH_KEY that
+# already exist for the deploy, and passes no customer data of its own.
+
+name: Customer Book
+
+on:
+  workflow_dispatch:
+    inputs:
+      action:
+        description: "What to do"
+        type: choice
+        options: [list, remove-trial, remove]
+        default: list
+        required: true
+      stop_id:
+        description: "Which company, for action: remove (e.g. M1-something). Ignored otherwise."
+        type: string
+        default: ""
+        required: false
+      apply:
+        description: "Actually write the change. Leave false for a dry run."
+        type: boolean
+        default: false
+        required: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: route-book-write
+  cancel-in-progress: false
+
+jobs:
+  customer-book:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run on the VPS
+        uses: appleboy/ssh-action@v1.0.3
+        env:
+          ACTION: ${{ inputs.action }}
+          STOP_ID: ${{ inputs.stop_id }}
+          APPLY: ${{ inputs.apply }}
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          envs: ACTION,STOP_ID,APPLY
+          script: |
+            set -euo pipefail
+            cd /opt/whitedot-backend
+            CID="$(docker compose ps -q api)"
+            if [ -z "$CID" ]; then echo "The api container is not running."; exit 1; fi
+
+            FLAGS=""
+            if [ "$APPLY" = "true" ]; then FLAGS="--apply"; fi
+
+            case "$ACTION" in
+              list)
+                docker exec "$CID" node dist/cli/customer-book.js list
+                ;;
+              remove-trial)
+                docker exec "$CID" node dist/cli/customer-book.js remove --trial $FLAGS
+                ;;
+              remove)
+                if [ -z "$STOP_ID" ]; then
+                  echo "::error::action 'remove' needs stop_id. Run action 'list' first to see the ids."
+                  exit 1
+                fi
+                # Reject anything that is not a plain stop id, so nothing can be
+                # smuggled into the command through the input.
+                case "$STOP_ID" in
+                  *[!A-Za-z0-9._-]*) echo "::error::stop_id may only contain letters, digits, dot, underscore and hyphen."; exit 1 ;;
+                esac
+                docker exec "$CID" node dist/cli/customer-book.js remove "$STOP_ID" $FLAGS
+                ;;
+              *)
+                echo "::error::Unknown action '$ACTION'."; exit 1 ;;
+            esac
