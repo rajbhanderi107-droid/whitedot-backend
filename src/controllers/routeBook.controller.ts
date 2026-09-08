@@ -38,7 +38,6 @@ interface SeedFile { version: number; fams: SeedFamily[]; legs: SeedLeg[]; stops
 
 const SEED_FILE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../prisma/data/route-book.json");
 const USER_LEG = "M1";
-const PARKED_FITS = ["no", "clear"];
 
 let seedCache: SeedFile | null = null;
 function loadSeed(): SeedFile {
@@ -261,44 +260,6 @@ export async function bootstrap(req: Request, res: Response) {
     me: { id: user.id, name: user.name, role: user.role },
     serverDay: todayUtc(),
     userLeg: USER_LEG,
-  });
-}
-
-export async function summary(_req: Request, res: Response) {
-  await ensureSeeded();
-  const today = todayUtc();
-  const weekAgo = new Date(Date.now() - 6 * 86_400_000).toISOString().slice(0, 10);
-  const [total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent, followUps, leads, customers, orderAgg] = await Promise.all([
-    prisma.routeBookStop.count({ where: { deletedAt: null } }),
-    prisma.routeBookStop.count({
-      where: { deletedAt: null, fit: { notIn: PARKED_FITS }, OR: [{ mark: null }, { mark: { removed: false } }] },
-    }),
-    prisma.routeBookMark.count({ where: { ticked: true } }),
-    prisma.routeBookMark.count({ where: { ticked: true, tickedOn: { gte: weekAgo } } }),
-    prisma.routeBookMark.count({ where: { outcome: "int" } }),
-    prisma.routeBookMark.count({ where: { outcome: "smp" } }),
-    prisma.routeBookMark.count({ where: { starred: true } }),
-    prisma.routeBookMark.count({ where: { dueOn: { lte: today } } }),
-    prisma.routeBookEvent.findFirst({ orderBy: { at: "desc" }, select: { at: true, kind: true, user: { select: { name: true } } } }),
-    // The Visit Follow-up Book, counted by the same rule the page uses:
-    // worked on a visit, and not yet promoted, won or lost.
-    prisma.routeBookMark.count({
-      where: { stage: "PROSPECT", removed: false, dnc: false, OR: [{ ticked: true }, { starred: true }] },
-    }),
-    prisma.routeBookMark.count({ where: { stage: "LEAD" } }),
-    prisma.routeBookMark.count({ where: { stage: "CUSTOMER" } }),
-    prisma.routeBookOrder.aggregate({
-      where: { status: { not: "CANCELLED" } },
-      _sum: { quantityMt: true, amount: true },
-      _count: { _all: true },
-    }),
-  ]);
-  return sendSuccess(res, {
-    total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent,
-    followUps, leads, customers,
-    orders: orderAgg._count._all,
-    orderedMt: Number(orderAgg._sum.quantityMt ?? 0),
-    orderedValue: orderAgg._sum.amount == null ? null : Number(orderAgg._sum.amount),
   });
 }
 
