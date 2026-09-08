@@ -268,7 +268,7 @@ export async function summary(_req: Request, res: Response) {
   await ensureSeeded();
   const today = todayUtc();
   const weekAgo = new Date(Date.now() - 6 * 86_400_000).toISOString().slice(0, 10);
-  const [total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent, leads, customers, orderAgg] = await Promise.all([
+  const [total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent, followUps, leads, customers, orderAgg] = await Promise.all([
     prisma.routeBookStop.count({ where: { deletedAt: null } }),
     prisma.routeBookStop.count({
       where: { deletedAt: null, fit: { notIn: PARKED_FITS }, OR: [{ mark: null }, { mark: { removed: false } }] },
@@ -280,6 +280,11 @@ export async function summary(_req: Request, res: Response) {
     prisma.routeBookMark.count({ where: { starred: true } }),
     prisma.routeBookMark.count({ where: { dueOn: { lte: today } } }),
     prisma.routeBookEvent.findFirst({ orderBy: { at: "desc" }, select: { at: true, kind: true, user: { select: { name: true } } } }),
+    // The Visit Follow-up Book, counted by the same rule the page uses:
+    // worked on a visit, and not yet promoted, won or lost.
+    prisma.routeBookMark.count({
+      where: { stage: "PROSPECT", removed: false, dnc: false, OR: [{ ticked: true }, { starred: true }] },
+    }),
     prisma.routeBookMark.count({ where: { stage: "LEAD" } }),
     prisma.routeBookMark.count({ where: { stage: "CUSTOMER" } }),
     prisma.routeBookOrder.aggregate({
@@ -290,7 +295,7 @@ export async function summary(_req: Request, res: Response) {
   ]);
   return sendSuccess(res, {
     total, sellable, ticked, tickedWeek, interested, samples, starred, dueToday, lastEvent,
-    leads, customers,
+    followUps, leads, customers,
     orders: orderAgg._count._all,
     orderedMt: Number(orderAgg._sum.quantityMt ?? 0),
     orderedValue: orderAgg._sum.amount == null ? null : Number(orderAgg._sum.amount),
