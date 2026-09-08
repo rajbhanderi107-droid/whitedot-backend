@@ -23,5 +23,20 @@ jobs:
             docker compose up --build -d
             docker image prune -f
             echo "Deploy done: $(date)"
-            sleep 8
-            curl -sf http://localhost:4000/api/health && echo "Health OK" || (docker compose -f /opt/whitedot-backend/docker-compose.yml logs --tail=30 api && echo "Health check FAILED" && exit 1)
+
+            # Wait for the server to answer rather than guessing how long it
+            # takes. A fixed sleep failed a deploy that had in fact worked:
+            # migrations plus start-up ran a little past eight seconds, so the
+            # one-shot check fired while the process was still booting and
+            # reported a healthy release as broken.
+            echo "Waiting for the API to answer..."
+            for i in $(seq 1 30); do
+              if curl -sf --max-time 3 http://localhost:4000/api/health >/dev/null; then
+                echo "Health OK after ${i} attempt(s)"
+                exit 0
+              fi
+              sleep 2
+            done
+            echo "Health check FAILED — no answer in 60s"
+            docker compose -f /opt/whitedot-backend/docker-compose.yml logs --tail=40 api
+            exit 1
