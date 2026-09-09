@@ -16,6 +16,7 @@ const text = (max: number) => z.string().max(max);
 /** Everything a salesperson can set on one stop. All fields optional so a
  *  PATCH carries only what changed; `null` clears a field. */
 export const markFieldsSchema = z.object({
+  sourceFolder: z.enum(["GPT", "CLAUDE", "TEAM", "UNKNOWN"]).nullable().optional(),
   ticked: z.boolean().optional(),
   tickedOn: dayString.nullable().optional(),
   starred: z.boolean().optional(),
