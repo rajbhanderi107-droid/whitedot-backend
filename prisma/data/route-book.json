@@ -1405,6 +1405,22 @@
       "belt": "20-25 km SE · the 382433 pocket: food-grade houseware and the city’s toy moulders",
       "nav": "",
       "sortOrder": 46
+    },
+    {
+      "id": "A14",
+      "familyId": "A",
+      "name": "Ahmedabad toy makers",
+      "belt": "City-wide · plastic toy manufacturers filed with the Toy Association of India",
+      "nav": "",
+      "sortOrder": 47
+    },
+    {
+      "id": "T9",
+      "familyId": "T",
+      "name": "Gujarat toy makers beyond Ahmedabad",
+      "belt": "Morbi, Rajkot, Vadodara, Surat and Vapi · where the state’s toy moulding actually sits",
+      "nav": "",
+      "sortOrder": 26
     }
   ],
   "stops": [
@@ -40377,6 +40393,544 @@
       "fit": "good",
       "why": "White food container boxes are exactly the article — but the address is a shop and the PIN does not match the estate. Ring before driving: confirm they mould rather than trade.",
       "map": "https://www.google.com/maps/search/?api=1&query=Shyam%20Polymers%2C%20Ahmedabad%2C%20Gujarat"
+    },
+    {
+      "id": "A14-bhavna-plast-india-pvt-ltd",
+      "legId": "A14",
+      "name": "Bhavna Plast (India) Pvt. Ltd.",
+      "addr": "Ahmedabad, Gujarat · address to confirm",
+      "makes": "Educational toys, friction toys and toddler toys.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Bhavna%20Plast%20(India)%20Pvt.%20Ltd.%2C%20Ahmedabad%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Friction toys and toddler toys are opaque mouldings — the LIMEX article. Note: the book already holds Bhavna Plastic Industries and Bhavna Plast Mould, both at Odhav from the GIDC register; confirm on the call whether these are the same house.",
+      "sortOrder": 1446
+    },
+    {
+      "id": "A14-shree-hari-toys",
+      "legId": "A14",
+      "name": "Shree Hari Toys",
+      "addr": "Ahmedabad, Gujarat · address to confirm",
+      "makes": "Friction vehicles, building blocks, baby pianos and walkers.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Hari%20Toys%2C%20Ahmedabad%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Friction vehicles and blocks — moulded opaque toys. Not Shree Hari Plastic Industries, which is at Shapar-Veraval in Rajkot.",
+      "sortOrder": 1447
+    },
+    {
+      "id": "A14-techno-toys-pvt-ltd",
+      "legId": "A14",
+      "name": "Techno Toys Pvt. Ltd.",
+      "addr": "Ahmedabad, Gujarat · address to confirm",
+      "makes": "Promotional toys, action toys and entertainment toys. Exporter as well as manufacturer.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Techno%20Toys%20Pvt.%20Ltd.%2C%20Ahmedabad%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "good",
+      "why": "An Ahmedabad toy manufacturer and exporter. The filing does not name the material — confirm it moulds plastic rather than assembling bought parts.",
+      "sortOrder": 1448
+    },
+    {
+      "id": "A14-maa-kapila-toys-pvt-ltd",
+      "legId": "A14",
+      "name": "Maa Kapila Toys Pvt. Ltd.",
+      "addr": "Ahmedabad, Gujarat · address to confirm",
+      "makes": "Toys. The filing does not break the range down further.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Maa%20Kapila%20Toys%20Pvt.%20Ltd.%2C%20Ahmedabad%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "good",
+      "why": "Listed as a toy manufacturer in the city. Material and range both need the call. Unrelated to Maa Plast at Kathwada despite the shared prefix.",
+      "sortOrder": 1449
+    },
+    {
+      "id": "A14-paramount-toys",
+      "legId": "A14",
+      "name": "Paramount Toys",
+      "addr": "Ahmedabad, Gujarat · address to confirm",
+      "makes": "Games and toys.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Paramount%20Toys%2C%20Ahmedabad%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "good",
+      "why": "A toy manufacturer in the city; the filing does not name the material. The book also holds Paramount Plastic Industries at Odhav from the GIDC register — confirm whether they are one house.",
+      "sortOrder": 1450
+    },
+    {
+      "id": "T9-jbt-plastic",
+      "legId": "T9",
+      "name": "JBT Plastic",
+      "addr": "Morbi, Gujarat · address to confirm",
+      "makes": "Friction toys, cutting fruit and vegetable sets, kids sport equipment, building blocks and rattles.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=JBT%20Plastic%2C%20Morbi%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "A dedicated plastic toy moulder. Morbi had no company at all in this book before this entry.",
+      "sortOrder": 1451
+    },
+    {
+      "id": "T9-toyenza-industries",
+      "legId": "T9",
+      "name": "Toyenza Industries",
+      "addr": "Morbi, Gujarat · address to confirm",
+      "makes": "Plastic toys, stated as its whole business.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Toyenza%20Industries%2C%20Morbi%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Plastic toy manufacture is the entire declared business — opaque mouldings throughout.",
+      "sortOrder": 1452
+    },
+    {
+      "id": "T9-luv-cush-toys-llp",
+      "legId": "T9",
+      "name": "Luv Cush Toys LLP",
+      "addr": "Morbi, Gujarat · address to confirm",
+      "makes": "Plastic toys.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Luv%20Cush%20Toys%20LLP%2C%20Morbi%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Declared plastic toy manufacturer.",
+      "sortOrder": 1453
+    },
+    {
+      "id": "T9-megica-toys-industries",
+      "legId": "T9",
+      "name": "Megica Toys Industries",
+      "addr": "Morbi, Gujarat · address to confirm",
+      "makes": "Swing cars and ride-on toys. Exporter and wholesaler as well as manufacturer.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Megica%20Toys%20Industries%2C%20Morbi%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Swing cars and ride-ons are large opaque mouldings — high resin per unit, which is where a filler substitution is worth most.",
+      "sortOrder": 1454
+    },
+    {
+      "id": "T9-playfusion-industries",
+      "legId": "T9",
+      "name": "Playfusion Industries",
+      "addr": "Morbi, Gujarat · address to confirm",
+      "makes": "Ride-on battery operated toy cars.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Playfusion%20Industries%2C%20Morbi%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Battery ride-on car bodies are large opaque mouldings.",
+      "sortOrder": 1455
+    },
+    {
+      "id": "T9-baabus-baby-care-products",
+      "legId": "T9",
+      "name": "Baabus Baby Care Products",
+      "addr": "Rajkot, Gujarat · address to confirm",
+      "makes": "Swing cars, baby strollers, kick scooters, tricycles and walkers.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Baabus%20Baby%20Care%20Products%2C%20Rajkot%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Ride-ons and walkers — large opaque mouldings in PP and HDPE.",
+      "sortOrder": 1456
+    },
+    {
+      "id": "T9-truzo-toys",
+      "legId": "T9",
+      "name": "Truzo Toys",
+      "addr": "Padavala, Kotda Sangani, Rajkot, Gujarat · address to confirm",
+      "makes": "Electric and non-electric toys — tricycles, kick scooters, educational and mind games, cars and puzzles.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Truzo%20Toys%2C%20Padavala%2C%20Kotda%20Sangani%2C%20Rajkot%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Ride-ons and moulded toy bodies. Exporter as well as manufacturer.",
+      "sortOrder": 1457
+    },
+    {
+      "id": "T9-aditi-toys-pvt-ltd",
+      "legId": "T9",
+      "name": "Aditi Toys Pvt. Ltd.",
+      "addr": "Metoda GIDC, Rajkot, Gujarat 360021 · address to confirm",
+      "makes": "All types of toys and games. Promotional and vehicle toys among the range.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Aditi%20Toys%20Pvt.%20Ltd.%2C%20Metoda%20GIDC%2C%20Rajkot%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "good",
+      "why": "A substantial Rajkot toy house. Confirm the moulded share of the range on the call.",
+      "sortOrder": 1458
+    },
+    {
+      "id": "T9-balson-toys-llp",
+      "legId": "T9",
+      "name": "Balson Toys LLP",
+      "addr": "Rajkot, Gujarat · address to confirm",
+      "makes": "Toys and baby products. Exporter as well as manufacturer.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Balson%20Toys%20LLP%2C%20Rajkot%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "good",
+      "why": "Toy and baby-product manufacture; the filing does not name the material.",
+      "sortOrder": 1459
+    },
+    {
+      "id": "T9-playway-systems",
+      "legId": "T9",
+      "name": "Playway Systems",
+      "addr": "Rajkot, Gujarat · address to confirm",
+      "makes": "Games and toys.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Playway%20Systems%2C%20Rajkot%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "good",
+      "why": "A Rajkot toy manufacturer; material not stated in the filing.",
+      "sortOrder": 1460
+    },
+    {
+      "id": "T9-taashi-toys",
+      "legId": "T9",
+      "name": "Taashi Toys",
+      "addr": "Vadodara, Gujarat · address to confirm",
+      "makes": "Blow and injection moulded toys, cardboard puzzle games and educational toys.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        },
+        {
+          "t": "Blow Mould",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Taashi%20Toys%2C%20Vadodara%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "States blow and injection moulding outright — the clearest process match in this batch.",
+      "sortOrder": 1461
+    },
+    {
+      "id": "T9-minicubs-baby-products-llp",
+      "legId": "T9",
+      "name": "Minicubs Baby Products LLP",
+      "addr": "Surat, Gujarat · address to confirm",
+      "makes": "Ride-on toys.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Minicubs%20Baby%20Products%20LLP%2C%20Surat%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Ride-on bodies are large opaque mouldings. Surat has only four companies in this book, so this is thin ground worth widening.",
+      "sortOrder": 1462
+    },
+    {
+      "id": "T9-kapsun-resources-corporation",
+      "legId": "T9",
+      "name": "Kapsun Resources Corporation",
+      "addr": "Vapi, Gujarat · address to confirm",
+      "makes": "Plastic injection moulding under the Kapvita brand.",
+      "src": "The Toy Association of India member directory (tai-india.org) — name, city and declared products as filed by the member itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=Kapsun%20Resources%20Corporation%2C%20Vapi%2C%20Gujarat",
+      "tel": "",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "fit": "prime",
+      "why": "Declares plastic injection moulding as the business. Confirm whether the output is toys, packaging or both.",
+      "sortOrder": 1463
     }
   ]
 }
