@@ -1381,6 +1381,14 @@
       "belt": "Whatever you found that the register missed",
       "nav": "",
       "sortOrder": 161
+    },
+    {
+      "id": "S27",
+      "familyId": "S",
+      "name": "Bhavnagar — found off the register",
+      "belt": "175 km SW · companies confirmed from their own site, not a GIDC list",
+      "nav": "",
+      "sortOrder": 124
     }
   ],
   "stops": [
@@ -40129,6 +40137,37 @@
       "fit": "good",
       "why": "Plastics processor — opaque grades very likely, confirm on the call",
       "sortOrder": 1437
+    },
+    {
+      "id": "S27-itech-plast-india",
+      "legId": "S27",
+      "name": "iTech Plast India Pvt. Ltd.",
+      "addr": "Bhavnagar, Gujarat · plot not published on the company site",
+      "makes": "Injection moulded toys — electronic and plastic — plus automotive parts, household appliance components, engineering parts and FMCG mouldings. Runs its own toolroom, about 60 moulds a year, but the moulding is the business. Joint venture with Meccanica R.P.C. s.r.l., Italy.",
+      "src": "Company website itechplast.com/about — name, phone and product range taken from the company itself",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Injection",
+          "c": ""
+        },
+        {
+          "t": "Plot needed",
+          "c": "warn"
+        }
+      ],
+      "precise": false,
+      "map": "https://www.google.com/maps/search/?api=1&query=iTech%20Plast%20India%20Pvt.%20Ltd.%2C%20Bhavnagar%2C%20Gujarat",
+      "tel": "+919825947668",
+      "telLabel": "Call",
+      "link": "https://itechplast.com/",
+      "linkLabel": "itechplast.com",
+      "fit": "prime",
+      "why": "Moulds opaque toys and appliance parts in volume — the article LIMEX replaces. First toy converter in the book.",
+      "sortOrder": 1438
     }
   ]
 }
