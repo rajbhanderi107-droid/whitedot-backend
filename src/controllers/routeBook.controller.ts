@@ -139,6 +139,7 @@ const CRM_STOP_SELECT = { id: true, name: true, legId: true, addr: true, tel: tr
 function diffEvents(prev: RouteBookMark | null, next: MarkFields): { kind: string; value: string | null }[] {
   const ev: { kind: string; value: string | null }[] = [];
   const p = prev;
+  if (next.sourceFolder !== undefined && next.sourceFolder !== (p?.sourceFolder ?? null)) ev.push({ kind: "source", value: next.sourceFolder });
   const changed = (a: unknown, b: unknown) => (a ?? null) !== (b ?? null);
   if (next.ticked !== undefined && next.ticked !== (p?.ticked ?? false)) {
     ev.push({ kind: next.ticked ? "tick" : "untick", value: next.tickedOn ?? p?.tickedOn ?? null });
