@@ -1397,6 +1397,14 @@
       "belt": "28-31 km E · confirmed from each company’s own site, not a GIDC list",
       "nav": "",
       "sortOrder": 45
+    },
+    {
+      "id": "A13",
+      "familyId": "A",
+      "name": "Bakrol & Daskroi — thin wall and toys",
+      "belt": "20-25 km SE · the 382433 pocket: food-grade houseware and the city’s toy moulders",
+      "nav": "",
+      "sortOrder": 46
     }
   ],
   "stops": [
@@ -40284,6 +40292,91 @@
       "fit": "good",
       "why": "Small opaque houseware mouldings in PP — the right article. Everything here is directory-sourced; confirm the shed and the range before driving.",
       "map": "https://www.google.com/maps/search/?api=1&query=Nandini%20Plastic%2C%20Ahmedabad%2C%20Gujarat"
+    },
+    {
+      "telLabel": "Call",
+      "link": "https://www.avaniplast.in/",
+      "linkLabel": "avaniplast.in",
+      "precise": true,
+      "sortOrder": 1443,
+      "id": "A13-avani-plast",
+      "legId": "A13",
+      "name": "Avani Plast",
+      "addr": "Plot 12, JKLM Sahitya Industrial Estate, nr. Om Industrial Estate, Bakrol-Bujarang, Bakrol, Ahmedabad 382433",
+      "makes": "Food-grade plastic buckets, containers, tumblers, kitchen items, bathroom sets, drums and dustbins. Moulds its own range.",
+      "src": "Company site avaniplast.in — plot address, phone and range from the company itself",
+      "tags": [
+        {
+          "t": "Thin Wall",
+          "c": "big"
+        },
+        {
+          "t": "Houseware",
+          "c": ""
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "tel": "+917990840180",
+      "fit": "prime",
+      "why": "Food-grade containers, buckets and tumblers, stated by the company — opaque formed articles in PP. This is the LIMEX sell.",
+      "map": "https://www.google.com/maps/search/?api=1&query=Avani%20Plast%2C%20Ahmedabad%2C%20Gujarat"
+    },
+    {
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "precise": true,
+      "sortOrder": 1444,
+      "id": "A13-balaji-plastic-toys-industries",
+      "legId": "A13",
+      "name": "Balaji Plastic Toys Industries",
+      "addr": "Plot 102/103, Kohinoor Industrial Park, Bakrol-Bujarang, Bhavda, Daskroi, Ahmedabad 382433",
+      "makes": "Moulded toys — cricket sets, kids table tennis, educational building blocks, toy blocks and bowling play sets. Established 2017, proprietor Gopal Bhai.",
+      "src": "Trade listings and the company’s own IndiaMART profile — plot address and range as published by the company",
+      "tags": [
+        {
+          "t": "Toys",
+          "c": "big"
+        },
+        {
+          "t": "Opaque PP",
+          "c": ""
+        }
+      ],
+      "tel": "",
+      "fit": "prime",
+      "why": "Moulds opaque toys in volume — the article LIMEX replaces, and the first toy maker in the book that is actually in Ahmedabad.",
+      "map": "https://www.google.com/maps/search/?api=1&query=Balaji%20Plastic%20Toys%20Industries%2C%20Ahmedabad%2C%20Gujarat"
+    },
+    {
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "precise": false,
+      "sortOrder": 1445,
+      "id": "A12-shyam-polymers",
+      "legId": "A12",
+      "name": "Shyam Polymers",
+      "addr": "Shop 16, Krishna Estate, nr. Gokul, Kathwada-Singarva Road, Ahmedabad · shop address published, plant not stated",
+      "makes": "White food container boxes and sweet boxes. Established 2017.",
+      "src": "Trade listing — the published address is a shop on Kathwada-Singarva Road and the PIN given (380038) does not match Kathwada GIDC (382430)",
+      "tags": [
+        {
+          "t": "Thin Wall",
+          "c": "big"
+        },
+        {
+          "t": "Confirm plant",
+          "c": "warn"
+        }
+      ],
+      "tel": "",
+      "fit": "good",
+      "why": "White food container boxes are exactly the article — but the address is a shop and the PIN does not match the estate. Ring before driving: confirm they mould rather than trade.",
+      "map": "https://www.google.com/maps/search/?api=1&query=Shyam%20Polymers%2C%20Ahmedabad%2C%20Gujarat"
     }
   ]
 }
