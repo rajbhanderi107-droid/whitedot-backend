@@ -1389,6 +1389,14 @@
       "belt": "175 km SW · companies confirmed from their own site, not a GIDC list",
       "nav": "",
       "sortOrder": 124
+    },
+    {
+      "id": "A12",
+      "familyId": "A",
+      "name": "Odhav & Kathwada — found off the register",
+      "belt": "28-31 km E · confirmed from each company’s own site, not a GIDC list",
+      "nav": "",
+      "sortOrder": 45
     }
   ],
   "stops": [
@@ -40168,6 +40176,114 @@
       "fit": "prime",
       "why": "Moulds opaque toys and appliance parts in volume — the article LIMEX replaces. First toy converter in the book.",
       "sortOrder": 1438
+    },
+    {
+      "legId": "A12",
+      "telLabel": "Call",
+      "link": "https://www.hiplastindustries.com/",
+      "linkLabel": "hiplastindustries.com",
+      "precise": true,
+      "sortOrder": 1439,
+      "id": "A12-hi-plast-industries",
+      "name": "Hi Plast Industries",
+      "addr": "8, Gopal Charan Industrial Globe, Kathwada GIDC, Ahmedabad 382430",
+      "makes": "Moulds plastic crates, dustbins, storage bins, pallets and HDPE crates. Stackable and interlocking, made to size. Partner Hardik Shelar.",
+      "src": "Company site hiplastindustries.com — plot address, phone and product range from the company itself",
+      "tags": [
+        {
+          "t": "Crates & bins",
+          "c": "big"
+        },
+        {
+          "t": "Opaque HDPE",
+          "c": ""
+        }
+      ],
+      "tel": "+919601038079",
+      "fit": "good",
+      "why": "Moulds opaque HDPE crates, bins and pallets — the right polymer and a formed article. Thicker section than thin wall, so ask what tonnage runs.",
+      "map": "https://www.google.com/maps/search/?api=1&query=Hi%20Plast%20Industries%2C%20Ahmedabad%2C%20Gujarat"
+    },
+    {
+      "legId": "A12",
+      "telLabel": "Call",
+      "link": "https://www.hanumantind.com/",
+      "linkLabel": "hanumantind.com",
+      "precise": false,
+      "sortOrder": 1440,
+      "id": "A12-hanumant-export-industries",
+      "name": "Hanumant Export Industries Pvt. Ltd.",
+      "addr": "First Floor, 45-46, Adarsh Industrial Estate-1, Odhav Road, nr. Johnson Pump, Odhav, Ahmedabad 382415",
+      "makes": "Crates, pallets, dustbins, plastic chairs and tables, buckets, milk cans, ice boxes, insulated jugs and bathroomware. Director Mayur Patel.",
+      "src": "Company site hanumantind.com — address, phone and range from the company itself",
+      "tags": [
+        {
+          "t": "Crates & bins",
+          "c": ""
+        },
+        {
+          "t": "Houseware",
+          "c": ""
+        },
+        {
+          "t": "Confirm plant",
+          "c": "warn"
+        }
+      ],
+      "tel": "+917942717242",
+      "fit": "good",
+      "why": "Calls itself manufacturer and trader and also distributes Supreme. The listed address is a first floor, not a shed — confirm they mould in-house before quoting.",
+      "map": "https://www.google.com/maps/search/?api=1&query=Hanumant%20Export%20Industries%20Pvt.%20Ltd.%2C%20Ahmedabad%2C%20Gujarat"
+    },
+    {
+      "legId": "A12",
+      "telLabel": "Call",
+      "link": "https://www.rkpi.co.in/",
+      "linkLabel": "rkpi.co.in",
+      "precise": true,
+      "sortOrder": 1441,
+      "id": "A12-rk-plastic-industries",
+      "name": "R.K. Plastic Industries (K.S. Plastic Industry)",
+      "addr": "Plot No. 71/1, GIDC, behind Odhav Fire Brigade, Odhav, Ahmedabad 382415",
+      "makes": "HDPE tarpaulins and covers, woven sacks, jumbo bags, LDPE rolls, PVC tarpaulin, laminated fabric and agricultural nets. Rotogravure printing and lamination, not moulding.",
+      "src": "Company site rkpi.co.in — plot address, phone and range from the company itself",
+      "tags": [
+        {
+          "t": "Film & sacks",
+          "c": ""
+        }
+      ],
+      "tel": "+917942561561",
+      "fit": "weak",
+      "why": "Right polymers — HDPE, LDPE, PVC — but woven sack and tarpaulin, not a moulded article. A LIMEX sheet conversation, not the thin-wall one.",
+      "map": "https://www.google.com/maps/search/?api=1&query=R.K.%20Plastic%20Industries%20(K.S.%20Plastic%20Industry)%2C%20Ahmedabad%2C%20Gujarat"
+    },
+    {
+      "legId": "A12",
+      "telLabel": "Call",
+      "link": "",
+      "linkLabel": "",
+      "precise": false,
+      "sortOrder": 1442,
+      "id": "A12-nandini-plastic",
+      "name": "Nandini Plastic",
+      "addr": "Shed A-10, Rashmi Growth Hub-2, Odhav-Vastral Ring Road, Odhav Industrial Estate, Ahmedabad 382415 · address from a directory, confirm on the call",
+      "makes": "Plastic houseware — soap dishes, cloth clips and hangers.",
+      "src": "IndiaMART listing — the company page would not load to confirm, so treat the address as unverified",
+      "tags": [
+        {
+          "t": "Houseware",
+          "c": ""
+        },
+        {
+          "t": "Address needed",
+          "c": "warn"
+        }
+      ],
+      "tel": "",
+      "fit": "good",
+      "why": "Small opaque houseware mouldings in PP — the right article. Everything here is directory-sourced; confirm the shed and the range before driving.",
+      "map": "https://www.google.com/maps/search/?api=1&query=Nandini%20Plastic%2C%20Ahmedabad%2C%20Gujarat"
     }
   ]
 }
