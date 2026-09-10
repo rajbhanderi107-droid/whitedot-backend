@@ -19,6 +19,7 @@ import publicRoutes from "./routes/public.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import portalRoutes from "./routes/portal.routes.js";
 import routeBookRoutes from "./routes/routeBook.routes.js";
+import trialBookRoutes from "./routes/trialBook.routes.js";
 import { prisma } from "./config/prisma.js";
 import { pruneExpiredTokens } from "./services/tokenBlacklist.service.js";
 
@@ -133,6 +134,7 @@ app.use("/api", adminLimiter, adminRoutes);
 // LIMEX Route Book — field-sales prospect book. Mounted before the generic
 // portal router; the /api mount above already applies adminLimiter to it.
 app.use("/api/portal/route-book", routeBookRoutes);
+app.use("/api/portal/trial-book", trialBookRoutes);
 
 // Portal routes — same auth/rate-limit as admin
 app.use("/api/portal", adminLimiter, portalRoutes);
