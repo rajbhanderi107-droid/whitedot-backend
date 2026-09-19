@@ -1,0 +1,48 @@
+-- Catalogue-evidence profiles only; no trial, visit, order or prior source is changed.
+-- Explicit transaction keeps the checked batch atomic. Existing employee profiles win.
+BEGIN;
+DO $migration$
+DECLARE
+  catalog jsonb := $catalog${"existing": {"K1-proton-polymer": {"categories": ["hm-bags", "plastic-bags", "nonwoven-bags"], "business": "manufacturer", "opacity": "opaque", "evidence": "The company describes three manufacturing divisions and its own production of plastic bags. Its catalogue lists HM/HDPE pick-up bags, coloured medical-waste bags and non-woven shopping bags. Target opaque variants only.", "source": "https://www.protonpolymer.com/", "photos": [{"url": "https://cpimg.tistatic.com/02981335/b/5/HM-Hdpe-Pick-Up-Bags.jpg", "caption": "HM / HDPE pick-up bags", "source": "https://www.tradeindia.com/products/hm-hdpe-pick-up-bags-c2981335.html"}, {"url": "https://cpimg.tistatic.com/02981334/b/5/Non-Woven-Bags.jpg", "caption": "Coloured non-woven bags", "source": "https://www.protonpolymer.com/non-woven-bags-2981334.html"}], "checkedOn": "2026-09-19"}, "A10-balahanuman-plastic-industrial-pvt-ltd": {"categories": ["plastic-bags"], "business": "manufacturer", "opacity": "opaque", "evidence": "Manufacturer listing describes in-house production and a black LDPE garbage bag. This match covers the black bags; transparent film and liner products are outside the target.", "source": "https://www.tradeindia.com/products/black-plastic-garbage-bag-c8452623.html", "photos": [{"url": "https://cpimg.tistatic.com/08452623/b/4/Black-Plastic-Garbage-Bag.jpg", "caption": "Black LDPE garbage bags", "source": "https://www.tradeindia.com/products/black-plastic-garbage-bag-c8452623.html"}], "checkedOn": "2026-09-19"}, "N3-euphoria-packaging": {"categories": ["plastic-bags"], "business": "manufacturer", "opacity": "opaque", "evidence": "Company profile describes its bag-manufacturing machinery and co-extruded polyethylene packaging. Its product catalogue lists white/black LDPE courier bags. Target the opaque courier-bag line.", "source": "https://www.euphoriapackaging.com/company-profile.html", "photos": [{"url": "https://5.imimg.com/data5/SELLER/Default/2024/1/378567938/JU/TR/DA/6509583/ldpe-security-courier-bags-500x500.jpg", "caption": "Opaque LDPE security courier bags", "source": "https://www.euphoriapack.in/"}], "checkedOn": "2026-09-19"}, "N3-moldking-packaging-pvt-ltd": {"categories": ["thinwall", "dairy"], "business": "manufacturer", "opacity": "opaque", "evidence": "Company describes its own injection-moulded food-packaging production. Catalogue shows opaque coloured ice-cream tubs; confirm the unlabelled substrate and selected wall thickness with the factory.", "source": "https://moldking.in/", "photos": [{"url": "https://moldking.in/wp-content/uploads/2026/06/125ml-1-scaled.png", "caption": "125 ml ice-cream tub", "source": "https://moldking.in/"}], "checkedOn": "2026-09-19"}, "T1-satguru-plasticpack-llp-satguru-iml": {"categories": ["thinwall", "dairy"], "business": "manufacturer", "opacity": "opaque", "evidence": "Company describes manufacturing IML containers at its Ahmedabad facility. Catalogue includes opaque white and coloured ice-cream containers. Match is for these products, subject to factory confirmation of the substrate.", "source": "https://satguruiml.com/", "photos": [{"url": "https://satguruiml.com/wp-content/uploads/2024/07/80ml-Oval-ICe-Cream-IML-Container_D-44-80-768x576.png", "caption": "Opaque IML ice-cream tubs", "source": "https://satguruiml.com/"}], "checkedOn": "2026-09-19"}}, "additions": [{"key": "pm-plastic-chandrala", "region": "Chandrala, Gandhinagar", "fields": {"name": "P. M. Plastic Industries", "addr": "Survey No. 1007, Ahmedabad–Himmatnagar Highway, Chandrala, Gandhinagar, Gujarat", "makes": "White PP woven bags and sacks; target opaque variants only", "fit": "good"}, "profile": {"categories": ["woven-bags"], "business": "manufacturer", "opacity": "opaque", "evidence": "Company listing identifies a manufacturer of PP woven bags. Product page offers white PP woven sacks alongside other variants; only the opaque white range is relevant. Confirm factory extrusion and weaving before a trial.", "source": "https://www.tradeindia.com/products/pp-woven-bag-c5916522.html", "photos": [{"url": "https://cpimg.tistatic.com/05916522/b/5/PP-Woven-Bag.jpg", "caption": "White PP woven sacks", "source": "https://www.tradeindia.com/products/pp-woven-bag-c5916522.html"}], "checkedOn": "2026-09-19"}}, {"key": "hifi-plastic-toys-kuha", "region": "Kuha, Ahmedabad", "fields": {"name": "Hifi Plastic Toys Industry", "addr": "Plot No. 14, Ganesha Industrial Park, Kuha, Gujarat 382433", "tel": "8610678712", "makes": "Opaque coloured plastic toys: doctor sets and elephant toys", "fit": "good"}, "profile": {"categories": ["toys"], "business": "manufacturer", "opacity": "opaque", "evidence": "Company website identifies direct toy manufacturing at Kuha; its manufacturer listing publishes machine-made coloured plastic doctor sets and elephant toys. This is Hifi Plastic Toys Industry, not HIFI Industries LLP. Confirm the polymer and in-house process before sampling.", "source": "https://hifi-plastic-toys.grexa.site/", "photos": [{"url": "https://img1.exportersindia.com/product_images/bc-small/2026/1/13254081/kids-doctor-set-1768371372-8534550.jpeg", "caption": "Coloured plastic doctor-set toys", "source": "https://www.exportersindia.com/hifi-plastic-toys-industry/"}, {"url": "https://img1.exportersindia.com/product_images/bc-small/2026/1/13254081/ball-elephant-toys-1768372020-8534601.jpeg", "caption": "Coloured elephant toy", "source": "https://www.exportersindia.com/hifi-plastic-toys-industry/"}], "checkedOn": "2026-09-19"}}, {"key": "anjali-polyplast-khopoli", "region": "Khopoli, Maharashtra — outside Gujarat", "fields": {"name": "Anjali Polyplast Pvt Ltd", "addr": "Factory: Plot No. 6, Universal Industrial Estate, Sajgaon, off Khopoli–Pen Road, Khopoli, Maharashtra 410203", "tel": "02225662434", "makes": "Milky-white HDPE blow-moulded bottles and opaque 5-litre jars; office phone listed", "fit": "good"}, "profile": {"categories": ["bottles", "jars"], "business": "manufacturer", "opacity": "milky-white", "evidence": "Company identifies its own HDPE/PP blow-moulding factory in Khopoli. Technical catalogue explicitly lists milky-white HDPE bottles; pharmaceutical gallery shows white bottles and a 5-litre handled jar. Transparent jars are excluded. Office phone, not a verified factory contact.", "source": "https://anjalipolyplast.in/", "photos": [{"url": "https://anjalipolyplast.in/images/pharma/2025/1000ml500ml250ml.jpg", "caption": "Milky-white bottle family", "source": "https://anjalipolyplast.in/pharma_product.php"}, {"url": "https://anjalipolyplast.in/images/pharma/2025/CYLINDRICAL5LTRJARWITHHANDLE.jpg", "caption": "Opaque 5-litre handled jar", "source": "https://anjalipolyplast.in/pharma_product.php"}], "checkedOn": "2026-09-19"}}]}$catalog$::jsonb;
+  item jsonb;
+  entry record;
+  matches text[];
+  stop_id text;
+  newly_added boolean;
+BEGIN
+  FOR entry IN SELECT key, value FROM jsonb_each(catalog->'existing') LOOP
+    IF EXISTS (SELECT 1 FROM "RouteBookStop" WHERE id = entry.key) THEN
+      INSERT INTO "RouteBookMark" ("stopId", "productProfile", "updatedAt")
+      VALUES (entry.key, entry.value::text, NOW())
+      ON CONFLICT ("stopId") DO UPDATE SET "productProfile" = EXCLUDED."productProfile", "updatedAt" = NOW()
+      WHERE "RouteBookMark"."productProfile" IS NULL;
+    END IF;
+  END LOOP;
+  -- Never create a partial register on a fresh database before its standard seed runs.
+  IF EXISTS (SELECT 1 FROM "RouteBookLeg" WHERE id = 'M1') THEN
+    FOR item IN SELECT value FROM jsonb_array_elements(catalog->'additions') LOOP
+      newly_added := false;
+      SELECT array_agg(id) INTO matches FROM "RouteBookStop"
+      WHERE id = 'GPT-' || (item->>'key')
+         OR regexp_replace(lower(name), '[^a-z0-9]', '', 'g') = regexp_replace(lower(item->'fields'->>'name'), '[^a-z0-9]', '', 'g')
+         OR (length(item->'fields'->>'tel') >= 10 AND right(regexp_replace(COALESCE(tel, ''), '[^0-9]', '', 'g'),10) = right(regexp_replace(item->'fields'->>'tel', '[^0-9]', '', 'g'),10));
+      IF COALESCE(array_length(matches,1),0) > 1 THEN
+        RAISE NOTICE 'Ambiguous existing company, skipped: %', item->'fields'->>'name';
+        CONTINUE;
+      ELSIF COALESCE(array_length(matches,1),0) = 1 THEN
+        stop_id := matches[1];
+      ELSE
+        stop_id := 'GPT-' || (item->>'key');
+        INSERT INTO "RouteBookStop" (id, "legId", name, addr, tel, makes, fit, src, tags, link, "linkLabel", "userAdded", "precise", "sortOrder", "updatedAt")
+        VALUES (stop_id, 'M1', item->'fields'->>'name', item->'fields'->>'addr', item->'fields'->>'tel', item->'fields'->>'makes', 'good', 'GPT public-catalogue research, 2026-09-19', '[{"t":"GPT Leads","c":"big"}]'::jsonb, item->'profile'->>'source', 'Manufacturer source', true, false, 10000, NOW());
+        newly_added := true;
+        INSERT INTO "RouteBookEvent" (id, kind, value, day, "stopId") VALUES ('research-add-' || stop_id, 'added', item->'fields'->>'name', '2026-09-19', stop_id) ON CONFLICT (id) DO NOTHING;
+      END IF;
+      INSERT INTO "RouteBookMark" ("stopId", "productProfile", "sourceFolder", "updatedAt")
+      VALUES (stop_id, (item->'profile')::text, CASE WHEN newly_added THEN 'GPT' ELSE NULL END, NOW())
+      ON CONFLICT ("stopId") DO UPDATE SET "productProfile" = EXCLUDED."productProfile", "updatedAt" = NOW()
+      WHERE "RouteBookMark"."productProfile" IS NULL;
+    END LOOP;
+  END IF;
+END $migration$;
+COMMIT;
