@@ -15,7 +15,24 @@ const text = (max: number) => z.string().max(max);
 
 /** Everything a salesperson can set on one stop. All fields optional so a
  *  PATCH carries only what changed; `null` clears a field. */
+const publicUrl = z.string().max(1600).url().refine(v => {
+  try { const u = new URL(v); return u.protocol === "https:" && !u.username && !u.password
+    && !/^(localhost|127\.|10\.|192\.168\.|169\.254\.|\[)/i.test(u.hostname); } catch { return false; }
+}, "Use a public HTTPS URL");
+const productProfileSchema = z.object({
+  categories: z.array(z.enum(["hm-bags", "plastic-bags", "woven-bags", "nonwoven-bags", "toys", "thinwall", "dairy", "bottles", "jars"])).max(9),
+  business: z.enum(["manufacturer", "trader", "raw-material", "machinery", "unknown"]),
+  opacity: z.enum(["opaque", "milky-white", "transparent", "unknown"]),
+  evidence: z.string().max(1500), source: z.union([publicUrl, z.literal("")]),
+  checkedOn: z.string().max(30),
+  photos: z.array(z.object({url: publicUrl, caption: z.string().max(160), source: z.union([publicUrl, z.literal("")])})).max(6),
+}).strict().refine(p => p.business !== "manufacturer" || (!!p.evidence.trim() && !!p.source), "Record manufacturer evidence and its source");
+const serializedProductProfile = z.string().max(16000).superRefine((v, ctx) => {
+  try { const result = productProfileSchema.safeParse(JSON.parse(v)); if (!result.success) ctx.addIssue({code: z.ZodIssueCode.custom, message: "Invalid product profile: " + result.error.issues[0].message}); }
+  catch { ctx.addIssue({code: z.ZodIssueCode.custom, message: "Product profile must be valid JSON"}); }
+});
 export const markFieldsSchema = z.object({
+  productProfile: serializedProductProfile.nullable().optional(),
   sourceFolder: z.enum(["GPT", "CLAUDE", "TEAM", "UNKNOWN"]).nullable().optional(),
   ticked: z.boolean().optional(),
   tickedOn: dayString.nullable().optional(),

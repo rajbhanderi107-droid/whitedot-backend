@@ -182,6 +182,7 @@ function diffEvents(prev: RouteBookMark | null, next: MarkFields): { kind: strin
   }
   // One "profile" entry covers the whole fit capture — a separate line per
   // field would bury the day's real work under form noise.
+  if (next.productProfile !== undefined && next.productProfile !== p?.productProfile) ev.push({ kind: "products", value: "Product details updated" });
   const profileKeys = ["polymers", "processes", "monthlyTonnes", "machines", "fillerPct", "resinRate", "thinWall"] as const;
   if (profileKeys.some((k) => next[k] !== undefined && changed(next[k], p?.[k] == null ? null : String(p[k])))) {
     const bits = [
