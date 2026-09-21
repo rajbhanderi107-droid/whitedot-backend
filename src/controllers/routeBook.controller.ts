@@ -54,7 +54,7 @@ function seedStopData(s: SeedStop): Prisma.RouteBookStopUncheckedCreateInput {
   };
 }
 
-async function applySeed(mode: "create" | "upsert") {
+export async function applySeed(mode: "create" | "upsert") {
   const seed = loadSeed();
   for (const f of seed.fams) {
     await prisma.routeBookFamily.upsert({

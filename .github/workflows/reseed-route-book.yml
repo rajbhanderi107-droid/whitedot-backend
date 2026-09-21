@@ -1,0 +1,34 @@
+# Refresh the live register from the shipped route-book.json without
+# touching anyone's ticks, notes, visits or orders.
+#
+# Same work as Route Book → Actions → "Refresh register data (admin)",
+# run from the VPS so it needs no portal password.
+
+name: Reseed Route Book register
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: route-book-reseed
+  cancel-in-progress: false
+
+jobs:
+  reseed:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Refresh the register on the VPS
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.VPS_HOST }}
+          username: ${{ secrets.VPS_USER }}
+          key: ${{ secrets.VPS_SSH_KEY }}
+          script: |
+            set -euo pipefail
+            cd /opt/whitedot-backend
+            CID="$(docker compose ps -q api)"
+            if [ -z "$CID" ]; then echo "The api container is not running."; exit 1; fi
+            docker exec "$CID" node dist/cli/reseed.js
