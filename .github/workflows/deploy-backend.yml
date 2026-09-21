@@ -30,13 +30,39 @@ jobs:
             # one-shot check fired while the process was still booting and
             # reported a healthy release as broken.
             echo "Waiting for the API to answer..."
+            # The loop used to `exit 0` the moment the API answered, which
+            # ended the whole script — anything written below it would never
+            # have run. It sets a flag and falls through instead.
+            healthy=0
             for i in $(seq 1 30); do
               if curl -sf --max-time 3 http://localhost:4000/api/health >/dev/null; then
                 echo "Health OK after ${i} attempt(s)"
-                exit 0
+                healthy=1
+                break
               fi
               sleep 2
             done
-            echo "Health check FAILED — no answer in 60s"
-            docker compose -f /opt/whitedot-backend/docker-compose.yml logs --tail=40 api
-            exit 1
+            if [ "$healthy" -ne 1 ]; then
+              echo "Health check FAILED — no answer in 60s"
+              docker compose -f /opt/whitedot-backend/docker-compose.yml logs --tail=40 api
+              exit 1
+            fi
+
+            # Load the register we just shipped.
+            #
+            # The book seeds lazily and only into an empty table, so a deploy
+            # that changed prisma/data/route-book.json changed nothing anyone
+            # could see: the new companies sat in the image while the live book
+            # served the old ones, until somebody opened the portal and tapped
+            # "Refresh register data (admin)", or ran the reseed workflow by
+            # hand. Both still work; neither should be needed to see what a
+            # deploy deployed.
+            #
+            # Same upsert either of those runs: register fields updated in
+            # place, nothing deleted. Marks, notes, journal, stage and
+            # companies added on the road belong to the team, not the
+            # register, and none of it is touched.
+            echo "Loading the shipped register..."
+            CID="$(docker compose ps -q api)"
+            if [ -z "$CID" ]; then echo "The api container is not running."; exit 1; fi
+            docker exec "$CID" node dist/cli/reseed.js
