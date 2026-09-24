@@ -197,6 +197,7 @@ model User {
   notifications     Notification[]
   passwordResets    PasswordResetToken[]
   revokedTokens     RevokedToken[]
+  trialReports      TrialReport[]        @relation("TrialReportCreator")
   approvalsCreated  Approval[]           @relation("ApprovalCreator")
   approvalsDecided  Approval[]           @relation("ApprovalDecider")
   workflowsCreated  Workflow[]           @relation("WorkflowCreator")
@@ -1283,4 +1284,69 @@ model RouteBookPref {
   updatedAt DateTime @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+/// A LIMEX trial report — the fifteen-head form Raj fills in for every trial,
+/// in the same order and wording as the workbook on the laptop. The folder on
+/// the laptop stays the record of truth: a row here is written out to
+/// "TRIAL WEEKLY LIST\<n>. WHITEDOT BY SEVENDOT - ....xlsx" by portal_sync.py,
+/// and sync_trials.py is what actually hands out the number. trialNo is set
+/// here so the two agree; it is never reused.
+model TrialReport {
+  id      String @id @default(cuid())
+  trialNo Int    @unique // 1..n, newest highest — the folder's Sr
+
+  // 1-15, the heads of the form, in the workbook's own order
+  projectBackground String? // 1
+  mouldingProcess   String? // 2
+  limexGrade        String? // 3
+  mixBatch          String? // 4, line 1 — e.g. "1250gm  TRIAL BATCH"
+  mixResin          String? // 4, line 2 — e.g. "1000gm PP - RELIANCE 110"
+  mixLimex          String? // 4, line 3 — e.g. "250gm  LIMEX PE26-F51 - LIMEX USE 20%"
+  colouring         String? // 5
+  product           String? // 6
+  brandOwner        String? // 7
+  originalResin     String? // 8
+  barrelTemp        String? // 9
+  originalWeight    String? // 10
+  trialWeight       String? // 11
+  result            String? // 12
+  problems          String? // 13
+  nextStep          String? // 14
+
+  /// 15 — the photo. Never the bytes: the picture lives in the laptop folder
+  /// and in Google Drive, and these are the ways back to it.
+  imageName     String? // file name as saved
+  imageDriveUrl String? // https://drive.google.com/... 
+  imageLocal    String? // path under the whitedot folder
+
+  /// Where this trial happened, when the company is already in the Route Book.
+  stopId  String?
+  company String? // free text when there is no stop
+  trialOn String? // YYYY-MM-DD
+
+  /// The workbook this row was written to, so the sync never writes it twice.
+  fileName String?
+  syncedAt DateTime?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  createdBy   User?   @relation("TrialReportCreator", fields: [createdById], references: [id], onDelete: SetNull)
+  createdById String?
+
+  @@index([trialNo])
+  @@index([stopId])
+  @@index([trialOn])
+}
+
+/// The highest trial number already used - by the laptop folder, or by a
+/// trial here that has since been deleted. The folder on
+/// Raj's PC decides every Sr number, so the portal's next trial is always
+/// max(highest TrialReport.trialNo, folderHighest) + 1 - never one the folder
+/// has already given out. Only ever goes up. Reported by portal_sync.py.
+model TrialBookState {
+  id            String    @id @default("singleton")
+  folderHighest Int       @default(0)
+  reportedAt    DateTime?
 }
