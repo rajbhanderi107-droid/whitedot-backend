@@ -7,6 +7,7 @@ import {
   createTrialSchema,
   updateTrialSchema,
   markSyncedSchema,
+  folderHighestSchema,
 } from "../validators/trialBook.validator.js";
 
 const router = Router();
@@ -16,6 +17,10 @@ router.use(requireAuth);
 
 router.get("/", asyncHandler(tb.list));
 router.get("/next-number", asyncHandler(tb.nextNumber));
+
+// The laptop reports the highest trial number the folder has used, so the
+// portal never hands that number out again.
+router.post("/folder-highest", validate(folderHighestSchema), asyncHandler(tb.folderHighest));
 router.get("/:id", asyncHandler(tb.getOne));
 
 router.post("/", validate(createTrialSchema), asyncHandler(tb.create));

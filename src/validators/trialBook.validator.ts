@@ -49,3 +49,8 @@ export const markSyncedSchema = z.object({
 });
 
 export type TrialFields = z.infer<z.ZodObject<typeof trialFields>>;
+
+/** The laptop reports the highest trial number already in the folder. */
+export const folderHighestSchema = z.object({
+  body: z.object({ highest: z.number().int().min(0).max(100000) }).strict(),
+});

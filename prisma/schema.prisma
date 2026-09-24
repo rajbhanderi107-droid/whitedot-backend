@@ -197,6 +197,7 @@ model User {
   notifications     Notification[]
   passwordResets    PasswordResetToken[]
   revokedTokens     RevokedToken[]
+  trialReports      TrialReport[]        @relation("TrialReportCreator")
   approvalsCreated  Approval[]           @relation("ApprovalCreator")
   approvalsDecided  Approval[]           @relation("ApprovalDecider")
   workflowsCreated  Workflow[]           @relation("WorkflowCreator")
@@ -221,7 +222,6 @@ model User {
   routeBookViews    RouteBookView[]      @relation("RouteBookViewCreator")
   routeBookOrders   RouteBookOrder[]     @relation("RouteBookOrderCreator")
   routeBookPref     RouteBookPref?
-  trialReports      TrialReport[]        @relation("TrialReportCreator")
 
   @@index([email])
   @@index([role])
@@ -1114,27 +1114,27 @@ model RouteBookMark {
   // LIMEX is >50% calcium carbonate in a polyolefin carrier and runs on the
   // converter's existing machines, so the deciding facts are which polymer
   // and process they run, how much they consume, and what they pay today.
-  polymers      String? // csv: PP,HDPE,LDPE,PS,PVC,PET,ABS,OTHER
-  processes     String? // csv: INJECTION,BLOW,EXTRUSION,THERMOFORM,FILM,SHEET
+  polymers      String?  // csv: PP,HDPE,LDPE,PS,PVC,PET,ABS,OTHER
+  processes     String?  // csv: INJECTION,BLOW,EXTRUSION,THERMOFORM,FILM,SHEET
   monthlyTonnes Decimal? @db.Decimal(10, 2)
   machines      Int?
-  fillerPct     Int? // CaCO3 / masterbatch they already run, %
+  fillerPct     Int?     // CaCO3 / masterbatch they already run, %
   resinRate     Decimal? @db.Decimal(10, 2) // what they pay per kg today
   thinWall      Boolean? // thin-wall work caps how much filler they can take
-  profiledOn    String? // YYYY-MM-DD the profile was captured
+  profiledOn    String?  // YYYY-MM-DD the profile was captured
 
   // ─── Lifecycle: one company, three books. Route Book holds every prospect,
   // Lead Book the ones in a live deal, Customer Book the ones buying. `stage`
   // is the single field that decides which book a company appears in, so a
   // company can never be in two books at once or drift between copies.
-  stage      String   @default("PROSPECT") // PROSPECT|LEAD|CUSTOMER|LOST
-  leadOn     String? // YYYY-MM-DD they turned into a live deal
-  customerOn String? // YYYY-MM-DD of the first confirmed order
-  lostOn     String?
-  lostReason String?
-  nextStep   String? // the one thing that has to happen next
-  expectedMt Decimal? @db.Decimal(12, 3) // MT/month they say they would take
-  quotedRate Decimal? @db.Decimal(10, 2) // ₹/kg quoted to them
+  stage        String  @default("PROSPECT") // PROSPECT|LEAD|CUSTOMER|LOST
+  leadOn       String? // YYYY-MM-DD they turned into a live deal
+  customerOn   String? // YYYY-MM-DD of the first confirmed order
+  lostOn       String?
+  lostReason   String?
+  nextStep     String? // the one thing that has to happen next
+  expectedMt   Decimal? @db.Decimal(12, 3) // MT/month they say they would take
+  quotedRate   Decimal? @db.Decimal(10, 2) // ₹/kg quoted to them
 
   // Billing facts, needed only once they buy.
   gstNumber    String?
@@ -1144,10 +1144,10 @@ model RouteBookMark {
 
   // Mirrors into the portal CRM, so the pipeline board and the books are the
   // same companies rather than two lists that have to be reconciled by hand.
-  inquiryId String?
+  inquiryId    String?
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
 
   stop RouteBookStop @relation(fields: [stopId], references: [id], onDelete: Cascade)
 
@@ -1169,18 +1169,18 @@ model RouteBookMark {
 /// Materials sales turn on this cycle: sample -> trial -> qualification ->
 /// volume order, and a sample with no trial result is where deals go quiet.
 model RouteBookSample {
-  id          String   @id @default(cuid())
+  id          String    @id @default(cuid())
   stopId      String
-  grade       String // the LIMEX grade handed over
-  kg          Decimal  @db.Decimal(10, 2)
-  givenOn     String // YYYY-MM-DD
+  grade       String                       // the LIMEX grade handed over
+  kg          Decimal   @db.Decimal(10, 2)
+  givenOn     String                       // YYYY-MM-DD
   contactName String?
-  trialDueOn  String? // when they said they would run it
-  result      String   @default("PENDING") // PENDING|PASS|PARTIAL|FAIL
+  trialDueOn  String?                      // when they said they would run it
+  result      String    @default("PENDING") // PENDING|PASS|PARTIAL|FAIL
   resultOn    String?
   resultNote  String?
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
 
   mark RouteBookMark @relation(fields: [stopId], references: [stopId], onDelete: Cascade)
 
@@ -1205,9 +1205,9 @@ model RouteBookOrder {
   orderNo    String   @unique
   grade      String
   quantityMt Decimal  @db.Decimal(12, 3)
-  rate       Decimal? @db.Decimal(10, 2) // ₹/kg agreed for this order
-  amount     Decimal? @db.Decimal(16, 2) // quantityMt * 1000 * rate
-  orderedOn  String // YYYY-MM-DD
+  rate       Decimal? @db.Decimal(10, 2)  // ₹/kg agreed for this order
+  amount     Decimal? @db.Decimal(16, 2)  // quantityMt * 1000 * rate
+  orderedOn  String                       // YYYY-MM-DD
   dispatchOn String?
   status     String   @default("CONFIRMED") // CONFIRMED|DISPATCHED|DELIVERED|PAID|CANCELLED
   poRef      String?
@@ -1228,7 +1228,7 @@ model RouteBookOrder {
 model RouteBookSetting {
   id              String   @id @default("singleton")
   limexRate       Decimal? @db.Decimal(10, 2) // your selling price per kg
-  substitutionPct Int      @default(30) // share of their volume you target
+  substitutionPct Int      @default(30)       // share of their volume you target
   currency        String   @default("INR")
   updatedAt       DateTime @updatedAt
 
@@ -1338,4 +1338,15 @@ model TrialReport {
   @@index([trialNo])
   @@index([stopId])
   @@index([trialOn])
+}
+
+/// The highest trial number already used - by the laptop folder, or by a
+/// trial here that has since been deleted. The folder on
+/// Raj's PC decides every Sr number, so the portal's next trial is always
+/// max(highest TrialReport.trialNo, folderHighest) + 1 - never one the folder
+/// has already given out. Only ever goes up. Reported by portal_sync.py.
+model TrialBookState {
+  id            String    @id @default("singleton")
+  folderHighest Int       @default(0)
+  reportedAt    DateTime?
 }
