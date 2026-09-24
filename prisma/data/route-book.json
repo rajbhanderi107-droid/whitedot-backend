@@ -2493,6 +2493,22 @@
    "belt": "self-declared manufacturers whose own IndiaMART catalogue lists one of the nine products",
    "nav": "",
    "sortOrder": 156
+  },
+  {
+   "id": "A15",
+   "familyId": "A",
+   "name": "Ahmedabad — dairy tubs and toys, product sweep",
+   "belt": "Bakrol, Odhav & Ramol · 24/09/2026 · checked against the whole register first",
+   "nav": "",
+   "sortOrder": 162
+  },
+  {
+   "id": "R15",
+   "familyId": "R",
+   "name": "Outside Gujarat — dairy and ice-cream tubs",
+   "belt": "Mumbai & Uttar Pradesh · 24/09/2026 · a call, not a visit",
+   "nav": "",
+   "sortOrder": 163
   }
  ],
  "stops": [
@@ -107826,6 +107842,164 @@
    "fit": "good",
    "why": "Self-declared manufacturer on IndiaMART — confirm in-house moulding and opaque grades on the call",
    "map": "https://www.google.com/maps/search/?api=1&query=Yomika%20Fabrics%20Private%20Limited%2C%20Jambusar%20392150%2C%20Gujarat"
+  },
+  {
+   "legId": "A15",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/v-s-industries-ahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": true,
+   "sortOrder": 3706,
+   "id": "A15-v-s-industries-leemo-toys",
+   "name": "V S Industries (Leemo Toys)",
+   "addr": "Shed No. 20, N.K. Industrial Park, Dhamatwan Road, Bakrol-Bujrang, Ahmedabad 382430",
+   "makes": "Moulds kids' plastic toys — number and kitchen play sets, beach sets — and plastic cricket bats. Also does plastic moulding. Trades as Leemo Toys; a single firm.",
+   "src": "IndiaMART catalogue indiamart.com/v-s-industries-ahmedabad and TradeIndia — shed address and product range from the firm's own listings",
+   "tags": [
+    {
+     "t": "Toys",
+     "c": "big"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "A toy moulder on a real industrial-park shed, in the Bakrol belt with the other toy makers. Some sets are PVC, which LIMEX does not replace — ask for the PP and HDPE lines, the cricket bats first.",
+   "map": "https://www.google.com/maps/search/?api=1&query=V%20S%20Industries%20%28Leemo%20Toys%29%2C%20Ahmedabad%2C%20Gujarat"
+  },
+  {
+   "legId": "A15",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shreehari-industriesahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 3707,
+   "id": "A15-shree-hari-industries",
+   "name": "Shree Hari Industries",
+   "addr": "31, Harikrishna Estate, Odhav, near Ambica Nagar, Ahmedabad 382415",
+   "makes": "Moulds plastic musical toys — toy drums, dafli, khartal, lattu spinning tops — and plastic thread cones, matka stands and dhol sticks. Established 2007, 11–25 staff.",
+   "src": "IndiaMART and ExportersIndia profiles — product range and year from the firm's own listings; Odhav address from ExportersIndia",
+   "tags": [
+    {
+     "t": "Toys",
+     "c": "big"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Moulded toys and thread cones are both opaque PP or HDPE — the right polymer. But the firm appears under three addresses (Odhav, Kathwada and Vatva) across directories. Confirm which is the working plant by phone before driving out.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Hari%20Industries%2C%20Ahmedabad%2C%20Gujarat"
+  },
+  {
+   "legId": "A15",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shreesvindustries/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 3708,
+   "id": "A15-s-v-industries-shree-s-v-industries",
+   "name": "S V Industries (Shree S. V. Industries)",
+   "addr": "No. 9, Modheshwari Mill Compound, near Ramol Toll Booth, Ramol, Ahmedabad 380024",
+   "makes": "Distributes dairy packaging to dairies: curd cups, IML ice-cream tubs, sundae cups with dome lids, shrikhand, paneer and lassi containers. Established 2001, 26–50 staff. Proprietor Aalap Shah.",
+   "src": "IndiaMART profile (indiamart.com/shreesvindustries) and ExportersIndia — nature of business, address and product range from the firm's own listings",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": "big"
+    },
+    {
+     "t": "Distributor",
+     "c": ""
+    }
+   ],
+   "tel": "+918047519872",
+   "fit": "channel",
+   "why": "Its own profiles say trader and distributor, not a moulder, so it will not run LIMEX itself. It is on the list because it sells curd and ice-cream packaging to dairies across Ahmedabad: it knows the dairies, and it knows the moulders it buys from. The number is an IndiaMART line.",
+   "map": "https://www.google.com/maps/search/?api=1&query=S%20V%20Industries%20%28Shree%20S.%20V.%20Industries%29%2C%20Ahmedabad%2C%20Gujarat"
+  },
+  {
+   "legId": "A15",
+   "telLabel": "Call",
+   "link": "https://www.tradeindia.com/products/plastic-curd-packaging-containers-6516335.html",
+   "linkLabel": "TradeIndia",
+   "precise": false,
+   "sortOrder": 3709,
+   "id": "A15-gaj-gayatri-plastics",
+   "name": "Gaj Gayatri Plastics",
+   "addr": "Plot No. 2, Sairam Duplex, Krishna Colony, opp. Swati Society, Navrangpura, Ahmedabad 380009",
+   "makes": "Curd containers, IML ice-cream containers (1000 ml lock type) and dishwash containers, printed and multicolour as well as transparent. Established 2010.",
+   "src": "TradeIndia listing — manufacturer, address and products from the firm's own listing",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": "big"
+    },
+    {
+     "t": "Address needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "weak",
+   "why": "Listed as a manufacturer, and its printed IML ice-cream tubs fit. But both of its IndiaMART pages now return 'not found', and the address is a duplex in Navrangpura — an office, not a plant, and possibly a firm that has stopped trading. Confirm it still trades before spending a visit. Its transparent curd cups are out of scope.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Gaj%20Gayatri%20Plastics%2C%20Ahmedabad%2C%20Gujarat"
+  },
+  {
+   "legId": "R15",
+   "telLabel": "Call",
+   "link": "https://www.amarsplints.com/",
+   "linkLabel": "amarsplints.com",
+   "precise": false,
+   "sortOrder": 3710,
+   "id": "R15-amar-splints-pvt-ltd",
+   "name": "Amar Splints Pvt. Ltd.",
+   "addr": "Industrial area, Shamli, Uttar Pradesh",
+   "makes": "Moulds printed plastic ice-cream cups and IML ice-cream containers, and yoghurt cups, on its own thermoforming lines — alongside wooden ice-cream sticks and spoons. Established 2008, 1,000–2,000 staff. Director Anuj Garg.",
+   "src": "IndiaMART profile (indiamart.com/amarsplints) — 'Manufacturer', in-house thermoforming machines for ice-cream cups, and the product range, from the firm's own profile; company site amarsplints.com",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "A large in-house maker of printed ice-cream cups and IML tubs — exactly the dairy product LIMEX fits. But it is in Shamli, Uttar Pradesh, over 1,000 km away: a phone call to Anuj Garg, not a visit. Its website's security certificate was broken when checked.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Amar%20Splints%20Pvt.%20Ltd.%2C%20Shamli%2C%20Uttar%20Pradesh"
+  },
+  {
+   "legId": "R15",
+   "telLabel": "Call",
+   "link": "https://milanindia.com/",
+   "linkLabel": "milanindia.com",
+   "precise": false,
+   "sortOrder": 3711,
+   "id": "R15-milan-decor-milan-india",
+   "name": "Milan Decor (Milan India)",
+   "addr": "Mumbai, Maharashtra",
+   "makes": "Moulds HDPE containers with in-mould labels — milky-white shrikhand boxes, and containers for dairy, ice-cream, sweets, chips, jam, sauce, pet food, detergent and paint.",
+   "src": "Company site milanindia.com — products, IML and the milky-white HDPE shrikhand box from the company itself; Mumbai from its page title and 022 number",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": "big"
+    },
+    {
+     "t": "IML",
+     "c": ""
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "+912240125415",
+   "fit": "good",
+   "why": "Milky-white HDPE with in-mould labels is the opaque, filled look LIMEX gives — a strong product fit. It is in Mumbai and its site gives no plant address, so start with a call. Also on 93245 42068.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Milan%20Decor%20%28Milan%20India%29%2C%20Mumbai%2C%20Maharashtra"
   }
  ]
 }
