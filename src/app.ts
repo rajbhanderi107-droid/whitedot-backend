@@ -4,6 +4,7 @@ import cors from "cors";
 import compression from "compression";
 import cookieParser from "cookie-parser";
 import { env } from "./config/env.js";
+import { isAllowedOrigin } from "./config/cors.js";
 import { errorHandler } from "./middleware/error.middleware.js";
 import { requestLogger } from "./middleware/logger.middleware.js";
 import { requestTimeout } from "./middleware/timeout.middleware.js";
@@ -16,6 +17,7 @@ import {
 } from "./middleware/security.middleware.js";
 import authRoutes from "./routes/auth.routes.js";
 import publicRoutes from "./routes/public.routes.js";
+import caseStudyTdsRoutes from "./routes/caseStudyTds.routes.js";
 import adminRoutes from "./routes/admin.routes.js";
 import portalRoutes from "./routes/portal.routes.js";
 import routeBookRoutes from "./routes/routeBook.routes.js";
@@ -59,21 +61,12 @@ app.use(blockScanners);
 app.use(blockProbes);
 
 // ─── Layer 1: CORS — strict whitelist ───────────────────────────────
-const ALLOWED_ORIGINS = [
-  env.FRONTEND_URL,
-  "https://rajbhanderi107-droid.github.io",
-  "https://whitedotindia.in",
-  "https://www.whitedotindia.in",
-];
-if (!env.isProduction) {
-  ALLOWED_ORIGINS.push("http://localhost:5173", "http://localhost:3000", "http://127.0.0.1:5173");
-}
 
 app.use(
   cors({
     origin(origin, callback) {
       if (!origin) return callback(null, true);
-      if (ALLOWED_ORIGINS.some((o) => origin.startsWith(o))) {
+      if (isAllowedOrigin(origin)) {
         return callback(null, true);
       }
       callback(new Error(`CORS blocked: ${origin}`));
@@ -129,6 +122,7 @@ app.use("/api/auth", express.json({ limit: "10kb" }), authRoutes);
 app.use("/api/public", publicLimiter, express.json({ limit: "50kb" }), publicRoutes);
 
 // Layer 1+3: Admin routes — 120/min
+app.use("/api/case-study-tds", adminLimiter, caseStudyTdsRoutes);
 app.use("/api", adminLimiter, adminRoutes);
 
 // LIMEX Route Book — field-sales prospect book. Mounted before the generic
