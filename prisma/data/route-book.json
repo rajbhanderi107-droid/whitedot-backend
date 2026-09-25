@@ -2549,6 +2549,14 @@
    "belt": "Odhav, Vatva, Kathwada, Bakrol, Changodar & Rakhial · 25/09/2026 · each firm checked on the web",
    "nav": "",
    "sortOrder": 168
+  },
+  {
+   "id": "A21",
+   "familyId": "A",
+   "name": "Ahmedabad — checked makers: woven-sack plants, tubs, bottles & toys",
+   "belt": "Vatva GIDC, Santej, Mahijada, Bakrol, Changodar & Naroda · 25/09/2026 · each firm checked on the web",
+   "nav": "",
+   "sortOrder": 169
   }
  ],
  "stops": [
@@ -14978,8 +14986,8 @@
    "id": "G12-balaji-plastic-industries",
    "legId": "G12",
    "name": "Balaji Plastic Industries",
-   "addr": "Vatva GIDC phases 1-4, 382445 · plot not published",
-   "makes": "",
+   "addr": "Plot No. 518, GIDC Phase-II, Vatva, Ahmedabad 382445",
+   "makes": "Makes HDPE bags and PP woven bags and liners for packaging — about 200 t a month. ISO certified, since 1997. Contact Anil Agarwal.",
    "src": "Vatva GIDC company register (gidc.co.in) — name confirmed, plot not listed",
    "tags": [
     {
@@ -14987,18 +14995,18 @@
      "c": ""
     },
     {
-     "t": "Plot needed",
-     "c": "warn"
+     "t": "HM / HDPE bags",
+     "c": ""
     }
    ],
-   "precise": false,
-   "map": "https://www.google.com/maps/search/?api=1&query=Balaji%20Plastic%20Industries%2C%20Vatva%20GIDC%20Estate%2C%20Ahmedabad%20382445",
-   "tel": "",
-   "telLabel": "",
-   "link": "",
-   "linkLabel": "",
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Balaji%20Plastic%20Industries%2C%20Plot%20No.%20518%2C%20GIDC%20Phase-II%2C%20Vatva%2C%20Ahmedabad%20382445",
+   "tel": "+917925893775",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/balajiplastic-industries/",
+   "linkLabel": "IndiaMART",
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "why": "Plastics processor — opaque grades very likely, confirm on the call Checked 25/09/2026: IndiaMART and the Gujarat directory give the plot (518, Phase-II), the phone and a 200 t/month bag line. Not the Bakrol toy maker Balaji Plastic Toys Industries.",
    "sortOrder": 446
   },
   {
@@ -115998,6 +116006,248 @@
    "fit": "good",
    "why": "Checked 25/09/2026: A Vatva GIDC bag converter. Pitch the opaque courier bags; frosted zip-locks need to stay translucent.",
    "map": "https://www.google.com/maps/search/?api=1&query=Henam%20Corporecon%2C%20C1-94/2%2C%20GIDC%20Vatva%20Phase%20II%2C%20Ahmedabad%20382445"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://www.apilindia.in/",
+   "linkLabel": "apilindia.in",
+   "precise": true,
+   "sortOrder": 4026,
+   "id": "A21-ahmedabad-packaging-industries-ltd",
+   "name": "Ahmedabad Packaging Industries Ltd",
+   "addr": "326, GIDC Phase-II, Vatva, Ahmedabad 382445",
+   "makes": "Makes PP woven fabric and sacks — BOPP-laminated printed woven bags, laminated and unlaminated PP woven bags, bags with PE liners, sandbags, silt-fence fabric and woven clear sheet. Since 1980, over 400 staff, three units in Vatva; exports to Europe, the Middle East, Africa and North America.",
+   "src": "Company site apilindia.in, IndiaMART profile and Panjiva — address, products and scale from the firm itself",
+   "tags": [
+    {
+     "t": "Woven sacks",
+     "c": ""
+    }
+   ],
+   "tel": "+917929708120",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A large, long-established woven-sack exporter in Vatva GIDC. Woven tape often carries CaCO3 filler already — ask what masterbatch they use and pitch LIMEX against it. Also on 96879 30634.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Ahmedabad%20Packaging%20Industries%20Ltd%2C%20326%2C%20GIDC%20Phase-II%2C%20Vatva%2C%20Ahmedabad%20382445"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://www.praspack.com/",
+   "linkLabel": "praspack.com",
+   "precise": true,
+   "sortOrder": 4027,
+   "id": "A21-praspack-industries-private-limited",
+   "name": "Praspack Industries Private Limited",
+   "addr": "Plot No. 32, near Pharma Lab, Santej–Vadsar Road, Santej, Ta. Kalol 382721",
+   "makes": "Makes PP/HDPE woven fabrics and sacks, BOPP-laminated multicolour woven bags, woven sheeting and tarpaulin, FIBC bags and printed flexible-packaging film and pouches. About 50,000 t a year.",
+   "src": "Company site praspack.com — products, plant and Santej address from the firm itself",
+   "tags": [
+    {
+     "t": "Woven sacks",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: One of the biggest woven-sack plants in the Santej belt. Worth a senior-level visit.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Praspack%20Industries%20Private%20Limited%2C%20Plot%20No.%2032%2C%20near%20Pharma%20Lab%2C%20Santej%E2%80%93Vadsar%20Road%2C%20Santej%2C%20Ta.%20Kalol%20382721"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://hpbl.in/",
+   "linkLabel": "hpbl.in",
+   "precise": true,
+   "sortOrder": 4028,
+   "id": "A21-hcp-plastene-bulkpack-limited-formerly-gopala-polyplast",
+   "name": "HCP Plastene Bulkpack Limited (formerly Gopala Polyplast)",
+   "addr": "Plot No. 485, Santej–Vadsar Road, Santej, Ta. Kalol 382721",
+   "makes": "Makes FIBC jumbo bags, FIBC liners and PP woven and BOPP small bags. Started 1984 as Gopala Polyplast; now part of the Plastene India group.",
+   "src": "Company site hpbl.in and trade records — Santej plant, products and the renaming",
+   "tags": [
+    {
+     "t": "Woven sacks",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Same group as Plastene India, already in the register — coordinate so the group gets one pitch, not two.",
+   "map": "https://www.google.com/maps/search/?api=1&query=HCP%20Plastene%20Bulkpack%20Limited%20%28formerly%20Gopala%20Polyplast%29%2C%20Plot%20No.%20485%2C%20Santej%E2%80%93Vadsar%20Road%2C%20Santej%2C%20Ta.%20Kalol%20382721"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://ppbagsindia.com/",
+   "linkLabel": "ppbagsindia.com",
+   "precise": true,
+   "sortOrder": 4029,
+   "id": "A21-lakhotia-polyfab-pp-bags-india",
+   "name": "Lakhotia Polyfab (PP Bags India)",
+   "addr": "26, Soham Industrial Park, Mahijada, Ta. Daskroi, Ahmedabad 382425",
+   "makes": "Makes PP woven bags and fabric, BOPP bags and AD*STAR-type block-bottom bags — over 1,000 t a month, 500+ staff. ISO 9001:2015, BIS certified; since 2015.",
+   "src": "Company site ppbagsindia.com — address, capacity and phone from the firm itself",
+   "tags": [
+    {
+     "t": "Woven sacks",
+     "c": ""
+    }
+   ],
+   "tel": "+919426501609",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A big woven-bag plant south-east of the city. Also on 99795 53734.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Lakhotia%20Polyfab%20%28PP%20Bags%20India%29%2C%2026%2C%20Soham%20Industrial%20Park%2C%20Mahijada%2C%20Ta.%20Daskroi%2C%20Ahmedabad%20382425"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://m.indiamart.com/shristi-polymer",
+   "linkLabel": "IndiaMART",
+   "precise": true,
+   "sortOrder": 4030,
+   "id": "A21-shristi-polymer",
+   "name": "Shristi Polymer",
+   "addr": "Plot No. 3228, GIDC Phase-4, Vatva, Ahmedabad 382445",
+   "makes": "Makes PP and HDPE woven sacks and bags, industrial woven fabric and sandbags — about 200 t of granules a month.",
+   "src": "IndiaMART profile — manufacturer, Vatva GIDC plot, marketing manager R. N. Dubey",
+   "tags": [
+    {
+     "t": "Woven sacks",
+     "c": ""
+    }
+   ],
+   "tel": "+918048615302",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A mid-size Vatva woven-sack plant.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shristi%20Polymer%2C%20Plot%20No.%203228%2C%20GIDC%20Phase-4%2C%20Vatva%2C%20Ahmedabad%20382445"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/impulse-enterprise/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4031,
+   "id": "A21-impulse-enterprise",
+   "name": "Impulse Enterprise",
+   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "makes": "Makes HDPE/PP woven sacks for cement and fertilizer, jumbo bags, fabric, ropes and PE tarpaulin. Since 1985.",
+   "src": "IndiaMART profile — manufacturer since 1985; listed in the Textiles Committee packtech register",
+   "tags": [
+    {
+     "t": "Woven sacks",
+     "c": ""
+    },
+    {
+     "t": "Address needed",
+     "c": "warn"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Established woven-sack maker; the plant address is not published — ring first.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Impulse%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://www.satguru-plastic-pack.com/",
+   "linkLabel": "satguruiml.com",
+   "precise": true,
+   "sortOrder": 4032,
+   "id": "A21-satguru-plasticpack-llp",
+   "name": "Satguru Plasticpack LLP",
+   "addr": "Plot No. 15, Sankalp Industrial Park, Bakrol Road, Ta. Daskroi, Ahmedabad 382433",
+   "makes": "Injection-moulds IML ice-cream containers and cups, IML sweet boxes and food containers. LLP since 2017.",
+   "src": "IndiaMART profile, company site satguruiml.com and filings (LLP AAJ-4050) — Bakrol plot and products",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: IML PP tubs from its own Bakrol unit — the dairy product LIMEX targets.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Satguru%20Plasticpack%20LLP%2C%20Plot%20No.%2015%2C%20Sankalp%20Industrial%20Park%2C%20Bakrol%20Road%2C%20Ta.%20Daskroi%2C%20Ahmedabad%20382433"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": true,
+   "sortOrder": 4033,
+   "id": "A21-shree-poly-plast",
+   "name": "Shree Poly Plast",
+   "addr": "Unit No. 22, Shri Rang Estate, opp. Crown Laminates, Block No. 497, Changodar, Ahmedabad 382213",
+   "makes": "Blow-moulds HDPE bottles 50 ml–2 L (pesticide, chemical, shampoo, pharma) and plastic jerry cans.",
+   "src": "TradeIndia profile — manufacturer, Changodar estate unit and products",
+   "tags": [
+    {
+     "t": "Bottles",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: An HDPE blow-moulding unit in Changodar — opaque bottles, a direct LIMEX fit.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Poly%20Plast%2C%20Unit%20No.%2022%2C%20Shri%20Rang%20Estate%2C%20opp.%20Crown%20Laminates%2C%20Block%20No.%20497%2C%20Changodar%2C%20Ahmedabad%20382213"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "https://okplay.in/",
+   "linkLabel": "okplay.in",
+   "precise": false,
+   "sortOrder": 4034,
+   "id": "A21-ok-play-india-vatva-unit",
+   "name": "OK Play India (Vatva unit)",
+   "addr": "GIDC Phase-IV, Vatva, Ahmedabad — plot to confirm",
+   "makes": "Moulds plastic toys, ride-ons, rockers, see-saws, slides, indoor play stations and children's furniture. Since 1988.",
+   "src": "Company site okplay.in — Vatva GIDC Phase IV facility for plastic toys and games",
+   "tags": [
+    {
+     "t": "Toys",
+     "c": ""
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: One of India's larger moulded-toy and play-equipment makers. Rotomoulded and blow-moulded HDPE/LLDPE pieces — ask which lines run in Vatva.",
+   "map": "https://www.google.com/maps/search/?api=1&query=OK%20Play%20India%20%28Vatva%20unit%29%2C%20GIDC%20Phase-IV%2C%20Vatva%2C%20Ahmedabad"
+  },
+  {
+   "legId": "A21",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": false,
+   "sortOrder": 4035,
+   "id": "A21-royal-toys",
+   "name": "Royal Toys",
+   "addr": "Naroda, Ahmedabad — plot to confirm",
+   "makes": "Makes and imports plastic mini and promotional toys supplied as free gifts in packed foods.",
+   "src": "IndiaMART and TradeIndia profiles — manufacturer, supplier and importer, Naroda",
+   "tags": [
+    {
+     "t": "Toys",
+     "c": ""
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Partly imports — confirm what it moulds locally.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Royal%20Toys%2C%20Naroda%2C%20Ahmedabad"
   }
  ],
  "retired": [
