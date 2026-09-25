@@ -115002,29 +115002,25 @@
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-bottles.html",
+   "link": "https://www.indiamart.com/parishram-plastic/",
    "linkLabel": "IndiaMART",
    "precise": false,
    "sortOrder": 3971,
    "id": "A19-parisharam-plastic",
    "name": "Parisharam Plastic",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "Plot No. H/4, Krishna Apartment, near Tejendra Estate, Odhav, Ahmedabad 382415",
    "makes": "Listed products: HDPE Lotion Bottle and Container. Filed under HDPE blow-moulded bottles.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-bottles.html) — name, area and products from the listing only",
    "tags": [
     {
      "t": "Bottles",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under HDPE blow-moulded bottles; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Parisharam%20Plastic%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: IndiaMART profile says manufacturer, a partnership in Odhav, turnover ₹40 L–1.5 Cr; makes HDPE shampoo, lotion and cosmetic bottles and jars. The address reads like an office — ask where the blow-moulding shed is.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Parisharam%20Plastic%2C%20Plot%20No.%20H/4%2C%20Krishna%20Apartment%2C%20near%20Tejendra%20Estate%2C%20Odhav%2C%20Ahmedabad%20382415"
   },
   {
    "legId": "A19",
@@ -115050,35 +115046,8 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under HDPE blow-moulded bottles; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
+   "why": "Checked 25/09/2026: Could not confirm it moulds; a Vishvakarma Engineers in Ahmedabad trades rather than makes. Ring first.",
    "map": "https://www.google.com/maps/search/?api=1&query=Vishvakarma%20Engineering%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/ice-cream-cup.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3973,
-   "id": "A19-dabster-international-private-limited",
-   "name": "Dabster International Private Limited",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Ice cream cup. Filed under ice-cream cups.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/ice-cream-cup.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Ice-cream & curd tubs",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under ice-cream cups; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Dabster%20International%20Private%20Limited%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
    "legId": "A19",
@@ -115103,155 +115072,89 @@
     }
    ],
    "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under ice-cream cups; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
+   "fit": "weak",
+   "why": "Checked 25/09/2026: Several firms trade as Veer Enterprise in Ahmedabad; the ones found sell buckets and catering equipment, so the 'ice cream cup' may be a serving cup rather than dairy packaging. Confirm before driving out.",
    "map": "https://www.google.com/maps/search/?api=1&query=Veer%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3975,
-   "id": "A19-ag-poly-packs-private-limited",
-   "name": "AG Poly Packs Private Limited",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: White Round Thick Wall Jar, 50gm. Filed under plastic jars.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Jars",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=AG%20Poly%20Packs%20Private%20Limited%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
-   "linkLabel": "IndiaMART",
+   "link": "https://apexpackingsolutions.com/",
+   "linkLabel": "apexpackingsolutions.com",
    "precise": false,
    "sortOrder": 3976,
    "id": "A19-apex-packing-solutions",
    "name": "Apex Packing & Solutions",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "5, Khodiyar Chambers, opp. Mama Kalyan Temple, Aadiswarnagar Road, Naroda, Ahmedabad 382330",
    "makes": "Listed products: 1 Ltr Milky Plastic Jar Bottle With Cap; 500 gm HDPE Jar Bottle. Filed under plastic jars.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
    "tags": [
     {
      "t": "Jars",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
-   "tel": "",
+   "tel": "+918045813271",
    "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Apex%20Packing%20%26%20Solutions%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: Proprietor firm since 2019 (CEO Rajesh Panchal) making HDPE and PET pharma bottles and jar bottles; also trades caps, glass and pouches. Pitch the milky HDPE jars — the PET and amber lines are out of scope. The number is an IndiaMART line.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Apex%20Packing%20%26%20Solutions%2C%205%2C%20Khodiyar%20Chambers%2C%20opp.%20Mama%20Kalyan%20Temple%2C%20Aadiswarnagar%20Road%2C%20Naroda%2C%20Ahmedabad%20382330"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
    "link": "https://www.tradeindia.com/ahmedabad/plastic-jars-city-178823.html",
    "linkLabel": "TradeIndia",
-   "precise": false,
+   "precise": true,
    "sortOrder": 3977,
    "id": "A19-j-k-global",
    "name": "J&k Global",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "24 B, Archna Industrial Estate, Ahmedabad 380023",
    "makes": "Listed products: Food Color Jar. Filed under plastic jars.",
    "src": "TradeIndia Ahmedabad listing (www.tradeindia.com/ahmedabad/plastic-jars-city-178823.html) — name, area and products from the listing only; listed as Manufacturer",
    "tags": [
     {
      "t": "Jars",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on TradeIndia as a manufacturer under plastic jars. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=J%26k%20Global%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: Owner Dharm Patel; deals in moulded plastics, jars, caps and closures and biodegradable film. An industrial-estate unit — confirm it moulds the jars itself.",
+   "map": "https://www.google.com/maps/search/?api=1&query=J%26k%20Global%2C%2024%20B%2C%20Archna%20Industrial%20Estate%2C%20Ahmedabad%20380023"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
-   "linkLabel": "IndiaMART",
+   "link": "https://www.keepetcontainers.com/",
+   "linkLabel": "keepetcontainers.com",
    "precise": false,
    "sortOrder": 3978,
    "id": "A19-kee-pet-containers",
    "name": "Kee Pet Containers",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "805/A Pinnacle, Corporate Road, Prahladnagar, Ahmedabad 380015 (office); plant at Kalol",
    "makes": "Listed products: Small Plastic Bottles; White Round HDPE jars. Filed under plastic jars.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
    "tags": [
     {
      "t": "Jars",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
    "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Kee%20Pet%20Containers%2C%20Ahmedabad%2C%20Gujarat"
+   "fit": "clear",
+   "why": "Checked 25/09/2026: PET preform, bottle and jar maker since 1997 — mostly clear PET, out of scope. It does list white HDPE jars: ask about those. The Prahladnagar address is the office.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Kee%20Pet%20Containers%2C%20805/A%20Pinnacle%2C%20Corporate%20Road%2C%20Prahladnagar%2C%20Ahmedabad%20380015"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3979,
-   "id": "A19-kimayaa",
-   "name": "Kimayaa",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic 100 Gm Jar. Filed under plastic jars.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Jars",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Kimayaa%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
-   "linkLabel": "IndiaMART",
+   "link": "https://www.worldofpetjar.com/",
+   "linkLabel": "worldofpetjar.com",
    "precise": false,
    "sortOrder": 3980,
    "id": "A19-neelkanth-enterprise",
    "name": "Neelkanth Enterprise",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "Thaltej, Ahmedabad — plot to confirm",
    "makes": "Listed products: Plastic Jar. Filed under plastic jars.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
    "tags": [
@@ -115265,102 +115168,90 @@
     }
    ],
    "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Neelkanth%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
+   "fit": "clear",
+   "why": "Checked 25/09/2026: Maker of PET jars only (proprietor Pankaj Bhojwani, since 2016) — clear PET, out of scope.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Neelkanth%20Enterprise%2C%20Thaltej%2C%20Ahmedabad"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
    "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
    "linkLabel": "IndiaMART",
-   "precise": false,
+   "precise": true,
    "sortOrder": 3981,
    "id": "A19-radhe-krishna-industries",
    "name": "Radhe Krishna Industries",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "34, Shreenath Estate, opp. Bhumi Textiles, Shahwadi Gam Road, Narol, Ahmedabad 382405",
    "makes": "Listed products: Plastic Jars For Sauce. Filed under plastic jars.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
    "tags": [
     {
      "t": "Jars",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
    "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Radhe%20Krishna%20Industries%2C%20Ahmedabad%2C%20Gujarat"
+   "fit": "channel",
+   "why": "Checked 25/09/2026: Calls itself a trader, supplier and wholesaler of PET and HDPE jars, bottles and closures for pharma and cosmetics. Not a moulder by its own account — worth a call for the moulders it buys from.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Radhe%20Krishna%20Industries%2C%2034%2C%20Shreenath%20Estate%2C%20opp.%20Bhumi%20Textiles%2C%20Shahwadi%20Gam%20Road%2C%20Narol%2C%20Ahmedabad%20382405"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
    "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
    "linkLabel": "IndiaMART",
-   "precise": false,
+   "precise": true,
    "sortOrder": 3982,
    "id": "A19-radhe-polymers",
    "name": "Radhe Polymers",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "Plot C-20, Maruti Industrial Estate, near Kiran Industries, Phase 1, GIDC Vatva, Ahmedabad",
    "makes": "Listed products: Protein Powder Jar. Filed under plastic jars.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
    "tags": [
     {
      "t": "Jars",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
    "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Radhe%20Polymers%2C%20Ahmedabad%2C%20Gujarat"
+   "fit": "clear",
+   "why": "Checked 25/09/2026: Manufacturer since 2012 (proprietor Shailesh Patel) of PET preforms, bottles and jars — clear PET, which LIMEX does not replace. Only worth a call if it also runs HDPE jars.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Radhe%20Polymers%2C%20Plot%20C-20%2C%20Maruti%20Industrial%20Estate%2C%20near%20Kiran%20Industries%2C%20Phase%201%2C%20GIDC%20Vatva%2C%20Ahmedabad"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-jars.html",
-   "linkLabel": "IndiaMART",
+   "link": "https://www.skplastpack.com/",
+   "linkLabel": "skplastpack.com",
    "precise": false,
    "sortOrder": 3983,
    "id": "A19-s-k-plastpack",
    "name": "S K Plastpack",
-   "addr": "Chhatral, Ahmedabad, Gujarat — plot to confirm",
-   "makes": "Listed products: 1 litre 5LBS HDPE Protein Powder Jar. Filed under plastic jars.",
+   "addr": "Plot No. 53, Gokul Dham Residency, near Axis Bank, Chhatral 382729",
+   "makes": "Blow-moulds HDPE tablet bottles, HDPE oil and shampoo bottles, HDPE milk cans, dropper bottles and 5 lb HDPE protein-powder jars. Installed capacity 170,000 pieces.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
    "tags": [
     {
      "t": "Jars",
      "c": ""
-    },
-    {
-     "t": "Area only",
-     "c": "warn"
     }
    ],
-   "tel": "",
+   "tel": "+918069426364",
    "fit": "good",
-   "why": "Listed on IndiaMART in Chhatral under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=S%20K%20Plastpack%2C%20Chhatral%2C%20Ahmedabad"
+   "why": "Checked 25/09/2026: Its own site says manufacturer of HDPE bottles and jars in Chhatral — opaque HDPE, the right polymer. The address is a residency, so ask for the plant.",
+   "map": "https://www.google.com/maps/search/?api=1&query=S%20K%20Plastpack%2C%20Plot%20No.%2053%2C%20Gokul%20Dham%20Residency%2C%20near%20Axis%20Bank%2C%20Chhatral%20382729"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://www.tradeindia.com/ahmedabad/plastic-jars-city-178823.html",
-   "linkLabel": "TradeIndia",
+   "link": "https://www.skypolypack.com/",
+   "linkLabel": "skypolypack.com",
    "precise": false,
    "sortOrder": 3984,
    "id": "A19-sky-polypack",
    "name": "Sky Polypack",
-   "addr": "Kubadthal, Ahmedabad, Gujarat — plot to confirm",
-   "makes": "Listed products: HDPE Black Plastic Jar. Filed under plastic jars.",
+   "addr": "Kubadthal, Ahmedabad 382350 — plot to confirm",
+   "makes": "Blow-moulds HDPE bottles — pesticide (imida) bottles, PCB curve bottles, 1 L mono and double-neck bottles — whey-protein jars and HDPE carboys.",
    "src": "TradeIndia Ahmedabad listing (www.tradeindia.com/ahmedabad/plastic-jars-city-178823.html) — name, area and products from the listing only; listed as Manufacturer",
    "tags": [
     {
@@ -115374,8 +115265,8 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on TradeIndia as a manufacturer in Kubadthal under plastic jars. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Sky%20Polypack%2C%20Kubadthal%2C%20Ahmedabad"
+   "why": "Checked 25/09/2026: Its own site says manufacturer of HDPE bottles, about 7 years, proprietor Kishan Patel. Opaque HDPE agro bottles and carboys are a direct LIMEX fit.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Sky%20Polypack%2C%20Kubadthal%2C%20Ahmedabad%20382350"
   },
   {
    "legId": "A19",
@@ -115401,35 +115292,8 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
+   "why": "Listed on IndiaMART under plastic jars; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line. Checked 25/09/2026: a web search found nothing beyond the directory listing.",
    "map": "https://www.google.com/maps/search/?api=1&query=V.Raj%20Plast%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3986,
-   "id": "A19-a-v-packers",
-   "name": "A. V. Packers",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Black Rectangle Disposable Container 500gm. Filed under disposable thin-wall food containers.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Thin Wall",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=A.%20V.%20Packers%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
    "legId": "A19",
@@ -115455,7 +115319,7 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
+   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line. Checked 25/09/2026: a web search found nothing beyond the directory listing.",
    "map": "https://www.google.com/maps/search/?api=1&query=Deep%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
@@ -115482,19 +115346,19 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
+   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line. Checked 25/09/2026: a web search found nothing beyond the directory listing.",
    "map": "https://www.google.com/maps/search/?api=1&query=Dev%20Polypack%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html",
-   "linkLabel": "IndiaMART",
+   "link": "https://www.gopinathenterprise.com/",
+   "linkLabel": "gopinathenterprise.com",
    "precise": false,
    "sortOrder": 3989,
    "id": "A19-gopinath-enterprise",
    "name": "Gopinath Enterprise",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "Vastral, Ahmedabad — plot to confirm",
    "makes": "Listed products: RO Series 24 OZ Plastic Food Container. Filed under disposable thin-wall food containers.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html) — name, area and products from the listing only",
    "tags": [
@@ -115509,8 +115373,8 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Gopinath%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: Food-container business since 1998, also sells biodegradable ware; Justdial lists it as a disposables dealer. Confirm it moulds its own containers before visiting.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Gopinath%20Enterprise%2C%20Vastral%2C%20Ahmedabad"
   },
   {
    "legId": "A19",
@@ -115521,7 +115385,7 @@
    "sortOrder": 3990,
    "id": "A19-h-m-plastic",
    "name": "H M Plastic",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "Changodar, Ahmedabad — plot to confirm",
    "makes": "Listed products: PP Rectangular disposable Plastic Container 840 ml. Filed under disposable thin-wall food containers.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html) — name, area and products from the listing only",
    "tags": [
@@ -115535,63 +115399,9 @@
     }
    ],
    "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=H%20M%20Plastic%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3991,
-   "id": "A19-jay-ashapuri-plastic",
-   "name": "Jay Ashapuri Plastic",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Round Plastic Disposable Food Container (PP). Filed under disposable thin-wall food containers.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Thin Wall",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Jay%20Ashapuri%20Plastic%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3992,
-   "id": "A19-oxygen-enterprise",
-   "name": "Oxygen Enterprise",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: 500ml Tamper Proof disposable Plastic Food Container; 8 mm Printed Tamper Proof Courier Bag. Filed under disposable thin-wall food containers.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Thin Wall",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Oxygen%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
+   "fit": "clear",
+   "why": "Checked 25/09/2026: IndiaMART shows its 750 ml disposable containers are PET — clear, out of scope. Worth a call only if it also runs PP containers.",
+   "map": "https://www.google.com/maps/search/?api=1&query=H%20M%20Plastic%2C%20Changodar%2C%20Ahmedabad"
   },
   {
    "legId": "A19",
@@ -115602,23 +115412,19 @@
    "sortOrder": 3993,
    "id": "A19-shivalay-enterprise",
    "name": "Shivalay Enterprise",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "F/69, 2nd floor, Snehal Apartment, Ghatlodia Road, Ahmedabad 380061 (office)",
    "makes": "Listed products: 500ml Round Disposable Food Container. Filed under disposable thin-wall food containers.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html) — name, area and products from the listing only",
    "tags": [
     {
      "t": "Thin Wall",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line. Its name is close to Shivay Enterprise, already in the register — make sure it is a different firm.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Shivalay%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: IndiaMART lists it as a manufacturer; the address is a flat, so the unit is elsewhere. Its name is close to Shivay Enterprise, already in the register — make sure it is a different firm.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shivalay%20Enterprise%2C%20F/69%2C%202nd%20floor%2C%20Snehal%20Apartment%2C%20Ghatlodia%20Road%2C%20Ahmedabad%20380061"
   },
   {
    "legId": "A19",
@@ -115629,7 +115435,7 @@
    "sortOrder": 3994,
    "id": "A19-shree-jalaram-engineering",
    "name": "Shree Jalaram Engineering",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
+   "addr": "Maninagar, Ahmedabad — plot to confirm",
    "makes": "Listed products: Disposable Plastic Food Container 200Ml To 600Ml. Filed under disposable thin-wall food containers.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/disposable-plastic-food-container.html) — name, area and products from the listing only",
    "tags": [
@@ -115644,8 +115450,8 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Jalaram%20Engineering%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: Vacuum-forming firm in Maninagar making vacuum-formed trays and disposable food containers 200–600 ml. Thermoformed containers — ask what sheet they run and whether it is PP.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Jalaram%20Engineering%2C%20Maninagar%2C%20Ahmedabad"
   },
   {
    "legId": "A19",
@@ -115657,7 +115463,7 @@
    "id": "A19-advance-corporation",
    "name": "Advance Corporation",
    "addr": "Asarwa, Ahmedabad, Gujarat — plot to confirm",
-   "makes": "Listed products: Promotional Toys. Filed under plastic toys.",
+   "makes": "Moulds promotional candy toys — push-up and pop-up lollipop toys, lollipop stands and rings, toys for chocolate and jelly. MOQ 1,000 pieces.",
    "src": "ExportersIndia Ahmedabad listing (www.exportersindia.com/ahmedabad/plastic-toys.htm) — name, area and products from the listing only; listed as Manufacturer",
    "tags": [
     {
@@ -115669,91 +115475,10 @@
      "c": "warn"
     }
    ],
-   "tel": "",
+   "tel": "+919409536716",
    "fit": "good",
-   "why": "Listed on ExportersIndia as a manufacturer in Asarwa under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Advance%20Corporation%2C%20Asarwa%2C%20Ahmedabad"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-toy.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3996,
-   "id": "A19-baby-london",
-   "name": "Baby London",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Pig Press Plastic Toy. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-toy.html) — name, area and products from the listing only; listed as Supplier",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Baby%20London%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-toy.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3997,
-   "id": "A19-dhansamrat",
-   "name": "Dhansamrat",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Kids Plastic Toys. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-toy.html) — name, area and products from the listing only; listed as Supplier",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Dhansamrat%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://www.exportersindia.com/ahmedabad/plastic-toys.htm",
-   "linkLabel": "ExportersIndia",
-   "precise": false,
-   "sortOrder": 3998,
-   "id": "A19-genius-sports",
-   "name": "Genius Sports",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: PVC Plastic Cricket Bat toy. Filed under plastic toys.",
-   "src": "ExportersIndia Ahmedabad listing (www.exportersindia.com/ahmedabad/plastic-toys.htm) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "weak",
-   "why": "Listed on ExportersIndia as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line. Its listed item is PVC, which LIMEX does not replace — ask for PP or PE lines.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Genius%20Sports%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: IndiaMART says verified manufacturer in Asarwa, about 4 years. Small moulded toys for confectionery — a volume PP line.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Advance%20Corporation%2C%20Asarwa%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
    "legId": "A19",
@@ -115779,89 +115504,8 @@
    ],
    "tel": "",
    "fit": "weak",
-   "why": "Listed on TradeIndia as a manufacturer in Vejalpur under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line. Its listed item is PVC, which LIMEX does not replace — ask for PP or PE lines.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Ghoricha%20Engineers%2C%20Vejalpur%2C%20Ahmedabad"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-toy.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 4000,
-   "id": "A19-kamlesh-enterprise",
-   "name": "Kamlesh Enterprise",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic Gulel Toys. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-toy.html) — name, area and products from the listing only; listed as Manufacturer/Supplier",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Kamlesh%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/educational-toys.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 4001,
-   "id": "A19-khasala-brothers",
-   "name": "Khasala Brothers",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Shape Sorter Block Set toy. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/educational-toys.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Khasala%20Brothers%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://www.exportersindia.com/ahmedabad/plastic-toys.htm",
-   "linkLabel": "ExportersIndia",
-   "precise": false,
-   "sortOrder": 4002,
-   "id": "A19-khilona-house",
-   "name": "Khilona House",
-   "addr": "Ashram Road, Ahmedabad, Gujarat — plot to confirm",
-   "makes": "Listed products: Plastic Truck Toy; Plastic Ball Toy. Filed under plastic toys.",
-   "src": "ExportersIndia Ahmedabad listing (www.exportersindia.com/ahmedabad/plastic-toys.htm) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Area only",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on ExportersIndia as a manufacturer in Ashram Road under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Khilona%20House%2C%20Ashram%20Road%2C%20Ahmedabad"
+   "why": "Checked 25/09/2026: TradeIndia lists it as a plastic-toy manufacturer in Vejalpur since 2014 (toy cars, duck rings). Its duck ring is PVC, which LIMEX does not replace — ask for the PP toy cars.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Ghoricha%20Engineers%2C%20Vejalpur%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
    "legId": "A19",
@@ -115887,278 +115531,31 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on ExportersIndia as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
+   "why": "Checked 25/09/2026: Could not confirm an Ahmedabad unit — an R K Sports in Surat retails cricket gear. Ring first.",
    "map": "https://www.google.com/maps/search/?api=1&query=M/s%20R.%20K.%20Sports%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://www.exportersindia.com/ahmedabad/plastic-toys.htm",
-   "linkLabel": "ExportersIndia",
-   "precise": false,
-   "sortOrder": 4004,
-   "id": "A19-mukherjee-global-export-llp",
-   "name": "Mukherjee Global Export Llp",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic Train Toys. Filed under plastic toys.",
-   "src": "ExportersIndia Ahmedabad listing (www.exportersindia.com/ahmedabad/plastic-toys.htm) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on ExportersIndia as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Mukherjee%20Global%20Export%20Llp%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://www.exportersindia.com/ahmedabad/plastic-toys.htm",
-   "linkLabel": "ExportersIndia",
-   "precise": false,
-   "sortOrder": 4005,
-   "id": "A19-paras-enterprises",
-   "name": "Paras Enterprises",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic Tik Tok Toy; Plastic Whistling Bird Toy. Filed under plastic toys.",
-   "src": "ExportersIndia Ahmedabad listing (www.exportersindia.com/ahmedabad/plastic-toys.htm) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on ExportersIndia as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Paras%20Enterprises%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-toy.html",
+   "link": "https://www.indiamart.com/shree-umiya-toys-ahmedabad/",
    "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 4006,
-   "id": "A19-r-n-bhalakiya",
-   "name": "R N Bhalakiya",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic Ball toy. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-toy.html) — name, area and products from the listing only; listed as Supplier",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=R%20N%20Bhalakiya%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-toy.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
+   "precise": true,
    "sortOrder": 4007,
    "id": "A19-shree-umiya-toys",
    "name": "Shree Umiya Toys",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Bowling Game Plastic Toy. Filed under plastic toys.",
+   "addr": "39, Chirag Diamond Estate, opp. Anupam Colony, L.B.S. Road, Bapunagar, Ahmedabad 380025",
+   "makes": "Moulds plastic toys — plastic balls 37–70 mm, bowling sets, cricket sets, ride-on toys and plastic games. Established 1997.",
    "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-toy.html) — name, area and products from the listing only; listed as Manufacturer",
    "tags": [
     {
      "t": "Toys",
      "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
     }
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Umiya%20Toys%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://www.exportersindia.com/ahmedabad/plastic-toys.htm",
-   "linkLabel": "ExportersIndia",
-   "precise": false,
-   "sortOrder": 4008,
-   "id": "A19-shri-mahalaxmi-polymers",
-   "name": "Shri Mahalaxmi Polymers",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic Dripping Spray Ball toy. Filed under plastic toys.",
-   "src": "ExportersIndia Ahmedabad listing (www.exportersindia.com/ahmedabad/plastic-toys.htm) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on ExportersIndia as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Shri%20Mahalaxmi%20Polymers%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/plastic-toy.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 4009,
-   "id": "A19-trendolla",
-   "name": "Trendolla",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Unisex 12 Inch Plastic Toy Fan. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-toy.html) — name, area and products from the listing only; listed as Supplier",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Trendolla%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/educational-toys.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 4011,
-   "id": "A19-vishwas-enterprise",
-   "name": "Vishwas Enterprise",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Educational Building Construction Blocks Toy. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/educational-toys.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Vishwas%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://www.exportersindia.com/ahmedabad/plastic-toys.htm",
-   "linkLabel": "ExportersIndia",
-   "precise": false,
-   "sortOrder": 4012,
-   "id": "A19-vs-sports-india",
-   "name": "VS Sports India",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic Cricket Bat toy. Filed under plastic toys.",
-   "src": "ExportersIndia Ahmedabad listing (www.exportersindia.com/ahmedabad/plastic-toys.htm) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on ExportersIndia as a manufacturer under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=VS%20Sports%20India%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/educational-toys.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 4013,
-   "id": "A19-wirescorts",
-   "name": "Wirescorts",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Baby Toddler Plastic First Educational Blocks Toys. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/educational-toys.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Wirescorts%2C%20Ahmedabad%2C%20Gujarat"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
-   "link": "https://dir.indiamart.com/ahmedabad/educational-toys.html",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 4014,
-   "id": "A19-wissen-techus-private-limited",
-   "name": "Wissen Techus Private Limited",
-   "addr": "Ahmedabad, Gujarat — address to confirm",
-   "makes": "Listed products: Plastic Pattern Block (Student Set) toy. Filed under plastic toys.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/educational-toys.html) — name, area and products from the listing only",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Address needed",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Wissen%20Techus%20Private%20Limited%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 25/09/2026: A real toy moulder on an industrial estate in Bapunagar since 1997. Plastic balls and ride-ons are opaque PP/HDPE — a good LIMEX fit.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Umiya%20Toys%2C%2039%2C%20Chirag%20Diamond%20Estate%2C%20opp.%20Anupam%20Colony%2C%20L.B.S.%20Road%2C%20Bapunagar%2C%20Ahmedabad%20380025"
   }
  ],
  "retired": [
@@ -116169,6 +115566,90 @@
   {
    "id": "A16-vishakha-polyfab-pvt-ltd",
    "reason": "Duplicate of N2-vishakha-group-vishakha-polyfab-pvt-ltd (same company, listed under its group name)."
+  },
+  {
+   "id": "A19-dabster-international-private-limited",
+   "reason": "Kitchen-accessories trader in Rajkot; the 'ice cream cup' is a serving cup, not dairy packaging."
+  },
+  {
+   "id": "A19-ag-poly-packs-private-limited",
+   "reason": "PET bottle trader in Ghaziabad, Uttar Pradesh, not Ahmedabad."
+  },
+  {
+   "id": "A19-oxygen-enterprise",
+   "reason": "Trader and retailer in Changodar (bird spikes, soap holders, containers); does not mould."
+  },
+  {
+   "id": "A19-kimayaa",
+   "reason": "Trader in Vasai-Virar, Maharashtra, not Ahmedabad."
+  },
+  {
+   "id": "A19-a-v-packers",
+   "reason": "Based in Delhi (Swaroop Nagar); only sold into Ahmedabad."
+  },
+  {
+   "id": "A19-jay-ashapuri-plastic",
+   "reason": "Wholesaler and retailer of water-jar caps and handles; does not make containers."
+  },
+  {
+   "id": "A19-khilona-house",
+   "reason": "Toy shop in Gota (and a Surat retailer); trades toys, does not mould them."
+  },
+  {
+   "id": "A19-paras-enterprises",
+   "reason": "The toy maker of this name is in Delhi; the Ahmedabad firm sells acrylic sheet."
+  },
+  {
+   "id": "A19-dhansamrat",
+   "reason": "Toy seller based in Mumbai."
+  },
+  {
+   "id": "A19-kamlesh-enterprise",
+   "reason": "Distributor of candy-with-toy confectionery; does not mould."
+  },
+  {
+   "id": "A19-r-n-bhalakiya",
+   "reason": "Toy shop in Khadia (Ramakada Market)."
+  },
+  {
+   "id": "A19-baby-london",
+   "reason": "Baby-products trader on Gheekanta Road, established 2022."
+  },
+  {
+   "id": "A19-trendolla",
+   "reason": "Retailer of gadgets and kids' items in Singarva; the toy fan is PVC and bought in."
+  },
+  {
+   "id": "A19-genius-sports",
+   "reason": "Cricket-goods trader in Meerut, Uttar Pradesh."
+  },
+  {
+   "id": "A19-khasala-brothers",
+   "reason": "Toy wholesaler and online retailer; does not mould."
+  },
+  {
+   "id": "A19-mukherjee-global-export-llp",
+   "reason": "Exporter-trader based in New Delhi."
+  },
+  {
+   "id": "A19-shri-mahalaxmi-polymers",
+   "reason": "Firms of this name are in Hyderabad, Nashik and Belgaum, none in Ahmedabad."
+  },
+  {
+   "id": "A19-vs-sports-india",
+   "reason": "Cricket-goods trader in Meerut, Uttar Pradesh."
+  },
+  {
+   "id": "A19-vishwas-enterprise",
+   "reason": "Pet-supplies trader and retailer in Kathwada."
+  },
+  {
+   "id": "A19-wirescorts",
+   "reason": "Wholesaler of remote-control toy cars (Anvar Park); does not mould."
+  },
+  {
+   "id": "A19-wissen-techus-private-limited",
+   "reason": "Maths-model trader in Ambala, Haryana."
   }
  ]
 }
