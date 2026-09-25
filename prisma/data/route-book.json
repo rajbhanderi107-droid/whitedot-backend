@@ -111168,33 +111168,6 @@
   {
    "legId": "A16",
    "telLabel": "Call",
-   "link": "https://www.tradeindia.com/ahmedabad/courier-bags-city-178823.html",
-   "linkLabel": "TradeIndia",
-   "precise": false,
-   "sortOrder": 3828,
-   "id": "A16-vishakha-polyfab-pvt-ltd",
-   "name": "Vishakha Polyfab Pvt. Ltd.",
-   "addr": "Prahlad nagar, Ahmedabad, Gujarat — plot to confirm",
-   "makes": "Listed products: Tamper Proof Courier Bags. Filed under plastic carry & garbage bags.",
-   "src": "TradeIndia Ahmedabad listing (www.tradeindia.com/ahmedabad/courier-bags-city-178823.html) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Plastic bags",
-     "c": ""
-    },
-    {
-     "t": "Area only",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on TradeIndia as a manufacturer in Prahlad nagar under plastic carry & garbage bags. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=Vishakha%20Polyfab%20Pvt.%20Ltd.%2C%20Prahlad%20nagar%2C%20Ahmedabad"
-  },
-  {
-   "legId": "A16",
-   "telLabel": "Call",
    "link": "https://dir.indiamart.com/ahmedabad/courier-bags.html",
    "linkLabel": "IndiaMART",
    "precise": false,
@@ -115644,7 +115617,7 @@
    ],
    "tel": "",
    "fit": "good",
-   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
+   "why": "Listed on IndiaMART under disposable thin-wall food containers; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line. Its name is close to Shivay Enterprise, already in the register — make sure it is a different firm.",
    "map": "https://www.google.com/maps/search/?api=1&query=Shivalay%20Enterprise%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
@@ -116082,33 +116055,6 @@
   {
    "legId": "A19",
    "telLabel": "Call",
-   "link": "https://www.tradeindia.com/ahmedabad/plastic-toys-city-178823.html",
-   "linkLabel": "TradeIndia",
-   "precise": false,
-   "sortOrder": 4010,
-   "id": "A19-v-s-industries",
-   "name": "V S Industries",
-   "addr": "Bakrol, Ahmedabad, Gujarat — plot to confirm",
-   "makes": "Listed products: Animal Plastic Toys. Filed under plastic toys.",
-   "src": "TradeIndia Ahmedabad listing (www.tradeindia.com/ahmedabad/plastic-toys-city-178823.html) — name, area and products from the listing only; listed as Manufacturer",
-   "tags": [
-    {
-     "t": "Toys",
-     "c": ""
-    },
-    {
-     "t": "Area only",
-     "c": "warn"
-    }
-   ],
-   "tel": "",
-   "fit": "good",
-   "why": "Listed on TradeIndia as a manufacturer in Bakrol under plastic toys. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
-   "map": "https://www.google.com/maps/search/?api=1&query=V%20S%20Industries%2C%20Bakrol%2C%20Ahmedabad"
-  },
-  {
-   "legId": "A19",
-   "telLabel": "Call",
    "link": "https://dir.indiamart.com/ahmedabad/educational-toys.html",
    "linkLabel": "IndiaMART",
    "precise": false,
@@ -116213,6 +116159,16 @@
    "fit": "good",
    "why": "Listed on IndiaMART under plastic toys; the listing does not say it manufactures — confirm it is not a reseller. A directory entry only: not yet called or visited. Ring first for the plot and to confirm it runs its own line.",
    "map": "https://www.google.com/maps/search/?api=1&query=Wissen%20Techus%20Private%20Limited%2C%20Ahmedabad%2C%20Gujarat"
+  }
+ ],
+ "retired": [
+  {
+   "id": "A19-v-s-industries",
+   "reason": "Duplicate of A15-v-s-industries-leemo-toys (same Bakrol toy moulder; the trade name in brackets hid it from the name check)."
+  },
+  {
+   "id": "A16-vishakha-polyfab-pvt-ltd",
+   "reason": "Duplicate of N2-vishakha-group-vishakha-polyfab-pvt-ltd (same company, listed under its group name)."
   }
  ]
 }

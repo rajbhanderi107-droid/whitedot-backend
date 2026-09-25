@@ -34,7 +34,10 @@ interface SeedStop {
   tags?: { t: string; c: string }[]; precise?: boolean; map?: string; tel?: string; telLabel?: string;
   link?: string; linkLabel?: string; fit?: string; why?: string; sortOrder: number;
 }
-interface SeedFile { version: number; fams: SeedFamily[]; legs: SeedLeg[]; stops: SeedStop[] }
+/** A stop taken out of the register (a duplicate, say). Upsert never deletes,
+ *  so a stop merely dropped from `stops` would live on in the database. */
+interface SeedRetired { id: string; reason: string }
+interface SeedFile { version: number; fams: SeedFamily[]; legs: SeedLeg[]; stops: SeedStop[]; retired?: SeedRetired[] }
 
 const SEED_FILE = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../prisma/data/route-book.json");
 const USER_LEG = "M1";
@@ -91,7 +94,17 @@ export async function applySeed(mode: "create" | "upsert") {
       stops += chunk.length;
     }
   }
-  return { fams: seed.fams.length, legs: seed.legs.length, stops, version: seed.version };
+  /* Soft delete, as the portal's own delete does, so marks and visits stay
+   * attached and an admin can restore it. Stops people added are never touched. */
+  let retired = 0;
+  if (seed.retired?.length) {
+    const r = await prisma.routeBookStop.updateMany({
+      where: { id: { in: seed.retired.map((x) => x.id) }, deletedAt: null, userAdded: false },
+      data: { deletedAt: new Date() },
+    });
+    retired = r.count;
+  }
+  return { fams: seed.fams.length, legs: seed.legs.length, stops, retired, version: seed.version };
 }
 
 let seededThisProcess = false;
