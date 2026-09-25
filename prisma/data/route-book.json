@@ -2541,6 +2541,14 @@
    "belt": "IndiaMART & TradeIndia listings · 25/09/2026 · checked against the whole register · ring before you drive",
    "nav": "",
    "sortOrder": 167
+  },
+  {
+   "id": "A20",
+   "familyId": "A",
+   "name": "Ahmedabad — checked makers: bottles, cans, jars, tubs, toys & bags",
+   "belt": "Odhav, Vatva, Kathwada, Bakrol, Changodar & Rakhial · 25/09/2026 · each firm checked on the web",
+   "nav": "",
+   "sortOrder": 168
   }
  ],
  "stops": [
@@ -115556,6 +115564,440 @@
    "fit": "good",
    "why": "Checked 25/09/2026: A real toy moulder on an industrial estate in Bapunagar since 1997. Plastic balls and ride-ons are opaque PP/HDPE — a good LIMEX fit.",
    "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Umiya%20Toys%2C%2039%2C%20Chirag%20Diamond%20Estate%2C%20opp.%20Anupam%20Colony%2C%20L.B.S.%20Road%2C%20Bapunagar%2C%20Ahmedabad%20380025"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": false,
+   "sortOrder": 4008,
+   "id": "A20-jay-ranchhod-blow-pack-industries",
+   "name": "Jay Ranchhod Blow Pack Industries",
+   "addr": "Odhav, Ahmedabad — plot to confirm",
+   "makes": "Blow-moulds PET and HDPE bottles, including HDPE imida (pesticide) bottles.",
+   "src": "IndiaMART manufacturer listing (HDPE imida bottles) and the firm's own Facebook page — Odhav, phone and e-mail",
+   "tags": [
+    {
+     "t": "Bottles",
+     "c": ""
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "tel": "+919913359260",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A blow-moulder in Odhav. Pitch the HDPE agro bottles; its PET line is out of scope.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Jay%20Ranchhod%20Blow%20Pack%20Industries%2C%20Odhav%2C%20Ahmedabad"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://www.madhavplastomechpvtltd.co.in/",
+   "linkLabel": "madhavplastomechpvtltd.co.in",
+   "precise": true,
+   "sortOrder": 4009,
+   "id": "A20-madhav-plastomech-private-limited",
+   "name": "Madhav Plastomech Private Limited",
+   "addr": "Shed No. 12, Arihant Estate, Girnar Scooter Compound, Ring Road, Odhav, Ahmedabad 382415",
+   "makes": "Moulds HDPE protein-powder containers (PPC 05, 21, 27, 30), pharma HDPE containers, HDPE spray and shampoo bottles, plastic lids, spoons and pill boxes.",
+   "src": "Company site madhavplastomechpvtltd.co.in and IndiaMART — products and Odhav shed address from the firm itself",
+   "tags": [
+    {
+     "t": "Jars",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Incorporated 2024, proprietor Niraj Davariya. Opaque HDPE jars for protein powder — a direct LIMEX fit.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Madhav%20Plastomech%20Private%20Limited%2C%20Shed%20No.%2012%2C%20Arihant%20Estate%2C%20Girnar%20Scooter%20Compound%2C%20Ring%20Road%2C%20Odhav%2C%20Ahmedabad%20382415"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://goldcoinplasticindia.com/",
+   "linkLabel": "goldcoinplasticindia.com",
+   "precise": true,
+   "sortOrder": 4010,
+   "id": "A20-goldcoin-polyplast",
+   "name": "Goldcoin Polyplast",
+   "addr": "Survey No. 1171, Plot No. 1–3, opp. Panchratna Estate, Bhavda, Ta. Daskroi, Ahmedabad 382433",
+   "makes": "Blow-moulds HDPE jerry cans 5–30 L, plastic drums, buckets and open-top containers. ISO 9001:2015, since 2003.",
+   "src": "Company site goldcoinplasticindia.com — products, address and phone from the firm itself",
+   "tags": [
+    {
+     "t": "Bottles",
+     "c": ""
+    }
+   ],
+   "tel": "+919099775544",
+   "fit": "good",
+   "why": "Checked 25/09/2026: An established HDPE can and drum moulder near Bhavda. Opaque HDPE cans are a strong LIMEX fit. Also on 93270 72684.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Goldcoin%20Polyplast%2C%20Survey%20No.%201171%2C%20Plot%20No.%201%E2%80%933%2C%20opp.%20Panchratna%20Estate%2C%20Bhavda%2C%20Ta.%20Daskroi%2C%20Ahmedabad%20382433"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": true,
+   "sortOrder": 4011,
+   "id": "A20-premier-plastics",
+   "name": "Premier Plastics",
+   "addr": "8-B, Krishna Estate, opp. Sukhram Nagar Post Office, Nagarvel Hanuman Road, Rakhial, Ahmedabad 380023",
+   "makes": "Blow-moulds plastic jerry cans, 10 L and upward.",
+   "src": "IndiaMART manufacturer listing (jerry cans) and Kompass — Rakhial estate address",
+   "tags": [
+    {
+     "t": "Bottles",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: An estate unit in Rakhial listed as a jerry-can manufacturer. Ring to confirm the range.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Premier%20Plastics%2C%208-B%2C%20Krishna%20Estate%2C%20opp.%20Sukhram%20Nagar%20Post%20Office%2C%20Nagarvel%20Hanuman%20Road%2C%20Rakhial%2C%20Ahmedabad%20380023"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://www.sheetalplastic.com/",
+   "linkLabel": "sheetalplastic.com",
+   "precise": true,
+   "sortOrder": 4012,
+   "id": "A20-sheetal-plastic-industries",
+   "name": "Sheetal Plastic Industries",
+   "addr": "Shed No. 64, Mahavir Industrial Park-2, near Vinayak Industrial Estate-2, Singarva–Kathwada Road, Kathwada, Ahmedabad 382430",
+   "makes": "Moulds HDPE pharma bottles and jars, pesticide bottles, cosmetic bottles, 1 L HDPE protein-powder jars and caps. Established 1997.",
+   "src": "Company site sheetalplastic.com and IndiaMART — products and Kathwada shed address from the firm itself",
+   "tags": [
+    {
+     "t": "Jars",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A Kathwada shed making opaque HDPE jars and bottles since 1997 — the right polymer.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Sheetal%20Plastic%20Industries%2C%20Shed%20No.%2064%2C%20Mahavir%20Industrial%20Park-2%2C%20near%20Vinayak%20Industrial%20Estate-2%2C%20Singarva%E2%80%93Kathwada%20Road%2C%20Kathwada%2C%20Ahmedabad%20382430"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://www.rutvikpharma.com/",
+   "linkLabel": "rutvikpharma.com",
+   "precise": true,
+   "sortOrder": 4013,
+   "id": "A20-rutvik-pharma",
+   "name": "Rutvik Pharma",
+   "addr": "141, Vikas Industrial Estate, opp. Anil Starch Mill, Bapunagar, Ahmedabad 380024",
+   "makes": "Moulds HDPE pesticide and chemical bottles, HDPE bottle sets 10–90 ml, HDPE jars, cream containers, measuring cups and caps. Established 1995.",
+   "src": "Company site rutvikpharma.com and IndiaMART — products and Bapunagar address from the firm itself",
+   "tags": [
+    {
+     "t": "Bottles",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Makes HDPE pesticide bottles and jars in Bapunagar since 1995. Much of its range is caps and measuring cups — pitch the bottles and jars.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Rutvik%20Pharma%2C%20141%2C%20Vikas%20Industrial%20Estate%2C%20opp.%20Anil%20Starch%20Mill%2C%20Bapunagar%2C%20Ahmedabad%20380024"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": false,
+   "sortOrder": 4014,
+   "id": "A20-shanti-kuber-industries",
+   "name": "Shanti Kuber Industries",
+   "addr": "Kathwada, Ahmedabad — plot to confirm",
+   "makes": "Makes HDPE bottles, HDPE jerry cans (2–10 L, lubricant and water cans) and HDPE drums. Since 2016, proprietor Shashank Prajapati.",
+   "src": "IndiaMART and TradeIndia profiles — manufacturer and trader, Kathwada",
+   "tags": [
+    {
+     "t": "Bottles",
+     "c": ""
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Says manufacturer and trader — confirm it blows its own cans.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shanti%20Kuber%20Industries%2C%20Kathwada%2C%20Ahmedabad"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://www.ambicaplast.com/",
+   "linkLabel": "ambicaplast.com",
+   "precise": true,
+   "sortOrder": 4015,
+   "id": "A20-ambica-plastomech-llp",
+   "name": "Ambica Plastomech LLP",
+   "addr": "15, Nissan Industrial Park, near Shree Naranarayan Ayurvedic Pharmacy, Tajpur–Bhat Gam Road, Changodar, Ahmedabad 382213",
+   "makes": "Moulds plastic bottles, jars and containers for pharma, nutraceutical, cosmetic, ayurvedic, automobile and FMCG brands. 13,500 sq ft plant, 14+ machines; family business since 1985.",
+   "src": "Company filings (LLP AAR-1102) and ambicaplast.com — address, plant size and markets",
+   "tags": [
+    {
+     "t": "Jars",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A real Changodar plant supplying FMCG and pharma. Ask which lines run HDPE or PP.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Ambica%20Plastomech%20LLP%2C%2015%2C%20Nissan%20Industrial%20Park%2C%20near%20Shree%20Naranarayan%20Ayurvedic%20Pharmacy%2C%20Tajpur%E2%80%93Bhat%20Gam%20Road%2C%20Changodar%2C%20Ahmedabad%20382213"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": false,
+   "sortOrder": 4016,
+   "id": "A20-golecha-marketing",
+   "name": "Golecha Marketing",
+   "addr": "Sanand, Ahmedabad — plot to confirm",
+   "makes": "Sells 500 g HDPE plastic jars with cap sealing and plastic bowls 200–1,600 ml.",
+   "src": "IndiaMART manufacturer listing — Sanand, 9 years, TrustSEAL",
+   "tags": [
+    {
+     "t": "Jars",
+     "c": ""
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Listed as manufacturer but the name says marketing — confirm it moulds before visiting.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Golecha%20Marketing%2C%20Sanand%2C%20Ahmedabad"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://kantamkontainers.com/",
+   "linkLabel": "kantamkontainers.com",
+   "precise": true,
+   "sortOrder": 4017,
+   "id": "A20-kantam-kontainers-llp",
+   "name": "Kantam Kontainers LLP",
+   "addr": "P.A. Patel Estate, near Bida, near HP petrol pump, Bareja, Ta. Daskroi, Ahmedabad 382425",
+   "makes": "Injection-moulds IML PP ice-cream containers 250 ml–1 kg, food containers, PP boxes and cups. ISO 9001:2015.",
+   "src": "IndiaMART profile and company filings (LLP ABC-1496) — manufacturer since 2022; registered office 4/A Kailashnath Soc., Bhairavnath Road, Maninagar",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: IML PP ice-cream tubs made in its own Bareja plant — exactly the dairy product LIMEX targets.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Kantam%20Kontainers%20LLP%2C%20P.A.%20Patel%20Estate%2C%20near%20Bida%2C%20near%20HP%20petrol%20pump%2C%20Bareja%2C%20Ta.%20Daskroi%2C%20Ahmedabad%20382425"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://joynjoy.in/",
+   "linkLabel": "joynjoy.in",
+   "precise": true,
+   "sortOrder": 4018,
+   "id": "A20-joy-n-joy-industry-joy-plast-industry",
+   "name": "Joy N Joy Industry (Joy Plast Industry)",
+   "addr": "Plot No. 130, Phase-II, Modern Bakery Road, GIDC Naroda, Ahmedabad 382330",
+   "makes": "Makes printed ice-cream cups, wafer sugar cones and printed cone sleeves for ice-cream brands. Since 2007.",
+   "src": "Company site joynjoy.in — products and Naroda GIDC address; second unit at Tajpur, Prantij",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Supplies ice-cream brands from Naroda GIDC. Check the cups are plastic rather than paper before pitching.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Joy%20N%20Joy%20Industry%20%28Joy%20Plast%20Industry%29%2C%20Plot%20No.%20130%2C%20Phase-II%2C%20Modern%20Bakery%20Road%2C%20GIDC%20Naroda%2C%20Ahmedabad%20382330"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": false,
+   "sortOrder": 4019,
+   "id": "A20-nirvi-enterprise",
+   "name": "Nirvi Enterprise",
+   "addr": "Vadaj, Ahmedabad — plot to confirm",
+   "makes": "Sells plastic ice-cream containers — 500 ml, 1000 ml and 1 kg.",
+   "src": "IndiaMART listing — 12 years, TrustSEAL, Vadaj",
+   "tags": [
+    {
+     "t": "Ice-cream & curd tubs",
+     "c": ""
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: No own site found; confirm it moulds rather than trades.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Nirvi%20Enterprise%2C%20Vadaj%2C%20Ahmedabad"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": true,
+   "sortOrder": 4020,
+   "id": "A20-kronax-plastic",
+   "name": "Kronax Plastic",
+   "addr": "Shed No. 42, Bhagirath Estate, Mansuri Chali, Amraiwadi, Ahmedabad 380026",
+   "makes": "Moulds plastic sweet boxes 250–500 g, small containers 10–25 g, kumkum boxes, balm bottles and nasal inhalers. Since 2012.",
+   "src": "IndiaMART and TradeIndia profiles — manufacturer, Amraiwadi shed address",
+   "tags": [
+    {
+     "t": "Thin Wall",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A small Amraiwadi moulder. Some lines are transparent — pitch the coloured sweet boxes and containers.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Kronax%20Plastic%2C%20Shed%20No.%2042%2C%20Bhagirath%20Estate%2C%20Mansuri%20Chali%2C%20Amraiwadi%2C%20Ahmedabad%20380026"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://www.shreebioware.com/",
+   "linkLabel": "shreebioware.com",
+   "precise": true,
+   "sortOrder": 4021,
+   "id": "A20-shri-raj-rajendra",
+   "name": "Shri Raj Rajendra",
+   "addr": "A/35, Patel Sizing Estate, opp. Jay Chemical Industries, GIDC Odhav, Ahmedabad 382415",
+   "makes": "Makes disposable plastic food containers (500 ml), glasses, spoons, forks, stirrers and shakers; also wooden cutlery and paper straws. Since 1999.",
+   "src": "Company site shreebioware.com and IndiaMART — manufacturer, Odhav GIDC address",
+   "tags": [
+    {
+     "t": "Thin Wall",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: Disposable containers and cutlery for hotels and dairies — mostly PP and PS. Ask for the PP container line.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shri%20Raj%20Rajendra%2C%20A/35%2C%20Patel%20Sizing%20Estate%2C%20opp.%20Jay%20Chemical%20Industries%2C%20GIDC%20Odhav%2C%20Ahmedabad%20382415"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": true,
+   "sortOrder": 4022,
+   "id": "A20-dolphin-toys-industries",
+   "name": "Dolphin Toys Industries",
+   "addr": "174, Gopal Charan Industrial Hub, Bakrol-Bujrang, Ta. Daskroi, Ahmedabad",
+   "makes": "Moulds plastic toys — cricket bat sets, stacking rings, money banks. Partnership since 2022 (Udyam GJ-01-0184500).",
+   "src": "IndiaMART profile and MSME registration — manufacturer, Bakrol estate address",
+   "tags": [
+    {
+     "t": "Toys",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A registered toy moulder in the Bakrol toy belt — opaque PP toys, a good LIMEX fit.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Dolphin%20Toys%20Industries%2C%20174%2C%20Gopal%20Charan%20Industrial%20Hub%2C%20Bakrol-Bujrang%2C%20Ta.%20Daskroi%2C%20Ahmedabad"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/jkplastics-ahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4023,
+   "id": "A20-jk-toys",
+   "name": "JK Toys",
+   "addr": "Bakrol, Ahmedabad — plot to confirm",
+   "makes": "Moulds small promotional toys for confectionery and gifting, and stationery kits.",
+   "src": "IndiaMART profile (jkplastics-ahmedabad) — manufacturer, Bakrol, 10 years",
+   "tags": [
+    {
+     "t": "Toys",
+     "c": ""
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: High-volume tiny PP toys — ask what polymer and how many tonnes a month.",
+   "map": "https://www.google.com/maps/search/?api=1&query=JK%20Toys%2C%20Bakrol%2C%20Ahmedabad"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "precise": true,
+   "sortOrder": 4024,
+   "id": "A20-shree-ambica-polymers",
+   "name": "Shree Ambica Polymers",
+   "addr": "Plot No. 1415, Phase-3, GIDC Vatva, Ahmedabad 382445",
+   "makes": "Makes HDPE woven fabric and HDPE woven bags. Registered 2010; part of the Shree Ambica group (tarpaulins, woven sacks).",
+   "src": "TradeIndia profile and Justdial — Vatva GIDC plot",
+   "tags": [
+    {
+     "t": "Woven sacks",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A Vatva GIDC woven-fabric unit. Filler in woven tape is common — ask whether they already use a CaCO3 masterbatch.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Ambica%20Polymers%2C%20Plot%20No.%201415%2C%20Phase-3%2C%20GIDC%20Vatva%2C%20Ahmedabad%20382445"
+  },
+  {
+   "legId": "A20",
+   "telLabel": "Call",
+   "link": "https://www.henamcorporation.com/",
+   "linkLabel": "henamcorporation.com",
+   "precise": true,
+   "sortOrder": 4025,
+   "id": "A20-henam-corporecon",
+   "name": "Henam Corporecon",
+   "addr": "C1-94/2, GIDC Vatva Phase II, Ahmedabad 382445",
+   "makes": "Makes HDPE frosted zip-lock bags, slider-lock bags, tamper-evident courier bags, hanger poly bags and packaging pouches.",
+   "src": "Company site henamcorporation.com — manufacturer, Vatva GIDC address, proprietor Mittal Mistry",
+   "tags": [
+    {
+     "t": "Plastic bags",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "fit": "good",
+   "why": "Checked 25/09/2026: A Vatva GIDC bag converter. Pitch the opaque courier bags; frosted zip-locks need to stay translucent.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Henam%20Corporecon%2C%20C1-94/2%2C%20GIDC%20Vatva%20Phase%20II%2C%20Ahmedabad%20382445"
   }
  ],
  "retired": [
