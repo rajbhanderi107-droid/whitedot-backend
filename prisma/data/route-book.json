@@ -2567,6 +2567,14 @@
    "sortOrder": 157
   },
   {
+   "id": "C9",
+   "familyId": "C",
+   "name": "Canada - Ontario: more container and bag makers & wholesalers",
+   "belt": "Etobicoke / Woodbridge / Concord / Brampton / Mississauga / Scarborough",
+   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Winpak%20Portion%20Packaging%2C%2026%20Tidemore%20Avenue%2C%20Etobicoke%2C%20ON%20M9W%207A7&destination=Takeout%20Depot%2C%20491%20Brimley%20Road%2C%20Unit%209%2C%20Scarborough%2C%20ON%20M1J%201A4&waypoints=Petro%20Plastics%20Corporation%20Ltd.%2C%20140%20Vinyl%20Court%2C%20Woodbridge%2C%20ON%20L4L%204A3|Concord%20Packaging%20Group%2C%20250%20Millway%20Avenue%2C%20Concord%2C%20ON%20L4K%203W5|Ever%20Eco%20Plastics%20Ltd.%2C%2040%20Holtby%20Avenue%2C%20Unit%202%2C%20Brampton%2C%20ON%20L6X%202M1|W.%20Ralston%20%28Canada%29%20Inc.%2C%20135%20East%20Drive%2C%20Brampton%2C%20ON%20L6T%201B5|A1%20Cash%20and%20Carry%2C%207300%20Torbram%20Road%2C%20Unit%202%2C%20Mississauga%2C%20ON%20L4T%203X2|Poly%20Products%2C%207475%20Kimbel%20Street%2C%20Mississauga%2C%20ON%20L5S%201E7|Guycan%20Plastics%20Limited%2C%20215%20Statesman%20Drive%2C%20Mississauga%2C%20ON%20L5S%201X4|Thermo-Tech%20Plastics%20Ltd.%2C%202299%20Drew%20Road%2C%20Unit%2021%2C%20Mississauga%2C%20ON%20L5S%201A3",
+   "sortOrder": 160
+  },
+  {
    "id": "C7",
    "familyId": "C",
    "name": "Canada - Quebec: thermoformers, tub and bag makers",
@@ -116535,6 +116543,330 @@
    "fit": "good",
    "why": "Checked 27/09/2026: maker of one of the three Canada products.",
    "sortOrder": 4044
+  },
+  {
+   "id": "C9-guycan-plastics-limited",
+   "legId": "C9",
+   "name": "Guycan Plastics Limited",
+   "addr": "215 Statesman Drive, Mississauga, ON L5S 1X4",
+   "makes": "Makes thermoformed clear PET clamshells, bakery containers, trays and domes for food.",
+   "src": "guycanplastics.com",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Guycan%20Plastics%20Limited%2C%20215%20Statesman%20Drive%2C%20Mississauga%2C%20ON%20L5S%201X4",
+   "tel": "9056709054",
+   "telLabel": "Call 905-670-9054",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4080
+  },
+  {
+   "id": "C9-thermo-tech-plastics-ltd",
+   "legId": "C9",
+   "name": "Thermo-Tech Plastics Ltd.",
+   "addr": "2299 Drew Road, Unit 21, Mississauga, ON L5S 1A3",
+   "makes": "Makes thermoformed clamshells, trays, tubs and lids for food and other markets.",
+   "src": "thermotechplastics.com; ContractPackaging.com listing",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Thermo-Tech%20Plastics%20Ltd.%2C%202299%20Drew%20Road%2C%20Unit%2021%2C%20Mississauga%2C%20ON%20L5S%201A3",
+   "tel": "9056789448",
+   "telLabel": "Call 905-678-9448",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4081
+  },
+  {
+   "id": "C9-amhil-north-america",
+   "legId": "C9",
+   "name": "Amhil North America",
+   "addr": "400 Traders Boulevard East, Mississauga, ON L4Z 1W7",
+   "makes": "Thermoforms plastic cups, lids and food containers for foodservice.",
+   "src": "amhil.com; company profiles (thermoforming packaging, est. 1975)",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Amhil%20North%20America%2C%20400%20Traders%20Boulevard%20East%2C%20Mississauga%2C%20ON%20L4Z%201W7",
+   "tel": "9058905261",
+   "telLabel": "Call 905-890-5261",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4082
+  },
+  {
+   "id": "C9-winpak-portion-packaging",
+   "legId": "C9",
+   "name": "Winpak Portion Packaging",
+   "addr": "26 Tidemore Avenue, Etobicoke, ON M9W 7A7",
+   "makes": "Thermoforms portion cups and lids for dips, sauces, creamer and yogurt.",
+   "src": "Canadian Packaging directory; Plastics News directory",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Winpak%20Portion%20Packaging%2C%2026%20Tidemore%20Avenue%2C%20Etobicoke%2C%20ON%20M9W%207A7",
+   "tel": "4167416182",
+   "telLabel": "Call 416-741-6182",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products. Toronto plant of Winpak Ltd. (Winnipeg HQ is on C5).",
+   "sortOrder": 4083
+  },
+  {
+   "id": "C9-w-ralston-canada-inc",
+   "legId": "C9",
+   "name": "W. Ralston (Canada) Inc.",
+   "addr": "135 East Drive, Brampton, ON L6T 1B5",
+   "makes": "Makes garbage bags and can liners; one of Canada's largest (Inteplast Group).",
+   "src": "ralston.ca",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=W.%20Ralston%20%28Canada%29%20Inc.%2C%20135%20East%20Drive%2C%20Brampton%2C%20ON%20L6T%201B5",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4084
+  },
+  {
+   "id": "C9-concord-packaging-group",
+   "legId": "C9",
+   "name": "Concord Packaging Group",
+   "addr": "250 Millway Avenue, Concord, ON L4K 3W5",
+   "makes": "Makes polyethylene film, trash bags and tubing.",
+   "src": "concordpackaginggroup.com",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Concord%20Packaging%20Group%2C%20250%20Millway%20Avenue%2C%20Concord%2C%20ON%20L4K%203W5",
+   "tel": "9057386139",
+   "telLabel": "Call 905-738-6139",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4085
+  },
+  {
+   "id": "C9-ever-eco-plastics-ltd",
+   "legId": "C9",
+   "name": "Ever Eco Plastics Ltd.",
+   "addr": "40 Holtby Avenue, Unit 2, Brampton, ON L6X 2M1",
+   "makes": "Makes garbage bags in black, white, clear and blue.",
+   "src": "Support Ontario Made directory",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Ever%20Eco%20Plastics%20Ltd.%2C%2040%20Holtby%20Avenue%2C%20Unit%202%2C%20Brampton%2C%20ON%20L6X%202M1",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4086
+  },
+  {
+   "id": "C9-poly-products",
+   "legId": "C9",
+   "name": "Poly Products",
+   "addr": "7475 Kimbel Street, Mississauga, ON L5S 1E7",
+   "makes": "Makes garbage bags, poly bags and produce roll bags to order.",
+   "src": "polyproducts.ca",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Poly%20Products%2C%207475%20Kimbel%20Street%2C%20Mississauga%2C%20ON%20L5S%201E7",
+   "tel": "6475355565",
+   "telLabel": "Call 647-535-5565",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4087
+  },
+  {
+   "id": "C9-petro-plastics-corporation-ltd",
+   "legId": "C9",
+   "name": "Petro Plastics Corporation Ltd.",
+   "addr": "140 Vinyl Court, Woodbridge, ON L4L 4A3",
+   "makes": "Makes produce bags, bread bags, poly bags and contractor bags.",
+   "src": "petroplastics.ca",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Petro%20Plastics%20Corporation%20Ltd.%2C%20140%20Vinyl%20Court%2C%20Woodbridge%2C%20ON%20L4L%204A3",
+   "tel": "9058518499",
+   "telLabel": "Call 905-851-8499",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 26/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4088
+  },
+  {
+   "id": "C9-takeout-depot",
+   "legId": "C9",
+   "name": "Takeout Depot",
+   "addr": "491 Brimley Road, Unit 9, Scarborough, ON M1J 1A4",
+   "makes": "Wholesales plastic takeout containers, deli containers and shopping bags to GTA restaurants.",
+   "src": "takeoutdepot.ca",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Takeout%20Depot%2C%20491%20Brimley%20Road%2C%20Unit%209%2C%20Scarborough%2C%20ON%20M1J%201A4",
+   "tel": "4168268247",
+   "telLabel": "Call 416-826-8247",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 26/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4089
+  },
+  {
+   "id": "C9-gbc-group",
+   "legId": "C9",
+   "name": "GBC Group",
+   "addr": "3610 Mavis Road, Mississauga, ON L5C 1W2",
+   "makes": "Supplies distributors with microwavable takeout containers, clamshells and portion cups.",
+   "src": "gbcgroup.ca",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=GBC%20Group%2C%203610%20Mavis%20Road%2C%20Mississauga%2C%20ON%20L5C%201W2",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 26/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4090
+  },
+  {
+   "id": "C9-a1-cash-and-carry",
+   "legId": "C9",
+   "name": "A1 Cash and Carry",
+   "addr": "7300 Torbram Road, Unit 2, Mississauga, ON L4T 3X2",
+   "makes": "Wholesales plastic takeout containers, deli containers and plastic bags to restaurants; branches across Ontario.",
+   "src": "a1cashandcarry.com",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=A1%20Cash%20and%20Carry%2C%207300%20Torbram%20Road%2C%20Unit%202%2C%20Mississauga%2C%20ON%20L4T%203X2",
+   "tel": "9056722700",
+   "telLabel": "Call 905-672-2700",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 26/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4091
   },
   {
    "id": "C7-ipl-inc",
