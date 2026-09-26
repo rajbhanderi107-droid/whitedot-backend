@@ -1323,7 +1323,7 @@
    "familyId": "C",
    "name": "SW Ontario",
    "belt": "Cambridge / Innisfil / London / Oakville",
-   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Thames%20Label%20%26%20Litho%20Ltd.%2C%20465%20Pinebush%20Road%2C%20Unit%205%2C%20Cambridge%2C%20ON%20N1T%202J4&destination=Premier%20Poly%20Products%2C%202855%20Portland%20Drive%2C%20Oakville%2C%20ON%20L6H%205S4&waypoints=Tempo%20Flexible%20Packaging%2C%202237%20Industrial%20Park%20Road%2C%20Innisfil%2C%20ON%20L9S%203V9|Crawford%20Packaging%20Inc.%2C%203036%20Page%20Street%2C%20London%2C%20ON%20N5V%204P2",
+   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Thames%20Label%20%26%20Litho%20Ltd.%2C%20465%20Pinebush%20Road%2C%20Unit%205%2C%20Cambridge%2C%20ON%20N1T%202J4&destination=Premier%20Poly%20Products%2C%203530%20Laird%20Road%2C%20Mississauga%2C%20ON%20L5L%205Z7&waypoints=Tempo%20Flexible%20Packaging%2C%202237%20Industrial%20Park%20Road%2C%20Innisfil%2C%20ON%20L9S%203V9|Crawford%20Packaging%20Inc.%2C%203036%20Page%20Street%2C%20London%2C%20ON%20N5V%204P2",
    "sortOrder": 154
   },
   {
@@ -1339,7 +1339,7 @@
    "familyId": "C",
    "name": "Quebec & Prairies",
    "belt": "Granby / Saint-Anselme / Winnipeg",
-   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Repaco%2C%20700%20Cowie%20Street%2C%20Granby%2C%20QC%20J2G%203X6&destination=Dunplast%20Poly%20Bag%20Ltd.%2C%20115%20Paramount%20Road%2C%20Winnipeg%2C%20MB%20R2X%202W6&waypoints=Ben-Pak%20Plastics%20Inc.%20%2F%20Copak%2C%2011%20rue%20Blouin%2C%20Saint-Anselme%2C%20QC%20G0R%202N0|Winpak%20Ltd.%2C%20100%20Saulteaux%20Crescent%2C%20Winnipeg%2C%20MB%20R3J%203T3",
+   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Repaco%2C%201300%20Boulevard%20Industriel%2C%20Granby%2C%20QC%20J2J%200E5&destination=Dunplast%20Poly%20Bag%20Ltd.%2C%20115%20Paramount%20Road%2C%20Winnipeg%2C%20MB%20R2X%202W6&waypoints=Ben-Pak%20Plastics%20Inc.%20%2F%20Copak%2C%2011%20rue%20Blouin%2C%20Saint-Anselme%2C%20QC%20G0R%202N0|Winpak%20Ltd.%2C%20100%20Saulteaux%20Crescent%2C%20Winnipeg%2C%20MB%20R3J%203T3",
    "sortOrder": 156
   },
   {
@@ -1348,7 +1348,7 @@
    "name": "Machine builders",
    "belt": "They sell to your customers — worth knowing, never a LIMEX call",
    "nav": "",
-   "sortOrder": 157
+   "sortOrder": 160
   },
   {
    "id": "X2",
@@ -1356,7 +1356,7 @@
    "name": "Toolrooms & mould makers",
    "belt": "They cut steel; the resin decision is not theirs",
    "nav": "",
-   "sortOrder": 158
+   "sortOrder": 161
   },
   {
    "id": "X3",
@@ -1364,7 +1364,7 @@
    "name": "Traders, printers & recyclers",
    "belt": "No moulding of their own",
    "nav": "",
-   "sortOrder": 159
+   "sortOrder": 162
   },
   {
    "id": "X4",
@@ -1372,7 +1372,7 @@
    "name": "Clear-article makers",
    "belt": "PET, preform and transparent work — LIMEX cannot go clear",
    "nav": "",
-   "sortOrder": 160
+   "sortOrder": 163
   },
   {
    "id": "M1",
@@ -1380,7 +1380,7 @@
    "name": "Your own additions",
    "belt": "Whatever you found that the register missed",
    "nav": "",
-   "sortOrder": 161
+   "sortOrder": 164
   },
   {
    "id": "S27",
@@ -2500,7 +2500,7 @@
    "name": "Ahmedabad — dairy tubs and toys, product sweep",
    "belt": "Bakrol, Odhav & Ramol · 24/09/2026 · checked against the whole register first",
    "nav": "",
-   "sortOrder": 162
+   "sortOrder": 165
   },
   {
    "id": "R15",
@@ -2508,7 +2508,7 @@
    "name": "Outside Gujarat — dairy and ice-cream tubs",
    "belt": "Mumbai & Uttar Pradesh · 24/09/2026 · a call, not a visit",
    "nav": "",
-   "sortOrder": 163
+   "sortOrder": 166
   },
   {
    "id": "A16",
@@ -2516,7 +2516,7 @@
    "name": "Ahmedabad — carry, garbage, courier & nursery bags, directory sweep",
    "belt": "IndiaMART & TradeIndia listings · 25/09/2026 · checked against the whole register · ring before you drive",
    "nav": "",
-   "sortOrder": 164
+   "sortOrder": 167
   },
   {
    "id": "A17",
@@ -2524,7 +2524,7 @@
    "name": "Ahmedabad — HDPE bags, woven sacks & FIBC, directory sweep",
    "belt": "IndiaMART & TradeIndia listings · 25/09/2026 · checked against the whole register · ring before you drive",
    "nav": "",
-   "sortOrder": 165
+   "sortOrder": 168
   },
   {
    "id": "A18",
@@ -2532,7 +2532,7 @@
    "name": "Ahmedabad — non-woven bags, directory sweep",
    "belt": "IndiaMART & TradeIndia listings · 25/09/2026 · checked against the whole register · ring before you drive",
    "nav": "",
-   "sortOrder": 166
+   "sortOrder": 169
   },
   {
    "id": "A19",
@@ -2540,7 +2540,7 @@
    "name": "Ahmedabad — toys, thin-wall, tubs, jars & bottles, directory sweep",
    "belt": "IndiaMART & TradeIndia listings · 25/09/2026 · checked against the whole register · ring before you drive",
    "nav": "",
-   "sortOrder": 167
+   "sortOrder": 170
   },
   {
    "id": "A20",
@@ -2548,7 +2548,7 @@
    "name": "Ahmedabad — checked makers: bottles, cans, jars, tubs, toys & bags",
    "belt": "Odhav, Vatva, Kathwada, Bakrol, Changodar & Rakhial · 25/09/2026 · each firm checked on the web",
    "nav": "",
-   "sortOrder": 168
+   "sortOrder": 171
   },
   {
    "id": "A21",
@@ -2556,7 +2556,31 @@
    "name": "Ahmedabad — checked makers: woven-sack plants, tubs, bottles & toys",
    "belt": "Vatva GIDC, Santej, Mahijada, Bakrol, Changodar & Naroda · 25/09/2026 · each firm checked on the web",
    "nav": "",
-   "sortOrder": 169
+   "sortOrder": 172
+  },
+  {
+   "id": "C6",
+   "familyId": "C",
+   "name": "Canada - Ontario: food-container and bag makers & importers",
+   "belt": "Pickering / Scarborough / Mississauga / Burlington / Cambridge",
+   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=QPC%20Pack%2C%201936%20Silicone%20Drive%2C%20Pickering%2C%20ON%20L1W%203V7&destination=K3%20Wholesale%20Supplies%2C%201680%20Bishop%20Street%20North%2C%20Cambridge%2C%20ON&waypoints=ECO%20II%20Manufacturing%2C%203391%20McNicoll%20Avenue%2C%20Unit%206%2C%20Scarborough%2C%20ON%20M1V%202V4|Canada%20Brown%20Eco%20Products%2C%2077%20City%20Centre%20Drive%2C%20Suite%20501%2C%20Mississauga%2C%20ON%20L5B%201M5|Bunzl%20Canada%2C%203150%20Harvester%20Road%2C%20Unit%20100%2C%20Burlington%2C%20ON%20L7N%203W8|Pactiv%20Evergreen%20Canada%2C%2033%20Staples%20Avenue%2C%20Richmond%20Hill%2C%20ON%20L4B%204W6",
+   "sortOrder": 157
+  },
+  {
+   "id": "C7",
+   "familyId": "C",
+   "name": "Canada - Quebec: thermoformers, tub and bag makers",
+   "belt": "Montreal / Saint-Laurent / Saint-Jean / Granby / Kingsey Falls / Saint-Damien",
+   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=IPL%20Inc.%2C%20140%20rue%20Commerciale%2C%20Saint-Damien-de-Buckland%2C%20QC%20G0R%202Y0&destination=Emballages%20Poliplastic%2C%20415%20rue%20Saint-Vallier%2C%20Granby%2C%20QC%20J2G%207Y3&waypoints=Plastiques%20Cascades%20%28Cascades%20Specialty%20Products%29%2C%20404%20boulevard%20Marie-Victorin%2C%20Kingsey%20Falls%2C%20QC%20J0A%201B0|CP%20Formplast%2C%208801%20Place%20Marien%2C%20Montreal-Est%2C%20QC%20H1B%205W6|Polykar%2C%205637%20rue%20Kieran%2C%20Saint-Laurent%2C%20QC%20H4S%200A3",
+   "sortOrder": 158
+  },
+  {
+   "id": "C8",
+   "familyId": "C",
+   "name": "Canada - West: BC & Alberta bag makers and importers",
+   "belt": "Richmond / Burnaby / Edmonton",
+   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Bulldog%20Bag%20Ltd.%2C%2013631%20Vulcan%20Way%2C%20Richmond%2C%20BC%20V6V%201K4&destination=Super%20Poly%20Ltd.%2C%209311%2028%20Avenue%20NW%2C%20Edmonton%2C%20AB%20T6N%201N1&waypoints=Polynova%20Industries%2C%20101-11480%20Blacksmith%20Place%2C%20Richmond%2C%20BC%20V7A%204X1|Hytrend%2C%20900-2025%20Willingdon%20Avenue%2C%20Burnaby%2C%20BC%20V5C%200J3|Patek%20Packaging%2C%203231%20No.%206%20Road%2C%20Unit%20103%2C%20Richmond%2C%20BC%20V6V%201P6",
+   "sortOrder": 159
   }
  ],
  "stops": [
@@ -5958,8 +5982,8 @@
    "legId": "C1",
    "name": "Coleman Containers Ltd.",
    "addr": "54 Atomic Avenue, Etobicoke, ON M8Z 5L1",
-   "makes": "",
-   "src": "",
+   "makes": "Corrugated, foam and fibre packaging, custom boxes and displays - no plastic moulding or film.",
+   "src": "colemancontainers.com - about us",
    "tags": [
     {
      "t": "Canada",
@@ -5972,8 +5996,8 @@
    "telLabel": "Call 416-253-7441 / 800-493-7441",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 131
   },
   {
@@ -5981,8 +6005,8 @@
    "legId": "C1",
    "name": "Polytarp Products",
    "addr": "350 Wildcat Road, North York, ON M3J 2N5",
-   "makes": "",
-   "src": "",
+   "makes": "Extrudes and converts polyethylene film: poly bags, bakery and food-packaging bags, bin and box liners, sheeting and tubing.",
+   "src": "polytarp.com - products and industries",
    "tags": [
     {
      "t": "Canada",
@@ -5995,8 +6019,8 @@
    "telLabel": "Call 416-633-2231 / 1-800-606-2231",
    "link": "",
    "linkLabel": "",
-   "fit": "weak",
-   "why": "Tarpaulin and woven sheet — a drawn-tape trade",
+   "fit": "good",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 132
   },
   {
@@ -6004,8 +6028,8 @@
    "legId": "C1",
    "name": "Atlantic Packaging Products Ltd.",
    "addr": "111 Progress Avenue, Scarborough, ON M1P 2Y9",
-   "makes": "",
-   "src": "",
+   "makes": "Containerboard, corrugated boxes, paper bags and recycled kraft paper - paper, not plastic.",
+   "src": "atlantic.ca - products",
    "tags": [
     {
      "t": "Canada",
@@ -6018,8 +6042,8 @@
    "telLabel": "Call 416-298-8101 / 800-268-5620",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 133
   },
   {
@@ -6050,8 +6074,8 @@
    "legId": "C1",
    "name": "Crystal International (Group) Inc.",
    "addr": "165 Milner Avenue, Scarborough, ON M1S 4G7",
-   "makes": "",
-   "src": "",
+   "makes": "Injection-moulded and glass cosmetic packaging: lipstick, mascara, compacts, jars and bottles; also imports.",
+   "src": "crystalintl.com profile; ImportGenius importer record",
    "tags": [
     {
      "t": "Canada",
@@ -6065,7 +6089,7 @@
    "link": "",
    "linkLabel": "",
    "fit": "weak",
-   "why": "Name is the company, not the material; trade unconfirmed",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 135
   },
   {
@@ -6073,8 +6097,8 @@
    "legId": "C1",
    "name": "Atlas Paper Bag Co. Ltd.",
    "addr": "90 Dynamic Drive, Toronto, ON M1V 2V1",
-   "makes": "",
-   "src": "",
+   "makes": "Paper bags, window bread bags, foil and wax wraps, grocery and food-service bags (Inteplast group since 2022).",
+   "src": "atlaspaperbag.com - products",
    "tags": [
     {
      "t": "Canada",
@@ -6087,8 +6111,8 @@
    "telLabel": "Call 416-293-2125 / 866-358-4951",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: paper bag maker - outside the three Canada products.",
    "sortOrder": 136
   },
   {
@@ -6096,8 +6120,8 @@
    "legId": "C1",
    "name": "Poly Five Plastics Inc.",
    "addr": "205 Limestone Crescent, Toronto, ON M3J 2R1",
-   "makes": "",
-   "src": "",
+   "makes": "Extrudes virgin and recycled polyethylene: garbage bags, shopping bags, wicketted bags, poly bags on a roll, liners and sheeting.",
+   "src": "polyfiveplastics.com",
    "tags": [
     {
      "t": "Canada",
@@ -6110,8 +6134,8 @@
    "telLabel": "Call 416-663-3033 / 1-866-452-5570",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 137
   },
   {
@@ -6119,8 +6143,8 @@
    "legId": "C1",
    "name": "Polytainers Inc.",
    "addr": "197 Norseman Street, Toronto, ON M8Z 2R5",
-   "makes": "",
-   "src": "",
+   "makes": "Thin-wall injection-moulded (IML) dairy containers, yogurt tubs and food containers, and thermoformed cups - over 4 billion a year.",
+   "src": "polytainersinc.com - rigid and dairy packaging",
    "tags": [
     {
      "t": "Canada",
@@ -6134,7 +6158,7 @@
    "link": "",
    "linkLabel": "",
    "fit": "prime",
-   "why": "Dairy and food containers — Canada's biggest opaque tub house",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 138
   },
   {
@@ -6142,8 +6166,8 @@
    "legId": "C1",
    "name": "Hymopack Ltd. / ProAmpac",
    "addr": "41 Medulla Avenue, Toronto, ON M8Z 5L6",
-   "makes": "",
-   "src": "Source: proampac.com - Toronto plant (sheet had Cincinnati OH head office)",
+   "makes": "T-shirt shopping bags, produce and bakery bags, can liners and foam trays for supermarkets and QSR (ProAmpac since 2020).",
+   "src": "proampac.com - Hymopack division",
    "tags": [
     {
      "t": "Canada",
@@ -6156,8 +6180,8 @@
    "telLabel": "Call 513-671-1777 / 800-543-7030",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Flexible packaging converter — opaque film is in range",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 139
   },
   {
@@ -6165,8 +6189,8 @@
    "legId": "C2",
    "name": "Canam Plastics",
    "addr": "30 Holland Drive, Bolton ON L7E 1G6",
-   "makes": "",
-   "src": "",
+   "makes": "Blow-moulded water bottles (3 and 5 gallon) and HDPE containers, some injection moulding.",
+   "src": "canamplastics.com - products",
    "tags": [
     {
      "t": "Canada",
@@ -6179,8 +6203,8 @@
    "telLabel": "Call 905-951-6166 / 877-999-6006",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 140
   },
   {
@@ -6188,8 +6212,8 @@
    "legId": "C2",
    "name": "Peel Plastic Products Ltd.",
    "addr": "Corporate: 49 Rutherford Road South, Brampton, ON L6W 3J3; manufacturing: 255 Orenda Road, Brampton, ON L6T 1E6",
-   "makes": "",
-   "src": "",
+   "makes": "Printed flexible packaging: pouches, pinch-bottom and side-weld poly bags for pet food, lawn and garden and food.",
+   "src": "peelplastics.com; PMMI ProSource",
    "tags": [
     {
      "t": "Canada",
@@ -6203,7 +6227,7 @@
    "link": "",
    "linkLabel": "",
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 141
   },
   {
@@ -6211,8 +6235,8 @@
    "legId": "C2",
    "name": "Poly Blow Moulding Inc.",
    "addr": "238 Steelwell Road, Brampton, ON L6T 5T3",
-   "makes": "",
-   "src": "",
+   "makes": "Blow-moulded custom and stock bottles and containers.",
+   "src": "polyblowmoulding.ca",
    "tags": [
     {
      "t": "Canada",
@@ -6225,8 +6249,8 @@
    "telLabel": "Call 905-458-0068",
    "link": "",
    "linkLabel": "",
-   "fit": "prime",
-   "why": "Opaque formed article — this is the LIMEX sell",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 142
   },
   {
@@ -6234,8 +6258,8 @@
    "legId": "C2",
    "name": "Multi-Mold Plastics Inc.",
    "addr": "128 Basaltic Road, Concord, ON L4K 1G6",
-   "makes": "",
-   "src": "",
+   "makes": "Blow-moulded HDPE, PP and PET bottles and containers 1 oz to 20 L, caps and closures.",
+   "src": "multimoldplastics.com",
    "tags": [
     {
      "t": "Canada",
@@ -6248,8 +6272,8 @@
    "telLabel": "Call 905-761-0043",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Custom injection moulder despite the name — not a toolroom",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 143
   },
   {
@@ -6280,8 +6304,8 @@
    "legId": "C2",
    "name": "Elmes Packaging Inc.",
    "addr": "1545 Britannia Road East, Unit 1, Mississauga, ON L4W 3C6",
-   "makes": "",
-   "src": "",
+   "makes": "Thermoformed clamshells, trays and lids, blisters and carton inserts.",
+   "src": "elmespackaging.com",
    "tags": [
     {
      "t": "Canada",
@@ -6295,7 +6319,7 @@
    "link": "",
    "linkLabel": "",
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 145
   },
   {
@@ -6303,8 +6327,8 @@
    "legId": "C2",
    "name": "Mapco Plastics (City PolyPack Inc. lineage)",
    "addr": "2074 Steeles Avenue East, Suite 8-9, Brampton, ON L6T 4Z9",
-   "makes": "",
-   "src": "Source: mapco.ca - Brampton HQ (sheet had the Trenton plant, 190 km east)",
+   "makes": "Poly bag maker: garbage bags, T-shirt bags, roll bags, tubing, food pouches and reusable bags.",
+   "src": "mapco.ca",
    "tags": [
     {
      "t": "Canada",
@@ -6317,8 +6341,8 @@
    "telLabel": "Call 1-844-919-1444 / 416-949-7138",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 146
   },
   {
@@ -6326,8 +6350,8 @@
    "legId": "C2",
    "name": "Unique Blowmoulding Inc.",
    "addr": "239 Chrislea Road, Vaughan, ON L4L 8N6",
-   "makes": "",
-   "src": "",
+   "makes": "Blow-moulded custom and stock plastic bottles and jars.",
+   "src": "uniqueblowmoulding.com",
    "tags": [
     {
      "t": "Canada",
@@ -6340,8 +6364,8 @@
    "telLabel": "Call 905-761-1193 / 416-704-6268",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 147
   },
   {
@@ -6349,8 +6373,8 @@
    "legId": "C2",
    "name": "Tycho Poly Inc.",
    "addr": "Head office 101 Hanlan Road, Woodbridge ON L4L 3P5; production 9030 Keele St Unit 2, Concord ON L4K 2N2",
-   "makes": "",
-   "src": "",
+   "makes": "Custom poly bags, can liners, pallet covers, tubing and food-service packaging, plus compostable bags.",
+   "src": "tychopoly.com",
    "tags": [
     {
      "t": "Canada",
@@ -6363,8 +6387,8 @@
    "telLabel": "Call 905-264-3475",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 148
   },
   {
@@ -6395,8 +6419,8 @@
    "legId": "C3",
    "name": "Tempo Flexible Packaging",
    "addr": "2237 Industrial Park Road, Innisfil, ON L9S 3V9",
-   "makes": "",
-   "src": "",
+   "makes": "Extrudes film and converts printed poly bags, pouches and rollstock for snacks, produce and pet food.",
+   "src": "tempoflexiblepackaging.com",
    "tags": [
     {
      "t": "Canada",
@@ -6410,7 +6434,7 @@
    "link": "",
    "linkLabel": "",
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 150
   },
   {
@@ -6418,8 +6442,8 @@
    "legId": "C3",
    "name": "Crawford Packaging Inc.",
    "addr": "3036 Page Street, London, ON N5V 4P2",
-   "makes": "",
-   "src": "",
+   "makes": "Packaging distributor: wrapping machines, shrink film, boxes and supplies - no own moulding.",
+   "src": "crawfordpackaging.com",
    "tags": [
     {
      "t": "Canada",
@@ -6432,17 +6456,17 @@
    "telLabel": "Call 1-800-265-4783",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: sells through, not a maker.",
    "sortOrder": 151
   },
   {
    "id": "C3-premier-poly-products",
    "legId": "C3",
    "name": "Premier Poly Products",
-   "addr": "2855 Portland Drive, Oakville, ON L6H 5S4",
-   "makes": "",
-   "src": "",
+   "addr": "3530 Laird Road, Mississauga, ON L5L 5Z7",
+   "makes": "Custom poly bags and film: box liners, gusseted bags, shrink bags, printed rollstock.",
+   "src": "premierpolyproducts.ca",
    "tags": [
     {
      "t": "Canada",
@@ -6450,13 +6474,13 @@
     }
    ],
    "precise": true,
-   "map": "https://www.google.com/maps/search/?api=1&query=Premier%20Poly%20Products%2C%202855%20Portland%20Drive%2C%20Oakville%2C%20ON%20L6H%205S4",
+   "map": "https://www.google.com/maps/search/?api=1&query=Premier%20Poly%20Products%2C%203530%20Laird%20Road%2C%20Mississauga%2C%20ON%20L5L%205Z7",
    "tel": "9058206565",
    "telLabel": "Call 905-820-6565",
    "link": "",
    "linkLabel": "",
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 152
   },
   {
@@ -6464,8 +6488,8 @@
    "legId": "C4",
    "name": "Custom Plastics International (CPI)",
    "addr": "887 D'Arcy Street, Cobourg, ON K9A 4B4",
-   "makes": "",
-   "src": "",
+   "makes": "Custom injection moulding of industrial and consumer parts, assembly and printing.",
+   "src": "customplastics.ca",
    "tags": [
     {
      "t": "Canada",
@@ -6478,8 +6502,8 @@
    "telLabel": "Call 1-866-220-9954 / 905-372-2281",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 153
   },
   {
@@ -6487,8 +6511,8 @@
    "legId": "C4",
    "name": "Harco Plastics (Harco Enterprises Ltd.)",
    "addr": "675 The Parkway, Peterborough, ON K9J 7K2",
-   "makes": "",
-   "src": "",
+   "makes": "Injection-moulded stirrers, food picks, spoons, handles and small containers; sanitary process equipment.",
+   "src": "harcoplastics.com",
    "tags": [
     {
      "t": "Canada",
@@ -6501,17 +6525,17 @@
    "telLabel": "Call 705-743-5361 / 800-361-5361",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: small injection-moulded parts - outside the three Canada products.",
    "sortOrder": 154
   },
   {
    "id": "C5-repaco",
    "legId": "C5",
    "name": "Repaco",
-   "addr": "700 Cowie Street, Granby, QC J2G 3X6",
-   "makes": "",
-   "src": "",
+   "addr": "1300 Boulevard Industriel, Granby, QC J2J 0E5",
+   "makes": "Custom thermoformed trays, blister packs and vinyl pouches for food, industry and pharma.",
+   "src": "repaco.ca",
    "tags": [
     {
      "t": "Canada",
@@ -6519,13 +6543,13 @@
     }
    ],
    "precise": true,
-   "map": "https://www.google.com/maps/search/?api=1&query=Repaco%2C%20700%20Cowie%20Street%2C%20Granby%2C%20QC%20J2G%203X6",
+   "map": "https://www.google.com/maps/search/?api=1&query=Repaco%2C%201300%20Boulevard%20Industriel%2C%20Granby%2C%20QC%20J2J%200E5",
    "tel": "4503782623",
    "telLabel": "Call 450-378-2623 / 1-800-465-2050",
    "link": "",
    "linkLabel": "",
    "fit": "good",
-   "why": "Packaging converter; trade not published, confirm on the call",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 155
   },
   {
@@ -6533,8 +6557,8 @@
    "legId": "C5",
    "name": "Ben-Pak Plastics Inc. / Copak",
    "addr": "11 rue Blouin, Saint-Anselme, QC G0R 2N0",
-   "makes": "",
-   "src": "",
+   "makes": "Extrusion blow-moulded HDPE bottles and jars 100 ml to 5 L.",
+   "src": "ben-pak-copak.com",
    "tags": [
     {
      "t": "Canada",
@@ -6547,8 +6571,8 @@
    "telLabel": "Call 418-885-4485 / 1-800-363-9870",
    "link": "",
    "linkLabel": "",
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "fit": "weak",
+   "why": "Checked 27/09/2026: outside the three Canada products - keep for reference.",
    "sortOrder": 156
   },
   {
@@ -6556,8 +6580,8 @@
    "legId": "C5",
    "name": "Winpak Ltd.",
    "addr": "100 Saulteaux Crescent, Winnipeg, MB R3J 3T3",
-   "makes": "",
-   "src": "",
+   "makes": "Thermoformed portion cups, creamer and yogurt cups, barrier trays, lidding and packaging film.",
+   "src": "winpak.com - cups; Canadian Packaging directory",
    "tags": [
     {
      "t": "Canada",
@@ -6571,7 +6595,7 @@
    "link": "",
    "linkLabel": "",
    "fit": "prime",
-   "why": "Rigid containers and lidding — opaque rigid packaging at scale",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 157
   },
   {
@@ -6579,8 +6603,8 @@
    "legId": "C5",
    "name": "Dunplast Poly Bag Ltd.",
    "addr": "115 Paramount Road, Winnipeg, MB R2X 2W6",
-   "makes": "",
-   "src": "",
+   "makes": "Poly bags: plastic, zip-lock, merchandise and retail shopping bags, tubing and film.",
+   "src": "dunplast.com",
    "tags": [
     {
      "t": "Canada",
@@ -6594,7 +6618,7 @@
    "link": "",
    "linkLabel": "",
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
+   "why": "Checked 27/09/2026: fits the Canada products.",
    "sortOrder": 158
   },
   {
@@ -116248,6 +116272,578 @@
    "fit": "good",
    "why": "Checked 25/09/2026: Partly imports — confirm what it moulds locally.",
    "map": "https://www.google.com/maps/search/?api=1&query=Royal%20Toys%2C%20Naroda%2C%20Ahmedabad"
+  },
+  {
+   "id": "C6-qpc-pack",
+   "legId": "C6",
+   "name": "QPC Pack",
+   "addr": "1936 Silicone Drive, Pickering, ON L1W 3V7",
+   "makes": "Makes thermoformed clamshells, trays and blister packs for food, produce and pharma.",
+   "src": "qpcpack.com; Canadian Plastics directory",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=QPC%20Pack%2C%201936%20Silicone%20Drive%2C%20Pickering%2C%20ON%20L1W%203V7",
+   "tel": "9054261394",
+   "telLabel": "Call 905-426-1394",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4036
+  },
+  {
+   "id": "C6-eco-ii-manufacturing",
+   "legId": "C6",
+   "name": "ECO II Manufacturing",
+   "addr": "3391 McNicoll Avenue, Unit 6, Scarborough, ON M1V 2V4",
+   "makes": "Makes garbage bags and can liners for retail and janitorial.",
+   "src": "eco2mfg.com",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=ECO%20II%20Manufacturing%2C%203391%20McNicoll%20Avenue%2C%20Unit%206%2C%20Scarborough%2C%20ON%20M1V%202V4",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4037
+  },
+  {
+   "id": "C6-pcm-pak-limited",
+   "legId": "C6",
+   "name": "PCM PAK Limited",
+   "addr": "Greater Toronto Area, ON - street to confirm",
+   "makes": "Imports and sells PP takeout containers, deli containers and clamshells wholesale.",
+   "src": "pcmpak.com; TradeFord importer listing",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "precise": false,
+   "map": "https://www.google.com/maps/search/?api=1&query=PCM%20PAK%20Limited%2C%20Greater%20Toronto%20Area%2C%20ON",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4038
+  },
+  {
+   "id": "C6-canada-brown-eco-products",
+   "legId": "C6",
+   "name": "Canada Brown Eco Products",
+   "addr": "77 City Centre Drive, Suite 501, Mississauga, ON L5B 1M5",
+   "makes": "Imports takeout containers, clamshells and bags (plastic, PLA and bagasse) for food service.",
+   "src": "canadabrown.com - contact and takeout containers",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Canada%20Brown%20Eco%20Products%2C%2077%20City%20Centre%20Drive%2C%20Suite%20501%2C%20Mississauga%2C%20ON%20L5B%201M5",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4039
+  },
+  {
+   "id": "C6-bunzl-canada",
+   "legId": "C6",
+   "name": "Bunzl Canada",
+   "addr": "3150 Harvester Road, Unit 100, Burlington, ON L7N 3W8",
+   "makes": "Distributes food-service disposables: takeout containers, deli containers, can liners and bags.",
+   "src": "bunzlcanada.ca; OECM supplier profile",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    },
+    {
+     "t": "HQ only, no plant",
+     "c": "warn"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Bunzl%20Canada%2C%203150%20Harvester%20Road%2C%20Unit%20100%2C%20Burlington%2C%20ON%20L7N%203W8",
+   "tel": "2892661200",
+   "telLabel": "Call 289-266-1200",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4040
+  },
+  {
+   "id": "C6-pactiv-evergreen-canada",
+   "legId": "C6",
+   "name": "Pactiv Evergreen Canada",
+   "addr": "33 Staples Avenue, Richmond Hill, ON L4B 4W6",
+   "makes": "Canadian office of the US maker of thermoformed and foam takeout containers, deli containers and trays - imports into Canada.",
+   "src": "Pactiv Evergreen product pages; Canadian office listing",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    },
+    {
+     "t": "HQ only, no plant",
+     "c": "warn"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Pactiv%20Evergreen%20Canada%2C%2033%20Staples%20Avenue%2C%20Richmond%20Hill%2C%20ON%20L4B%204W6",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4041
+  },
+  {
+   "id": "C6-k3-wholesale-supplies",
+   "legId": "C6",
+   "name": "K3 Wholesale Supplies",
+   "addr": "1680 Bishop Street North, Cambridge, ON",
+   "makes": "Cash-and-carry importer of takeout containers, deli containers and food packaging.",
+   "src": "k3supplies.ca; CIPO trademark 2368337",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=K3%20Wholesale%20Supplies%2C%201680%20Bishop%20Street%20North%2C%20Cambridge%2C%20ON",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4042
+  },
+  {
+   "id": "C6-ideal-packaging-supplies-ideal-pkg",
+   "legId": "C6",
+   "name": "Ideal Packaging & Supplies (Ideal PKG)",
+   "addr": "Mississauga, ON - street to confirm",
+   "makes": "Makes and imports plastic bags: T-shirt bags, produce bags, garbage bags and merchandise bags.",
+   "src": "idealpkg.com - products",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "precise": false,
+   "map": "https://www.google.com/maps/search/?api=1&query=Ideal%20Packaging%20%26%20Supplies%20%28Ideal%20PKG%29%2C%20Mississauga%2C%20ON",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4043
+  },
+  {
+   "id": "C6-starv-group",
+   "legId": "C6",
+   "name": "StarV Group",
+   "addr": "Toronto, ON - street to confirm",
+   "makes": "Makes custom-printed polyethylene bags: T-shirt bags, produce bags and garbage bags.",
+   "src": "starvgroup.com; Canadian bag maker lists",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "precise": false,
+   "map": "https://www.google.com/maps/search/?api=1&query=StarV%20Group%2C%20Toronto%2C%20ON",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4044
+  },
+  {
+   "id": "C7-ipl-inc",
+   "legId": "C7",
+   "name": "IPL Inc.",
+   "addr": "140 rue Commerciale, Saint-Damien-de-Buckland, QC G0R 2Y0",
+   "makes": "Injection-moulds thin-wall dairy containers, food tubs and pails with tamper-evident lids.",
+   "src": "IPL product release (Dairy Network); IPL St-Damien listing",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thin-wall",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=IPL%20Inc.%2C%20140%20rue%20Commerciale%2C%20Saint-Damien-de-Buckland%2C%20QC%20G0R%202Y0",
+   "tel": "4187892344",
+   "telLabel": "Call 418-789-2344",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4045
+  },
+  {
+   "id": "C7-plastiques-cascades-cascades-specialty-products",
+   "legId": "C7",
+   "name": "Plastiques Cascades (Cascades Specialty Products)",
+   "addr": "404 boulevard Marie-Victorin, Kingsey Falls, QC J0A 1B0",
+   "makes": "Thermoforms PET food containers and foam and fibre food trays (80% recycled PET).",
+   "src": "cascades.com facilities; Cascades releases",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Plastiques%20Cascades%20%28Cascades%20Specialty%20Products%29%2C%20404%20boulevard%20Marie-Victorin%2C%20Kingsey%20Falls%2C%20QC%20J0A%201B0",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4046
+  },
+  {
+   "id": "C7-cp-formplast",
+   "legId": "C7",
+   "name": "CP Formplast",
+   "addr": "8801 Place Marien, Montreal-Est, QC H1B 5W6",
+   "makes": "Thermoforms custom food containers and trays, including recycled-PET food packaging.",
+   "src": "cpform.com - food containers",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=CP%20Formplast%2C%208801%20Place%20Marien%2C%20Montreal-Est%2C%20QC%20H1B%205W6",
+   "tel": "5144948000",
+   "telLabel": "Call 514-494-8000",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4047
+  },
+  {
+   "id": "C7-les-plastiques-evolupak",
+   "legId": "C7",
+   "name": "Les Plastiques Evolupak",
+   "addr": "Saint-Jean-sur-Richelieu, QC - street to confirm",
+   "makes": "Extrudes recycled PET and thermoforms food trays for mushrooms, herbs, frozen food and biscuits.",
+   "src": "evolupak.ca",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Thermoformed",
+     "c": "big"
+    },
+    {
+     "t": "Area only",
+     "c": "warn"
+    }
+   ],
+   "precise": false,
+   "map": "https://www.google.com/maps/search/?api=1&query=Les%20Plastiques%20Evolupak%2C%20Saint-Jean-sur-Richelieu%2C%20QC",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4048
+  },
+  {
+   "id": "C7-polykar",
+   "legId": "C7",
+   "name": "Polykar",
+   "addr": "5637 rue Kieran, Saint-Laurent, QC H4S 0A3",
+   "makes": "Makes garbage bags, compostable bags and polyethylene film for janitorial and food packaging.",
+   "src": "polykar.com - garbage bags and headquarters",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Polykar%2C%205637%20rue%20Kieran%2C%20Saint-Laurent%2C%20QC%20H4S%200A3",
+   "tel": "5143350059",
+   "telLabel": "Call 514-335-0059",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4049
+  },
+  {
+   "id": "C7-emballages-poliplastic",
+   "legId": "C7",
+   "name": "Emballages Poliplastic",
+   "addr": "415 rue Saint-Vallier, Granby, QC J2G 7Y3",
+   "makes": "Makes produce bags, bread bags, printed film and industrial bags.",
+   "src": "Granby Industriel; Pages Jaunes",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Emballages%20Poliplastic%2C%20415%20rue%20Saint-Vallier%2C%20Granby%2C%20QC%20J2G%207Y3",
+   "tel": "4503788417",
+   "telLabel": "Call 450-378-8417",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4050
+  },
+  {
+   "id": "C8-bulldog-bag-ltd",
+   "legId": "C8",
+   "name": "Bulldog Bag Ltd.",
+   "addr": "13631 Vulcan Way, Richmond, BC V6V 1K4",
+   "makes": "Makes grocery bags, garbage bags, bread and zip-lock bags, plus paper bags and film.",
+   "src": "Canadian Plastics directory; Blue Book (a Langley address is also listed)",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    },
+    {
+     "t": "Confirm plant",
+     "c": "warn"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Bulldog%20Bag%20Ltd.%2C%2013631%20Vulcan%20Way%2C%20Richmond%2C%20BC%20V6V%201K4",
+   "tel": "6042738021",
+   "telLabel": "Call 604-273-8021",
+   "link": "",
+   "linkLabel": "",
+   "fit": "prime",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4051
+  },
+  {
+   "id": "C8-polynova-industries",
+   "legId": "C8",
+   "name": "Polynova Industries",
+   "addr": "101-11480 Blacksmith Place, Richmond, BC V7A 4X1",
+   "makes": "Poly bags, mailing bags, stand-up pouches and rollstock - makes and sources.",
+   "src": "polynova.com - contact and about",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Polynova%20Industries%2C%20101-11480%20Blacksmith%20Place%2C%20Richmond%2C%20BC%20V7A%204X1",
+   "tel": "6044480363",
+   "telLabel": "Call 604-448-0363",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4052
+  },
+  {
+   "id": "C8-hytrend",
+   "legId": "C8",
+   "name": "Hytrend",
+   "addr": "900-2025 Willingdon Avenue, Burnaby, BC V5C 0J3",
+   "makes": "Sells compostable garbage, kitchen-waste and shopping bags into Canadian grocery - office, bags made abroad.",
+   "src": "hytrend.com - contact; BPI listing",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    },
+    {
+     "t": "HQ only, no plant",
+     "c": "warn"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Hytrend%2C%20900-2025%20Willingdon%20Avenue%2C%20Burnaby%2C%20BC%20V5C%200J3",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4053
+  },
+  {
+   "id": "C8-patek-packaging",
+   "legId": "C8",
+   "name": "Patek Packaging",
+   "addr": "3231 No. 6 Road, Unit 103, Richmond, BC V6V 1P6",
+   "makes": "Wholesale importer of clamshell and deli containers, takeout trays and food bags.",
+   "src": "patekpackaging.com",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Importer",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Patek%20Packaging%2C%203231%20No.%206%20Road%2C%20Unit%20103%2C%20Richmond%2C%20BC%20V6V%201P6",
+   "tel": "7882008188",
+   "telLabel": "Call 788-200-8188",
+   "link": "",
+   "linkLabel": "",
+   "fit": "channel",
+   "why": "Checked 27/09/2026: importer / distributor - sells imported stock.",
+   "sortOrder": 4054
+  },
+  {
+   "id": "C8-super-poly-ltd",
+   "legId": "C8",
+   "name": "Super Poly Ltd.",
+   "addr": "9311 28 Avenue NW, Edmonton, AB T6N 1N1",
+   "makes": "Custom poly bags, retail bags and industrial liners; plant in Winnipeg, branches across Canada.",
+   "src": "superpoly.ca - about and contact",
+   "tags": [
+    {
+     "t": "Canada",
+     "c": ""
+    },
+    {
+     "t": "Bags",
+     "c": "big"
+    }
+   ],
+   "precise": true,
+   "map": "https://www.google.com/maps/search/?api=1&query=Super%20Poly%20Ltd.%2C%209311%2028%20Avenue%20NW%2C%20Edmonton%2C%20AB%20T6N%201N1",
+   "tel": "",
+   "telLabel": "Call",
+   "link": "",
+   "linkLabel": "",
+   "fit": "good",
+   "why": "Checked 27/09/2026: maker of one of the three Canada products.",
+   "sortOrder": 4055
   }
  ],
  "retired": [
