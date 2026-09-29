@@ -13,6 +13,17 @@ export async function listSettings(_req: Request, res: Response) {
   return sendSuccess(res, settings);
 }
 
+/** Website settings the public site may read. Everything else stays admin-only. */
+const PUBLIC_SETTING_KEYS = ["brand_logo", "public_loading_enabled"];
+
+export async function listPublicSettings(_req: Request, res: Response) {
+  const settings = await prisma.websiteSetting.findMany({
+    where: { key: { in: PUBLIC_SETTING_KEYS } },
+    select: { key: true, value: true },
+  });
+  return sendSuccess(res, settings);
+}
+
 export async function updateSetting(req: Request, res: Response) {
   const key = paramId(req, "key");
   const setting = await prisma.websiteSetting.findUnique({ where: { key } });

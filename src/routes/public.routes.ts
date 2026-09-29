@@ -11,12 +11,14 @@ import {
 } from "../validators/public.validator.js";
 import * as pub from "../controllers/public.controller.js";
 import * as caseStudy from "../controllers/caseStudy.controller.js";
+import * as settings from "../controllers/settings.controller.js";
 
 const router = Router();
 
 router.use(publicLimiter);
 
 router.get("/case-studies", asyncHandler(caseStudy.getPublicCaseStudies));
+router.get("/settings", asyncHandler(settings.listPublicSettings));
 
 router.post("/inquiry", validate(publicInquirySchema), asyncHandler(pub.submitInquiry));
 router.post("/quote-request", validate(publicQuoteRequestSchema), asyncHandler(pub.submitQuoteRequest));
