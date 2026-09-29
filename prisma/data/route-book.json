@@ -2597,6 +2597,126 @@
    "belt": "Vatva, Odhav, Kathwada, Naroda, Santej, Changodar, Sanand & Dholka · 27/09/2026 · each firm checked on the web",
    "nav": "",
    "sortOrder": 173
+  },
+  {
+   "id": "IC1",
+   "familyId": "G",
+   "name": "Ahmedabad — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 157
+  },
+  {
+   "id": "IC2",
+   "familyId": "S",
+   "name": "Rajkot — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 143
+  },
+  {
+   "id": "IC3",
+   "familyId": "D",
+   "name": "Surat — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 147
+  },
+  {
+   "id": "IC4",
+   "familyId": "V",
+   "name": "Vadodara — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 44
+  },
+  {
+   "id": "IC5",
+   "familyId": "S",
+   "name": "Wankaner — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 144
+  },
+  {
+   "id": "IC6",
+   "familyId": "D",
+   "name": "Bharuch — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 148
+  },
+  {
+   "id": "IC7",
+   "familyId": "S",
+   "name": "Jamnagar — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 145
+  },
+  {
+   "id": "IC8",
+   "familyId": "D",
+   "name": "Navsari — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 149
+  },
+  {
+   "id": "IC9",
+   "familyId": "D",
+   "name": "Valsad — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 150
+  },
+  {
+   "id": "IC10",
+   "familyId": "G",
+   "name": "Bilimora — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 158
+  },
+  {
+   "id": "IC11",
+   "familyId": "G",
+   "name": "Dehgam — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 159
+  },
+  {
+   "id": "IC12",
+   "familyId": "D",
+   "name": "Sarigam — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 151
+  },
+  {
+   "id": "IC13",
+   "familyId": "S",
+   "name": "Morbi — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 146
+  },
+  {
+   "id": "IC14",
+   "familyId": "S",
+   "name": "Bhavnagar — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 147
+  },
+  {
+   "id": "IC15",
+   "familyId": "D",
+   "name": "Vapi — disposable cups & glasses, IndiaMART manufacturer profile",
+   "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
+   "nav": "",
+   "sortOrder": 152
   }
  ],
  "stops": [
@@ -7374,7 +7494,7 @@
    "legId": "T6",
    "name": "Trimurti IML Solutions Pvt. Ltd.",
    "addr": "Plot 25-35, Survey 832-842, Radhamadhav Eco Industrial Park, Dharampura Road, Degam, Vapi, Valsad 396191",
-   "makes": "IML food containers for ice cream, ghee, confectionery, sweets and glass-look packaging. Incorporated 2022. IndiaMART catalogue lists: RCT 200gm Plastic Food Container, Type: Recycle; CKGT 1000gm Plastic Food Container, Type: Recycle; SBDR 100gm Plastic Food Container.",
+   "makes": "IML food containers for ice cream, ghee, confectionery, sweets and glass-look packaging. Incorporated 2022. IndiaMART catalogue lists: RCT 200gm Plastic Food Container, Type: Recycle; CKGT 1000gm Plastic Food Container, Type: Recycle; SBDR 100gm Plastic Food Container. IndiaMART catalogue lists: 74 DIA 250ml Disposable Plastic Glass.",
    "src": "Verified: trimurtiimlsolutions.com · product from the company's own IndiaMART catalogue (https://www.indiamart.com/trimurti-iml-solutions/)",
    "tags": [
     {
@@ -7391,6 +7511,10 @@
     },
     {
      "t": "Thin wall",
+     "c": "big"
+    },
+    {
+     "t": "Disposable cups & glasses",
      "c": "big"
     }
    ],
@@ -11013,7 +11137,7 @@
    "legId": "A10",
    "name": "Parth Packaging Industries",
    "addr": "Odhav, Ahmedabad 382415",
-   "makes": "Plastic food containers and plastic bowls. Established 2008. IndiaMART catalogue lists: Circular Metro Food Container, Capacity: Midium; Plastic Food Container, 100 mL; Metro Food Container.",
+   "makes": "Plastic food containers and plastic bowls. Established 2008. IndiaMART catalogue lists: Circular Metro Food Container, Capacity: Midium; Plastic Food Container, 100 mL; Metro Food Container. IndiaMART catalogue lists: PP Plastic Lassi Glass (with lead), 500 ml.",
    "src": "Verified: IndiaMART Odhav profile + TheCompanyCheck - locality only, plot not published · product from the company's own IndiaMART catalogue (https://www.indiamart.com/parthpackagingindustries/)",
    "tags": [
     {
@@ -11030,6 +11154,10 @@
     },
     {
      "t": "Thin wall",
+     "c": "big"
+    },
+    {
+     "t": "Disposable cups & glasses",
      "c": "big"
     }
    ],
@@ -12597,7 +12725,7 @@
    "legId": "G4",
    "name": "Shreeji Plastic",
    "addr": "Odhav GIDC ring road, 382415 · plot not published",
-   "makes": "IndiaMART catalogue lists: White 1.5 Liter Plastic Confectionery Jar; 1.5 Liter Plastic Confectionery Jar; 2.6 Liter Plastic Packaging Jar; 1 Liter Chemical Plastic Bottle. IndiaMART catalogue lists: 400ml Hotel Use Disposable PP Food Container; 500ml Hotel Use Disposable PP Food Container; 300ml Dairy Use Disposable PP Food Container.",
+   "makes": "IndiaMART catalogue lists: White 1.5 Liter Plastic Confectionery Jar; 1.5 Liter Plastic Confectionery Jar; 2.6 Liter Plastic Packaging Jar; 1 Liter Chemical Plastic Bottle. IndiaMART catalogue lists: 400ml Hotel Use Disposable PP Food Container; 500ml Hotel Use Disposable PP Food Container; 300ml Dairy Use Disposable PP Food Container. IndiaMART catalogue lists: 400ml Disposable Plastic Yogurt Packaging Cup; 350ml Disposable Plastic Printed Glass; 500ml Disposable Plastic Plain Glass.",
    "src": "Odhav GIDC company register (gidc.co.in) — name confirmed, plot not listed · product from the company's own IndiaMART catalogue (https://www.indiamart.com/shreejiplasticahmedabad/) · product from the company's own IndiaMART catalogue (https://www.indiamart.com/shree-jiplastic-gujarat/)",
    "tags": [
     {
@@ -12618,6 +12746,10 @@
     },
     {
      "t": "Thin wall",
+     "c": "big"
+    },
+    {
+     "t": "Disposable cups & glasses",
      "c": "big"
     }
    ],
@@ -25655,7 +25787,7 @@
    "legId": "S5",
    "name": "Easyuse Plastware Pvt Ltd",
    "addr": "Metoda GIDC, Lodhika, Rajkot 360021 · plot not published",
-   "makes": "IndiaMART catalogue lists: Disposable Plastic Lassi Glass 300ml; Plastic Ice Cream Cup Flora 100 ml Milky White.",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Lassi Glass 300ml; Plastic Ice Cream Cup Flora 100 ml Milky White. IndiaMART catalogue lists: Heritage Transparent 180 ml Plastic Disposable Glass, 1.9 Gm; natural Plain 350 ml Plastic Disposable glass, For Event and Party Supplies; Disposable Plastic Lassi Glass 300ml, For Lassi,Juice Etc.",
    "src": "Metoda / Lodhika GIDC company register (gidc.co.in) — name confirmed, plot not listed; machinery, toolroom, trading and PET names were filtered out before this list was built · product from the company's own IndiaMART catalogue (https://www.indiamart.com/easyuseplastware/)",
    "tags": [
     {
@@ -25668,6 +25800,10 @@
     },
     {
      "t": "Ice-cream & curd tubs",
+     "c": "big"
+    },
+    {
+     "t": "Disposable cups & glasses",
      "c": "big"
     }
    ],
@@ -43028,7 +43164,7 @@
    "id": "GS1-meet-plast",
    "name": "Meet Plast",
    "addr": "B 34, RADHA KRISHNA SOCIETYKAILASH ESTATE ROADNR. PANCHAL WADI, VIRATNAGARODHAV, Ahmedabad",
-   "makes": "",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass.",
    "src": "GSPMA members directory (gspma.in) — company name, plant address and proprietor as filed with the association. Contact on file: Ramesh Patel",
    "tags": [
     {
@@ -43042,12 +43178,16 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
    "telLabel": "Call",
-   "link": "",
-   "linkLabel": "",
+   "link": "https://www.indiamart.com/meetplast-72249831/",
+   "linkLabel": "IndiaMART",
    "precise": false,
    "sortOrder": 1465,
    "fit": "good",
@@ -43935,7 +44075,7 @@
    "id": "GS1-shiv-enterprise",
    "name": "Shiv Enterprise",
    "addr": "NO. 14, ARIHANT ESTATE, GIRNAR SCOOTER COMPOUND, B/H SABARI HOTEL, N/R RING ROAD CIRCLE, ODHAV, Ahmedabad",
-   "makes": "IndiaMART catalogue lists: Disposable Food Containers; 500ml White Round Disposable Plastic Food Container; 750ml White Round Disposable Plastic Food Container.",
+   "makes": "IndiaMART catalogue lists: Disposable Food Containers; 500ml White Round Disposable Plastic Food Container; 750ml White Round Disposable Plastic Food Container. IndiaMART catalogue lists: Coffee Disposable Glass.",
    "src": "GSPMA members directory (gspma.in) — company name, plant address and proprietor as filed with the association. Contact on file: Yatin R. Patel · product from the company's own IndiaMART catalogue (https://www.indiamart.com/shiv-enterprise-kathwada/)",
    "tags": [
     {
@@ -43948,6 +44088,10 @@
     },
     {
      "t": "Thin wall",
+     "c": "big"
+    },
+    {
+     "t": "Disposable cups & glasses",
      "c": "big"
     }
    ],
@@ -66847,7 +66991,7 @@
    "id": "IM2-manav-enterprise",
    "name": "Manav Enterprise",
    "addr": "Ahmedabad 380024, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Home Sewing Oil Bottle.",
+   "makes": "IndiaMART catalogue lists: Plastic Home Sewing Oil Bottle. IndiaMART catalogue lists: Plastic Tea Cup.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: &rdquo; (Proprietor)",
    "tags": [
     {
@@ -66857,6 +67001,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -70287,7 +70435,7 @@
    "id": "IM5-mitsu-plastic-product",
    "name": "Mitsu Plastic Product",
    "addr": "Ahmedabad 382415, Gujarat",
-   "makes": "IndiaMART catalogue lists: 351gm Zara Disposable Plastic Food Container; Zara Food Packaging Container; 500g Zara Disposable Plastic Food Container.",
+   "makes": "IndiaMART catalogue lists: 351gm Zara Disposable Plastic Food Container; Zara Food Packaging Container; 500g Zara Disposable Plastic Food Container. IndiaMART catalogue lists: Disposable Plastic Snack And Drink Combo Cup; 300ml Triangle Shape Disposable Glasses; Disposable Clear Plastic Beverage Cups.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Bharat Patel (Director)",
    "tags": [
     {
@@ -70297,6 +70445,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -70608,7 +70760,7 @@
    "id": "IM6-somnath-plast",
    "name": "Somnath Plast",
    "addr": "Ahmedabad 382415, Gujarat",
-   "makes": "IndiaMART catalogue lists: Disposable Food Containers; Disposable Plastic Food Container (250 mL); Plastic Round Food Container (400 ml).",
+   "makes": "IndiaMART catalogue lists: Disposable Food Containers; Disposable Plastic Food Container (250 mL); Plastic Round Food Container (400 ml). IndiaMART catalogue lists: Disposable Coffee Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Bhumit Sangani (CEO)",
    "tags": [
     {
@@ -70618,6 +70770,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -75373,7 +75529,7 @@
    "id": "IM11-kite-enterprise",
    "name": "Kite Enterprise",
    "addr": "Rajkot 360002, Gujarat",
-   "makes": "IndiaMART catalogue lists: Vintage Metal Toy Cars; Gym Shaker bottle 350 Ml.",
+   "makes": "IndiaMART catalogue lists: Vintage Metal Toy Cars; Gym Shaker bottle 350 Ml. IndiaMART catalogue lists: 250 ml New Year Disposable Plastic Glass Tumbler.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Bhargav Rajyaguru (Owner)",
    "tags": [
     {
@@ -75387,6 +75543,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -78481,7 +78641,7 @@
    "id": "IM14-khodal-plastic",
    "name": "Khodal Plastic",
    "addr": "Rajkot 360005, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Bottles; Plastic Bottle; Bottle.",
+   "makes": "IndiaMART catalogue lists: Plastic Bottles; Plastic Bottle; Bottle. IndiaMART catalogue lists: Plastic Disposable Cup 200ml.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
    "tags": [
     {
@@ -78491,6 +78651,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -78744,7 +78908,7 @@
    "id": "IM14-classic-global-ventures",
    "name": "Classic Global Ventures",
    "addr": "Rajkot 360006, Gujarat",
-   "makes": "IndiaMART catalogue lists: Compartment Disposable Food Container.",
+   "makes": "IndiaMART catalogue lists: Compartment Disposable Food Container. IndiaMART catalogue lists: Disposable Juice Glasses, 110 ml.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Mr. Raj (CEO)",
    "tags": [
     {
@@ -78754,6 +78918,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -80447,7 +80615,7 @@
    "id": "IM15-global-dispoworld",
    "name": "Global Dispoworld",
    "addr": "Rajkot 360024, Gujarat",
-   "makes": "IndiaMART catalogue lists: Disposable Round Container.",
+   "makes": "IndiaMART catalogue lists: Disposable Round Container. IndiaMART catalogue lists: Plastic Disposable Cup; Plastic Disposable Glass; Colour Disposable Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Darshan Khunt (Owner)",
    "tags": [
     {
@@ -80457,6 +80625,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -81800,7 +81972,7 @@
    "id": "IM16-a-one-polyplast",
    "name": "A One Polyplast",
    "addr": "Rajkot 360311, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Ice Cream Cup; Ice Cream Cup.",
+   "makes": "IndiaMART catalogue lists: Plastic Ice Cream Cup; Ice Cream Cup. IndiaMART catalogue lists: Disposable Plastic Glass; Transparent Disposable Water Glass; Disposable Water Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
    "tags": [
     {
@@ -81810,6 +81982,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -81827,7 +82003,7 @@
    "id": "IM16-meera-greenpack",
    "name": "Meera Greenpack",
    "addr": "Rajkot 360311, Gujarat",
-   "makes": "IndiaMART catalogue lists: 50 ml Ice Cream Cup.",
+   "makes": "IndiaMART catalogue lists: 50 ml Ice Cream Cup. IndiaMART catalogue lists: 150ml Plastic Disposable Glass; 200 ml Disposable Plastic Tower Glass; 225 ml Disposable Plastic Plain Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
    "tags": [
     {
@@ -81837,6 +82013,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -82275,7 +82455,7 @@
    "id": "IM17-lio-plast",
    "name": "Lio Plast",
    "addr": "Rajkot 363621, Gujarat",
-   "makes": "IndiaMART catalogue lists: Lio Plastic Disposable Garbage Bags, Packaging Type: Box; Black Plastic Garbage Bag Roll; GARBAGE BAGS.",
+   "makes": "IndiaMART catalogue lists: Lio Plastic Disposable Garbage Bags, Packaging Type: Box; Black Plastic Garbage Bag Roll; GARBAGE BAGS. IndiaMART catalogue lists: Lio Plastic Disposable Ice Cream Cup; Plastic Disposable Glass; Plastic Disposable Water Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: &ldquo;Mr. Hitesh Kapadiya\" (Partner)",
    "tags": [
     {
@@ -82285,6 +82465,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -82661,7 +82845,7 @@
    "id": "IM17-om-plastic",
    "name": "Om Plastic",
    "addr": "Rajkot, Gujarat",
-   "makes": "IndiaMART catalogue lists: Taka Tak White 300ml Plastic Lassi Glass; Plastic Disposable Food Container; Disposable Plastic Food Container; White Plain 375ml Plastic Round Container.",
+   "makes": "IndiaMART catalogue lists: Taka Tak White 300ml Plastic Lassi Glass; Plastic Disposable Food Container; Disposable Plastic Food Container; White Plain 375ml Plastic Round Container. IndiaMART catalogue lists: Premium Disposable Plastic Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Mr. Patel (Owner)",
    "tags": [
     {
@@ -82683,6 +82867,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -84743,7 +84931,7 @@
    "id": "IM20-shiv-thermo-forming-industries",
    "name": "Shiv Thermo Forming Industries",
    "addr": "Surat 394210, Gujarat",
-   "makes": "IndiaMART catalogue lists: Ice Cream Disposable Cup.",
+   "makes": "IndiaMART catalogue lists: Ice Cream Disposable Cup. IndiaMART catalogue lists: Transparent Disposable Glass; Plastic Disposable Glass; Plastic Disposable Cups.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: DEVRAJBHAI NAKUM (Owner)",
    "tags": [
     {
@@ -84753,6 +84941,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -85942,7 +86134,7 @@
    "id": "IM21-wrapink-packaging",
    "name": "Wrapink Packaging",
    "addr": "Surat 394305, Gujarat",
-   "makes": "IndiaMART catalogue lists: 100ml IML Ice Cream Cup With LID; 90ml PP Ice Cream Cup; 35ml Ice Cream PP Cup.",
+   "makes": "IndiaMART catalogue lists: 100ml IML Ice Cream Cup With LID; 90ml PP Ice Cream Cup; 35ml Ice Cream PP Cup. IndiaMART catalogue lists: 200ml CPP Disposable Glass; 69mm Plastic lassi Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Rohit  (CEO)",
    "tags": [
     {
@@ -85956,6 +86148,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -86487,7 +86683,7 @@
    "id": "IM21-j-k-polypet-private-limited",
    "name": "J K Polypet Private Limited",
    "addr": "Surat 394520, Gujarat",
-   "makes": "IndiaMART catalogue lists: Disposable Ice Cream Cups; Disposable Plastic Ice Cream Cup; Ice Creams Cup.",
+   "makes": "IndiaMART catalogue lists: Disposable Ice Cream Cups; Disposable Plastic Ice Cream Cup; Ice Creams Cup. IndiaMART catalogue lists: Disposable Plastic Cups; Food Grade Disposable Water Glass; Transparent Disposable Plastic Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Praveen Daruka (Director)",
    "tags": [
     {
@@ -86497,6 +86693,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -88462,7 +88662,7 @@
    "id": "IM23-kiran-plastic",
    "name": "Kiran Plastic",
    "addr": "Surat 395006, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Jar; PP Plastic Bag; LDPE Plastic Bags; Recycled Plastic Bags.",
+   "makes": "IndiaMART catalogue lists: Plastic Jar; PP Plastic Bag; LDPE Plastic Bags; Recycled Plastic Bags. IndiaMART catalogue lists: Disposable Plastic Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: PREMJI KANJI KANZARIYA (Owner)",
    "tags": [
     {
@@ -88480,6 +88680,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -89804,7 +90008,7 @@
    "id": "IM24-packedge-industries-private-limited",
    "name": "Packedge Industries Private Limited",
    "addr": "Surat, Gujarat",
-   "makes": "IndiaMART catalogue lists: 50ml Printed Plastic Ice Cream Cup; 100ml Printed Plastic Dahi Cup; 400ml Printed Plastic Dahi Cup.",
+   "makes": "IndiaMART catalogue lists: 50ml Printed Plastic Ice Cream Cup; 100ml Printed Plastic Dahi Cup; 400ml Printed Plastic Dahi Cup. IndiaMART catalogue lists: 350ml Plastic Disposable Parlar Glass; 300ml Plastic Disposable Check Mate Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: &ldquo;Mr. Akash Tulsian&rdquo; (CEO)",
    "tags": [
     {
@@ -89814,6 +90018,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -91219,7 +91427,7 @@
    "id": "IM26-abhay-plastics",
    "name": "Abhay Plastics",
    "addr": "Vadodara 390010, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Jar; Plastic Round Container; Round Container; Square Sweet Box.",
+   "makes": "IndiaMART catalogue lists: Plastic Jar; Plastic Round Container; Round Container; Square Sweet Box. IndiaMART catalogue lists: Plastic Coffee Cups.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: MANISH DANI (Owner)",
    "tags": [
     {
@@ -91233,6 +91441,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -91841,7 +92053,7 @@
    "id": "IM26-jagannath-enterprise",
    "name": "Jagannath Enterprise",
    "addr": "Vadodara 390019, Gujarat",
-   "makes": "IndiaMART catalogue lists: Ice Cream Cup.",
+   "makes": "IndiaMART catalogue lists: Ice Cream Cup. IndiaMART catalogue lists: Disposable Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Leepika  (Owner)",
    "tags": [
     {
@@ -91851,6 +92063,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -92123,7 +92339,7 @@
    "id": "IM26-nature-packwell-pvt-ltd",
    "name": "Nature Packwell Pvt.. Ltd..",
    "addr": "Vadodara 390020, Gujarat",
-   "makes": "IndiaMART catalogue lists: Round Container.",
+   "makes": "IndiaMART catalogue lists: Round Container. IndiaMART catalogue lists: Disposable Plastic Cup; Disposable Plastic Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
    "tags": [
     {
@@ -92133,6 +92349,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -99067,7 +99287,7 @@
    "id": "IM35-pannchal-merrchant-private-limited",
    "name": "Pannchal Merrchant Private Limited",
    "addr": "Vapi 396195, Gujarat",
-   "makes": "IndiaMART catalogue lists: Disposable Garbage Bags.",
+   "makes": "IndiaMART catalogue lists: Disposable Garbage Bags. IndiaMART catalogue lists: Disposable Party Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Aarti Prasad (CEO)",
    "tags": [
     {
@@ -99077,6 +99297,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -104100,7 +104324,7 @@
    "id": "IM45-akshar-plasto-forming",
    "name": "Akshar Plasto Forming",
    "addr": "Gondal 360311, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Food Containers.",
+   "makes": "IndiaMART catalogue lists: Plastic Food Containers. IndiaMART catalogue lists: Plastic Disposable Cups; Plastic Disposable Glass; Disposable Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Raj Patel (Ceo)",
    "tags": [
     {
@@ -104110,6 +104334,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -106031,7 +106259,7 @@
    "id": "IM54-dhaval-packaging-limited",
    "name": "Dhaval Packaging Limited",
    "addr": "Sanand 382170, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Lassi Glass; Plastic Round Containers; Iml Round Lock Type Container; IML Plastic Sweet Box 500.",
+   "makes": "IndiaMART catalogue lists: Plastic Lassi Glass; Plastic Round Containers; Iml Round Lock Type Container; IML Plastic Sweet Box 500. IndiaMART catalogue lists: Plastic Lassi Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Jigar (Director)",
    "tags": [
     {
@@ -106045,6 +106273,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -107113,7 +107345,7 @@
    "id": "IM64-global-dispoworld",
    "name": "Global Dispoworld",
    "addr": "Wankaner 363621, Gujarat",
-   "makes": "IndiaMART catalogue lists: Disposable Food Container; Disposable Round Container.",
+   "makes": "IndiaMART catalogue lists: Disposable Food Container; Disposable Round Container. IndiaMART catalogue lists: Plastic Disposable Glass; Disposable Glass; Colored Disposable Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
    "tags": [
     {
@@ -107123,6 +107355,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -107399,7 +107635,7 @@
    "id": "IM69-rashi-plastic-industries",
    "name": "Rashi Plastic Industries",
    "addr": "Sarigam 396155, Gujarat",
-   "makes": "IndiaMART catalogue lists: Plastic Ice Cream Cup; Disposable Plastic Box.",
+   "makes": "IndiaMART catalogue lists: Plastic Ice Cream Cup; Disposable Plastic Box. IndiaMART catalogue lists: Disposable Plastic Glass; Disposable Transparent Glass.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
    "tags": [
     {
@@ -107413,6 +107649,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -107685,7 +107925,7 @@
    "id": "IM75-dna-biotech",
    "name": "Dna Biotech",
    "addr": "Bhuj 370001, Gujarat",
-   "makes": "IndiaMART catalogue lists: Foaming Pump Bottle.",
+   "makes": "IndiaMART catalogue lists: Foaming Pump Bottle. IndiaMART catalogue lists: Plastic Disposable Cup.",
    "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Mahesh Bhagvanji Kondhiya (CEO)",
    "tags": [
     {
@@ -107695,6 +107935,10 @@
     {
      "t": "Plot needed",
      "c": ""
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -117522,14 +117766,14 @@
   {
    "legId": "A22",
    "telLabel": "Call",
-   "link": "",
-   "linkLabel": "",
+   "link": "https://www.indiamart.com/shrushtitechnoplast/",
+   "linkLabel": "IndiaMART",
    "precise": false,
    "sortOrder": 4070,
    "id": "A22-shrushti-technoplast",
    "name": "Shrushti Technoplast",
    "addr": "Odhav, Ahmedabad",
-   "makes": "Makes thin-wall plastic sweet boxes (250 g, 500 g) and food packaging containers.",
+   "makes": "Makes thin-wall plastic sweet boxes (250 g, 500 g) and food packaging containers. IndiaMART catalogue lists: White 200ml Disposable Plastic Glass, 5mm; 250ml Plastic Lassi Glass; 200ml Disposable Plastic Glass.",
    "src": "TradeIndia product listings",
    "tags": [
     {
@@ -117539,6 +117783,10 @@
     {
      "t": "Area only",
      "c": "warn"
+    },
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
     }
    ],
    "tel": "",
@@ -117760,6 +118008,1275 @@
    "fit": "weak",
    "why": "Checked 27/09/2026: Clear PET - outside the opaque target.",
    "map": "https://www.google.com/maps/search/?api=1&query=Prachi%20Pet%2C%20Plot%2016%2C%20near%20Water%20Canal%2C%20Tajpur%20Road%2C%20Changodar%2C%20Sanand%2C%20Ahmedabad"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-soni-brothers",
+   "name": "Soni Brothers",
+   "addr": "Ahmedabad 380001, Gujarat",
+   "makes": "IndiaMART catalogue lists: 130ml Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Luqman  (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/sonibrothersahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4092,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Soni%20Brothers%2C%20Ahmedabad%20380001%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-shree-rama-multi-tech-limited",
+   "name": "Shree Rama Multi Tech Limited",
+   "addr": "Ahmedabad 380009, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Cups.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shreeramamultitech/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4093,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Rama%20Multi%20Tech%20Limited%2C%20Ahmedabad%20380009%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-shree-ramdev-print-plast",
+   "name": "Shree Ramdev Print Plast",
+   "addr": "Ahmedabad 380026, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Glass With Lid; Disposable Plastic Glass With Dome Lid; Disposable Glass With Lid.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Rahul Prajapati (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shreeramdev-printplast/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4094,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Ramdev%20Print%20Plast%2C%20Ahmedabad%20380026%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-mahavir-enterprise",
+   "name": "Mahavir Enterprise",
+   "addr": "Ahmedabad 380052, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Virendra Jain (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/mahavirenterprise-ahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4095,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Mahavir%20Enterprise%2C%20Ahmedabad%20380052%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-v-s-product",
+   "name": "V S Product",
+   "addr": "Ahmedabad 382213, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass; Disposable Plastic Disposable Cup.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Sanjeev Shah (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/v-s-products/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4096,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=V%20S%20Product%2C%20Ahmedabad%20382213%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-star-kitchnware-private-limited",
+   "name": "Star Kitchnware Private Limited",
+   "addr": "Ahmedabad 382330, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass Tumbler; Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Vipul Makadia (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/star-kitchenware/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4097,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Star%20Kitchnware%20Private%20Limited%2C%20Ahmedabad%20382330%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-kedar-plast",
+   "name": "Kedar Plast",
+   "addr": "Ahmedabad 382350, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Tea Cups.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: SAHIL JOGANI (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/kedarplast/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4098,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Kedar%20Plast%2C%20Ahmedabad%20382350%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-capkco-plastech",
+   "name": "Capkco Plastech",
+   "addr": "Ahmedabad 382415, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass 350 And 250 Ml; Disposable Plastic Coffee Glass; Plastic Disposable Cold Coffee Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/capkco-plastech/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4099,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Capkco%20Plastech%2C%20Ahmedabad%20382415%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-radhe-plastic",
+   "name": "Radhe Plastic",
+   "addr": "Ahmedabad 382415, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Cup.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/radheplastic-140874106/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4100,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Radhe%20Plastic%2C%20Ahmedabad%20382415%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-krisha-plastic",
+   "name": "Krisha Plastic",
+   "addr": "Ahmedabad 382415, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Coffee Cups.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Ritesh K. Kachhadiya (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/krisha-plastic-ahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4101,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Krisha%20Plastic%2C%20Ahmedabad%20382415%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-j-b-enterprise",
+   "name": "J.B.Enterprise",
+   "addr": "Ahmedabad 382415, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Cup; Plastic Disposable Cold Drink Glass; Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/jbenterprise-59895098/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4102,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=J.B.Enterprise%2C%20Ahmedabad%20382415%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-real-plast",
+   "name": "Real Plast",
+   "addr": "Ahmedabad 382415, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Tea Cup.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/real-plast-ahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4103,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Real%20Plast%2C%20Ahmedabad%20382415%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-k-ritik-plast",
+   "name": "K Ritik Plast",
+   "addr": "Ahmedabad 382430, Gujarat",
+   "makes": "IndiaMART catalogue lists: 250ml Transparent Disposable Plastic Glass, With Lid; 500ml Transparent Disposable Plastic Glass, With Lid; 500ml Transparent Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Sahil Bhai (CEO)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/kritik-plast/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4104,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=K%20Ritik%20Plast%2C%20Ahmedabad%20382430%2C%20Gujarat"
+  },
+  {
+   "legId": "IC1",
+   "id": "IC1-shankar-palastic-industries",
+   "name": "Shankar Palastic Industries",
+   "addr": "Ahmedabad 382440, Gujarat",
+   "makes": "IndiaMART catalogue lists: White Plastic Tea Cups, Capacity: 250 mL; Plastic Tea Cups.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: \"Mr. Om Prakash\" (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shankar-palastic-industries/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4105,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shankar%20Palastic%20Industries%2C%20Ahmedabad%20382440%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-prime-enterprise",
+   "name": "Prime Enterprise",
+   "addr": "Rajkot 360001, Gujarat",
+   "makes": "IndiaMART catalogue lists: Brown Plastic Tea Cups, 100 mL.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Savan Lunagariya (owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/prime-enterpriserajkotgujarat/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4106,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Prime%20Enterprise%2C%20Rajkot%20360001%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-sima-plastic",
+   "name": "Sima Plastic",
+   "addr": "Rajkot 360001, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Drink Glass; Disposable glass; Disposable Drinks Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Rajni Sanghani (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/seema-plasticrajkot/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4107,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Sima%20Plastic%2C%20Rajkot%20360001%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-nijanand-plastic",
+   "name": "Nijanand Plastic",
+   "addr": "Rajkot 360002, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Glass; Disposable Juice Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Hiren Patel (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shree-nijanand-plastic/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4108,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Nijanand%20Plastic%2C%20Rajkot%20360002%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-shree-ram-plastic",
+   "name": "Shree Ram Plastic",
+   "addr": "Rajkot 360004, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Cup; Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Hasmukh Bhai (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shreeramplasticrajkot/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4109,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shree%20Ram%20Plastic%2C%20Rajkot%20360004%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-krishn-enterprise",
+   "name": "Krishn Enterprise",
+   "addr": "Rajkot 360005, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Bhavin Kumar Jayantilal Undhad (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/tulsimetalindustries/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4110,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Krishn%20Enterprise%2C%20Rajkot%20360005%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-intense-focus",
+   "name": "Intense Focus",
+   "addr": "Rajkot 360005, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass And Cup.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Intense Focus (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/swingair-metal-cast/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4111,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Intense%20Focus%2C%20Rajkot%20360005%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-shyam-polytech",
+   "name": "Shyam Polytech",
+   "addr": "Rajkot 360024, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Glass; Disposable Glass; PP Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Renish Gondaliya (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shyam-polytech/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4112,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shyam%20Polytech%2C%20Rajkot%20360024%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-meera-polyplast",
+   "name": "Meera Polyplast",
+   "addr": "Rajkot 360311, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Meera Polyplast (Partner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/meera-polymers-gondal/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4113,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Meera%20Polyplast%2C%20Rajkot%20360311%2C%20Gujarat"
+  },
+  {
+   "legId": "IC2",
+   "id": "IC2-able-kitchenware",
+   "name": "Able Kitchenware",
+   "addr": "Rajkot - 360002, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Coffee Cup.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Sanjay Patel (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.ablekitchenware.co.in/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4114,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Able%20Kitchenware%2C%20Rajkot%20-%20360002%2C%20Gujarat"
+  },
+  {
+   "legId": "IC3",
+   "id": "IC3-purepour-packaging",
+   "name": "Purepour Packaging",
+   "addr": "Surat 394110, Gujarat",
+   "makes": "IndiaMART catalogue lists: 360ml Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Akhil Bhakhar (Manager)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/purepourpackaging/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4115,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Purepour%20Packaging%2C%20Surat%20394110%2C%20Gujarat"
+  },
+  {
+   "legId": "IC3",
+   "id": "IC3-dharmesh-enterprise",
+   "name": "Dharmesh Enterprise",
+   "addr": "Surat 394150, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Glass; Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/dharmeshenterprise-81246413/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4116,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Dharmesh%20Enterprise%2C%20Surat%20394150%2C%20Gujarat"
+  },
+  {
+   "legId": "IC3",
+   "id": "IC3-dhaval-enterprise",
+   "name": "Dhaval Enterprise",
+   "addr": "Surat 394221, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Cups; Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Sanket  (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/gurudev-paperproducts/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4117,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Dhaval%20Enterprise%2C%20Surat%20394221%2C%20Gujarat"
+  },
+  {
+   "legId": "IC3",
+   "id": "IC3-jaisalmeria-enterprises",
+   "name": "Jaisalmeria Enterprises",
+   "addr": "Surat 394510, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Kamal Jaisalmeria (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/jaisalmeria-enterprises/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4118,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Jaisalmeria%20Enterprises%2C%20Surat%20394510%2C%20Gujarat"
+  },
+  {
+   "legId": "IC3",
+   "id": "IC3-param-enterprise",
+   "name": "Param Enterprise",
+   "addr": "Surat 394540, Gujarat",
+   "makes": "IndiaMART catalogue lists: 100ML Disposable Glasses.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Apurva Solanki (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/param-enterprise-surat/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4119,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Param%20Enterprise%2C%20Surat%20394540%2C%20Gujarat"
+  },
+  {
+   "legId": "IC3",
+   "id": "IC3-sunrise",
+   "name": "Sunrise",
+   "addr": "Surat 395004, Gujarat",
+   "makes": "IndiaMART catalogue lists: Spiral Disposable Glass; Disposable Tea Glasses; Disposable Hex Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Lalit Sanghvi (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/sunrise-14768466/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4120,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Sunrise%2C%20Surat%20395004%2C%20Gujarat"
+  },
+  {
+   "legId": "IC3",
+   "id": "IC3-hitarthi-enterprise",
+   "name": "Hitarthi Enterprise",
+   "addr": "Surat 395006, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Glass; Plastic Tea Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Biraj Bhai (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/hitarthi-enterprise/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4121,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Hitarthi%20Enterprise%2C%20Surat%20395006%2C%20Gujarat"
+  },
+  {
+   "legId": "IC4",
+   "id": "IC4-kajal-plastic",
+   "name": "Kajal Plastic",
+   "addr": "Vadodara 390001, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Mitesh Shah (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/kajal-plastic/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4122,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Kajal%20Plastic%2C%20Vadodara%20390001%2C%20Gujarat"
+  },
+  {
+   "legId": "IC4",
+   "id": "IC4-amita-enterprise",
+   "name": "Amita Enterprise",
+   "addr": "Vadodara 390008, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/amite-enterprise/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4123,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Amita%20Enterprise%2C%20Vadodara%20390008%2C%20Gujarat"
+  },
+  {
+   "legId": "IC4",
+   "id": "IC4-bharat-enterprise",
+   "name": "Bharat Enterprise",
+   "addr": "Vadodara 390012, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/bharatenterprises-91171343/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4124,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Bharat%20Enterprise%2C%20Vadodara%20390012%2C%20Gujarat"
+  },
+  {
+   "legId": "IC4",
+   "id": "IC4-g-m-packaging-solutions",
+   "name": "G.M.Packaging Solutions",
+   "addr": "Vadodara 391775, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Glasses.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shreeji-dispotech/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4125,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=G.M.Packaging%20Solutions%2C%20Vadodara%20391775%2C%20Gujarat"
+  },
+  {
+   "legId": "IC5",
+   "id": "IC5-fomex-packaging-private-limited",
+   "name": "Fomex Packaging Private Limited",
+   "addr": "Wankaner 363621, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glasses.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/fomex-packaging-private-limited/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4126,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Fomex%20Packaging%20Private%20Limited%2C%20Wankaner%20363621%2C%20Gujarat"
+  },
+  {
+   "legId": "IC5",
+   "id": "IC5-fomex-group-inc",
+   "name": "Fomex Group Inc",
+   "addr": "Wankaner 363621, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/fomex-group-inc-wankaner/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4127,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Fomex%20Group%20Inc%2C%20Wankaner%20363621%2C%20Gujarat"
+  },
+  {
+   "legId": "IC6",
+   "id": "IC6-trishul-enterprise",
+   "name": "Trishul Enterprise",
+   "addr": "Bharuch 393010, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Shah Vaibhav Bhupendra (Proprietor)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/crystal-foil/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4128,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Trishul%20Enterprise%2C%20Bharuch%20393010%2C%20Gujarat"
+  },
+  {
+   "legId": "IC6",
+   "id": "IC6-rainbow-india",
+   "name": "Rainbow India",
+   "addr": "Bharuch, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Cup, 40ml.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.crafteria.co.in/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4129,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Rainbow%20India%2C%20Bharuch%2C%20Gujarat"
+  },
+  {
+   "legId": "IC7",
+   "id": "IC7-siddhnath-enterprise",
+   "name": "Siddhnath Enterprise",
+   "addr": "Jamnagar 361001, Gujarat",
+   "makes": "IndiaMART catalogue lists: Small Disposable Glass; Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/siddhnathenterprise/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4130,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Siddhnath%20Enterprise%2C%20Jamnagar%20361001%2C%20Gujarat"
+  },
+  {
+   "legId": "IC8",
+   "id": "IC8-pritam-packaging",
+   "name": "Pritam Packaging",
+   "addr": "Navsari 396424, Gujarat",
+   "makes": "IndiaMART catalogue lists: Transparent Plain 200 ml Disposable Plastic Glass, 3 - 10 Mm; Plain Disposable Plastic Glass; 200 ml Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Jitu  (owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/pritampackagingnavsari/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4131,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Pritam%20Packaging%2C%20Navsari%20396424%2C%20Gujarat"
+  },
+  {
+   "legId": "IC9",
+   "id": "IC9-j-m-enterprise",
+   "name": "J.M. Enterprise",
+   "addr": "Valsad 396191, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: MEHUL DHANVANTRAI SHAH (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/jm-enterprise-gujarat/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4132,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=J.M.%20Enterprise%2C%20Valsad%20396191%2C%20Gujarat"
+  },
+  {
+   "legId": "IC10",
+   "id": "IC10-angel-plast",
+   "name": "Angel Plast",
+   "addr": "Bilimora 396321, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass; Clear Plastic Disposable Glass; Disposable Transparent Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Sitesh  (Partner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/angelplast/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4133,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Angel%20Plast%2C%20Bilimora%20396321%2C%20Gujarat"
+  },
+  {
+   "legId": "IC11",
+   "id": "IC11-bhavani-enterprise",
+   "name": "Bhavani Enterprise",
+   "addr": "Dehgam 382305, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Glass; Disposable Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/bhavani-enterpriseahmedabad/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4134,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Bhavani%20Enterprise%2C%20Dehgam%20382305%2C%20Gujarat"
+  },
+  {
+   "legId": "IC12",
+   "id": "IC12-rishika-packaging",
+   "name": "Rishika Packaging",
+   "addr": "Sarigam 396155, Gujarat",
+   "makes": "IndiaMART catalogue lists: Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Rakesh Bothra (Partner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/rishikapackaging-vapi/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4135,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Rishika%20Packaging%2C%20Sarigam%20396155%2C%20Gujarat"
+  },
+  {
+   "legId": "IC13",
+   "id": "IC13-gautam-industries",
+   "name": "Gautam Industries",
+   "addr": "Morbi 363641, Gujarat",
+   "makes": "IndiaMART catalogue lists: Plastic Disposable Glass; Plastic Disposable Cups.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Neerav Patel (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/gautam-industries-morvi/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4136,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Gautam%20Industries%2C%20Morbi%20363641%2C%20Gujarat"
+  },
+  {
+   "legId": "IC14",
+   "id": "IC14-babadev-enterprise",
+   "name": "Babadev Enterprise",
+   "addr": "Bhavnagar 364130, Gujarat",
+   "makes": "IndiaMART catalogue lists: Transparent Plain 250 ml Disposable Plastic Glass, 5-6 Mm; 250 ml Disposable Plastic Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Jilu Bhammar (Manager)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/babadev-enterprise/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4137,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Babadev%20Enterprise%2C%20Bhavnagar%20364130%2C%20Gujarat"
+  },
+  {
+   "legId": "IC15",
+   "id": "IC15-shreeji-packaging",
+   "name": "Shreeji Packaging",
+   "addr": "Vapi 396191, Gujarat",
+   "makes": "IndiaMART catalogue lists: 200ml White Plastic Lassi Glass; 200ml Transparent Plastic Lassi Glass.",
+   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Mehulpuri Tejpuri  Goswami (Owner)",
+   "tags": [
+    {
+     "t": "Disposable cups & glasses",
+     "c": "big"
+    },
+    {
+     "t": "Plot needed",
+     "c": ""
+    }
+   ],
+   "tel": "",
+   "telLabel": "Call",
+   "link": "https://www.indiamart.com/shreeji-packaging-gujarat/",
+   "linkLabel": "IndiaMART",
+   "precise": false,
+   "sortOrder": 4138,
+   "fit": "good",
+   "why": "Self-declared manufacturer on IndiaMART — confirm in-house cup forming and opaque grades on the call",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shreeji%20Packaging%2C%20Vapi%20396191%2C%20Gujarat"
   }
  ],
  "retired": [
