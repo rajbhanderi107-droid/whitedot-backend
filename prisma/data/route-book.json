@@ -2717,6 +2717,14 @@
    "belt": "self-declared manufacturers whose own IndiaMART catalogue lists disposable plastic cups or glasses",
    "nav": "",
    "sortOrder": 152
+  },
+  {
+   "id": "A23",
+   "familyId": "A",
+   "name": "Kalol - Chhatral - Kadi drive: 8 checked makers",
+   "belt": "Saij & Kalol GIDC, Chhatral GIDC, Chadasana, Kadi Irana Road · 01/10/2026 · each checked on its own listing",
+   "nav": "https://www.google.com/maps/dir/?api=1&travelmode=driving&origin=Usha%20Multiplast%2C%20Plot%2063/2%2C%20GIDC%20Saij%2C%20behind%20Chirag%20Cinema%2C%20Kalol%2C%20Gandhinagar%20382721&destination=Navdurga%20Poly%20Plast%2C%20S.No%20142/1%2C%20Plot%205%2C%20Irana%20Road%2C%20opp.%20Umapati%20Oil%20Mill%2C%20Kadi%20382715&waypoints=Plas-Pack%20Synthetics%20Pvt.%20Ltd.%2C%20Plot%2041/C%203-6%2C%20GIDC%20Kalol%2C%20Gandhinagar%20382721|Ranjan%20Plastics%20Pvt.%20Ltd.%2C%20Plot%202007%2C%20Phase%20II%2C%20GIDC%20Chhatral%2C%20Ta.%20Kalol%20382729|Shreeji%20Plastic%20Product%2C%203507%2C%20GIDC%20Phase%20IV%2C%20Chhatral%2C%20Ta.%20Kalol%20382729|Click%20Plastics%2C%20Shed%2023-24%2C%20Shubhlaxmi%20Estate%2C%20Chhatral%20GIDC%20Phase%204%20Road%2C%20Dhanot%20382729|S%20K%20Plastpack%2C%20Plot%2053%2C%20Gokul%20Dham%20Residency%2C%20near%20Axis%20Bank%2C%20Chhatral%20382729|Jyoti%20Plastic%20Industries%2C%20Survey%20295/2%2C%20Sub%20Plot%202%2C%20behind%20Torrent%20Pharma%2C%20Chadasana%2C%20Ta.%20Kadi%20382705",
+   "sortOrder": 174
   }
  ],
  "stops": [
@@ -58650,12 +58658,12 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Pentaflex%20Films%20LLP%2C%20PLOT%20NO.%201%2C%20RAJENDRA%20ESTATEOPP.%20TATA%20ARVIND%20HOUSINGVADSARTAL-%20KALOL%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
-   "legId": "GS18",
+   "legId": "A23",
    "id": "GS18-plas-pack-synthetics-pvt-ltd",
    "name": "Plas-Pack Synthetics Pvt. Ltd.",
-   "addr": "PLOT NO. 41/C, 3 TO 6, GIDC, KALOL(N.G), Ahmedabad",
-   "makes": "GSPMA product record lists: WOVEN BAG. GSPMA product record lists: WOVEN BAG, WOVEN.",
-   "src": "GSPMA members directory (gspma.in) — company name, plant address and proprietor as filed with the association. Contact on file: Kantibhai Patel · product from the association's own product_manufactured record",
+   "addr": "Plot 41/C 3-6, GIDC Kalol, Gandhinagar 382721",
+   "makes": "Makes PP and HDPE woven sacks and bags: cement, fertiliser and rice bags, BOPP printed and laminated bags. Since 1984.",
+   "src": "https://www.tradeindia.com/plas-pack-synthetics-pvt-ltd-1074213/",
    "tags": [
     {
      "t": "Plastics",
@@ -58672,13 +58680,13 @@
    ],
    "tel": "",
    "telLabel": "Call",
-   "link": "",
-   "linkLabel": "",
+   "link": "https://www.tradeindia.com/plas-pack-synthetics-pvt-ltd-1074213/",
+   "linkLabel": "Listing",
    "precise": true,
-   "sortOrder": 1967,
+   "sortOrder": 5001,
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
-   "map": "https://www.google.com/maps/search/?api=1&query=Plas-Pack%20Synthetics%20Pvt.%20Ltd.%2C%20PLOT%20NO.%2041%2FC%2C%203%20TO%206%2C%20GIDC%2C%20KALOL(N.G)%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 01/10/2026: TradeIndia profile and GSPMA record agree on the plot.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Plas-Pack%20Synthetics%20Pvt.%20Ltd.%2C%20Plot%2041/C%203-6%2C%20GIDC%20Kalol%2C%20Gandhinagar%20382721"
   },
   {
    "legId": "GS18",
@@ -59899,12 +59907,12 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Milin%20Tubes%2C%20PLOT%20NO-104-B%2C%20KOTHARI%20ESTATEN%2FR%20NAVKARA%20JAIN%20TIRTHAT.%20BILLESHWARPURA%2C%20CHHATRALKALOL%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
-   "legId": "GS22",
+   "legId": "A23",
    "id": "GS22-ranjan-plastic-pvt-ltd",
-   "name": "Ranjan Plastic Pvt.. Ltd..",
-   "addr": "PLOT NO- 2007PHASE- IIGIDCCHHATRAL, Ahmedabad",
-   "makes": "",
-   "src": "GSPMA members directory (gspma.in) — company name, plant address and proprietor as filed with the association. Contact on file: Narendra Lunia",
+   "name": "Ranjan Plastics Pvt. Ltd.",
+   "addr": "Plot 2007, Phase II, GIDC Chhatral, Ta. Kalol 382729",
+   "makes": "Makes HM, LDPE and LLDPE polythene bags, liners, sheets and rolls for industrial packaging. Since 1987.",
+   "src": "https://www.tradeindia.com/ranjan-plastics-pvt-ltd-239964/",
    "tags": [
     {
      "t": "Plastics",
@@ -59915,15 +59923,15 @@
      "c": "big"
     }
    ],
-   "tel": "",
-   "telLabel": "Call",
-   "link": "",
-   "linkLabel": "",
+   "tel": "9825010402",
+   "telLabel": "Call 98250 10402",
+   "link": "https://www.tradeindia.com/ranjan-plastics-pvt-ltd-239964/",
+   "linkLabel": "Listing",
    "precise": true,
-   "sortOrder": 2010,
+   "sortOrder": 5002,
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
-   "map": "https://www.google.com/maps/search/?api=1&query=Ranjan%20Plastic%20Pvt..%20Ltd..%2C%20PLOT%20NO-%202007PHASE-%20IIGIDCCHHATRAL%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 01/10/2026: TradeIndia profile; also lists 3107, Phase III, Chhatral.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Ranjan%20Plastics%20Pvt.%20Ltd.%2C%20Plot%202007%2C%20Phase%20II%2C%20GIDC%20Chhatral%2C%20Ta.%20Kalol%20382729"
   },
   {
    "legId": "GS22",
@@ -60893,12 +60901,12 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Karnavati%20Polyblends%20Pvt..Ltd..%2C%20PLOT%20NO.14%2F15%2F17%2C%20TIRTH%20IND.%20PARK%2C%20AT.%20PALDI%20KANKAJ%2C%20AHMEDABAD-DHOLKA%20ROAD%2C%20AHMEDABAD%20HIGHWAY%2C%20TA-DASCROI%2C%20Ahmedabad%2C%20Gujarat"
   },
   {
-   "legId": "GS28",
+   "legId": "A23",
    "id": "GS28-navdurga-poly-plast",
    "name": "Navdurga Poly Plast",
-   "addr": "S.NO. 142/1, PLOT NO. 5OPP. UMAPATI OIL MILL, IRANA ROADTO- BUDASANTAL- KADI, Ahmedabad",
-   "makes": "GSPMA product record lists: WOVEN FABRIC, WOVEN.",
-   "src": "GSPMA members directory (gspma.in) — company name, plant address and proprietor as filed with the association. Contact on file: Pradip R. Patel · product from the association's own product_manufactured record",
+   "addr": "S.No 142/1, Plot 5, Irana Road, opp. Umapati Oil Mill, Kadi 382715",
+   "makes": "Makes PP and HDPE woven fabric and woven sacks, FIBC jumbo bags, tarpaulins and paper-laminated bags.",
+   "src": "http://www.navdurgapolyplast.com/",
    "tags": [
     {
      "t": "Plastics",
@@ -60915,13 +60923,13 @@
    ],
    "tel": "",
    "telLabel": "Call",
-   "link": "",
-   "linkLabel": "",
+   "link": "http://www.navdurgapolyplast.com/",
+   "linkLabel": "Listing",
    "precise": true,
-   "sortOrder": 2044,
+   "sortOrder": 5007,
    "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
-   "map": "https://www.google.com/maps/search/?api=1&query=Navdurga%20Poly%20Plast%2C%20S.NO.%20142%2F1%2C%20PLOT%20NO.%205OPP.%20UMAPATI%20OIL%20MILL%2C%20IRANA%20ROADTO-%20BUDASANTAL-%20KADI%2C%20Ahmedabad%2C%20Gujarat"
+   "why": "Checked 01/10/2026: own website and TradeIndia give the Irana Road plot.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Navdurga%20Poly%20Plast%2C%20S.No%20142/1%2C%20Plot%205%2C%20Irana%20Road%2C%20opp.%20Umapati%20Oil%20Mill%2C%20Kadi%20382715"
   },
   {
    "legId": "GS28",
@@ -64123,12 +64131,12 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Arihant%20Plast%2C%20714%2C%207TH%20FLOOR%2C%20SCARLET%20BUSINESS%20HUB%2C%20OFF%20MAHALKSHMI%205%20CROSS%20ROAD%2C%20OPP.%20ANKUR%20SCHOOL%2C%20FATEHPURA%2C%20PALDI%2C%20Gujarat"
   },
   {
-   "legId": "GP17",
+   "legId": "A23",
    "id": "GP17-jyoti-plastic-industries",
    "name": "Jyoti Plastic Industries",
-   "addr": "SURVEY NO.295/2, SUB PLOT NO.2, B/H. TORRENT PHARMA, VILL-CHADASANA, TA. KADI",
-   "makes": "GSPMA product record lists: IML. IndiaMART catalogue lists: Ice Cream Cups; 1 kg jar; 250 ml jar; 500 ml jar.",
-   "src": "GSPMA members directory (gspma.in) — matched on the association's own product_manufactured record. Contact on file: Vipul Patel",
+   "addr": "Survey 295/2, Sub Plot 2, behind Torrent Pharma, Chadasana, Ta. Kadi 382705",
+   "makes": "Injection-moulds IML food containers and ice-cream cups, blow-moulds bottles and thermoforms sealable food trays.",
+   "src": "https://jyotiplasticindia.com/contact.htm",
    "tags": [
     {
      "t": "Blow-moulded bottles",
@@ -64149,13 +64157,13 @@
    ],
    "tel": "",
    "telLabel": "Call",
-   "link": "https://www.indiamart.com/jyotiplastic/",
-   "linkLabel": "IndiaMART",
+   "link": "https://jyotiplasticindia.com/contact.htm",
+   "linkLabel": "Listing",
    "precise": true,
-   "sortOrder": 2167,
-   "fit": "good",
-   "why": "Plastics processor — opaque grades very likely, confirm on the call",
-   "map": "https://www.google.com/maps/search/?api=1&query=Jyoti%20Plastic%20Industries%2C%20SURVEY%20NO.295%2F2%2C%20SUB%20PLOT%20NO.2%2C%20B%2FH.%20TORRENT%20PHARMA%2C%20VILL-CHADASANA%2C%20TA.%20KADI%2C%20Gujarat"
+   "sortOrder": 5006,
+   "fit": "prime",
+   "why": "Checked 01/10/2026: own website gives the Chadasana address; best LIMEX fit on this drive.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Jyoti%20Plastic%20Industries%2C%20Survey%20295/2%2C%20Sub%20Plot%202%2C%20behind%20Torrent%20Pharma%2C%20Chadasana%2C%20Ta.%20Kadi%20382705"
   },
   {
    "legId": "GP17",
@@ -95962,12 +95970,12 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Lexicon%20Ceramic%20Pvt..%20Ltd..%2C%20Morbi%20363642%2C%20Gujarat"
   },
   {
-   "legId": "IM31",
+   "legId": "A23",
    "id": "IM31-usha-multiplast",
    "name": "Usha Multiplast",
-   "addr": "Kalol 382721, Gujarat",
-   "makes": "IndiaMART catalogue lists: Kids Plastic Toys; Plastic Toy; Plastic Bottle; Bottle.",
-   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: USHA PARESH JAIN (Owner)",
+   "addr": "Plot 63/2, GIDC Saij, behind Chirag Cinema, Kalol, Gandhinagar 382721",
+   "makes": "Makes plastic playground slides and plastic crates.",
+   "src": "https://www.indiamart.com/ushamultiplast/",
    "tags": [
     {
      "t": "Toys",
@@ -95984,13 +95992,13 @@
    ],
    "tel": "",
    "telLabel": "Call",
-   "link": "https://www.indiamart.com/ganesh-plastics-chhatral/",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3280,
+   "link": "https://www.indiamart.com/ushamultiplast/",
+   "linkLabel": "Listing",
+   "precise": true,
+   "sortOrder": 5000,
    "fit": "good",
-   "why": "Self-declared manufacturer on IndiaMART — confirm in-house moulding and opaque grades on the call",
-   "map": "https://www.google.com/maps/search/?api=1&query=Usha%20Multiplast%2C%20Kalol%20382721%2C%20Gujarat"
+   "why": "Checked 01/10/2026: own IndiaMART profile gives the Saij GIDC plot.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Usha%20Multiplast%2C%20Plot%2063/2%2C%20GIDC%20Saij%2C%20behind%20Chirag%20Cinema%2C%20Kalol%2C%20Gandhinagar%20382721"
   },
   {
    "legId": "IM31",
@@ -97713,12 +97721,12 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Gujarat%20Polyplast%20Private%20Limited%2C%20Gandhinagar%20382721%2C%20Gujarat"
   },
   {
-   "legId": "IM33",
+   "legId": "A23",
    "id": "IM33-shreeji-plastic-product",
    "name": "Shreeji Plastic Product",
-   "addr": "Gandhinagar 382721, Gujarat",
-   "makes": "IndiaMART catalogue lists: HDPE Plastic Jars; Plastic HDPE Jars; Plastic Medicine Jars; SPP Hdpe Round Container, For Food Storage, Packaging Type: Plastic Bag.",
-   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Parag B. Joshi (Proprietor)",
+   "addr": "3507, GIDC Phase IV, Chhatral, Ta. Kalol 382729",
+   "makes": "Blow-moulds HDPE jars and HDPE medicine bottles.",
+   "src": "https://www.justdial.com/jdmart/Ahmedabad/Shreeji-Plastic-Product-GIDC-Estate-Chhatral/079P13234_BZDET/catalogue",
    "tags": [
     {
      "t": "Jars",
@@ -97743,13 +97751,13 @@
    ],
    "tel": "",
    "telLabel": "Call",
-   "link": "https://www.indiamart.com/shreejiplasticproduct-ahmedabad/",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3341,
+   "link": "https://www.justdial.com/jdmart/Ahmedabad/Shreeji-Plastic-Product-GIDC-Estate-Chhatral/079P13234_BZDET/catalogue",
+   "linkLabel": "Listing",
+   "precise": true,
+   "sortOrder": 5003,
    "fit": "good",
-   "why": "Self-declared manufacturer on IndiaMART — confirm in-house moulding and opaque grades on the call",
-   "map": "https://www.google.com/maps/search/?api=1&query=Shreeji%20Plastic%20Product%2C%20Gandhinagar%20382721%2C%20Gujarat"
+   "why": "Checked 01/10/2026: Justdial and ExportersIndia give the Phase IV plot.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Shreeji%20Plastic%20Product%2C%203507%2C%20GIDC%20Phase%20IV%2C%20Chhatral%2C%20Ta.%20Kalol%20382729"
   },
   {
    "legId": "IM33",
@@ -98131,12 +98139,12 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Peacock%20Industries%2C%20Gandhinagar%2C%20Gujarat"
   },
   {
-   "legId": "IM33",
+   "legId": "A23",
    "id": "IM33-click-plastics",
    "name": "Click Plastics",
-   "addr": "Shed No 23 24  Dhanot, 3443, Shubhlaxmi Estate, Chhatral Gidc Phase 4 Road, Gidc Chhatral, Gujarat, Foils Ltd, Chhatral - 382729, Gandhinagar, Gujarat",
-   "makes": "IndiaMART catalogue lists: 500ml Single Wall HDPE Jar.",
-   "src": "IndiaMART seller profile — business type stated as manufacturer, GST-registered in Gujarat. Contact on file: Pritesh Patel (Partner)",
+   "addr": "Shed 23-24, Shubhlaxmi Estate, Chhatral GIDC Phase 4 Road, Dhanot 382729",
+   "makes": "Blow-moulds HDPE jars (25 ml to 500 ml) and HDPE bottles.",
+   "src": "https://www.clickplastics.in/",
    "tags": [
     {
      "t": "Jars",
@@ -98150,12 +98158,12 @@
    "tel": "",
    "telLabel": "Call",
    "link": "https://www.clickplastics.in/",
-   "linkLabel": "IndiaMART",
-   "precise": false,
-   "sortOrder": 3355,
+   "linkLabel": "Listing",
+   "precise": true,
+   "sortOrder": 5004,
    "fit": "good",
-   "why": "Self-declared manufacturer on IndiaMART — confirm in-house moulding and opaque grades on the call",
-   "map": "https://www.google.com/maps/search/?api=1&query=Click%20Plastics%2C%20Shed%20No%2023%2024%20%20Dhanot%2C%203443%2C%20Shubhlaxmi%20Estate%2C%20Chhatral%20Gidc%20Phase%204%20Road%2C%20Gidc%20Chhatral%2C%20Gujarat%2C%20Foils%20Ltd%2C%20Chhatral%20-%20382729%2C%20Gandhinagar%2C%20Gujarat"
+   "why": "Checked 01/10/2026: own website and IndiaMART give the shed address.",
+   "map": "https://www.google.com/maps/search/?api=1&query=Click%20Plastics%2C%20Shed%2023-24%2C%20Shubhlaxmi%20Estate%2C%20Chhatral%20GIDC%20Phase%204%20Road%2C%20Dhanot%20382729"
   },
   {
    "legId": "IM33",
@@ -115519,17 +115527,17 @@
    "map": "https://www.google.com/maps/search/?api=1&query=Radhe%20Polymers%2C%20Plot%20C-20%2C%20Maruti%20Industrial%20Estate%2C%20near%20Kiran%20Industries%2C%20Phase%201%2C%20GIDC%20Vatva%2C%20Ahmedabad"
   },
   {
-   "legId": "A19",
+   "legId": "A23",
    "telLabel": "Call",
    "link": "https://www.skplastpack.com/",
-   "linkLabel": "skplastpack.com",
-   "precise": false,
-   "sortOrder": 3983,
+   "linkLabel": "Listing",
+   "precise": true,
+   "sortOrder": 5005,
    "id": "A19-s-k-plastpack",
    "name": "S K Plastpack",
-   "addr": "Plot No. 53, Gokul Dham Residency, near Axis Bank, Chhatral 382729",
-   "makes": "Blow-moulds HDPE tablet bottles, HDPE oil and shampoo bottles, HDPE milk cans, dropper bottles and 5 lb HDPE protein-powder jars. Installed capacity 170,000 pieces.",
-   "src": "IndiaMART Ahmedabad listing (dir.indiamart.com/ahmedabad/plastic-jars.html) — name, area and products from the listing only",
+   "addr": "Plot 53, Gokul Dham Residency, near Axis Bank, Chhatral 382729",
+   "makes": "Blow-moulds HDPE and LDPE pharma bottles: tablet, dropper, nasal, oil and shampoo bottles, 5 ml to 1000 ml.",
+   "src": "https://www.skplastpack.com/",
    "tags": [
     {
      "t": "Jars",
@@ -115538,8 +115546,8 @@
    ],
    "tel": "+918069426364",
    "fit": "good",
-   "why": "Checked 25/09/2026: Its own site says manufacturer of HDPE bottles and jars in Chhatral — opaque HDPE, the right polymer. The address is a residency, so ask for the plant.",
-   "map": "https://www.google.com/maps/search/?api=1&query=S%20K%20Plastpack%2C%20Plot%20No.%2053%2C%20Gokul%20Dham%20Residency%2C%20near%20Axis%20Bank%2C%20Chhatral%20382729"
+   "why": "Checked 01/10/2026: own website and TradeIndia give the address.",
+   "map": "https://www.google.com/maps/search/?api=1&query=S%20K%20Plastpack%2C%20Plot%2053%2C%20Gokul%20Dham%20Residency%2C%20near%20Axis%20Bank%2C%20Chhatral%20382729"
   },
   {
    "legId": "A19",
