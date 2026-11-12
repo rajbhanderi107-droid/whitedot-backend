@@ -36,8 +36,8 @@ async function main() {
     data: [
       { key: "company_name", value: "White Dot LLP", type: "TEXT", description: "Company display name" },
       { key: "company_email", value: "office@whitedotindia.in", type: "EMAIL", description: "Primary contact email" },
-      { key: "company_phone", value: "+918849728938", type: "TEXT", description: "Primary contact phone" },
-      { key: "whatsapp_number", value: "918849728938", type: "TEXT", description: "WhatsApp number (without +)" },
+      { key: "company_phone", value: "+919879811180", type: "TEXT", description: "Primary contact phone" },
+      { key: "whatsapp_number", value: "919879811180", type: "TEXT", description: "WhatsApp number (without +)" },
       { key: "company_address", value: "Gujarat, India", type: "TEXT", description: "Company address" },
       { key: "gst_number", value: "", type: "TEXT", description: "GST registration number" },
     ],
